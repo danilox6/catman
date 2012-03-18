@@ -1,15 +1,20 @@
 package it.unisannio.memento;
 
+import java.util.List;
+
 public interface GenericDAO<K, T> {
 	public T find(K key);
 	
-	public T[] findAll(K... keys);
+	public List<T> findAll();
 	
-	public int count();
+	public long count();
 	
-	public void delete(K... keys);
+	public void delete(T obj);
 	
-	public void save(T... obj);
+	public void delete(List<T> obj);
 	
-	public T[] list(int offset, int size);
+	public void insert(T obj);
+	
+	public List<T> list(int offset, int size);
+	
 }
