@@ -5,13 +5,15 @@ import java.util.List;
 public interface GenericDAO<K, T> {
 	public T find(K key);
 	
-	public List<T> findAll();
+	public List<T> findAll(K... keys);
 	
 	public long count();
 	
-	public void delete(T obj);
+	public void deleteAll(K... keys);
 	
-	public void delete(List<T> obj);
+	public void deleteAll(List<T> objects);
+	
+	public void delete(T object);
 	
 	public void insert(T obj);
 	

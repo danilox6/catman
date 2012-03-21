@@ -11,49 +11,61 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
 
 public class DAOFactoryImpl implements DAOFactory {
 	
 	private class GenericDAOImpl<K, T> implements GenericDAO<K, T> {
-		private final Class<T> objectClass;
+		private final Class<T> entityClass;
+		private final String id;
 		
 		GenericDAOImpl(Class<T> objClass) {
-			this.objectClass = objClass;
+			this.entityClass = objClass;
+			
+			EntityType<T> entityType = entityManager.getMetamodel().entity(entityClass);
+			this.id = entityType.getId(entityType.getIdType().getJavaType()).getName();
 		}
 
 		@Override
 		public T find(K key) {
-			return entityManager.find(objectClass, key);
+			return entityManager.find(entityClass, key);
 		}
 
 		@Override
-		public List<T> findAll() {
-			CriteriaQuery<T> cq = entityManager.getCriteriaBuilder().createQuery(objectClass);
-			cq.from(objectClass);
+		public List<T> findAll(K... keys) {
+			CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+			CriteriaQuery<T> cq = cb.createQuery(entityClass);
+			Root<T> root = cq.from(entityClass);
+			if(keys.length > 0) {
+				In<Object> in = cb.in(root.get(id));
+				for(K key : keys)
+					in.value(key);
+				cq.where(in);
+			}
 			return entityManager.createQuery(cq).getResultList();
+			
 		}
 
 		@Override
 		public long count() {
 			CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 			CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-			cq.select(cb.count(cq.from(objectClass)));
+			cq.select(cb.count(cq.from(entityClass)));
 			return entityManager.createQuery(cq).getSingleResult();
-		}
-
-		@Override
-		public void delete(T obj) {
-			entityManager.remove(obj);
 		}
 
 		@Override
@@ -63,8 +75,8 @@ public class DAOFactoryImpl implements DAOFactory {
 
 		@Override
 		public List<T> list(int offset, int size) {
-			CriteriaQuery<T> cq = entityManager.getCriteriaBuilder().createQuery(objectClass);
-			cq.from(objectClass);
+			CriteriaQuery<T> cq = entityManager.getCriteriaBuilder().createQuery(entityClass);
+			cq.from(entityClass);
 			return entityManager.createQuery(cq)
 					.setFirstResult(offset)
 					.setMaxResults(size)
@@ -72,10 +84,26 @@ public class DAOFactoryImpl implements DAOFactory {
 		}
 
 		@Override
-		public void delete(List<T> objects) {
-			for(T obj : objects) delete(obj);
+		public void deleteAll(List<T> objects) {
+			for(T obj : objects) entityManager.remove(obj);
 		}
 
+		@Override
+		public void deleteAll(K... keys) {
+			List<K> ids = Arrays.asList(keys);
+			TypedQuery<T> select = entityManager.createQuery("SELECT o from " + entityClass.getName() + " o WHERE " + id +" IN (:in)", entityClass);
+			select.setParameter("in", ids);
+			for(T obj : select.getResultList())
+				entityManager.detach(obj);
+			Query delete = entityManager.createQuery("DELETE from " + entityClass.getName() + " WHERE " + id + " IN (:in)");
+			delete.setParameter("in", ids).executeUpdate();
+			entityManager.flush();
+		}
+
+		@Override
+		public void delete(T obj) {
+			entityManager.remove(obj);
+		}
 	}
 
 	private final Map<Class<?>, WeakReference<GenericDAO<?, ?>>> cache;
@@ -87,25 +115,24 @@ public class DAOFactoryImpl implements DAOFactory {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Override
-	public <D extends GenericDAO<K, T>, K, T> D getInstance(Class<D> daoClass) {
+	private <D extends GenericDAO<K, T>, K, T> D getInstance(Class<D> daoClass) {
 		D instance = cache.containsKey(daoClass) ? (D) cache.get(daoClass).get() : null;
 		
 		if(instance == null) {
 			if(daoClass.isInterface()) {
-				final Class<T> persistedClass;
+				final Class<T> entityClass;
 			
 				Persists annotation = daoClass.getAnnotation(Persists.class);
 				if(annotation != null)
-					persistedClass = (Class<T>) annotation.value();
+					entityClass = (Class<T>) annotation.value();
 				else if(daoClass.isMemberClass())
-					persistedClass = (Class<T>) daoClass.getDeclaringClass();
+					entityClass = (Class<T>) daoClass.getDeclaringClass();
 				else 
 					throw new IllegalStateException("DAO interface must bring a @Persists annotation or be declared inside the class it persists");
 				
 				instance = (D) Proxy.newProxyInstance(daoClass.getClassLoader(), new Class<?>[] { daoClass }, new InvocationHandler() {
 					
-					GenericDAOImpl<K, T> delegate = new GenericDAOImpl<K, T>(persistedClass);
+					GenericDAOImpl<K, T> delegate = new GenericDAOImpl<K, T>(entityClass);
 					@Override
 					public Object invoke(Object obj, Method method, Object[] args)
 							throws Throwable {
@@ -139,7 +166,7 @@ public class DAOFactoryImpl implements DAOFactory {
 							CriteriaQuery<Object> cq = cb.createQuery();
 							
 							Predicate[] predicates = new Predicate[filters.length];
-							Root<T> root = cq.from(persistedClass);
+							Root<T> root = cq.from(entityClass);
 							for(int i = 0; i < filters.length; ++i) {
 								predicates[i] = cb.equal(root.get(filters[i]), args[argsStart + i]);
 							}
@@ -209,19 +236,15 @@ public class DAOFactoryImpl implements DAOFactory {
 			if(annotation != null) {
 				instance = getInstance(annotation.value());
 			} else {
-				Class<?>[] innerClasses = entityClass.getDeclaredClasses();
-				for(Class<?> candidateClass : innerClasses) {
-					if(candidateClass.getName().equals("DAO")
-							&& GenericDAO.class.isAssignableFrom(candidateClass)) {
-						instance = getInstance((Class<GenericDAO>) candidateClass);
-						break;
-					}
-				}
+				try {
+					Class<GenericDAO> implicitDao = (Class<GenericDAO>) Class.forName(entityClass.getName() + "$DAO");
+					instance = getInstance(implicitDao);
+				} catch (Exception e) {}
 			}
 			
-			if(instance == null)
+			if(instance == null) {
 				instance = new GenericDAOImpl(entityClass);
-			
+			}
 			cache.put(entityClass, new WeakReference(instance));
 		}
 		
