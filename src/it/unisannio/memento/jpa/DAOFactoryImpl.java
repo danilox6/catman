@@ -2,6 +2,7 @@ package it.unisannio.memento.jpa;
 
 import it.unisannio.memento.CustomDAO;
 import it.unisannio.memento.DAOFactory;
+import it.unisannio.memento.Delegate;
 import it.unisannio.memento.GenericDAO;
 import it.unisannio.memento.PersistedBy;
 import it.unisannio.memento.Persists;
@@ -17,13 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.EntityType;
 
@@ -115,7 +114,7 @@ public class DAOFactoryImpl implements DAOFactory {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private <D extends GenericDAO<K, T>, K, T> D getInstance(Class<D> daoClass) {
+	private <D extends GenericDAO<K, T>, K, T> D getInstance(final Class<D> daoClass) {
 		D instance = cache.containsKey(daoClass) ? (D) cache.get(daoClass).get() : null;
 		
 		if(instance == null) {
@@ -132,69 +131,115 @@ public class DAOFactoryImpl implements DAOFactory {
 				
 				instance = (D) Proxy.newProxyInstance(daoClass.getClassLoader(), new Class<?>[] { daoClass }, new InvocationHandler() {
 					
-					GenericDAOImpl<K, T> delegate = new GenericDAOImpl<K, T>(entityClass);
+					GenericDAOImpl<K, T> genericDao = new GenericDAOImpl<K, T>(entityClass);
 					@Override
 					public Object invoke(Object obj, Method method, Object[] args)
 							throws Throwable {
+						String methodName = method.getName();
 						
-						JPQL query = method.getAnnotation(JPQL.class);
-						if(query != null) { // method is annotated with the custom query to execute
-							Class<?> returnType = method.getReturnType();
-							boolean multiple = returnType.isArray() || returnType.equals(List.class);
-							Query q = entityManager.createQuery(query.value());
-							
-							for(int i = 0; i < args.length; ++i) {
-								q.setParameter(i, args[i]);
+						Delegate delegate = daoClass.getAnnotation(Delegate.class);
+						if(delegate != null) {
+							try {
+								Class<?> delegateTo = delegate.to();
+								String delegateMethod = delegate.method();
+								
+								if(delegateMethod.isEmpty()) 
+									delegateMethod = method.getName();
+								
+								return delegateTo
+										.getMethod(methodName, method.getParameterTypes())
+										.invoke(delegateTo, args);
+							} catch(InvocationTargetException itEx) {
+								throw itEx.getCause();
+							} catch (Exception ex) {
+								throw ex;
 							}
-							
-							return multiple ? q.getResultList() : q.getSingleResult();
 						}
 						
-						String methodName = method.getName();
-						if(methodName.contains("By")) { // dynamic method
+						int argsOffset = 0, resultsOffset = 0, resultsLimit = -1;
+						
+						Class<?> returnType = method.getReturnType();		
+						boolean noReturn = returnType.equals(Void.TYPE);
+						boolean multiple = returnType.isArray() || returnType.equals(List.class);
+						
+						Statement statement = method.getAnnotation(Statement.class);
+						String jpql = null;
+						
+						if(statement != null) { // method is annotated with the custom query to execute
+							jpql = statement.value();
+						} else if(method.getName().contains("By")) { // dynamic method
 							int byPosition = methodName.indexOf("By");
+							
 							String verb = methodName.substring(0, byPosition);
-							String complement = methodName.substring(byPosition + 2, methodName.length());
-							String[] filters = complement.split("And");
+							String[] filters = methodName.substring(byPosition + 2).split("And");
 							
-							int argsStart = "list".equals(verb) ? 2 : 0;
-							if(filters.length != args.length - argsStart)
-								throw new IllegalArgumentException("Arguments mismatch for method " 
-										+ method + ": " + filters.length + " filters for " + (args.length - argsStart) + " arguments");
-							
-							CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-							CriteriaQuery<Object> cq = cb.createQuery();
-							
-							Predicate[] predicates = new Predicate[filters.length];
-							Root<T> root = cq.from(entityClass);
-							for(int i = 0; i < filters.length; ++i) {
-								predicates[i] = cb.equal(root.get(filters[i]), args[argsStart + i]);
+							if("list".equals(verb)) {
+								argsOffset = 2;
+								resultsOffset = (Integer) args[0];
+								resultsLimit = (Integer) args[1];
+								verb = "findAll";
 							}
-							cq.where(predicates);
+							
 							if("find".equals(verb)) {
-								return entityManager.createQuery(cq)
-									.setMaxResults(1)
-									.getSingleResult();
-							} else if("findAll".equals(verb)) {
-								return entityManager.createQuery(cq)
-										.getResultList();
-							} else if("list".equals(verb)) {
-								return entityManager.createQuery(cq)
-									.setFirstResult((Integer) args[0])
-									.setMaxResults((Integer) args[1])
-									.getResultList();
+								resultsLimit = 1;
+							}
+							
+							if(filters.length != (args.length - argsOffset))
+								throw new IllegalArgumentException("Arguments mismatch for method " 
+										+ method + ": " + filters.length + " filters for " + (args.length - argsOffset) + " arguments");
+							
+							StringBuffer jpqlBuf = null;
+							
+							if("findAll".equals(verb) || "find".equals(verb)) {
+								jpqlBuf = new StringBuffer("SELECT object ");
 							} else if("count".equals(verb)) {
-								cq.select(cb.count(root));
-								return entityManager.createQuery(cq).getSingleResult();
+								jpqlBuf = new StringBuffer("SELECT COUNT(object) ");
+							} else if("delete".equals(verb)) {
+								jpqlBuf = new StringBuffer("DELETE ");
 							} else {
 								throw new UnsupportedOperationException("'" + verb + "' is not a valid verb for auto-generation of " + method);
+							}
+							
+							jpqlBuf.append("from ").append(entityClass.getName()).append(" object");
+							
+							if(filters.length > 0) {
+								jpqlBuf.append(" WHERE ");
+								for(int i = 0; i < filters.length; ++i) {
+									if(i != 0)
+										jpqlBuf.append(" AND ");
+									jpqlBuf.append(Character.toLowerCase(filters[i].charAt(0)));
+									jpqlBuf.append(filters[i].substring(1));
+									jpqlBuf.append(" = ?");
+								}
+							}
+							
+							jpql = jpqlBuf.toString();
+						}
+						
+						if(jpql != null) {
+							Query query = entityManager.createQuery(jpql);
+							for(int i = argsOffset; i < args.length; ++i) {
+								query.setParameter(i + 1, args[i]);
+							}
+							
+							if(resultsOffset > 0)
+								query.setFirstResult(resultsOffset);
+							
+							if(resultsLimit != -1)
+								query.setMaxResults(resultsLimit);
+							
+							if(noReturn) {
+								query.executeUpdate();
+								return null;
+							} else {
+								return multiple ? query.getResultList() : query.getSingleResult();
 							}
 						}
 						
 						// it should be one of the "usual" methods -> delegate it
 						try {
-							Method delegated = delegate.getClass().getMethod(method.getName(), method.getParameterTypes());
-							return delegated.invoke(delegate, args);
+							Method delegated = GenericDAOImpl.class.getMethod(method.getName(), method.getParameterTypes());
+							return delegated.invoke(genericDao, args);
 						} catch (NoSuchMethodException nsmEx) {
 							throw new UnsupportedOperationException("Unable to find a strategy to auto-generate method " + method);
 						} catch (InvocationTargetException itEx) {
