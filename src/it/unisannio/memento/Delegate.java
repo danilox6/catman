@@ -6,6 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Delegate {
-	Class<?> to();
+	Class<?> value();
 	String method() default "";
 }

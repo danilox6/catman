@@ -5,7 +5,6 @@ import it.unisannio.memento.DAOFactory;
 import it.unisannio.memento.Delegate;
 import it.unisannio.memento.GenericDAO;
 import it.unisannio.memento.PersistedBy;
-import it.unisannio.memento.Persists;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationHandler;
@@ -114,33 +113,23 @@ public class DAOFactoryImpl implements DAOFactory {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private <D extends GenericDAO<K, T>, K, T> D getInstance(final Class<D> daoClass) {
-		D instance = cache.containsKey(daoClass) ? (D) cache.get(daoClass).get() : null;
+	private <T> GenericDAO<?, T> getInstance(final Class<T> entityClass, final Class<? extends GenericDAO<?, T>> daoClass) {
+		GenericDAO<?, T> instance = cache.containsKey(daoClass) ? (GenericDAO<?, T>) cache.get(daoClass).get() : null;
 		
 		if(instance == null) {
 			if(daoClass.isInterface()) {
-				final Class<T> entityClass;
-			
-				Persists annotation = daoClass.getAnnotation(Persists.class);
-				if(annotation != null)
-					entityClass = (Class<T>) annotation.value();
-				else if(daoClass.isMemberClass())
-					entityClass = (Class<T>) daoClass.getDeclaringClass();
-				else 
-					throw new IllegalStateException("DAO interface must bring a @Persists annotation or be declared inside the class it persists");
-				
-				instance = (D) Proxy.newProxyInstance(daoClass.getClassLoader(), new Class<?>[] { daoClass }, new InvocationHandler() {
+				instance = (GenericDAO<?, T>) Proxy.newProxyInstance(daoClass.getClassLoader(), new Class<?>[] { daoClass }, new InvocationHandler() {
 					
-					GenericDAOImpl<K, T> genericDao = new GenericDAOImpl<K, T>(entityClass);
+					GenericDAOImpl<?, T> genericDao = new GenericDAOImpl<Object, T>(entityClass);
 					@Override
 					public Object invoke(Object obj, Method method, Object[] args)
 							throws Throwable {
 						String methodName = method.getName();
 						
-						Delegate delegate = daoClass.getAnnotation(Delegate.class);
+						Delegate delegate = method.getAnnotation(Delegate.class);
 						if(delegate != null) {
 							try {
-								Class<?> delegateTo = delegate.to();
+								Class<?> delegateTo = delegate.value();
 								String delegateMethod = delegate.method();
 								
 								if(delegateMethod.isEmpty()) 
@@ -160,7 +149,7 @@ public class DAOFactoryImpl implements DAOFactory {
 						
 						Class<?> returnType = method.getReturnType();		
 						boolean noReturn = returnType.equals(Void.TYPE);
-						boolean multiple = returnType.isArray() || returnType.equals(List.class);
+						boolean multiple = returnType.equals(List.class);
 						
 						Statement statement = method.getAnnotation(Statement.class);
 						String jpql = null;
@@ -191,16 +180,14 @@ public class DAOFactoryImpl implements DAOFactory {
 							StringBuffer jpqlBuf = null;
 							
 							if("findAll".equals(verb) || "find".equals(verb)) {
-								jpqlBuf = new StringBuffer("SELECT object ");
+								jpqlBuf = new StringBuffer("SELECT obj ");
 							} else if("count".equals(verb)) {
-								jpqlBuf = new StringBuffer("SELECT COUNT(object) ");
-							} else if("delete".equals(verb)) {
-								jpqlBuf = new StringBuffer("DELETE ");
+								jpqlBuf = new StringBuffer("SELECT COUNT(*) ");
 							} else {
 								throw new UnsupportedOperationException("'" + verb + "' is not a valid verb for auto-generation of " + method);
 							}
 							
-							jpqlBuf.append("from ").append(entityClass.getName()).append(" object");
+							jpqlBuf.append("FROM ").append(entityClass.getName()).append(" obj");
 							
 							if(filters.length > 0) {
 								jpqlBuf.append(" WHERE ");
@@ -219,7 +206,7 @@ public class DAOFactoryImpl implements DAOFactory {
 						if(jpql != null) {
 							Query query = entityManager.createQuery(jpql);
 							for(int i = argsOffset; i < args.length; ++i) {
-								query.setParameter(i + 1, args[i]);
+								query.setParameter(i - argsOffset + 1, args[i]);
 							}
 							
 							if(resultsOffset > 0)
@@ -279,11 +266,11 @@ public class DAOFactoryImpl implements DAOFactory {
 		if(instance == null) {
 			PersistedBy annotation = entityClass.getAnnotation(PersistedBy.class);
 			if(annotation != null) {
-				instance = getInstance(annotation.value());
+				instance = getInstance(entityClass, (Class<? extends GenericDAO<?, T>>) annotation.value());
 			} else {
 				try {
-					Class<GenericDAO> implicitDao = (Class<GenericDAO>) Class.forName(entityClass.getName() + "$DAO");
-					instance = getInstance(implicitDao);
+					Class<? extends GenericDAO<?, T>> implicitDao = (Class<? extends GenericDAO<?, T>>) Class.forName(entityClass.getName() + "$DAO");
+					instance = getInstance(entityClass, implicitDao);
 				} catch (Exception e) {}
 			}
 			
