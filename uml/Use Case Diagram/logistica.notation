@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_WuBq8IfbEeGAAci3CSZbqQ" type="UseCase" name="NewDiagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_XOf6wIfbEeGAAci3CSZbqQ" type="2011" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XOgh0IfbEeGAAci3CSZbqQ" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XOgh0YfbEeGAAci3CSZbqQ" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XOgh0ofbEeGAAci3CSZbqQ" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XOgh04fbEeGAAci3CSZbqQ" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XOhI4IfbEeGAAci3CSZbqQ" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XOhI4YfbEeGAAci3CSZbqQ" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_XOhI4ofbEeGAAci3CSZbqQ" type="5014">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_XOhI44fbEeGAAci3CSZbqQ" x="-20" y="80"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_XOhI5IfbEeGAAci3CSZbqQ" type="6029">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_XOhI5YfbEeGAAci3CSZbqQ" y="5"/>
+    </children>
+    <element xmi:type="uml:Actor" href="logistica.uml#_XOeFkIfbEeGAAci3CSZbqQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XOf6wYfbEeGAAci3CSZbqQ" x="61" y="60"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_aMU90IfbEeGAAci3CSZbqQ" type="2011" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aMVk4IfbEeGAAci3CSZbqQ" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aMVk4YfbEeGAAci3CSZbqQ" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aMWL8IfbEeGAAci3CSZbqQ" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aMWL8YfbEeGAAci3CSZbqQ" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aMWL8ofbEeGAAci3CSZbqQ" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aMWL84fbEeGAAci3CSZbqQ" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_aMWL9IfbEeGAAci3CSZbqQ" type="5014">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_aMWzAIfbEeGAAci3CSZbqQ" x="21" y="80"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_aMWzAYfbEeGAAci3CSZbqQ" type="6029">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_aMWzAofbEeGAAci3CSZbqQ" y="5"/>
+    </children>
+    <element xmi:type="uml:Actor" href="logistica.uml#_aMShkIfbEeGAAci3CSZbqQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aMU90YfbEeGAAci3CSZbqQ" x="700" y="200"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_cb_TUIfbEeGAAci3CSZbqQ" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cb_6YIfbEeGAAci3CSZbqQ" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cb_6YYfbEeGAAci3CSZbqQ" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cb_6YofbEeGAAci3CSZbqQ" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cb_6Y4fbEeGAAci3CSZbqQ" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cb_6ZIfbEeGAAci3CSZbqQ" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cb_6ZYfbEeGAAci3CSZbqQ" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_cb_6ZofbEeGAAci3CSZbqQ" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ccAhcIfbEeGAAci3CSZbqQ" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ccAhcYfbEeGAAci3CSZbqQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ccAhcofbEeGAAci3CSZbqQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ccAhc4fbEeGAAci3CSZbqQ"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="logistica.uml#_cb83EIfbEeGAAci3CSZbqQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cb_TUYfbEeGAAci3CSZbqQ" x="320" y="70"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_ctFDUIfbEeGAAci3CSZbqQ" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ctGRcIfbEeGAAci3CSZbqQ" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ctGRcYfbEeGAAci3CSZbqQ" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ctGRcofbEeGAAci3CSZbqQ" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ctGRc4fbEeGAAci3CSZbqQ" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ctGRdIfbEeGAAci3CSZbqQ" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ctG4gIfbEeGAAci3CSZbqQ" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ctG4gYfbEeGAAci3CSZbqQ" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ctG4gofbEeGAAci3CSZbqQ" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ctG4g4fbEeGAAci3CSZbqQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ctG4hIfbEeGAAci3CSZbqQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ctG4hYfbEeGAAci3CSZbqQ"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="logistica.uml#_ctCnEIfbEeGAAci3CSZbqQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ctFDUYfbEeGAAci3CSZbqQ" x="315" y="210"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_dG874IfbEeGAAci3CSZbqQ" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dG9i8IfbEeGAAci3CSZbqQ" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dG9i8YfbEeGAAci3CSZbqQ" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dG-KAIfbEeGAAci3CSZbqQ" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dG-KAYfbEeGAAci3CSZbqQ" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dG-KAofbEeGAAci3CSZbqQ" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dG-KA4fbEeGAAci3CSZbqQ" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_dG-KBIfbEeGAAci3CSZbqQ" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_dG-KBYfbEeGAAci3CSZbqQ" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_dG-xEIfbEeGAAci3CSZbqQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_dG-xEYfbEeGAAci3CSZbqQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dG-xEofbEeGAAci3CSZbqQ"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="logistica.uml#_dG54kIfbEeGAAci3CSZbqQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dG874YfbEeGAAci3CSZbqQ" x="339" y="371"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_kmE_4IfbEeGAAci3CSZbqQ" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kmGOAIfbEeGAAci3CSZbqQ" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kmGOAYfbEeGAAci3CSZbqQ" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kmGOAofbEeGAAci3CSZbqQ" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kmGOA4fbEeGAAci3CSZbqQ" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kmG1EIfbEeGAAci3CSZbqQ" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kmG1EYfbEeGAAci3CSZbqQ" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_kmG1EofbEeGAAci3CSZbqQ" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_kmG1E4fbEeGAAci3CSZbqQ" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_kmG1FIfbEeGAAci3CSZbqQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_kmG1FYfbEeGAAci3CSZbqQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kmG1FofbEeGAAci3CSZbqQ"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="logistica.uml#_kmB8kIfbEeGAAci3CSZbqQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kmE_4YfbEeGAAci3CSZbqQ" x="700" y="370"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_WuCSAIfbEeGAAci3CSZbqQ"/>
+  <element xmi:type="uml:Model" href="logistica.uml#_WuAc0IfbEeGAAci3CSZbqQ"/>
+  <edges xmi:type="notation:Edge" xmi:id="_nhaIkIfbEeGAAci3CSZbqQ" type="4008" source="_kmE_4IfbEeGAAci3CSZbqQ" target="_dG874IfbEeGAAci3CSZbqQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nhavoIfbEeGAAci3CSZbqQ" type="6006">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_nhavoYfbEeGAAci3CSZbqQ" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_nhavoofbEeGAAci3CSZbqQ" type="6030">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_nhavo4fbEeGAAci3CSZbqQ" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_nhaIkYfbEeGAAci3CSZbqQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_nhaIkofbEeGAAci3CSZbqQ" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Include" href="logistica.uml#_nhXsUIfbEeGAAci3CSZbqQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nhaIk4fbEeGAAci3CSZbqQ" points="[-125, 0, 166, 0]$[-288, -1, 3, -1]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_niBzoIfbEeGAAci3CSZbqQ" id="(0.9798994974874372,0.48333333333333334)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_tPPOEIfbEeGAAci3CSZbqQ" type="4011" source="_XOf6wIfbEeGAAci3CSZbqQ" target="_dG874IfbEeGAAci3CSZbqQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_tPQcMIfbEeGAAci3CSZbqQ" visible="false" type="6008">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_tPQcMYfbEeGAAci3CSZbqQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_tPQcMofbEeGAAci3CSZbqQ" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_tPRDQIfbEeGAAci3CSZbqQ" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_tPPOEYfbEeGAAci3CSZbqQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_tPPOEofbEeGAAci3CSZbqQ" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="logistica.uml#_tPMx0IfbEeGAAci3CSZbqQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_tPPOE4fbEeGAAci3CSZbqQ" points="[0, 0, -230, -278]$[228, 277, -2, -1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tPUGkIfbEeGAAci3CSZbqQ" id="(0.625,1.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tPUGkYfbEeGAAci3CSZbqQ" id="(0.010050251256281407,0.45)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_w2j6EIfbEeGAAci3CSZbqQ" type="4011" source="_XOf6wIfbEeGAAci3CSZbqQ" target="_cb_TUIfbEeGAAci3CSZbqQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_w2khIIfbEeGAAci3CSZbqQ" visible="false" type="6008">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_w2khIYfbEeGAAci3CSZbqQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_w2khIofbEeGAAci3CSZbqQ" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_w2khI4fbEeGAAci3CSZbqQ" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_w2j6EYfbEeGAAci3CSZbqQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_w2j6EofbEeGAAci3CSZbqQ" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="logistica.uml#_w2iE4IfbEeGAAci3CSZbqQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_w2j6E4fbEeGAAci3CSZbqQ" points="[0, 0, -181, 0]$[180, -1, -1, -1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_w2nkcIfbEeGAAci3CSZbqQ" id="(1.0,0.6)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_w2nkcYfbEeGAAci3CSZbqQ" id="(0.007782101167315175,0.43333333333333335)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_y4y3kIfbEeGAAci3CSZbqQ" type="4011" source="_ctFDUIfbEeGAAci3CSZbqQ" target="_aMU90IfbEeGAAci3CSZbqQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_y4zeoIfbEeGAAci3CSZbqQ" visible="false" type="6008">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_y4zeoYfbEeGAAci3CSZbqQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_y4zeoofbEeGAAci3CSZbqQ" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_y4zeo4fbEeGAAci3CSZbqQ" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_y4y3kYfbEeGAAci3CSZbqQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_y4y3kofbEeGAAci3CSZbqQ" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="logistica.uml#_y4xCYIfbEeGAAci3CSZbqQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_y4y3k4fbEeGAAci3CSZbqQ" points="[4, -1, -173, -1]$[177, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y43JAIfbEeGAAci3CSZbqQ" id="(0.9719626168224299,0.43333333333333335)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y43JAYfbEeGAAci3CSZbqQ" id="(0.0,0.6)"/>
+  </edges>
+</notation:Diagram>

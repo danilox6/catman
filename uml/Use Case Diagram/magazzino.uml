@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_yv_rcIfcEeGAAci3CSZbqQ" name="model">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_zhYFEIfcEeGAAci3CSZbqQ" name="Responsabile magazzino"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_1s_oEIfcEeGAAci3CSZbqQ" name="Visualizzazione risorse per eventi">
+    <extensionPoint xmi:id="_LRKUIIfdEeGAAci3CSZbqQ" name="point"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_2j2XkIfcEeGAAci3CSZbqQ" name="Consultazione recapiti aziende specializzate"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_79v0cIfcEeGAAci3CSZbqQ" name="A_responsabile magazzino_visualizzazione risorse per eventi" memberEnd="_79v0cYfcEeGAAci3CSZbqQ _79v0dIfcEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_79v0cYfcEeGAAci3CSZbqQ" name="responsabile magazzino" type="_zhYFEIfcEeGAAci3CSZbqQ" association="_79v0cIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_79v0cofcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_79v0c4fcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_79v0dIfcEeGAAci3CSZbqQ" name="visualizzazione risorse per eventi" type="_1s_oEIfcEeGAAci3CSZbqQ" association="_79v0cIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_79v0dYfcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_79v0dofcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_9VjU4IfcEeGAAci3CSZbqQ" name="A_responsabile magazzino_consultazione recapiti aziende specializzate" memberEnd="_9VjU4YfcEeGAAci3CSZbqQ _9VjU5IfcEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_9VjU4YfcEeGAAci3CSZbqQ" name="responsabile magazzino" type="_zhYFEIfcEeGAAci3CSZbqQ" association="_9VjU4IfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9VjU4ofcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9VjU44fcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_9VjU5IfcEeGAAci3CSZbqQ" name="consultazione recapiti aziende specializzate" type="_2j2XkIfcEeGAAci3CSZbqQ" association="_9VjU4IfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9VjU5YfcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9VjU5ofcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_-SAWEIfcEeGAAci3CSZbqQ" name="Assegnazione risorsa ad un evento">
+    <include xmi:id="_Jz4d0IfdEeGAAci3CSZbqQ" addition="_1s_oEIfcEeGAAci3CSZbqQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_-uFOEIfcEeGAAci3CSZbqQ" name="Modifica informazioni riguardanti le risorse">
+    <extend xmi:id="_LRCYUIfdEeGAAci3CSZbqQ" extendedCase="_1s_oEIfcEeGAAci3CSZbqQ" extensionLocation="_LRKUIIfdEeGAAci3CSZbqQ"/>
+  </packagedElement>
+</uml:Model>

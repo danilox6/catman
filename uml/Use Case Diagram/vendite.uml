@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_pYDMAIfZEeGAAci3CSZbqQ" name="model">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_p4EI0IfZEeGAAci3CSZbqQ" name="Cliente"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_t_FokIfZEeGAAci3CSZbqQ" name="Richiesta preventivo ">
+    <extend xmi:id="_5LhPUIfaEeGAAci3CSZbqQ" extendedCase="_K5SuEIfaEeGAAci3CSZbqQ" extensionLocation="_5LpLIIfaEeGAAci3CSZbqQ"/>
+    <extend xmi:id="_9Af80IfaEeGAAci3CSZbqQ" extendedCase="_K5SuEIfaEeGAAci3CSZbqQ" extensionLocation="_5LpLIIfaEeGAAci3CSZbqQ"/>
+    <extensionPoint xmi:id="_HdHssIfbEeGAAci3CSZbqQ" name="point"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_9aF-AIfZEeGAAci3CSZbqQ" name="A_richiesta preventivo _richiesta preventivo " memberEnd="_9aF-AYfZEeGAAci3CSZbqQ _9aF-BIfZEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_9aF-AYfZEeGAAci3CSZbqQ" name="richiesta preventivo " type="_t_FokIfZEeGAAci3CSZbqQ" association="_9aF-AIfZEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9aF-AofZEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9aF-A4fZEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_9aF-BIfZEeGAAci3CSZbqQ" name="richiesta preventivo " type="_t_FokIfZEeGAAci3CSZbqQ" association="_9aF-AIfZEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9aF-BYfZEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9aF-BofZEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="__Ru1EIfZEeGAAci3CSZbqQ" name="A_cliente_richiesta preventivo " memberEnd="__Ru1EYfZEeGAAci3CSZbqQ __Ru1FIfZEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="__Ru1EYfZEeGAAci3CSZbqQ" name="cliente" type="_p4EI0IfZEeGAAci3CSZbqQ" association="__Ru1EIfZEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__Ru1EofZEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__Ru1E4fZEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="__Ru1FIfZEeGAAci3CSZbqQ" name="richiesta preventivo " type="_t_FokIfZEeGAAci3CSZbqQ" association="__Ru1EIfZEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__Ru1FYfZEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__Ru1FofZEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_DIDmYIfaEeGAAci3CSZbqQ" name="A_cliente_richiesta preventivo " memberEnd="_DIDmYYfaEeGAAci3CSZbqQ _DIDmZIfaEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_DIDmYYfaEeGAAci3CSZbqQ" name="cliente" type="_p4EI0IfZEeGAAci3CSZbqQ" association="_DIDmYIfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DIDmYofaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DIDmY4faEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_DIDmZIfaEeGAAci3CSZbqQ" name="richiesta preventivo " type="_t_FokIfZEeGAAci3CSZbqQ" association="_DIDmYIfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DIDmZYfaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DIDmZofaEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_K5SuEIfaEeGAAci3CSZbqQ" name="Attesa informazioni preventivo">
+    <extend xmi:id="_Hc_J0IfbEeGAAci3CSZbqQ" extendedCase="_t_FokIfZEeGAAci3CSZbqQ" extensionLocation="_HdHssIfbEeGAAci3CSZbqQ"/>
+    <extensionPoint xmi:id="_5LpLIIfaEeGAAci3CSZbqQ" name="point"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_LQfGEIfaEeGAAci3CSZbqQ" name="Completamento preventivo">
+    <extend xmi:id="_LrFh8IfbEeGAAci3CSZbqQ" extendedCase="_K5SuEIfaEeGAAci3CSZbqQ" extensionLocation="_5LpLIIfaEeGAAci3CSZbqQ"/>
+    <extensionPoint xmi:id="_M8TSMIfbEeGAAci3CSZbqQ" name="point"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_MJGJEIfaEeGAAci3CSZbqQ" name="Emissione preventivo">
+    <extend xmi:id="_M8KvUIfbEeGAAci3CSZbqQ" extendedCase="_LQfGEIfaEeGAAci3CSZbqQ" extensionLocation="_M8TSMIfbEeGAAci3CSZbqQ"/>
+    <extensionPoint xmi:id="_QE7QAIfbEeGAAci3CSZbqQ" name="point"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_UK74kIfaEeGAAci3CSZbqQ" name="Accettazione preventivo">
+    <extend xmi:id="_QE0iUIfbEeGAAci3CSZbqQ" extendedCase="_MJGJEIfaEeGAAci3CSZbqQ" extensionLocation="_QE7QAIfbEeGAAci3CSZbqQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_XhoHkIfaEeGAAci3CSZbqQ" name="Responsabile delle vendite"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_dCXzUIfaEeGAAci3CSZbqQ" name="A_attesa informazioni preventivo_responsabile delle vendite" memberEnd="_dCYaYIfaEeGAAci3CSZbqQ _dCYaY4faEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_dCYaYIfaEeGAAci3CSZbqQ" name="attesa informazioni preventivo" type="_K5SuEIfaEeGAAci3CSZbqQ" association="_dCXzUIfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dCYaYYfaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dCYaYofaEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_dCYaY4faEeGAAci3CSZbqQ" name="responsabile delle vendite" type="_XhoHkIfaEeGAAci3CSZbqQ" association="_dCXzUIfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dCYaZIfaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dCYaZYfaEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_kRo2YIfaEeGAAci3CSZbqQ" name="A_cliente_completamento preventivo" memberEnd="_kRo2YYfaEeGAAci3CSZbqQ _kRo2ZIfaEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_kRo2YYfaEeGAAci3CSZbqQ" name="cliente" type="_p4EI0IfZEeGAAci3CSZbqQ" association="_kRo2YIfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kRo2YofaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kRo2Y4faEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_kRo2ZIfaEeGAAci3CSZbqQ" name="completamento preventivo" type="_LQfGEIfaEeGAAci3CSZbqQ" association="_kRo2YIfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kRo2ZYfaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kRo2ZofaEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ti0G0IfaEeGAAci3CSZbqQ" name="A_cliente_accettazione preventivo" memberEnd="_ti0t4IfaEeGAAci3CSZbqQ _ti0t44faEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_ti0t4IfaEeGAAci3CSZbqQ" name="cliente" type="_p4EI0IfZEeGAAci3CSZbqQ" association="_ti0G0IfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ti0t4YfaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ti0t4ofaEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_ti0t44faEeGAAci3CSZbqQ" name="accettazione preventivo" type="_UK74kIfaEeGAAci3CSZbqQ" association="_ti0G0IfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ti0t5IfaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ti0t5YfaEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_vqeW4IfaEeGAAci3CSZbqQ" name="A_responsabile delle vendite_emissione preventivo" memberEnd="_vqeW4YfaEeGAAci3CSZbqQ _vqeW5IfaEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_vqeW4YfaEeGAAci3CSZbqQ" name="responsabile delle vendite" type="_XhoHkIfaEeGAAci3CSZbqQ" association="_vqeW4IfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vqeW4ofaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vqeW44faEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_vqeW5IfaEeGAAci3CSZbqQ" name="emissione preventivo" type="_MJGJEIfaEeGAAci3CSZbqQ" association="_vqeW4IfaEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vqeW5YfaEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vqeW5ofaEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

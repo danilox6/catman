@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_faTMoIfdEeGAAci3CSZbqQ" name="model">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_f1TGkIfdEeGAAci3CSZbqQ" name="Addetto all'accoglienza"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_gYZMkIfdEeGAAci3CSZbqQ" name="Presenze invitati"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_mKTg0IfdEeGAAci3CSZbqQ" name="A_addetto all'accoglienza_presenze invitati" memberEnd="_mKTg0YfdEeGAAci3CSZbqQ _mKTg1IfdEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_mKTg0YfdEeGAAci3CSZbqQ" name="addetto all'accoglienza" type="_f1TGkIfdEeGAAci3CSZbqQ" association="_mKTg0IfdEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mKTg0ofdEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mKTg04fdEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_mKTg1IfdEeGAAci3CSZbqQ" name="presenze invitati" type="_gYZMkIfdEeGAAci3CSZbqQ" association="_mKTg0IfdEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mKTg1YfdEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mKTg1ofdEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_nPY5kIfdEeGAAci3CSZbqQ" name="Team esecutivo"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_o2FKkIfdEeGAAci3CSZbqQ" name="Visualizzazione informazioni riguardanti i tavoli">
+    <extensionPoint xmi:id="_zHqvIIfdEeGAAci3CSZbqQ" name="point"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_pGCSIIfdEeGAAci3CSZbqQ" name="Aggiornamento informazioni riguardanti i tavoli e i posti a sedere">
+    <extend xmi:id="_zHizUIfdEeGAAci3CSZbqQ" extendedCase="_o2FKkIfdEeGAAci3CSZbqQ" extensionLocation="_zHqvIIfdEeGAAci3CSZbqQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_pYabkIfdEeGAAci3CSZbqQ" name="Aggiornamento informazioni relative ai pasti">
+    <extend xmi:id="_z3YU0IfdEeGAAci3CSZbqQ" extendedCase="_o2FKkIfdEeGAAci3CSZbqQ" extensionLocation="_zHqvIIfdEeGAAci3CSZbqQ"/>
+  </packagedElement>
+</uml:Model>

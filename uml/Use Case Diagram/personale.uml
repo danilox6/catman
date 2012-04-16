@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_5v-KwIfbEeGAAci3CSZbqQ" name="model">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_64stYIfbEeGAAci3CSZbqQ" name="Responsabile risorse umane"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_918hoIfbEeGAAci3CSZbqQ" name="Visualizzazione eventi e dipendenti richiesti"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_-UdCkIfbEeGAAci3CSZbqQ" name="Visualizzazione dipendenti"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_-jaEkIfbEeGAAci3CSZbqQ" name="Visualizzazione posizione lavorativa mancante"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_JeOzYIfcEeGAAci3CSZbqQ" name="A_visualizzazione eventi e dipendenti richiesti_responsabile risorse umane" memberEnd="_JeOzYYfcEeGAAci3CSZbqQ _JeOzZIfcEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_JeOzYYfcEeGAAci3CSZbqQ" name="visualizzazione eventi e dipendenti richiesti" type="_918hoIfbEeGAAci3CSZbqQ" association="_JeOzYIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JeOzYofcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JeOzY4fcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_JeOzZIfcEeGAAci3CSZbqQ" name="responsabile risorse umane" type="_64stYIfbEeGAAci3CSZbqQ" association="_JeOzYIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JeOzZYfcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JeOzZofcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_KqsmgIfcEeGAAci3CSZbqQ" name="A_responsabile risorse umane_visualizzazione dipendenti" memberEnd="_KqsmgYfcEeGAAci3CSZbqQ _KqsmhIfcEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_KqsmgYfcEeGAAci3CSZbqQ" name="responsabile risorse umane" type="_64stYIfbEeGAAci3CSZbqQ" association="_KqsmgIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KqsmgofcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kqsmg4fcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_KqsmhIfcEeGAAci3CSZbqQ" name="visualizzazione dipendenti" type="_-UdCkIfbEeGAAci3CSZbqQ" association="_KqsmgIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KqsmhYfcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KqsmhofcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_MYY3YIfcEeGAAci3CSZbqQ" name="A_responsabile risorse umane_visualizzazione posizione lavorativa mancante" memberEnd="_MYY3YYfcEeGAAci3CSZbqQ _MYY3ZIfcEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_MYY3YYfcEeGAAci3CSZbqQ" name="responsabile risorse umane" type="_64stYIfbEeGAAci3CSZbqQ" association="_MYY3YIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MYY3YofcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MYY3Y4fcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_MYY3ZIfcEeGAAci3CSZbqQ" name="visualizzazione posizione lavorativa mancante" type="_-jaEkIfbEeGAAci3CSZbqQ" association="_MYY3YIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MYY3ZYfcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MYY3ZofcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_OQlvIIfcEeGAAci3CSZbqQ" name="Assegnazione dipendente ad un evento"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_OqI3kIfcEeGAAci3CSZbqQ" name="Aggiunta personale al registro"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_UCYHkIfcEeGAAci3CSZbqQ" name="Necessità nuovi dipendenti"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_bQi-cIfcEeGAAci3CSZbqQ" name="A_responsabile risorse umane_assegnazione dipendente ad un evento" memberEnd="_bQi-cYfcEeGAAci3CSZbqQ _bQi-dIfcEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_bQi-cYfcEeGAAci3CSZbqQ" name="responsabile risorse umane" type="_64stYIfbEeGAAci3CSZbqQ" association="_bQi-cIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bQi-cofcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bQi-c4fcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_bQi-dIfcEeGAAci3CSZbqQ" name="assegnazione dipendente ad un evento" type="_OQlvIIfcEeGAAci3CSZbqQ" association="_bQi-cIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bQi-dYfcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bQi-dofcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ieCf4IfcEeGAAci3CSZbqQ" name="A_responsabile risorse umane_aggiunta personale al registro" memberEnd="_ieCf4YfcEeGAAci3CSZbqQ _ieCf5IfcEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_ieCf4YfcEeGAAci3CSZbqQ" name="responsabile risorse umane" type="_64stYIfbEeGAAci3CSZbqQ" association="_ieCf4IfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ieCf4ofcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ieCf44fcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_ieCf5IfcEeGAAci3CSZbqQ" name="aggiunta personale al registro" type="_OqI3kIfcEeGAAci3CSZbqQ" association="_ieCf4IfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ieCf5YfcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ieCf5ofcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_mlonYIfcEeGAAci3CSZbqQ" name="A_responsabile risorse umane_necessità nuovi dipendenti" memberEnd="_mlonYYfcEeGAAci3CSZbqQ _mlonZIfcEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_mlonYYfcEeGAAci3CSZbqQ" name="responsabile risorse umane" type="_64stYIfbEeGAAci3CSZbqQ" association="_mlonYIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mlonYofcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mlonY4fcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_mlonZIfcEeGAAci3CSZbqQ" name="necessità nuovi dipendenti" type="_UCYHkIfcEeGAAci3CSZbqQ" association="_mlonYIfcEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mlonZYfcEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mlonZofcEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_n12SEIfcEeGAAci3CSZbqQ" name="Modifica stato personale">
+    <include xmi:id="_tXlcUIfcEeGAAci3CSZbqQ" addition="_OQlvIIfcEeGAAci3CSZbqQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_oGLNEIfcEeGAAci3CSZbqQ" name="Eliminazione personale">
+    <include xmi:id="_uGH9UIfcEeGAAci3CSZbqQ" addition="_OQlvIIfcEeGAAci3CSZbqQ"/>
+  </packagedElement>
+</uml:Model>

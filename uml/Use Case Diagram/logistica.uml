@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_WuAc0IfbEeGAAci3CSZbqQ" name="model">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_XOeFkIfbEeGAAci3CSZbqQ" name="Responsabile logistica"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_aMShkIfbEeGAAci3CSZbqQ" name="Cliente"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_cb83EIfbEeGAAci3CSZbqQ" name="Attesa informazioni evento"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_ctCnEIfbEeGAAci3CSZbqQ" name="Invio dati organizzativi"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_dG54kIfbEeGAAci3CSZbqQ" name="Assegnazione risorse"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_kmB8kIfbEeGAAci3CSZbqQ" name="Visualizzazione lista eventi">
+    <include xmi:id="_nhXsUIfbEeGAAci3CSZbqQ" addition="_dG54kIfbEeGAAci3CSZbqQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_tPMx0IfbEeGAAci3CSZbqQ" name="A_responsabile logistica_assegnazione risorse" memberEnd="_tPMx0YfbEeGAAci3CSZbqQ _tPMx1IfbEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_tPMx0YfbEeGAAci3CSZbqQ" name="responsabile logistica" type="_XOeFkIfbEeGAAci3CSZbqQ" association="_tPMx0IfbEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tPMx0ofbEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tPMx04fbEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_tPMx1IfbEeGAAci3CSZbqQ" name="assegnazione risorse" type="_dG54kIfbEeGAAci3CSZbqQ" association="_tPMx0IfbEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tPMx1YfbEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tPMx1ofbEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_w2iE4IfbEeGAAci3CSZbqQ" name="A_responsabile logistica_attesa informazioni evento" memberEnd="_w2iE4YfbEeGAAci3CSZbqQ _w2iE5IfbEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_w2iE4YfbEeGAAci3CSZbqQ" name="responsabile logistica" type="_XOeFkIfbEeGAAci3CSZbqQ" association="_w2iE4IfbEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w2iE4ofbEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w2iE44fbEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_w2iE5IfbEeGAAci3CSZbqQ" name="attesa informazioni evento" type="_cb83EIfbEeGAAci3CSZbqQ" association="_w2iE4IfbEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w2iE5YfbEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w2iE5ofbEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_y4xCYIfbEeGAAci3CSZbqQ" name="A_invio dati organizzativi_cliente" memberEnd="_y4xCYYfbEeGAAci3CSZbqQ _y4xCZIfbEeGAAci3CSZbqQ">
+    <ownedEnd xmi:id="_y4xCYYfbEeGAAci3CSZbqQ" name="invio dati organizzativi" type="_ctCnEIfbEeGAAci3CSZbqQ" association="_y4xCYIfbEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y4xCYofbEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y4xCY4fbEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_y4xCZIfbEeGAAci3CSZbqQ" name="cliente" type="_aMShkIfbEeGAAci3CSZbqQ" association="_y4xCYIfbEeGAAci3CSZbqQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y4xCZYfbEeGAAci3CSZbqQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y4xCZofbEeGAAci3CSZbqQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>
