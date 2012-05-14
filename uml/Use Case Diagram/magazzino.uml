@@ -31,4 +31,26 @@
   <packagedElement xmi:type="uml:UseCase" xmi:id="_-uFOEIfcEeGAAci3CSZbqQ" name="Modifica informazioni riguardanti le risorse">
     <extend xmi:id="_LRCYUIfdEeGAAci3CSZbqQ" extendedCase="_1s_oEIfcEeGAAci3CSZbqQ" extensionLocation="_LRKUIIfdEeGAAci3CSZbqQ"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_CtkmoZ3PEeGQrs8_fpR8dA" name="Aggiunta nuova risorsa"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_FRxowJ3PEeGQrs8_fpR8dA" name="Rimozione risorsa"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_QAX5cJ3PEeGQrs8_fpR8dA" name="A_responsabile magazzino_aggiunta nuova risorsa" memberEnd="_QAX5cZ3PEeGQrs8_fpR8dA _QAX5dJ3PEeGQrs8_fpR8dA">
+    <ownedEnd xmi:id="_QAX5cZ3PEeGQrs8_fpR8dA" name="responsabile magazzino" type="_zhYFEIfcEeGAAci3CSZbqQ" association="_QAX5cJ3PEeGQrs8_fpR8dA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QAX5cp3PEeGQrs8_fpR8dA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QAX5c53PEeGQrs8_fpR8dA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_QAX5dJ3PEeGQrs8_fpR8dA" name="aggiunta nuova risorsa" type="_CtkmoZ3PEeGQrs8_fpR8dA" association="_QAX5cJ3PEeGQrs8_fpR8dA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QAX5dZ3PEeGQrs8_fpR8dA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QAX5dp3PEeGQrs8_fpR8dA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_XgXgIJ3PEeGQrs8_fpR8dA" name="A_responsabile magazzino_rimozione risorsa" memberEnd="_XgXgIZ3PEeGQrs8_fpR8dA _XgXgJJ3PEeGQrs8_fpR8dA">
+    <ownedEnd xmi:id="_XgXgIZ3PEeGQrs8_fpR8dA" name="responsabile magazzino" type="_zhYFEIfcEeGAAci3CSZbqQ" association="_XgXgIJ3PEeGQrs8_fpR8dA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XgXgIp3PEeGQrs8_fpR8dA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XgXgI53PEeGQrs8_fpR8dA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_XgXgJJ3PEeGQrs8_fpR8dA" name="rimozione risorsa" type="_FRxowJ3PEeGQrs8_fpR8dA" association="_XgXgIJ3PEeGQrs8_fpR8dA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XgXgJZ3PEeGQrs8_fpR8dA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XgXgJp3PEeGQrs8_fpR8dA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
 </uml:Model>

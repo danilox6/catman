@@ -22,4 +22,24 @@
   <packagedElement xmi:type="uml:UseCase" xmi:id="_pYabkIfdEeGAAci3CSZbqQ" name="Aggiornamento informazioni relative ai pasti">
     <extend xmi:id="_z3YU0IfdEeGAAci3CSZbqQ" extendedCase="_o2FKkIfdEeGAAci3CSZbqQ" extensionLocation="_zHqvIIfdEeGAAci3CSZbqQ"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_PDCckJ3REeGQrs8_fpR8dA" name="A_team esecutivo_visualizzazione informazioni riguardanti i tavoli" memberEnd="_PDCckZ3REeGQrs8_fpR8dA _PDCclJ3REeGQrs8_fpR8dA">
+    <ownedEnd xmi:id="_PDCckZ3REeGQrs8_fpR8dA" name="team esecutivo" type="_nPY5kIfdEeGAAci3CSZbqQ" association="_PDCckJ3REeGQrs8_fpR8dA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PDCckp3REeGQrs8_fpR8dA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PDCck53REeGQrs8_fpR8dA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_PDCclJ3REeGQrs8_fpR8dA" name="visualizzazione informazioni riguardanti i tavoli" type="_o2FKkIfdEeGAAci3CSZbqQ" association="_PDCckJ3REeGQrs8_fpR8dA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PDCclZ3REeGQrs8_fpR8dA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PDCclp3REeGQrs8_fpR8dA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_UsD6kJ3REeGQrs8_fpR8dA" name="A_team esecutivo_visualizzazione informazioni riguardanti i tavoli" memberEnd="_UsD6kZ3REeGQrs8_fpR8dA _UsD6lJ3REeGQrs8_fpR8dA">
+    <ownedEnd xmi:id="_UsD6kZ3REeGQrs8_fpR8dA" name="team esecutivo" type="_nPY5kIfdEeGAAci3CSZbqQ" association="_UsD6kJ3REeGQrs8_fpR8dA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UsD6kp3REeGQrs8_fpR8dA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UsD6k53REeGQrs8_fpR8dA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_UsD6lJ3REeGQrs8_fpR8dA" name="visualizzazione informazioni riguardanti i tavoli" type="_o2FKkIfdEeGAAci3CSZbqQ" association="_UsD6kJ3REeGQrs8_fpR8dA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UsD6lZ3REeGQrs8_fpR8dA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UsD6lp3REeGQrs8_fpR8dA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
 </uml:Model>

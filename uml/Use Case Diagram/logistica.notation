@@ -171,4 +171,18 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y43JAIfbEeGAAci3CSZbqQ" id="(0.9719626168224299,0.43333333333333335)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y43JAYfbEeGAAci3CSZbqQ" id="(0.0,0.6)"/>
   </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_V0fXsJ3QEeGQrs8_fpR8dA" type="4008" source="_ctFDUIfbEeGAAci3CSZbqQ" target="_cb_TUIfbEeGAAci3CSZbqQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_V0gl0J3QEeGQrs8_fpR8dA" type="6006">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_V0gl0Z3QEeGQrs8_fpR8dA" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_V0gl0p3QEeGQrs8_fpR8dA" type="6030">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_V0gl053QEeGQrs8_fpR8dA" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_V0fXsZ3QEeGQrs8_fpR8dA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_V0fXsp3QEeGQrs8_fpR8dA" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Include" href="logistica.uml#_V0digJ3QEeGQrs8_fpR8dA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_V0fXs53QEeGQrs8_fpR8dA" points="[48, -60, -5, 82]$[53, -65, 0, 77]$[53, -141, 0, 1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_V0jpIJ3QEeGQrs8_fpR8dA" id="(0.3033175355450237,1.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_V0jpIZ3QEeGQrs8_fpR8dA" id="(0.4357976653696498,0.9666666666666667)"/>
+  </edges>
 </notation:Diagram>
