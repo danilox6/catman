@@ -4,7 +4,10 @@
              version="2.0">
 	<persistence-unit name="memento-junit">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<class>it.unisannio.memento.fixtures.ComplexObject</class>
+		<class>it.unisannio.memento.fixtures.ObjectWithDeclaredDAO</class>
+		<class>it.unisannio.memento.fixtures.ObjectWithImplicitDAO</class>
+		<class>it.unisannio.memento.fixtures.PlainObject</class>
 		
 		<properties>  
 			 <property name="hibernate.archive.autodetection" value="class" />  
@@ -12,6 +15,22 @@
 			 <property name="hibernate.show_sql" value="true" />  
 			 <property name="hibernate.hbm2ddl.auto" value="create-drop" />  
 			 <property name="hibernate.connection.url" value="jdbc:derby:memory:memento-junit;create=true" />  
+			 <property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.EmbeddedDriver" />  
+			 <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />  
+			 <property name="hibernate.connection.username" value="user" />  
+			 <property name="hibernate.connection.password" value="password" />  
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="catman-development">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		
+		<properties>  
+			 <property name="hibernate.archive.autodetection" value="class" />  
+			 <property name="hibernate.format_sql" value="true" />  
+			 <property name="hibernate.show_sql" value="true" />  
+			 <property name="hibernate.hbm2ddl.auto" value="create-drop" />  
+			 <property name="hibernate.connection.url" value="jdbc:derby:db/catman-dev;create=true" />  
 			 <property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.EmbeddedDriver" />  
 			 <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />  
 			 <property name="hibernate.connection.username" value="user" />  

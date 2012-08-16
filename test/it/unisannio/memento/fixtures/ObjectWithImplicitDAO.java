@@ -12,6 +12,9 @@ public class ObjectWithImplicitDAO implements CustomDAO<ObjectWithImplicitDAO.DA
 		
 	}
 	
+	/**
+	 * @uml.property  name="id"
+	 */
 	@SuppressWarnings("unused")
 	@Id
 	private int id;

@@ -37,10 +37,19 @@ public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
 		return 42;
 	}
 	
+	/**
+	 * @uml.property  name="id"
+	 */
 	@Id
 	private int id;
 	
+	/**
+	 * @uml.property  name="name"
+	 */
 	private String name;
+	/**
+	 * @uml.property  name="cost"
+	 */
 	private double cost;
 	
 	@SuppressWarnings("unused")
@@ -52,26 +61,50 @@ public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
 		this.cost = cost;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="id"
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 * @uml.property  name="id"
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="name"
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 * @uml.property  name="name"
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="cost"
+	 */
 	public double getCost() {
 		return cost;
 	}
 
+	/**
+	 * @param cost
+	 * @uml.property  name="cost"
+	 */
 	public void setCost(double cost) {
 		this.cost = cost;
 	}

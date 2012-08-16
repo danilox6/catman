@@ -104,7 +104,15 @@ public class DAOFactoryImpl implements DAOFactory {
 		}
 	}
 
+	/**
+	 * @uml.property  name="cache"
+	 * @uml.associationEnd  multiplicity="(0 -1)" ordering="true" elementType="it.unisannio.memento.GenericDAO" qualifier="entityClass:java.lang.Class java.lang.ref.WeakReference"
+	 */
 	private final Map<Class<?>, WeakReference<GenericDAO<?, ?>>> cache;
+	/**
+	 * @uml.property  name="entityManager"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private final EntityManager entityManager;
 	
 	public DAOFactoryImpl(EntityManager em) {

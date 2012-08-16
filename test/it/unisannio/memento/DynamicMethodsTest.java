@@ -19,9 +19,17 @@ import org.junit.Test;
 
 public class DynamicMethodsTest {
 	private static DAOFactory factory;
+	/**
+	 * @uml.property  name="dao"
+	 * @uml.associationEnd  
+	 */
 	private ComplexObject.DAO dao;
 	private static EntityManager em;
 
+	/**
+	 * @uml.property  name="t"
+	 * @uml.associationEnd  
+	 */
 	private EntityTransaction t;
 	
 	@BeforeClass

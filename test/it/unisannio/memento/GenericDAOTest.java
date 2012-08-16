@@ -20,9 +20,17 @@ import org.junit.Test;
 
 public class GenericDAOTest {
 	private static DAOFactory factory;
+	/**
+	 * @uml.property  name="dao"
+	 * @uml.associationEnd  
+	 */
 	private GenericDAO<Integer, PlainObject> dao;
 	private static EntityManager em;
 
+	/**
+	 * @uml.property  name="t"
+	 * @uml.associationEnd  
+	 */
 	private EntityTransaction t;
 	
 	@BeforeClass
