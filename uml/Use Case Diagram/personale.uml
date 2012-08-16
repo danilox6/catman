@@ -34,10 +34,14 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MYY3ZofcEeGAAci3CSZbqQ" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_OQlvIIfcEeGAAci3CSZbqQ" name="Assegnazione dipendente ad un evento"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_OQlvIIfcEeGAAci3CSZbqQ" name="Assegnazione dipendente ad un evento">
+    <include xmi:id="_3deggJ3QEeGQrs8_fpR8dA" addition="_-UdCkIfbEeGAAci3CSZbqQ"/>
+    <extend xmi:id="_8E8a4J3QEeGQrs8_fpR8dA" extendedCase="_oGLNEIfcEeGAAci3CSZbqQ" extensionLocation="_8FDIkJ3QEeGQrs8_fpR8dA"/>
+    <extensionPoint xmi:id="_7aAAcJ3QEeGQrs8_fpR8dA" name=""/>
+  </packagedElement>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_OqI3kIfcEeGAAci3CSZbqQ" name="Aggiunta personale al registro"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_UCYHkIfcEeGAAci3CSZbqQ" name="Necessità nuovi dipendenti"/>
-  <packagedElement xmi:type="uml:Association" xmi:id="_bQi-cIfcEeGAAci3CSZbqQ" name="A_responsabile risorse umane_assegnazione dipendente ad un evento" memberEnd="_bQi-cYfcEeGAAci3CSZbqQ _bQi-dIfcEeGAAci3CSZbqQ">
+  <packagedElement xmi:type="uml:Association" xmi:id="_bQi-cIfcEeGAAci3CSZbqQ" name="" memberEnd="_bQi-cYfcEeGAAci3CSZbqQ _bQi-dIfcEeGAAci3CSZbqQ">
     <ownedEnd xmi:id="_bQi-cYfcEeGAAci3CSZbqQ" name="responsabile risorse umane" type="_64stYIfbEeGAAci3CSZbqQ" association="_bQi-cIfcEeGAAci3CSZbqQ">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bQi-cofcEeGAAci3CSZbqQ" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bQi-c4fcEeGAAci3CSZbqQ" value="1"/>
@@ -69,8 +73,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_n12SEIfcEeGAAci3CSZbqQ" name="Modifica stato personale">
     <include xmi:id="_tXlcUIfcEeGAAci3CSZbqQ" addition="_OQlvIIfcEeGAAci3CSZbqQ"/>
+    <extend xmi:id="_7Z22gJ3QEeGQrs8_fpR8dA" extendedCase="_OQlvIIfcEeGAAci3CSZbqQ" extensionLocation="_7aAAcJ3QEeGQrs8_fpR8dA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_oGLNEIfcEeGAAci3CSZbqQ" name="Eliminazione personale">
     <include xmi:id="_uGH9UIfcEeGAAci3CSZbqQ" addition="_OQlvIIfcEeGAAci3CSZbqQ"/>
+    <extend xmi:id="_CUJvIJ3REeGQrs8_fpR8dA" extendedCase="_OQlvIIfcEeGAAci3CSZbqQ" extensionLocation="_7aAAcJ3QEeGQrs8_fpR8dA"/>
+    <extensionPoint xmi:id="_8FDIkJ3QEeGQrs8_fpR8dA" name=""/>
   </packagedElement>
 </uml:Model>
