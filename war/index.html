@@ -8,12 +8,12 @@
     <style>
     	body { overflow: hidden; }
     	nav { color: #fff; position: absolute; top: 0; left: 0; bottom: 0; width: 50px; padding:10px; height:100%; background: #000; overflow:hidden;}
-    	#navigation { list-style-type: none; margin: 0 2px; padding: 0; width: 48px;}
-    	#navigation li { margin: 5px 0; text-align: center; }
-    	#navigation:hover a {
+    	nav ul { list-style-type: none; margin: 0 2px; padding: 0; width: 48px;}
+    	nav ul > li { margin: 5px 0; text-align: center; }
+    	nav:hover #navigation li a {
     		color: #555;
     	}
-    	#navigation a { 
+    	nav #navigation li a { 
     		font-family: EntypoRegular; 
     		font-size: 48px; 
     		color: #333;
@@ -23,25 +23,25 @@
     		-webkit-transition: 0.5s;
     	}
     	
-    	#navigation a:hover {
+    	nav #navigation li a:hover {
     		color: #fff;
     		transition: 0.5s;
     		-webkit-transition: 0.5s;
     	}
     	
-    	#navigation a.active {
+    	nav #navigation li a.active {
     		color: #ccc;
     	}
     	
-    	#list-wrapper { position: absolute; left: 70px; top: 0; bottom:0; width: 340px; padding:10px; background: #999; overflow: auto;}
+    	#master-wrapper { position: absolute; left: 70px; top: 0; bottom:0; width: 340px; padding:10px; background: #999; overflow: auto;}
     	#detail-wrapper { position: absolute; left: 430px; min-width: 500px; padding:10px; height:100%; background: #ccc; top: 0; right: 0; bottom: 0;}
     </style>
     
   </head>
 
   <body>
-	  	<nav>
-	  		<ul id="navigation">
+	  	<nav id="navigation">
+	  		<!--ul>
 				<li><a href="#" title="Richieste" class="active">w</a></li>
 				<li><a href="#" title="Preventivi">v</a></li>
 				<li><a href="#" title="Logistica">L</a></li>
@@ -51,10 +51,10 @@
 				<li><a href="#" title="Calendario">P</a></li>
 				<li><a href="#" title="Clienti">,</a></li>
 				<li><a href="#" title="Fatturazione">t</a></li>
-				<li><a href="#" title="Amministrazione">@</a></li>
-			</ul>
+				<li><a href="#" title="Amministrazione">@</a></li-->
+			</ul-->
 	  	</nav>
-	  	<div id="list-wrapper"><div id="list">List</div></div>
+	  	<div id="master-wrapper"><div id="master">Master</div></div>
 	  	<div id="detail-wrapper"><div id="detail">Detail</div></div>
   	
   	<script type="text/javascript" src="main/main.nocache.js"></script>
