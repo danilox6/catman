@@ -5,6 +5,7 @@
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name='com.google.gwt.user.theme.standard.Standard' />
 	<inherits name="it.unisannio.catman.inbox.Inbox" />
+	 <inherits name='com.google.gwt.activity.Activity' />
 	<source path="client" />
 	<entry-point class="it.unisannio.catman.client.Main"></entry-point>
 </module>
