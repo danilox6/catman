@@ -1,8 +1,7 @@
 package it.unisannio.catman;
 
-import it.unisannio.memento.CustomDAO;
 import it.unisannio.memento.DAOFactory;
-import it.unisannio.memento.GenericDAO;
+import it.unisannio.memento.AbstractDAO;
 import it.unisannio.memento.jpa.DAOFactoryImpl;
 
 import javax.persistence.EntityManager;
@@ -18,14 +17,6 @@ public class Database {
 		}
 		
 		return instance;
-	}
-	
-	public static <D extends GenericDAO<K, T>, K, T> D daoFor(Class<? extends CustomDAO<D>> entityClass) {
-		return get().getDaoFactory().getDaoFor(entityClass);
-	}
-	
-	public static <T> GenericDAO<?, T> genericDaoFor(Class<T> entityClass) {
-		return get().getDaoFactory().getGenericDaoFor(entityClass);
 	}
 	
 	private final EntityManager entityManager;

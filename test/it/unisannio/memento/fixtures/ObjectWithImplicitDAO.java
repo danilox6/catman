@@ -3,18 +3,12 @@ package it.unisannio.memento.fixtures;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import it.unisannio.memento.CustomDAO;
-import it.unisannio.memento.GenericDAO;
+import it.unisannio.memento.AbstractDAO;
 
 @Entity
-public class ObjectWithImplicitDAO implements CustomDAO<ObjectWithImplicitDAO.DAO> {
-	public static interface DAO extends GenericDAO<Integer, ObjectWithImplicitDAO> {
-		
-	}
+public class ObjectWithImplicitDAO {
+	public static interface DAO extends AbstractDAO<Integer, ObjectWithImplicitDAO> {}
 	
-	/**
-	 * @uml.property  name="id"
-	 */
 	@SuppressWarnings("unused")
 	@Id
 	private int id;

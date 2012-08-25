@@ -1,7 +1,7 @@
 package it.unisannio.memento.fixtures;
 
-import it.unisannio.memento.GenericDAO;
+import it.unisannio.memento.AbstractDAO;
 
-public interface ExternalDAO extends GenericDAO<Integer, ObjectWithDeclaredDAO> {
+public interface ExternalDAO extends AbstractDAO<Integer, ObjectWithDeclaredDAO> {
 
 }

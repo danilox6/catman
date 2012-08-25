@@ -4,14 +4,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import it.unisannio.memento.CustomDAO;
 import it.unisannio.memento.Delegate;
-import it.unisannio.memento.GenericDAO;
+import it.unisannio.memento.AbstractDAO;
 import it.unisannio.memento.jpa.Statement;
 
 @Entity
-public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
-	public static interface DAO extends GenericDAO<Integer, ComplexObject> {
+public class ComplexObject {
+	public static interface DAO extends AbstractDAO<Integer, ComplexObject> {
 		public List<ComplexObject> listByName(int off, int count, String name);
 		public List<ComplexObject> listByNameAndCost(int off, int count, String name, double cost);
 		
@@ -37,19 +36,9 @@ public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
 		return 42;
 	}
 	
-	/**
-	 * @uml.property  name="id"
-	 */
 	@Id
 	private int id;
-	
-	/**
-	 * @uml.property  name="name"
-	 */
 	private String name;
-	/**
-	 * @uml.property  name="cost"
-	 */
 	private double cost;
 	
 	@SuppressWarnings("unused")
@@ -63,7 +52,6 @@ public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
 
 	/**
 	 * @return
-	 * @uml.property  name="id"
 	 */
 	public int getId() {
 		return id;
@@ -71,7 +59,6 @@ public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
 
 	/**
 	 * @param id
-	 * @uml.property  name="id"
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -79,7 +66,6 @@ public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
 
 	/**
 	 * @return
-	 * @uml.property  name="name"
 	 */
 	public String getName() {
 		return name;
@@ -87,7 +73,6 @@ public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
 
 	/**
 	 * @param name
-	 * @uml.property  name="name"
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -95,7 +80,6 @@ public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
 
 	/**
 	 * @return
-	 * @uml.property  name="cost"
 	 */
 	public double getCost() {
 		return cost;
@@ -103,7 +87,6 @@ public class ComplexObject implements CustomDAO<ComplexObject.DAO>{
 
 	/**
 	 * @param cost
-	 * @uml.property  name="cost"
 	 */
 	public void setCost(double cost) {
 		this.cost = cost;

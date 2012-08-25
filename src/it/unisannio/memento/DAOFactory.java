@@ -1,8 +1,8 @@
 package it.unisannio.memento;
 
 public interface DAOFactory {
-	public <D extends GenericDAO<K, T>, K, T> D getDaoFor(Class<? extends CustomDAO<D>> entityClass);
+	public <K, E, D extends AbstractDAO<K, E>> D getDao(Class<D> daoClass);
 	
-	public <T> GenericDAO<?, T> getGenericDaoFor(Class<T> entityClass);
+	public <K, E> AbstractDAO<K, E> getDaoFor(Class<E> entityClass);
 
 }

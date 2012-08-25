@@ -2,7 +2,7 @@ package it.unisannio.memento;
 
 import java.util.List;
 
-public interface GenericDAO<K, T> {
+public interface AbstractDAO<K, T> {
 	public T find(K key);
 	
 	public List<T> findAll(K... keys);

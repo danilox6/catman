@@ -20,17 +20,9 @@ import org.junit.Test;
 
 public class GenericDAOTest {
 	private static DAOFactory factory;
-	/**
-	 * @uml.property  name="dao"
-	 * @uml.associationEnd  
-	 */
-	private GenericDAO<Integer, PlainObject> dao;
+	private AbstractDAO<Integer, PlainObject> dao;
 	private static EntityManager em;
 
-	/**
-	 * @uml.property  name="t"
-	 * @uml.associationEnd  
-	 */
 	private EntityTransaction t;
 	
 	@BeforeClass
@@ -40,10 +32,9 @@ public class GenericDAOTest {
 		factory = new DAOFactoryImpl(em);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() {
-		dao = (GenericDAO<Integer, PlainObject>) factory.getGenericDaoFor(PlainObject.class);
+		dao = factory.getDaoFor(PlainObject.class);
 		
 		t = em.getTransaction();
 		t.begin();

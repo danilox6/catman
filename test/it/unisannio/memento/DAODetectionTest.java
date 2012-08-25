@@ -25,29 +25,29 @@ public class DAODetectionTest {
 	
 	@Test
 	public void testObjectWithoutDAO() {
-		GenericDAO<?, PlainObject> dao = factory.getGenericDaoFor(PlainObject.class);
+		AbstractDAO<Integer, PlainObject> dao = factory.getDaoFor(PlainObject.class);
 		assertNotNull(dao);
 	}
 	
 
 	@Test
 	public void testObjectWithImplicitDAO() {
-		GenericDAO<?, ObjectWithImplicitDAO> dao = factory.getDaoFor(ObjectWithImplicitDAO.class);
+		AbstractDAO<?, ObjectWithImplicitDAO> dao = factory.getDaoFor(ObjectWithImplicitDAO.class);
 		assertNotNull(dao);
 		assertTrue(dao instanceof ObjectWithImplicitDAO.DAO);
 		
-		GenericDAO<?, ObjectWithImplicitDAO> genericDao = factory.getGenericDaoFor(ObjectWithImplicitDAO.class);
+		AbstractDAO<?, ObjectWithImplicitDAO> genericDao = factory.getDaoFor(ObjectWithImplicitDAO.class);
 		assertNotNull(genericDao);
 		assertTrue(dao instanceof ObjectWithImplicitDAO.DAO);
 	}
 
 	@Test
 	public void testObjectWithDeclaredDAO() {
-		GenericDAO<?, ObjectWithDeclaredDAO> dao = factory.getDaoFor(ObjectWithDeclaredDAO.class);
+		AbstractDAO<Integer, ObjectWithDeclaredDAO> dao = factory.getDaoFor(ObjectWithDeclaredDAO.class);
 		assertNotNull(dao);
 		assertTrue(dao instanceof ExternalDAO);
 		
-		GenericDAO<?, ObjectWithDeclaredDAO> genericDao = factory.getGenericDaoFor(ObjectWithDeclaredDAO.class);
+		AbstractDAO<Integer, ObjectWithDeclaredDAO> genericDao = factory.getDaoFor(ObjectWithDeclaredDAO.class);
 		assertNotNull(genericDao);
 		assertTrue(dao instanceof ExternalDAO);
 	}
