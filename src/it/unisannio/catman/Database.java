@@ -1,8 +1,7 @@
 package it.unisannio.catman;
 
 import it.unisannio.memento.DAOFactory;
-import it.unisannio.memento.AbstractDAO;
-import it.unisannio.memento.jpa.DAOFactoryImpl;
+import it.unisannio.memento.gwt.LocatorDAOFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,7 +24,7 @@ public class Database {
 	private Database() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(Setup.DATABASE_PERSISTENCE_UNIT);
 		entityManager = emf.createEntityManager();
-		daoFactory = new DAOFactoryImpl(entityManager);
+		daoFactory = new LocatorDAOFactory(entityManager);
 	}
 	
 	public EntityManager getEntityManager() {

@@ -21,11 +21,12 @@ import javax.persistence.Query;
 public class DAOFactoryImpl implements DAOFactory {
 	private class ProxyInvocationHandler<K, E> implements InvocationHandler {
 		
-		GenericDAO<?, E> baseDao;
+		GenericDAO<K, E> baseDao;
 		Class<E> entityClass;
 				
+		@SuppressWarnings("unchecked")
 		ProxyInvocationHandler(Class<E> entityClass) {
-			baseDao = new GenericDAO<Object, E>(entityManager, entityClass);
+			baseDao = (GenericDAO<K, E>) createGenericImpl(entityManager, entityClass);
 		}
 		
 		@Override
@@ -216,6 +217,8 @@ public class DAOFactoryImpl implements DAOFactory {
 		return getInstance((Class<E>)entityClass, daoClass);
 	}
 
-
+	protected <K, E> AbstractDAO<K, E> createGenericImpl(EntityManager em, Class<E> entityClass) {
+		return new GenericDAO<K, E>(em, entityClass);
+	}
 
 }
