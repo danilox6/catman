@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_Hpq2MAZnEeKuce0izYTxBg" type="UseCase" name="NewDiagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_SXSPcAZnEeKuce0izYTxBg" type="2011" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SXTdkAZnEeKuce0izYTxBg" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SXTdkQZnEeKuce0izYTxBg" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SXTdkgZnEeKuce0izYTxBg" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SXUEoAZnEeKuce0izYTxBg" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SXUEoQZnEeKuce0izYTxBg" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SXUEogZnEeKuce0izYTxBg" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SXUEowZnEeKuce0izYTxBg" type="5014">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SXUEpAZnEeKuce0izYTxBg" x="-20" y="80"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SXUEpQZnEeKuce0izYTxBg" type="6029">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SXUEpgZnEeKuce0izYTxBg" y="5"/>
+    </children>
+    <element xmi:type="uml:Actor" href="contabilita.uml#_SXPzMAZnEeKuce0izYTxBg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SXSPcQZnEeKuce0izYTxBg" x="90" y="70" width="91"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_VMGgcAZnEeKuce0izYTxBg" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VMHHgAZnEeKuce0izYTxBg" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VMHukAZnEeKuce0izYTxBg" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VMHukQZnEeKuce0izYTxBg" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VMHukgZnEeKuce0izYTxBg" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VMHukwZnEeKuce0izYTxBg" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VMIVoAZnEeKuce0izYTxBg" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_VMIVoQZnEeKuce0izYTxBg" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_VMIVogZnEeKuce0izYTxBg" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_VMIVowZnEeKuce0izYTxBg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_VMIVpAZnEeKuce0izYTxBg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VMIVpQZnEeKuce0izYTxBg"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="contabilita.uml#_VLxJQAZnEeKuce0izYTxBg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VMGgcQZnEeKuce0izYTxBg" x="300" y="30"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_VdE7sAZnEeKuce0izYTxBg" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VdFiwAZnEeKuce0izYTxBg" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VdFiwQZnEeKuce0izYTxBg" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VdGJ0AZnEeKuce0izYTxBg" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VdGJ0QZnEeKuce0izYTxBg" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VdGJ0gZnEeKuce0izYTxBg" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VdGJ0wZnEeKuce0izYTxBg" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_VdGJ1AZnEeKuce0izYTxBg" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_VdGJ1QZnEeKuce0izYTxBg" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_VdGJ1gZnEeKuce0izYTxBg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_VdGw4AZnEeKuce0izYTxBg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VdGw4QZnEeKuce0izYTxBg"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="contabilita.uml#_VdB4YAZnEeKuce0izYTxBg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VdE7sQZnEeKuce0izYTxBg" x="295" y="125"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Vtbr4AZnEeKuce0izYTxBg" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Vtc6AAZnEeKuce0izYTxBg" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Vtc6AQZnEeKuce0izYTxBg" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Vtc6AgZnEeKuce0izYTxBg" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Vtc6AwZnEeKuce0izYTxBg" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VtdhEAZnEeKuce0izYTxBg" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VtdhEQZnEeKuce0izYTxBg" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_VtdhEgZnEeKuce0izYTxBg" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_VtdhEwZnEeKuce0izYTxBg" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_VtdhFAZnEeKuce0izYTxBg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_VtdhFQZnEeKuce0izYTxBg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VteIIAZnEeKuce0izYTxBg"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="contabilita.uml#_VtYBgAZnEeKuce0izYTxBg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Vtbr4QZnEeKuce0izYTxBg" x="300" y="213"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_WrWFoAZnEeKuce0izYTxBg" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WrWssAZnEeKuce0izYTxBg" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_WrWssQZnEeKuce0izYTxBg" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WrWssgZnEeKuce0izYTxBg" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_WrWsswZnEeKuce0izYTxBg" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WrWstAZnEeKuce0izYTxBg" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_WrWstQZnEeKuce0izYTxBg" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_WrXTwAZnEeKuce0izYTxBg" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_WrXTwQZnEeKuce0izYTxBg" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_WrXTwgZnEeKuce0izYTxBg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_WrXTwwZnEeKuce0izYTxBg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WrXTxAZnEeKuce0izYTxBg"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="contabilita.uml#_WrR0MAZnEeKuce0izYTxBg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WrWFoQZnEeKuce0izYTxBg" x="300" y="298"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_W_8coAZnEeKuce0izYTxBg" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_W_8cogZnEeKuce0izYTxBg" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_W_9DsAZnEeKuce0izYTxBg" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_W_9DsQZnEeKuce0izYTxBg" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_W_9DsgZnEeKuce0izYTxBg" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_W_9DswZnEeKuce0izYTxBg" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_W_9DtAZnEeKuce0izYTxBg" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_W_9qwAZnEeKuce0izYTxBg" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_W_9qwQZnEeKuce0izYTxBg" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_W_9qwgZnEeKuce0izYTxBg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_W_9qwwZnEeKuce0izYTxBg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W_9qxAZnEeKuce0izYTxBg"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="contabilita.uml#_W_4LMAZnEeKuce0izYTxBg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W_8coQZnEeKuce0izYTxBg" x="625" y="380"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_njK-YAZnEeKuce0izYTxBg" type="2013" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_njLlcAZnEeKuce0izYTxBg" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_njLlcQZnEeKuce0izYTxBg" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_njMMgAZnEeKuce0izYTxBg" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_njMMgQZnEeKuce0izYTxBg" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_njMMggZnEeKuce0izYTxBg" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_njMMgwZnEeKuce0izYTxBg" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_njMMhAZnEeKuce0izYTxBg" type="5016"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_njMzkAZnEeKuce0izYTxBg" type="7009">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_njMzkQZnEeKuce0izYTxBg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_njMzkgZnEeKuce0izYTxBg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_njMzkwZnEeKuce0izYTxBg"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="contabilita.uml#_njFe0AZnEeKuce0izYTxBg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_njK-YQZnEeKuce0izYTxBg" x="580" y="210"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_Hpq2MQZnEeKuce0izYTxBg"/>
+  <element xmi:type="uml:Model" href="contabilita.uml#_HpOKQAZnEeKuce0izYTxBg"/>
+  <edges xmi:type="notation:Edge" xmi:id="_NLJP0AZpEeKuce0izYTxBg" type="4011" source="_SXSPcAZnEeKuce0izYTxBg" target="_VMGgcAZnEeKuce0izYTxBg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_NLJ24AZpEeKuce0izYTxBg" visible="false" type="6008">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_NLKd8AZpEeKuce0izYTxBg" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_NLKd8QZpEeKuce0izYTxBg" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_NLKd8gZpEeKuce0izYTxBg" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_NLJP0QZpEeKuce0izYTxBg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_NLJP0gZpEeKuce0izYTxBg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="contabilita.uml#_NLGMgAZpEeKuce0izYTxBg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_NLJP0wZpEeKuce0izYTxBg" points="[4, -1, -128, 32]$[115, -33, -17, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NLPWcAZpEeKuce0izYTxBg" id="(0.9603960396039604,0.45)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NLPWcQZpEeKuce0izYTxBg" id="(0.050666666666666665,0.5666666666666667)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_ObOXoAZpEeKuce0izYTxBg" type="4011" source="_SXSPcAZnEeKuce0izYTxBg" target="_VdE7sAZnEeKuce0izYTxBg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ObO-sAZpEeKuce0izYTxBg" visible="false" type="6008">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ObO-sQZpEeKuce0izYTxBg" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ObPlwAZpEeKuce0izYTxBg" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ObPlwQZpEeKuce0izYTxBg" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_ObOXoQZpEeKuce0izYTxBg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ObOXogZpEeKuce0izYTxBg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="contabilita.uml#_ObKtQAZpEeKuce0izYTxBg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ObOXowZpEeKuce0izYTxBg" points="[51, 13, -117, -33]$[162, 45, -6, -1]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ObTQIAZpEeKuce0izYTxBg" id="(0.04126984126984127,0.35)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_XR-88AZpEeKuce0izYTxBg" type="4011" source="_WrWFoAZnEeKuce0izYTxBg" target="_SXSPcAZnEeKuce0izYTxBg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_XSALEAZpEeKuce0izYTxBg" visible="false" type="6008">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_XSALEQZpEeKuce0izYTxBg" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_XSALEgZpEeKuce0izYTxBg" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_XSAyIAZpEeKuce0izYTxBg" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_XR-88QZpEeKuce0izYTxBg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_XR-88gZpEeKuce0izYTxBg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="contabilita.uml#_XR8gsAZpEeKuce0izYTxBg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XR-88wZpEeKuce0izYTxBg" points="[0, 0, 165, 218]$[-170, -248, -5, -30]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_XSFDkAZpEeKuce0izYTxBg" id="(0.023696682464454975,0.3333333333333333)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_YkDBwAZpEeKuce0izYTxBg" type="4011" source="_Vtbr4AZnEeKuce0izYTxBg" target="_SXSPcAZnEeKuce0izYTxBg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_YkDo0AZpEeKuce0izYTxBg" visible="false" type="6008">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_YkEP4AZpEeKuce0izYTxBg" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_YkEP4QZpEeKuce0izYTxBg" type="6033">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_YkEP4gZpEeKuce0izYTxBg" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_YkDBwQZpEeKuce0izYTxBg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_YkDBwgZpEeKuce0izYTxBg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Association" href="contabilita.uml#_YkAlgAZpEeKuce0izYTxBg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YkDBwwZpEeKuce0izYTxBg" points="[4, 3, 164, 134]$[-164, -101, -4, 30]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YkIhUAZpEeKuce0izYTxBg" id="(0.0,0.3)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_MOioMAZqEeKuce0izYTxBg" type="4008" source="_njK-YAZnEeKuce0izYTxBg" target="_Vtbr4AZnEeKuce0izYTxBg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_MOj2UAZqEeKuce0izYTxBg" type="6006">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_MOj2UQZqEeKuce0izYTxBg" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_MOj2UgZqEeKuce0izYTxBg" type="6030">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_MOj2UwZqEeKuce0izYTxBg" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_MOioMQZqEeKuce0izYTxBg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_MOioMgZqEeKuce0izYTxBg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Include" href="contabilita.uml#_MOhaEAZqEeKuce0izYTxBg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_MOioMwZqEeKuce0izYTxBg" points="[-15, -2, 79, 0]$[-95, -2, -1, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_MOou0AZqEeKuce0izYTxBg" id="(0.06726457399103139,0.4666666666666667)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_MOpV4AZqEeKuce0izYTxBg" id="(0.9901477832512315,0.38333333333333336)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_RkNFUAZqEeKuce0izYTxBg" type="4008" source="_W_8coAZnEeKuce0izYTxBg" target="_Vtbr4AZnEeKuce0izYTxBg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_RkOTcAZqEeKuce0izYTxBg" type="6006">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RkOTcQZqEeKuce0izYTxBg" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_RkOTcgZqEeKuce0izYTxBg" type="6030">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RkO6gAZqEeKuce0izYTxBg" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_RkNFUQZqEeKuce0izYTxBg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_RkNFUgZqEeKuce0izYTxBg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Include" href="contabilita.uml#_RkL3MAZqEeKuce0izYTxBg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_RkNFUwZqEeKuce0izYTxBg" points="[-1, -1, 139, 60]$[-127, -60, 13, 1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RkR90AZqEeKuce0izYTxBg" id="(0.017964071856287425,0.38333333333333336)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RkSk4AZqEeKuce0izYTxBg" id="(0.9014778325123153,0.65)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_SWPmQAZqEeKuce0izYTxBg" type="4008" source="_W_8coAZnEeKuce0izYTxBg" target="_WrWFoAZnEeKuce0izYTxBg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SWQ0YAZqEeKuce0izYTxBg" type="6006">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SWQ0YQZqEeKuce0izYTxBg" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SWQ0YgZqEeKuce0izYTxBg" type="6030">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SWRbcAZqEeKuce0izYTxBg" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_SWPmQQZqEeKuce0izYTxBg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SWPmQgZqEeKuce0izYTxBg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Include" href="contabilita.uml#_SWO_MAZqEeKuce0izYTxBg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SWPmQwZqEeKuce0izYTxBg" points="[-3, -2, 132, 0]$[-114, -3, 21, -1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_SWVs4AZqEeKuce0izYTxBg" id="(0.023952095808383235,0.6333333333333333)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_SWVs4QZqEeKuce0izYTxBg" id="(0.8957345971563981,0.4666666666666667)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_TN3x0AZqEeKuce0izYTxBg" type="4008" source="_njK-YAZnEeKuce0izYTxBg" target="_WrWFoAZnEeKuce0izYTxBg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TN4_8AZqEeKuce0izYTxBg" type="6006">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TN4_8QZqEeKuce0izYTxBg" y="20"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TN4_8gZqEeKuce0izYTxBg" type="6030">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TN4_8wZqEeKuce0izYTxBg" y="-20"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_TN3x0QZqEeKuce0izYTxBg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TN3x0gZqEeKuce0izYTxBg" fontName="Ubuntu" fontHeight="11"/>
+    <element xmi:type="uml:Include" href="contabilita.uml#_TN3KwAZqEeKuce0izYTxBg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TN3x0wZqEeKuce0izYTxBg" points="[-9, 3, 124, -45]$[-141, 49, -8, 1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TN8qUAZqEeKuce0izYTxBg" id="(0.21973094170403587,0.8333333333333334)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TN8qUQZqEeKuce0izYTxBg" id="(0.9289099526066351,0.16666666666666666)"/>
+  </edges>
+</notation:Diagram>

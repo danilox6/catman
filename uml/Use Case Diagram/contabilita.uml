@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_HpOKQAZnEeKuce0izYTxBg" name="model">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_SXPzMAZnEeKuce0izYTxBg" name="Responsabile contabilita"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_VLxJQAZnEeKuce0izYTxBg" name="Pagamento dipendente in pianta stabile"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_VdB4YAZnEeKuce0izYTxBg" name="Pagamento dipendente a cottimo"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_VtYBgAZnEeKuce0izYTxBg" name="VIsualizzazione spese"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_WrR0MAZnEeKuce0izYTxBg" name="Visualizzazione incassi"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_W_4LMAZnEeKuce0izYTxBg" name="Riepilogo mensile">
+    <include xmi:id="_RkL3MAZqEeKuce0izYTxBg" addition="_VtYBgAZnEeKuce0izYTxBg"/>
+    <include xmi:id="_SWO_MAZqEeKuce0izYTxBg" addition="_WrR0MAZnEeKuce0izYTxBg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_njFe0AZnEeKuce0izYTxBg" name="Visualizzazione bilancio">
+    <include xmi:id="_MOhaEAZqEeKuce0izYTxBg" addition="_VtYBgAZnEeKuce0izYTxBg"/>
+    <include xmi:id="_TN3KwAZqEeKuce0izYTxBg" addition="_WrR0MAZnEeKuce0izYTxBg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_NLGMgAZpEeKuce0izYTxBg" name="A_responsabile contabilita_pagamento dipendente in pianta stabile" memberEnd="_NLGMgQZpEeKuce0izYTxBg _NLGzkgZpEeKuce0izYTxBg">
+    <ownedEnd xmi:id="_NLGMgQZpEeKuce0izYTxBg" name="responsabile contabilita" type="_SXPzMAZnEeKuce0izYTxBg" association="_NLGMgAZpEeKuce0izYTxBg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NLGzkAZpEeKuce0izYTxBg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NLGzkQZpEeKuce0izYTxBg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_NLGzkgZpEeKuce0izYTxBg" name="pagamento dipendente in pianta stabile" type="_VLxJQAZnEeKuce0izYTxBg" association="_NLGMgAZpEeKuce0izYTxBg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NLGzkwZpEeKuce0izYTxBg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NLGzlAZpEeKuce0izYTxBg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ObKtQAZpEeKuce0izYTxBg" name="A_responsabile contabilita_pagamento dipendente a cottimo" memberEnd="_ObKtQQZpEeKuce0izYTxBg _ObKtRAZpEeKuce0izYTxBg">
+    <ownedEnd xmi:id="_ObKtQQZpEeKuce0izYTxBg" name="responsabile contabilita" type="_SXPzMAZnEeKuce0izYTxBg" association="_ObKtQAZpEeKuce0izYTxBg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ObKtQgZpEeKuce0izYTxBg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ObKtQwZpEeKuce0izYTxBg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_ObKtRAZpEeKuce0izYTxBg" name="pagamento dipendente a cottimo" type="_VdB4YAZnEeKuce0izYTxBg" association="_ObKtQAZpEeKuce0izYTxBg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ObKtRQZpEeKuce0izYTxBg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ObKtRgZpEeKuce0izYTxBg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_XR8gsAZpEeKuce0izYTxBg" name="A_visualizzazione incassi_responsabile contabilita" memberEnd="_XR8gsQZpEeKuce0izYTxBg _XR8gtAZpEeKuce0izYTxBg">
+    <ownedEnd xmi:id="_XR8gsQZpEeKuce0izYTxBg" name="visualizzazione incassi" type="_WrR0MAZnEeKuce0izYTxBg" association="_XR8gsAZpEeKuce0izYTxBg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XR8gsgZpEeKuce0izYTxBg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XR8gswZpEeKuce0izYTxBg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_XR8gtAZpEeKuce0izYTxBg" name="responsabile contabilita" type="_SXPzMAZnEeKuce0izYTxBg" association="_XR8gsAZpEeKuce0izYTxBg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XR8gtQZpEeKuce0izYTxBg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XR8gtgZpEeKuce0izYTxBg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_YkAlgAZpEeKuce0izYTxBg" name="A_visualizzazione spese_responsabile contabilita" memberEnd="_YkAlgQZpEeKuce0izYTxBg _YkAlhAZpEeKuce0izYTxBg">
+    <ownedEnd xmi:id="_YkAlgQZpEeKuce0izYTxBg" name="visualizzazione spese" type="_VtYBgAZnEeKuce0izYTxBg" association="_YkAlgAZpEeKuce0izYTxBg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YkAlggZpEeKuce0izYTxBg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YkAlgwZpEeKuce0izYTxBg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_YkAlhAZpEeKuce0izYTxBg" name="responsabile contabilita" type="_SXPzMAZnEeKuce0izYTxBg" association="_YkAlgAZpEeKuce0izYTxBg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YkAlhQZpEeKuce0izYTxBg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YkAlhgZpEeKuce0izYTxBg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

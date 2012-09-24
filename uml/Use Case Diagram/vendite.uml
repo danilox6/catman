@@ -98,4 +98,5 @@
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_mrx6YJ3PEeGQrs8_fpR8dA" name="UseCase"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_JTSfYAZnEeKuce0izYTxBg" name="Actor"/>
 </uml:Model>

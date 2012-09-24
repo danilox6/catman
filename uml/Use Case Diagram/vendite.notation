@@ -149,6 +149,25 @@
     <element xmi:type="uml:Actor" href="vendite.uml#_XhoHkIfaEeGAAci3CSZbqQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XhsZAYfaEeGAAci3CSZbqQ" x="615" y="140"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_Je_ZEAZnEeKuce0izYTxBg" type="2011" fontName="Ubuntu" fontHeight="11" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JfDDcAZnEeKuce0izYTxBg" source="ShadowFigure">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JfDqgAZnEeKuce0izYTxBg" key="ShadowFigure_Value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JfERkAZnEeKuce0izYTxBg" source="displayNameLabelIcon">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JfERkQZnEeKuce0izYTxBg" key="displayNameLabelIcon_value" value="false"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JfE4oAZnEeKuce0izYTxBg" source="QualifiedName">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JfE4oQZnEeKuce0izYTxBg" key="QualifiedNameDepth" value="1000"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_JfE4ogZnEeKuce0izYTxBg" type="5014">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_JfFfsAZnEeKuce0izYTxBg" y="5"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_JfFfsQZnEeKuce0izYTxBg" type="6029">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_JfFfsgZnEeKuce0izYTxBg" y="5"/>
+    </children>
+    <element xmi:type="uml:Actor" href="vendite.uml#_JTSfYAZnEeKuce0izYTxBg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Je_ZEQZnEeKuce0izYTxBg" x="506" y="282"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_pYEaIYfZEeGAAci3CSZbqQ"/>
   <element xmi:type="uml:Model" href="vendite.uml#_pYDMAIfZEeGAAci3CSZbqQ"/>
   <edges xmi:type="notation:Edge" xmi:id="_DIHQwIfaEeGAAci3CSZbqQ" type="4011" source="_qEIO4IfZEeGAAci3CSZbqQ" target="_t_cN4IfZEeGAAci3CSZbqQ">
