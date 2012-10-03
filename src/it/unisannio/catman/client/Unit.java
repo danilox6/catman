@@ -1,5 +1,6 @@
 package it.unisannio.catman.client;
 
+import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 
@@ -54,4 +55,12 @@ public abstract class Unit implements EntryPoint, Comparable<Unit> {
 	public int compareTo(Unit o) {
 		return getWeight() - o.getWeight();
 	}
+	
+	public abstract Activity getDefaultMasterActivity();
+	
+	public Activity getMasterActivity(String name) {
+		return getDefaultMasterActivity();
+	}
+	
+	public abstract Activity getDetailActivity(String name, long id);
 }

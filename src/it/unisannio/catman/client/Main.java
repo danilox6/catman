@@ -40,18 +40,26 @@ public class Main implements EntryPoint {
         PlaceController placeController = app.getPlaceController();
 
         // Start ActivityManager for the main widget with our ActivityMapper
-        ActivityMapper activityMapper = new MasterActivityMapper();
-        ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
+        ActivityMapper masterActivityMapper = new MasterActivityMapper();
+        ActivityManager masterActivityManager = new ActivityManager(masterActivityMapper, eventBus);
         
         SimplePanel master = new SimplePanel();
-        activityManager.setDisplay(master);
+        RootPanel.get("master").add(master);
+        masterActivityManager.setDisplay(master);
+        
+        ActivityMapper detailActivityMapper = new DetailActivityMapper();
+        ActivityManager detailActivityManager = new ActivityManager(detailActivityMapper, eventBus);
+        
+        SimplePanel detail = new SimplePanel();
+        RootPanel.get("detail").add(detail);
+        detailActivityManager.setDisplay(detail);
 
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
-        MainPlaceHistoryMapper historyMapper= GWT.create(MainPlaceHistoryMapper.class);
+        MainPlaceHistoryMapper historyMapper = GWT.create(MainPlaceHistoryMapper.class);
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
-        historyHandler.register(placeController, eventBus, null); // FIXME
+        historyHandler.register(placeController, eventBus, new UnitPlace(app.getUnits().peek())); // FIXME
 
-        RootPanel.get("master").add(master);
+        
         // Goes to the place represented on URL else default place
         historyHandler.handleCurrentHistory();
 	}

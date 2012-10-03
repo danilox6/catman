@@ -24,3 +24,10 @@ local.properties
 
 # PDT-specific
 .buildpath
+
+# Generated files
+war/WEB-INF/deploy/
+war/WEB-INF/classes/
+gwt-unitCache/
+
+

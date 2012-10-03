@@ -8,8 +8,14 @@ public class MasterActivityMapper implements ActivityMapper {
 
 	@Override
 	public Activity getActivity(Place place) {
-		// TODO Auto-generated method stub
-		return null;
+		if(!(place instanceof UnitPlace))
+			return null;
+		
+		UnitPlace up = (UnitPlace) place;
+		Unit unit = up.getUnit();
+		
+		String master = up.getMaster();
+		return (master == null) ? unit.getDefaultMasterActivity() : unit.getMasterActivity(master);
 	}
 
 }

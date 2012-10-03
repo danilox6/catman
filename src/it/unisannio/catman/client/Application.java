@@ -1,7 +1,10 @@
 package it.unisannio.catman.client;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.PlaceController;
@@ -17,11 +20,13 @@ public class Application {
 	private final EventBus eventBus;
 	private final PlaceController placeController;
 	private final PriorityQueue<Unit> units;
+	private final Map<String, Unit> unitsMapping;
 	
 	private Application() {
 		eventBus = new SimpleEventBus();
 		placeController = new PlaceController(eventBus);
 		units = new PriorityQueue<Unit>();
+		unitsMapping = new HashMap<String, Unit>();
 	}
 	
 	public EventBus getEventBus() {
@@ -34,9 +39,14 @@ public class Application {
 	
 	void onUnitLoaded(Unit u) {
 		units.add(u);
+		unitsMapping.put(u.getName(), u);
 	}
 	
-	public Collection<Unit> getUnits() {
+	public Queue<Unit> getUnits() {
 		return units;
+	}
+	
+	public Unit getUnit(String name) {
+		return unitsMapping.get(name);
 	}
 }
