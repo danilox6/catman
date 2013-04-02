@@ -14,6 +14,15 @@ public class Intent extends TreeMap<Integer, String> {
 		this.screen = Screen.get(screen);
 	}
 	
+	public Intent withParams(String... params) {
+		int offset = lastKey() + 1;
+		for(int i = 0; i < params.length; ++i) {
+			put(i + offset, params[i]);
+		}
+		
+		return this;
+	}
+	
 	public Screen getScreen() {
 		return screen;
 	}

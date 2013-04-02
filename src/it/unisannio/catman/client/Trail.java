@@ -2,10 +2,26 @@
 package it.unisannio.catman.client;
 
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.place.shared.Prefix; 
 
 public class Trail extends Place {
+	public static Trail to(Intent in) {
+		PlaceController pc = App.getInstance().getPlaceController();
+		Trail current = (Trail) pc.getWhere();
+		
+		return new Trail(current, in);
+	}
+	
+	public static Trail to(Screen s, String... params) {
+		return to(new Intent(s).withParams(params));
+	}
+	
+	public static Trail to(String s, String... params) {
+		return to(new Intent(s).withParams(params));
+	}
 	
 	private final Trail prev;
 	private final Intent current;
@@ -15,8 +31,21 @@ public class Trail extends Place {
 		this.current = current;
 	}
 	
+	public Trail(Trail prev, String current) {
+		this(prev, new Intent(current));
+	}
+	
 	public Trail(Intent current) {
 		this(null, current);
+	}
+	
+	public Trail(Intent... trail) {
+		Trail t = null;
+		for(int i = 0; i < trail.length - 1; ++i) {
+			t = new Trail(t, trail[i]);
+		}
+		prev = t;
+		current = trail[trail.length - 1];
 	}
 	
 	public Intent peek() {
@@ -46,6 +75,11 @@ public class Trail extends Place {
 	
 	public int size() {
 		return (prev == null) ? 1 : prev.size() + 1;
+	}
+	
+	public String getToken() {
+		PlaceHistoryMapper phm = App.getInstance().getPlaceHistoryMapper();
+		return phm.getToken(this);
 	}
 
 	@Prefix("")

@@ -6,18 +6,22 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.web.bindery.event.shared.EventBus;
 
-public class Application {
-	private static Application instance;
+public class App {
+	private static App instance;
 	
-	public static Application getInstance() {
-		return (instance == null) ? instance = new Application() : instance;
+	public static void goTo(Trail trail) {
+		App.getInstance().getPlaceController().goTo(trail);
+	}
+	
+	public static App getInstance() {
+		return (instance == null) ? instance = new App() : instance;
 	}
 	
 	private final EventBus eventBus;
 	private final PlaceController placeController;
 	private final PlaceHistoryMapper placeHistoryMapper;
 	
-	private Application() {
+	private App() {
 		eventBus = new SimpleEventBus();
 		placeController = new PlaceController(eventBus);
 		placeHistoryMapper = GWT.create(ScreenPlaceHistoryMapper.class);

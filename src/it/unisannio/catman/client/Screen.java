@@ -73,4 +73,12 @@ public abstract class Screen implements EntryPoint, Comparable<Screen> {
 	public int compareTo(Screen o) {
 		return getWeight() - o.getWeight();
 	}
+	
+	protected void goTo(Intent in) {
+		
+	}
+	
+	protected void goTo(Screen s, String... args) {
+		
+	}
 }

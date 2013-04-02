@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.web.bindery.event.shared.EventBus;
 
 public class Main extends Screen {
+	public static final Trail HOME = new Trail(new Intent(""));
 
 	protected Main() {
 		super("Main menu", "", Icon.CIRCLES);
@@ -30,18 +31,13 @@ public class Main extends Screen {
 	
 	private void initMenu() {
 		// TODO
-		PlaceHistoryMapper phm = Application.getInstance().getPlaceHistoryMapper();
+		PlaceHistoryMapper phm = App.getInstance().getPlaceHistoryMapper();
         RootPanel root = RootPanel.get("navigation");
         StringBuffer buf = new StringBuffer("<ul id=\"navigation\">");
         for(Screen s : getChildren()) {
                 buf
                         .append("<li>")
-                        .append(new Hyperlink(
-                        		String.valueOf(s.getIcon().getCharacter()), 
-                        		phm.getToken(
-                        				new Trail(new Trail(new Intent(this)),
-                        						new Intent(
-                        								Screen.get("inbox"))))))
+                        .append(new Hyperlink(s.getIcon().toString(), new Trail(HOME, "inbox").getToken()))
                         .append("</li>");
         }
         buf.append("</ul>");
@@ -54,7 +50,7 @@ public class Main extends Screen {
 	}
 
 	private void initNavigation() {
-		Application app = Application.getInstance();
+		App app = App.getInstance();
 		EventBus eventBus = app.getEventBus();
         PlaceController placeController = app.getPlaceController();
 
@@ -74,7 +70,7 @@ public class Main extends Screen {
 
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(app.getPlaceHistoryMapper());
-        historyHandler.register(placeController, eventBus, Place.NOWHERE); // FIXME
+        historyHandler.register(placeController, eventBus, HOME);
 
         
         // Goes to the place represented on URL else default place
