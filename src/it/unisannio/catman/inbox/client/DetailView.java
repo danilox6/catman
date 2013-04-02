@@ -5,7 +5,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DetailView extends Composite {
+public class DetailView extends Composite implements Inbox.Detail.View {
 
 	private static DetailViewUiBinder uiBinder = GWT
 			.create(DetailViewUiBinder.class);

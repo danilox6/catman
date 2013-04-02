@@ -1,32 +1,26 @@
 package it.unisannio.catman.client;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
-
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.web.bindery.event.shared.EventBus;
 
 public class Application {
 	private static Application instance;
 	
-	public static Application get() {
+	public static Application getInstance() {
 		return (instance == null) ? instance = new Application() : instance;
 	}
 	
 	private final EventBus eventBus;
 	private final PlaceController placeController;
-	private final PriorityQueue<Unit> units;
-	private final Map<String, Unit> unitsMapping;
+	private final PlaceHistoryMapper placeHistoryMapper;
 	
 	private Application() {
 		eventBus = new SimpleEventBus();
 		placeController = new PlaceController(eventBus);
-		units = new PriorityQueue<Unit>();
-		unitsMapping = new HashMap<String, Unit>();
+		placeHistoryMapper = GWT.create(ScreenPlaceHistoryMapper.class);
 	}
 	
 	public EventBus getEventBus() {
@@ -37,16 +31,7 @@ public class Application {
 		return placeController;
 	}
 	
-	void onUnitLoaded(Unit u) {
-		units.add(u);
-		unitsMapping.put(u.getName(), u);
-	}
-	
-	public Queue<Unit> getUnits() {
-		return units;
-	}
-	
-	public Unit getUnit(String name) {
-		return unitsMapping.get(name);
+	public PlaceHistoryMapper getPlaceHistoryMapper() {
+		return placeHistoryMapper;
 	}
 }

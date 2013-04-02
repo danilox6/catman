@@ -5,7 +5,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MasterView extends Composite implements MasterPresenter.Display {
+public class MasterView extends Composite implements Inbox.Master.View {
 	interface Presenter {}
 
 	private static MasterViewUiBinder uiBinder = GWT
