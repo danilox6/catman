@@ -6,7 +6,7 @@ import it.unisannio.catman.common.client.Icon;
 import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.ScreenActivityMapper;
-import it.unisannio.catman.common.client.Trail;
+import it.unisannio.catman.common.client.Path;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.EntryPoint;
@@ -39,11 +39,11 @@ public class Main extends Screen {
 		PlaceHistoryMapper phm = App.getInstance().getPlaceHistoryMapper();
         RootPanel root = RootPanel.get("navigation");
         StringBuffer buf = new StringBuffer("<ul id=\"navigation\">");
-        Trail home = new Trail(new Intent(""));
+        Path home = new Path(new Intent(""));
         for(Screen s : getChildren()) {
                 buf
                         .append("<li>")
-                        .append(new Hyperlink(s.getIcon().toString(), new Trail(home, "inbox").getToken()))
+                        .append(new Hyperlink(s.getIcon().toString(), new Path(home, "inbox").getToken()))
                         .append("</li>");
         }
         buf.append("</ul>");
@@ -76,7 +76,7 @@ public class Main extends Screen {
 
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(app.getPlaceHistoryMapper());
-        historyHandler.register(placeController, eventBus, new Trail(new Intent("")));
+        historyHandler.register(placeController, eventBus, new Path(new Intent("")));
 
         
         // Goes to the place represented on URL else default place

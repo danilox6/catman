@@ -1,6 +1,5 @@
 package it.unisannio.catman.common.client;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
@@ -9,8 +8,8 @@ import com.google.web.bindery.event.shared.EventBus;
 public class App {
 	private static App instance;
 	
-	public static void goTo(Trail trail) {
-		App.getInstance().getPlaceController().goTo(trail);
+	public static void goTo(Path path) {
+		App.getInstance().getPlaceController().goTo(path);
 	}
 	
 	public static App getInstance() {
@@ -24,7 +23,7 @@ public class App {
 	private App() {
 		eventBus = new SimpleEventBus();
 		placeController = new PlaceController(eventBus);
-		placeHistoryMapper = GWT.create(ScreenPlaceHistoryMapper.class);
+		placeHistoryMapper = new  ScreenPlaceHistoryMapper();
 	}
 	
 	public EventBus getEventBus() {
