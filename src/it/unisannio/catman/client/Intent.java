@@ -15,7 +15,7 @@ public class Intent extends TreeMap<Integer, String> {
 	}
 	
 	public Intent withParams(String... params) {
-		int offset = lastKey() + 1;
+		int offset = (isEmpty() ? 0 : lastKey()) + 1;
 		for(int i = 0; i < params.length; ++i) {
 			put(i + offset, params[i]);
 		}

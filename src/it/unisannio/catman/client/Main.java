@@ -16,7 +16,6 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.web.bindery.event.shared.EventBus;
 
 public class Main extends Screen {
-	public static final Trail HOME = new Trail(new Intent(""));
 
 	protected Main() {
 		super("Main menu", "", Icon.CIRCLES);
@@ -34,10 +33,11 @@ public class Main extends Screen {
 		PlaceHistoryMapper phm = App.getInstance().getPlaceHistoryMapper();
         RootPanel root = RootPanel.get("navigation");
         StringBuffer buf = new StringBuffer("<ul id=\"navigation\">");
+        Trail home = new Trail(new Intent(""));
         for(Screen s : getChildren()) {
                 buf
                         .append("<li>")
-                        .append(new Hyperlink(s.getIcon().toString(), new Trail(HOME, "inbox").getToken()))
+                        .append(new Hyperlink(s.getIcon().toString(), new Trail(home, "inbox").getToken()))
                         .append("</li>");
         }
         buf.append("</ul>");
@@ -70,7 +70,7 @@ public class Main extends Screen {
 
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(app.getPlaceHistoryMapper());
-        historyHandler.register(placeController, eventBus, HOME);
+        historyHandler.register(placeController, eventBus, new Trail(new Intent("")));
 
         
         // Goes to the place represented on URL else default place

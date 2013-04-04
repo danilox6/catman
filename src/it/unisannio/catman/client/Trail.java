@@ -26,6 +26,8 @@ public class Trail extends Place {
 	private final Trail prev;
 	private final Intent current;
 	
+	private transient int size = -1;
+	
 	public Trail(Trail prev, Intent current) {
 		this.prev = prev;
 		this.current = current;
@@ -52,17 +54,17 @@ public class Trail extends Place {
 		return current;
 	}
 	
-	public Intent peek(int levels) {
-		if(levels < 0)
-			throw new IllegalArgumentException("Levels can only be positive, got " + levels);
+	public Intent peek(int depth) {
+		if(depth < 0)
+			throw new IllegalArgumentException("Depth can only be positive, got " + depth);
 		
-		if(levels == 0)
+		if(depth == 0)
 			return peek();
 		
 		if(prev == null)
 			return null;
 		
-		return prev.peek(levels - 1);
+		return prev.peek(depth - 1);
 	}
 	
 	public Trail push(Intent i) {
@@ -73,8 +75,49 @@ public class Trail extends Place {
 		return prev;
 	}
 	
+	public Trail pop(int depth) {
+		if(depth < 0)
+			throw new IllegalArgumentException("Depth can only be positive, got " + depth);
+		
+		if(depth == 0)
+			return pop();
+		
+		if(prev == null)
+			return null;
+		
+		return prev.pop(depth - 1);
+	}
+	
 	public int size() {
-		return (prev == null) ? 1 : prev.size() + 1;
+		if(size == -1)
+			size = (prev == null) ? 1 : prev.size() + 1;
+		
+		return size;
+	}
+	
+	public Intent getMaster() {
+		if(size() < 2)
+			return null;
+		
+		return peek(size() > 2 ? 1 : 0);
+	}
+	
+	public Intent getDetail() {
+		if(size() < 3)
+			return null;
+		
+		return peek();
+	}
+	
+	public Intent getMenu() {
+		return peek(Math.min(size(), 2));
+	}
+	
+	public Trail getPrevious() {
+		if(size() < 4)
+			return null;
+		
+		return pop(4);
 	}
 	
 	public String getToken() {

@@ -25,14 +25,10 @@ public class ScreenActivityMapper implements ActivityMapper {
 		Trail trail = (Trail) place;
 		Intent in = null;
 		Screen s = null;
-		int size = trail.size();
 		
 		switch(panel) {
 		case MASTER:
-			if(size < 2)
-				return null;
-			
-			in = trail.peek(size > 2 ? 1 : 0);
+			in = trail.getMaster();
 			if(in == null)
 				return null;
 
@@ -43,10 +39,7 @@ public class ScreenActivityMapper implements ActivityMapper {
 			break;
 			
 		case DETAIL:
-			if(size < 3)
-				return null;
-			
-			in = trail.peek();
+			in = trail.getDetail();
 			if(in == null)
 				return null;
 			

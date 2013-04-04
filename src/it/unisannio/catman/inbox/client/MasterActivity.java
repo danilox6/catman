@@ -1,15 +1,19 @@
 package it.unisannio.catman.inbox.client;
 
+import it.unisannio.catman.client.Intent;
+import it.unisannio.catman.client.Trail;
+
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Hyperlink;
 
 public class MasterActivity extends AbstractActivity implements Inbox.Master {
 	
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		panel.setWidget(new HTML("Hello Master!"));
+		panel.setWidget(new Hyperlink("Go to detail", Trail.to("inbox").getToken()));
 
 	}
 
