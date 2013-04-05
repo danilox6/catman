@@ -9,12 +9,11 @@ import it.unisannio.catman.common.client.ScreenActivityMapper;
 import it.unisannio.catman.common.client.Path;
 
 import com.google.gwt.activity.shared.ActivityManager;
-import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.place.shared.Place;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.place.shared.PlaceHistoryMapper;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -32,27 +31,74 @@ public class Main extends Screen {
 		super.onModuleLoad();
 		initNavigation();
 		initMenu();	
+		
+		DOM.getElementById("root").addClassName("loaded");
 	}
 	
 	private void initMenu() {
-		// TODO
-		PlaceHistoryMapper phm = App.getInstance().getPlaceHistoryMapper();
-        RootPanel root = RootPanel.get("navigation");
-        StringBuffer buf = new StringBuffer("<ul id=\"navigation\">");
-        Path home = new Path(new Intent(""));
-        for(Screen s : getChildren()) {
-                buf
-                        .append("<li>")
-                        .append(new Hyperlink(s.getIcon().toString(), new Path(home, "inbox").getToken()))
-                        .append("</li>");
+		EventBus bus = App.getInstance().getEventBus();
+		bus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
+
+			@Override
+			public void onPlaceChange(PlaceChangeEvent event) {
+				renderMenu((Path) event.getNewPlace());
+			}
+			
+		});
+	}
+	
+	private void renderMenu(Path current) {
+
+		RootPanel root = RootPanel.get("navigation");
+
+		Path menuPath = current.getMenuPath();
+		StringBuffer buf = new StringBuffer();
+		
+        for(Path p = menuPath; p != null; p = p.pop()) {
+        	Intent in = p.peek();
+        	Screen s = in.getScreen();
+        	Hyperlink a = new Hyperlink(s.getIcon().toString(), p.getToken());
+        	a.setTitle(s.getTitle());
+        	buf.insert(0,"</li>")
+                .insert(0, a)
+                .insert(0, "<li>");
+        	
+        	
+        }
+        
+        buf.insert(0, "<ul id=\"trail\">");
+        buf.append("</ul>");
+        
+		Screen menuScreen = menuPath.peek().getScreen();
+		
+		
+		
+       	buf.append("<ul id=\"navigation\">");
+        for(Screen s : menuScreen.getChildren()) {
+        	Hyperlink a = new Hyperlink(s.getIcon().toString(), new Path(menuPath, s.getSlug()).getToken());
+        	a.setTitle(s.getTitle());
+            buf
+                .append("<li id=\"link-" + s.getSlug() + "\">")
+                .append(a)
+                .append("</li>");
         }
         buf.append("</ul>");
-        root.add(new HTML(buf.toString()));
+        
+        root.clear();
+        root.add(new HTML(buf.toString()));	
+        
+        Intent masterIntent = current.getMaster();
+		if(masterIntent != null) {
+			Screen masterScreen = masterIntent.getScreen();
+			Element e = DOM.getElementById("link-"+masterScreen.getSlug());
+			if(e != null)
+				e.addClassName("active");
+		}
 	}
 	
 	@Override
 	public Screen[] getChildren() {
-		return new Screen[] { Screen.get("inbox") };
+		return new Screen[] { Screen.get("inbox")};
 	}
 
 	private void initNavigation() {
@@ -77,9 +123,10 @@ public class Main extends Screen {
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(app.getPlaceHistoryMapper());
         historyHandler.register(placeController, eventBus, new Path(new Intent("")));
-
+        
         
         // Goes to the place represented on URL else default place
         historyHandler.handleCurrentHistory();
+		renderMenu((Path) App.getInstance().getPlaceController().getWhere());
 	}
 }

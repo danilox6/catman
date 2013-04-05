@@ -1,50 +1,28 @@
 <!doctype html>
-<html>
+<html class="loading" id="root">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>CatMan &bull; Catering Management System</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="res/entypo/stylesheet.css" />
-    <style>
-    	body { overflow: hidden; }
-    	nav { color: #fff; position: absolute; top: 0; left: 0; bottom: 0; width: 50px; padding:10px; height:100%; background: #000; overflow:hidden;}
-    	nav ul { list-style-type: none; margin: 0 2px; padding: 0; width: 48px;}
-    	nav ul > li { margin: 5px 0; text-align: center; }
-    	nav:hover #navigation li a {
-    		color: #555;
-    	}
-    	nav #navigation li a { 
-    		font-family: EntypoRegular; 
-    		font-size: 48px; 
-    		color: #333;
-			text-shadow: 0px 1px 3px #222;
-    		text-decoration: none; 
-    		transition: 0.5s;
-    		-webkit-transition: 0.5s;
-    	}
-    	
-    	nav #navigation li a:hover {
-    		color: #fff;
-    		transition: 0.5s;
-    		-webkit-transition: 0.5s;
-    	}
-    	
-    	nav #navigation li a.active {
-    		color: #ccc;
-    	}
-    	
-    	#master-wrapper { position: absolute; left: 70px; top: 0; bottom:0; width: 340px; padding:10px; background: #999; overflow: auto;}
-    	#detail-wrapper { position: absolute; left: 430px; min-width: 500px; padding:10px; height:100%; background: #ccc; top: 0; right: 0; bottom: 0;}
-    </style>
+    <meta charset="utf-8">
+    <title>CatMan &mdash; Catering Management System</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="res/style.css" />
     
   </head>
 
   <body>
-	  	<nav id="navigation"></nav>
-	  	<div id="master-wrapper"><div id="master"></div></div>
-	  	<div id="detail-wrapper"><div id="detail"></div></div>
-  	
-  	<script type="text/javascript" src="main/main.nocache.js"></script>
+    <div id="loader">
+      <div>
+        <span>L</span>
+        <h1>CatMan</h1>
+      </div>
+    </div>
+    
+    <div role="main">
+      <nav id="navigation"><!-- Menu/Trail --></nav>
+      <section id="master"><!-- Master --></section>
+      <section id="detail"><!-- Detail --></section>
+    </div>
+    
+    <script type="text/javascript" src="main/main.nocache.js"></script>
     <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
   </body>
 </html>

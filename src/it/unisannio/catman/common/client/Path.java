@@ -111,15 +111,8 @@ public class Path extends Place {
 		return peek();
 	}
 	
-	public Intent getMenu() {
-		return peek(Math.min(size(), 2));
-	}
-	
-	public Path getTrailPath() {
-		if(size() < 4)
-			return null;
-		
-		return pop(4);
+	public Path getMenuPath() {
+		return size() == 1 ? this : pop(Math.min(size() - 2, 1));
 	}
 	
 	public String getToken() {
