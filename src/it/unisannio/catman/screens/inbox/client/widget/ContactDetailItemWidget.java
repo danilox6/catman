@@ -7,9 +7,13 @@ import it.unisannio.catman.common.client.widget.DetailItemWidget;
 public class ContactDetailItemWidget extends DetailItemWidget{
 	
 	public ContactDetailItemWidget() {
-		leftPanel.add(new Button("C"));
-		titleLabel.setText("Cognome, Nome");
-		captionLabel.setText("Lorem ipsum dolor sit amet");
+		this("/prova.jpg", "Cognome, Nome", "Lorem ipsum dolor sit amet");
+	}
+	
+	ContactDetailItemWidget(String imageUrl, String title, String caption){
+		super(imageUrl, title, caption);
 		topRightPanel.add(new Button("X"));
 	}
+	
+	
 }

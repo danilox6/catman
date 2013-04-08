@@ -2,7 +2,9 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		
+		.name {
+			font-weight: bold;
+		}
 	</ui:style>
 	<g:VerticalPanel width="113px">
 		<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_TOP">
@@ -10,14 +12,14 @@
 		</g:cell>
 		<g:cell horizontalAlignment="CENTER">
 			<g:SimplePanel ui:field="picturePanel">
-				<g:Button height="77px" width="79px" text="foto"></g:Button>
+				<g:Image ui:field="image" height="78px" width="78px"></g:Image>
 			</g:SimplePanel>
 		</g:cell>
 		<g:cell horizontalAlignment="CENTER">
-			<g:Label ui:field="nameLabel">John Smith</g:Label>
+			<g:Label ui:field="nameLabel" styleName='{style.name}'></g:Label>
 		</g:cell>
 		<g:cell horizontalAlignment="CENTER">
-			<g:Label ui:field="roleLabel">Waiter</g:Label>
+			<g:Label ui:field="roleLabel"></g:Label>
 		</g:cell>
 	</g:VerticalPanel>
 </ui:UiBinder> 

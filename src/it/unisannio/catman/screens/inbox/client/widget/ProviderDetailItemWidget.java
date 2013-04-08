@@ -9,13 +9,16 @@ import it.unisannio.catman.common.client.widget.DetailItemWidget;
 public class ProviderDetailItemWidget extends DetailItemWidget{
 	
 	public ProviderDetailItemWidget() {
-		leftPanel.add(new Button("O"));
-		titleLabel.setText("Seller");
-		captionLabel.setText("Buy item at 600$/piece");
-		VerticalPanel verticalPanel = new VerticalPanel();
-		verticalPanel.add(new Button("TODO"));//TODO
-		verticalPanel.add(new Label("5 in stock"));
-		rightPanel.add(verticalPanel);
+		this("/prova.jpg","Seller","Buy item at 600$/piece");
+		
 	}
 
+	public ProviderDetailItemWidget(String imageUrl, String title, String caption){
+		super(imageUrl, title, caption);
+		VerticalPanel verticalPanel = new VerticalPanel();
+		verticalPanel.add(new Button("TODO"));//TODO Implementare widget per la selezione del numero
+		verticalPanel.add(new Label("5 in stock"));
+		rightPanel.add(verticalPanel);
+		topRightPanel.setVisible(false);
+	}
 }

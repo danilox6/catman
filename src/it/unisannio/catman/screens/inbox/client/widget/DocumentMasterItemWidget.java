@@ -2,22 +2,39 @@ package it.unisannio.catman.screens.inbox.client.widget;
 
 import it.unisannio.catman.common.client.widget.MasterItemWidget;
 
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 
 public class DocumentMasterItemWidget extends MasterItemWidget{
 	
-	public DocumentMasterItemWidget() {
-		leftPanel.add(new Button("B"));
-		centerPanel.add(new Label("Nome del documento"));
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		horizontalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		horizontalPanel.add(new CheckBox());
-		horizontalPanel.add(new Label("completato"));
-		centerPanel.add(horizontalPanel);
+	private Image image;
+	private Label documentStateLabel;
+	
+	public DocumentMasterItemWidget(){
+		this("/prova.jpg","Nome del documento","completato");
+	}
+	
+	public DocumentMasterItemWidget(String imageUrl, String documentName, String documentState) { //FIXME state/checkbox
+		if(imageUrl==null)
+			image = new Image();
+		else
+			image = new Image(imageUrl);
+		image.setHeight("32px");
+		image.setWidth("32px"); //FIXME Le dimensioni sono sempre fisse?
+		leftPanel.add(image);
+		titleLabel.setText(documentName);
+		captionPanel.add(new CheckBox());
+		documentStateLabel = new Label(documentState);
+		captionPanel.add(documentStateLabel);
+		centerPanel.add(captionPanel);
+	}
+	
+	public void setDocumentState(String state){
+		documentStateLabel.setText(state);
 	}
 
+	public void setImage(String imageUrl){
+		image.setUrl(imageUrl);
+	}
 }

@@ -2,22 +2,33 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		
+		.title {
+			font-weight: bold;
+		}
 	</ui:style>
 	<g:HorizontalPanel width="100%">
-		<g:cell horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE">
-			<g:SimplePanel ui:field="leftPanel"></g:SimplePanel>
-		</g:cell>
-		<g:cell verticalAlignment="ALIGN_MIDDLE">
-			<g:VerticalPanel ui:field="centerPanel">
-				<g:Label ui:field="titleLabel"></g:Label>
-				<g:Label ui:field="captionLabel"></g:Label>
-			</g:VerticalPanel>
-		</g:cell>
+		<g:HorizontalPanel>
+			<g:cell horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE">
+				<g:HorizontalPanel height="48px"  width="48px" ui:field="leftPanelContainer" >
+					<g:cell horizontalAlignment="ALIGN_CENTER"
+						verticalAlignment="ALIGN_MIDDLE">
+						<g:SimplePanel ui:field="leftPanel" >
+							<g:Image ui:field="image" height="48px" width="48px"></g:Image>
+						</g:SimplePanel>
+					</g:cell>
+				</g:HorizontalPanel>
+			</g:cell>
+			<g:cell verticalAlignment="ALIGN_MIDDLE">
+				<g:VerticalPanel ui:field="centerPanel">
+					<g:Label ui:field="titleLabel" styleName='{style.title}'></g:Label>
+					<g:Label ui:field="captionLabel"></g:Label>
+				</g:VerticalPanel>
+			</g:cell>
+		</g:HorizontalPanel>
 		<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
 			<g:HorizontalPanel ui:field="rightPanel"></g:HorizontalPanel>
 		</g:cell>
-		<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_TOP">
+		<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
 			<g:SimplePanel ui:field="topRightPanel"></g:SimplePanel>
 		</g:cell>
 	</g:HorizontalPanel>

@@ -25,13 +25,10 @@ public class SearchMasterHeadWidget extends HeadWidget{
 				if(txtSearch == null){
 					txtSearch = new TextBox();
 				titleLabel.setVisible(false);
-				//titlePanel.clear();
 				leftPanel.add(txtSearch);
 				}else{
-					//titlePanel.clear();
 					leftPanel.remove(txtSearch);
 					titleLabel.setVisible(true);
-					//titlePanel.add(new Label("Title")); //FIXME
 					txtSearch = null;
 					//TODO Esegui ricerca
 				}

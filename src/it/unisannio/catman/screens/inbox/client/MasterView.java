@@ -1,8 +1,5 @@
 package it.unisannio.catman.screens.inbox.client;
 
-
-import it.unisannio.catman.common.client.Utilities;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
@@ -12,7 +9,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -34,7 +30,8 @@ public class MasterView extends Composite implements Inbox.Master.View {
 	public MasterView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		//FIXME
+		//FIXME Questa soluzione necessita la conoscenza a priori dei pannelli in pixel.
+		//FIXME Forse non serve controllare getOffsetHeight!=0 dato che probabilmente non lo è mai
 		int northPanelHeight = northPanel.getOffsetHeight()!=0?northPanel.getOffsetHeight():24;
 		int southPanelHeight = southPanel.getOffsetHeight()!=0?southPanel.getOffsetHeight():24;
 		

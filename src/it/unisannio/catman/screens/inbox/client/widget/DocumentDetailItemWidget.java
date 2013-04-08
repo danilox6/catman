@@ -7,9 +7,11 @@ import com.google.gwt.user.client.ui.Button;
 public class DocumentDetailItemWidget extends DetailItemWidget{
 	
 	public DocumentDetailItemWidget() {
-		leftPanel.add(new Button("I"));
-		titleLabel.setText("Documento");
-		captionLabel.setText("Lorem ipsum dolor sit amet");
+		this("/prova.jpg","Documento","Lorem ipsum dolor sit amet");
+	}
+	
+	public DocumentDetailItemWidget(String imageUrl, String title, String caption){
+		super(imageUrl, title, caption);
 		topRightPanel.add(new Button("X"));
 	}
 
