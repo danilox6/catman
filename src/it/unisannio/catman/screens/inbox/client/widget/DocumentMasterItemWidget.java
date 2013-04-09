@@ -15,7 +15,7 @@ public class DocumentMasterItemWidget extends MasterItemWidget{
 		this("/prova.jpg","Nome del documento","completato");
 	}
 	
-	public DocumentMasterItemWidget(String imageUrl, String documentName, String documentState) { //FIXME state/checkbox
+	public DocumentMasterItemWidget(String imageUrl, String documentName, String documentState) {
 		if(imageUrl==null)
 			image = new Image();
 		else
@@ -36,5 +36,10 @@ public class DocumentMasterItemWidget extends MasterItemWidget{
 
 	public void setImage(String imageUrl){
 		image.setUrl(imageUrl);
+	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getName();
 	}
 }

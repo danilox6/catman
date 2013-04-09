@@ -8,23 +8,22 @@
 		}
 	</ui:style>
 
-	<g:DockPanel width="100%" ui:field="dock" >
-		<g:Dock direction="NORTH" >
+	<g:DockPanel width="100%" ui:field="dock">
+		<g:Dock direction="NORTH">
 			<g:SimplePanel ui:field="northPanel">
 				<my:SearchMasterHeadWidget></my:SearchMasterHeadWidget>
 			</g:SimplePanel>
 		</g:Dock>
 		<g:Dock direction="CENTER" width="100%">
-			<g:ScrollPanel width="100%" ui:field="scroll">
-				<g:VerticalPanel width="100%">
-					<my:EventMasterItemWidget></my:EventMasterItemWidget>
-					<my:DocumentMasterItemWidget></my:DocumentMasterItemWidget>
-					<my:PlanMasterItemWidget></my:PlanMasterItemWidget>
-				</g:VerticalPanel>
-			</g:ScrollPanel>
+			<cm:MasterItemListPanel width="100%"
+				ui:field="masterItemList">
+				<my:EventMasterItemWidget></my:EventMasterItemWidget>
+				<my:DocumentMasterItemWidget></my:DocumentMasterItemWidget>
+				<my:PlanMasterItemWidget></my:PlanMasterItemWidget>
+			</cm:MasterItemListPanel>
 		</g:Dock>
 		<g:Dock direction="SOUTH">
-			<g:SimplePanel ui:field="southPanel" >
+			<g:SimplePanel ui:field="southPanel">
 				<my:BottomMasterBar></my:BottomMasterBar>
 			</g:SimplePanel>
 		</g:Dock>

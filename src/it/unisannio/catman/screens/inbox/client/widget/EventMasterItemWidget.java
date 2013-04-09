@@ -5,20 +5,21 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 
+import it.unisannio.catman.common.client.MultiSelectable;
 import it.unisannio.catman.common.client.widget.MasterItemWidget;
 
-public class EventMasterItemWidget extends MasterItemWidget{
+public class EventMasterItemWidget extends MasterItemWidget implements MultiSelectable{
 
 	private Image image;
 	private Label eventStateLabel;
 	private Label eventPlaceLabel;
-	//TODO aggiungere riferimenti e setter a checkboxes
+	private CheckBox multipleSelectionCheckBox;
 
 	public EventMasterItemWidget() {
 		this("/prova.jpg","Nome dell'evento","ready","Villa Margherita");
 	}
 
-	public EventMasterItemWidget(String imageUrl, String name, String eventState, String eventPlace){ //TODO aggiungere valori checkbox e @UiConstructor se si elimina il costruttere con 0 parametri
+	public EventMasterItemWidget(String imageUrl, String name, String eventState, String eventPlace){ //@UiConstructor se si elimina il costruttere con 0 parametri
 		if(imageUrl==null)
 			image = new Image();
 		else
@@ -33,7 +34,8 @@ public class EventMasterItemWidget extends MasterItemWidget{
 		captionPanel.add(new HTML("&nbsp;-&nbsp;"));
 		eventPlaceLabel = new Label(eventPlace);
 		captionPanel.add(eventPlaceLabel);
-		rightPanel.add(new CheckBox());
+		multipleSelectionCheckBox = new CheckBox();
+		rightPanel.add(multipleSelectionCheckBox);
 	}
 
 	public void setEventState(String eventState){
@@ -46,5 +48,20 @@ public class EventMasterItemWidget extends MasterItemWidget{
 
 	public void setImage(String imageUrl){
 		image.setUrl(imageUrl);
+	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getName();
+	}
+	
+	@Override
+	public void setSelected(boolean selected) {
+		multipleSelectionCheckBox.setValue(selected);
+	}
+
+	@Override
+	public boolean isSelected() {
+		return multipleSelectionCheckBox.getValue();
 	}
 }
