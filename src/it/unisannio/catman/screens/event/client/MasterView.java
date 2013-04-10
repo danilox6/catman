@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.inbox.client;
+package it.unisannio.catman.screens.event.client;
 
 import it.unisannio.catman.common.client.widget.MasterItemListPanel;
 
@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MasterView extends Composite implements Inbox.Master.View {
+public class MasterView extends Composite implements Event.Master.View {
 	interface Presenter {}
 
 	private static MasterViewUiBinder uiBinder = GWT

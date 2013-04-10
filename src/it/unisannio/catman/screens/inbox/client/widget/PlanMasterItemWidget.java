@@ -21,7 +21,7 @@ public class PlanMasterItemWidget extends MasterItemWidget implements MultiSelec
 		else
 			image = new Image(imageUrl);
 		image.setHeight("32px");
-		image.setWidth("32px"); //FIXME Le dimensioni sono sempre fisse?
+		image.setWidth("32px"); //FIXME Hardcoded size
 		leftPanel.add(image);
 		titleLabel.setText(title);
 		multipleSelectionCheckBox = new CheckBox();

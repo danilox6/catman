@@ -11,7 +11,7 @@
 	<g:DockPanel width="100%" ui:field="dock">
 		<g:Dock direction="NORTH">
 			<g:SimplePanel ui:field="northPanel">
-				<cm:HeadWidget></cm:HeadWidget>
+				<cm:HeadWidget title="Title"></cm:HeadWidget>
 			</g:SimplePanel>
 		</g:Dock>
 		<g:Dock direction="CENTER" width="100%">

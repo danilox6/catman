@@ -1,7 +1,6 @@
-package it.unisannio.catman.screens.inbox.client;
+package it.unisannio.catman.screens.event.client;
 
 import com.google.gwt.activity.shared.Activity;
-
 
 import it.unisannio.catman.common.client.Icon;
 import it.unisannio.catman.common.client.Intent;
@@ -9,7 +8,7 @@ import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasDetail;
 import it.unisannio.catman.common.client.Screen.HasMaster;
 
-public class Inbox extends Screen implements HasMaster, HasDetail {
+public class Event extends Screen implements HasMaster, HasDetail{
 	public static interface Master extends Activity {
 		interface View {}
 	}
@@ -17,9 +16,10 @@ public class Inbox extends Screen implements HasMaster, HasDetail {
 	public static interface Detail extends Activity {
 		interface View {}
 	}
-
-	public Inbox() {
-		super("Richieste", "inbox", Icon.INBOX);
+	
+	
+	protected Event() {
+		super("Event", "event", Icon.CABINET); //FIXME Qual'è l'icona appropriata?
 	}
 
 	@Override
@@ -31,4 +31,5 @@ public class Inbox extends Screen implements HasMaster, HasDetail {
 	public Activity getDetail(Intent i) {
 		return new DetailActivity();
 	}
+
 }

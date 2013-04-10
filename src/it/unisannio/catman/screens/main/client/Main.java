@@ -98,7 +98,7 @@ public class Main extends Screen {
 	
 	@Override
 	public Screen[] getChildren() {
-		return new Screen[] { Screen.get("inbox")};
+		return new Screen[] { Screen.get("event-manager"), Screen.get("inbox")};
 	}
 
 	private void initNavigation() {

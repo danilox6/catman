@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.inbox.client.widget;
+package it.unisannio.catman.screens.eventmanager.client.widget;
 
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HTML;
@@ -25,7 +25,7 @@ public class EventMasterItemWidget extends MasterItemWidget implements MultiSele
 		else
 			image = new Image(imageUrl);
 		image.setHeight("32px");
-		image.setWidth("32px"); ////FIXME Hardcoded size
+		image.setWidth("32px"); //FIXME Hardcoded size
 		leftPanel.add(image);
 		titleLabel.setText(name);
 		captionPanel.add(new CheckBox());

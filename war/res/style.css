@@ -216,3 +216,7 @@ nav a:hover, nav .active a {
   bottom: 0;
   min-width: 640px;
 }
+
+.gwt-PopupPanel {
+	z-index: 99999;
+}

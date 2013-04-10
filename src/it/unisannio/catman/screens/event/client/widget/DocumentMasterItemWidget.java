@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.inbox.client.widget;
+package it.unisannio.catman.screens.event.client.widget;
 
 import it.unisannio.catman.common.client.widget.MasterItemWidget;
 

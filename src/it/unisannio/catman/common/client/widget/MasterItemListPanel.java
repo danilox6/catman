@@ -1,6 +1,8 @@
 package it.unisannio.catman.common.client.widget;
 
+import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.MultiSelectable;
+import it.unisannio.catman.common.client.widget.MasterItemListPanel.MultiSelectionChangedEvent.MultiSelectionState;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -9,6 +11,8 @@ import java.util.Set;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.EventHandler;
+import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -54,11 +58,22 @@ public class MasterItemListPanel extends Composite implements HasWidgets, ClickH
 
 		selectedWidget = source;
 
-		if(selectedWidget instanceof MultiSelectable && ((MultiSelectable)selectedWidget).isSelected())
+		if(selectedWidget instanceof MultiSelectable && ((MultiSelectable)selectedWidget).isSelected()){
 			multiSelectedWidgets.add(selectedWidget);
-		else{
-			multiSelectedWidgets.remove(selectedWidget);
+			MultiSelectionState state = MultiSelectionState.SOME_SELECTED;
+			if(areAllWidgetSelected())
+				state = MultiSelectionState.ALL_SELECTED;
+			App.getInstance().getEventBus().fireEvent(new MultiSelectionChangedEvent(multiSelectedWidgets,state));
+		}else{
+			if(multiSelectedWidgets.remove(selectedWidget)){
+				MultiSelectionState state = MultiSelectionState.SOME_SELECTED;
+				if(multiSelectedWidgets.isEmpty())
+					state = MultiSelectionState.NONE_SELECTED;
+				App.getInstance().getEventBus().fireEvent(new MultiSelectionChangedEvent(multiSelectedWidgets,state));
+			}
 		}
+
+
 
 		/*
 		Intent in = new Intent("inbox");
@@ -70,6 +85,7 @@ public class MasterItemListPanel extends Composite implements HasWidgets, ClickH
 			if (w instanceof MultiSelectable)
 				((MultiSelectable) w).setSelected(false);
 		multiSelectedWidgets.clear();
+		App.getInstance().getEventBus().fireEvent(new MultiSelectionChangedEvent(multiSelectedWidgets,MultiSelectionState.NONE_SELECTED));
 	}
 
 	public void selectAll(){
@@ -83,6 +99,7 @@ public class MasterItemListPanel extends Composite implements HasWidgets, ClickH
 				multiSelectedWidgets.add(widget);
 			}
 		}
+		App.getInstance().getEventBus().fireEvent(new MultiSelectionChangedEvent(multiSelectedWidgets,MultiSelectionState.ALL_SELECTED));
 	}
 
 	public void selectOrUnselectAll(){
@@ -114,12 +131,12 @@ public class MasterItemListPanel extends Composite implements HasWidgets, ClickH
 	public Set<Widget> getMultiSelectedWidgets(){
 		return multiSelectedWidgets;
 	}
-	
+
 	@Override
 	public void setHeight(String height) {
 		scrollPanel.setHeight(height);
 	}
-	
+
 	@Override
 	public void setWidth(String width) {
 		scrollPanel.setWidth(width);
@@ -145,4 +162,42 @@ public class MasterItemListPanel extends Composite implements HasWidgets, ClickH
 		return verticalPanel.remove(widget);
 	}
 
+	public static class MultiSelectionChangedEvent extends GwtEvent<MultiSelectionChangedHandler>{
+
+		public static Type<MultiSelectionChangedHandler> TYPE = new Type<MultiSelectionChangedHandler>();
+		public enum MultiSelectionState  {ALL_SELECTED, NONE_SELECTED, SOME_SELECTED };
+
+		private Set<Widget> selected;
+		private MultiSelectionState state;
+
+		public MultiSelectionChangedEvent(Set<Widget> selected, MultiSelectionState state ){
+			this.selected = selected;
+			this.state = state;
+		}
+
+
+		@Override
+		public Type<MultiSelectionChangedHandler> getAssociatedType() {
+			return TYPE;
+		}
+
+		@Override
+		protected void dispatch(MultiSelectionChangedHandler handler) {
+			handler.onMultiSelectionChanged(this);
+		}
+
+
+		public Set<Widget> getSelectedWidgets() {
+			return selected;
+		}
+
+		public MultiSelectionState getState() {
+			return state;
+		}
+
+	}
+
+	public interface MultiSelectionChangedHandler extends EventHandler{
+		void onMultiSelectionChanged(MultiSelectionChangedEvent event);
+	}
 }
