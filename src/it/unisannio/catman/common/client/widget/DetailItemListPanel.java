@@ -26,6 +26,7 @@ public class DetailItemListPanel extends Composite implements HasWidgets{
 	public DetailItemListPanel() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
+		
 		Window.addResizeHandler(new ResizeHandler() {
 			@Override
 			public void onResize(ResizeEvent event) {

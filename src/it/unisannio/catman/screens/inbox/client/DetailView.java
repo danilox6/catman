@@ -29,6 +29,7 @@ public class DetailView extends Composite implements Inbox.Detail.View {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		detailItemList.setHeight((Window.getClientHeight() - 24 - 0)+"px");	//FIXME Hardcoded size
+		detailItemList.setWidth((Window.getClientWidth() - 320 - 60)+"px"); //FIXME Hardcoded size
 		Window.addResizeHandler(new ResizeHandler() {
 			@Override
 			public void onResize(ResizeEvent event) {

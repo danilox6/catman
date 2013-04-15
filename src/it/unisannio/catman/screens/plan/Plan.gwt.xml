@@ -4,10 +4,5 @@
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="it.unisannio.catman.common.Common" />
 	<source path="client" />
-	<entry-point
-		class="it.unisannio.catman.screens.event.client.Event">
-	</entry-point>
-	
-	<!-- Child screens -->
-	<inherits name="it.unisannio.catman.screens.plan.Plan" />
+	<entry-point class="it.unisannio.catman.screens.plan.client.Plan"></entry-point>
 </module>

@@ -2,9 +2,11 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		
+		.border {
+			border: 1px solid Black;
+		}
 	</ui:style>
-		<g:HorizontalPanel width="100%">
+	<g:HorizontalPanel width="100%" styleName='{style.border}'>
 		<g:cell horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE">
 			<g:HorizontalPanel ui:field="leftPanel">
 			</g:HorizontalPanel>

@@ -144,6 +144,8 @@ public class MasterItemListPanel extends Composite implements HasWidgets, ClickH
 
 	@Override
 	public void clear() {
+		multiSelectedWidgets.clear();
+		selectedWidget = null;
 		verticalPanel.clear();
 	}
 

@@ -1,6 +1,8 @@
 package it.unisannio.catman.screens.event.client;
 
+import it.unisannio.catman.common.client.widget.HeadWidget;
 import it.unisannio.catman.common.client.widget.MasterItemListPanel;
+import it.unisannio.catman.screens.event.client.widget.DocumentMasterItemWidget;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ResizeEvent;
@@ -16,11 +18,8 @@ import com.google.gwt.user.client.ui.Widget;
 public class MasterView extends Composite implements Event.Master.View {
 	interface Presenter {}
 
-	private static MasterViewUiBinder uiBinder = GWT
-			.create(MasterViewUiBinder.class);
-
-	interface MasterViewUiBinder extends UiBinder<Widget, MasterView> {
-	}
+	private static MasterViewUiBinder uiBinder = GWT.create(MasterViewUiBinder.class);
+	interface MasterViewUiBinder extends UiBinder<Widget, MasterView> {}
 	
 	@UiField SimplePanel northPanel;
 	@UiField SimplePanel southPanel;
@@ -38,6 +37,17 @@ public class MasterView extends Composite implements Event.Master.View {
 				//Window.alert(height + " -n:"+northPanel.getOffsetHeight()+ " -s:"+southPanel.getOffsetHeight());
 			}
 		});
+		
+		
+		northPanel.add(new HeadWidget("Nome evento"));
+		
+		masterItemList.add(new DocumentMasterItemWidget("/prova.jpg", "Nome Documento", "completato"));
+		masterItemList.add(new DocumentMasterItemWidget("/prova.jpg", "Nome Documento", "completato"));
+		masterItemList.add(new DocumentMasterItemWidget("/prova.jpg", "Nome Documento", "completato"));
+		masterItemList.add(new DocumentMasterItemWidget("/prova.jpg", "Nome Documento", "completato"));
+		masterItemList.add(new DocumentMasterItemWidget("/prova.jpg", "Nome Documento", "completato"));
+		masterItemList.add(new DocumentMasterItemWidget("/prova.jpg", "Nome Documento", "completato"));
+		masterItemList.add(new DocumentMasterItemWidget("/prova.jpg", "Nome Documento", "completato"));
 	}
 
 }

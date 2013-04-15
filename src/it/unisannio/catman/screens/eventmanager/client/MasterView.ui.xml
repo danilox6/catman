@@ -22,7 +22,7 @@
 		</g:Dock>
 		<g:Dock direction="SOUTH">
 			<g:SimplePanel ui:field="southPanel">
-				<my:BottomMasterBar></my:BottomMasterBar>
+				<my:MasterBottomBarWidget></my:MasterBottomBarWidget>
 			</g:SimplePanel>
 		</g:Dock>
 	</g:DockPanel>

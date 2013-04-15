@@ -13,9 +13,9 @@ import it.unisannio.catman.common.client.widget.MasterItemListPanel;
 import it.unisannio.catman.common.client.widget.MasterItemListPanel.MultiSelectionChangedEvent;
 import it.unisannio.catman.screens.eventmanager.client.MasterView;
 
-public class BottomMasterBar extends BaseActionBarWidget{
+public class MasterBottomBarWidget extends BaseActionBarWidget{
 
-	public BottomMasterBar() {
+	public MasterBottomBarWidget() {
 
 		final PopupPanel calendarPopupPanel = new PopupPanel(true);
 		final DatePicker datePicker = new DatePicker(); 
