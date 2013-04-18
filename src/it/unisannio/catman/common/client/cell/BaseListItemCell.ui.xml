@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:with field='cellData'
+		type='it.unisannio.catman.common.client.cell.ListItemCellData' />
+	<ui:style>
+		
+	</ui:style>
+	<div style="width:100%; border: 1px solid Black; margin-bottom:1px;">
+		<div style="float:left">
+			<ui:safehtml from='{cellData.getLeftDivHTML}' />
+		</div>
+		<div style="float:left">
+			<span style="font-weight: bold;"><ui:text  from='{cellData.getTitle}' /></span>
+			<br />
+			<div>
+				<ui:safehtml from='{cellData.getCaptionDivHTML}' />
+			</div>
+		</div>
+		<div style="float:right">
+			<ui:safehtml from='{cellData.getRightDivHTML}' />
+		</div>
+		<div style="float:right">
+			<ui:safehtml from='{cellData.getTopRightDivHTML}' />
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+</ui:UiBinder>

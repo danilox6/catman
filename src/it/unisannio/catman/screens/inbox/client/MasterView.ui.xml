@@ -15,12 +15,14 @@
 			</g:SimplePanel>
 		</g:Dock>
 		<g:Dock direction="CENTER" width="100%">
-			<cm:MasterItemListPanel width="100%"
+			<g:SimplePanel ui:field="centerPanel">
+			<!--cm:MasterItemListPanel width="100%"
 				ui:field="masterItemList">
 				<my:EventMasterItemWidget></my:EventMasterItemWidget>
 				<my:DocumentMasterItemWidget></my:DocumentMasterItemWidget>
 				<my:PlanMasterItemWidget></my:PlanMasterItemWidget>
-			</cm:MasterItemListPanel>
+			</cm:MasterItemListPanel-->
+			</g:SimplePanel>
 		</g:Dock>
 		<g:Dock direction="SOUTH">
 			<g:SimplePanel ui:field="southPanel">
