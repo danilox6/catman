@@ -3,54 +3,38 @@ package it.unisannio.catman.screens.inbox.client.widget;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
-import it.unisannio.catman.common.client.cell.AbstractListItemCellData;
+import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
+import it.unisannio.catman.domain.workflow.Dossier;
+import it.unisannio.catman.domain.workflow.client.DossierProxy;
 
-public class EventCellData extends AbstractListItemCellData{
-	
-	private String title;
-	private String state;
-	private String place;
-	
-	
-	public EventCellData(String title, String state, String place) {
-		this.title = title;
-		this.state = state;
-		this.place = place;
-	}
+public class DossierCellAdapter extends AbstractCellAdapter<DossierProxy>{
 
 	@Override
-	public SafeHtml getLeftDivHTML() {
+	public SafeHtml getWest(DossierProxy d) {
 		SafeHtmlBuilder sb = new SafeHtmlBuilder();
 		sb.appendHtmlConstant("<img src='/prova.jpg' width='32px' height='32px' />");
 		return sb.toSafeHtml();
 	}
 
 	@Override
-	public String getTitle() {
-		return title;
+	public SafeHtml getNorth(DossierProxy d) {
+		return new SafeHtmlBuilder().appendEscaped("Mock").toSafeHtml();
 	}
 
 	@Override
-	public SafeHtml getCaptionDivHTML() {
+	public SafeHtml getSouth(DossierProxy d) {
 		SafeHtmlBuilder sb = new SafeHtmlBuilder();
 		sb.appendHtmlConstant("<input type='checkbox'/>");
-		sb.appendEscaped(state);
+		sb.appendEscaped("mock");
 		sb.appendHtmlConstant("&nbsp;-&nbsp;");
-		sb.appendEscaped(place);
+		sb.appendEscaped("mock");
 		return sb.toSafeHtml();
 	}
 
 	@Override
-	public SafeHtml getRightDivHTML() {
+	public SafeHtml getEast(DossierProxy d) {
 		SafeHtmlBuilder sb = new SafeHtmlBuilder();
 		sb.appendHtmlConstant("<input type='checkbox'/>");
 		return sb.toSafeHtml();
 	}
-
-	
-	
-
-	
-
-
 }

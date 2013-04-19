@@ -115,6 +115,8 @@ html, body {
   opacity: 1 !important;
 }
 
+/* == Trail/Menu == */
+
 nav {
   width: 60px;
   padding: 10px;
@@ -198,6 +200,8 @@ nav a:hover, nav .active a {
   padding: 0;
 }
 
+/* == Master + detail == */
+
 #master {
   position: absolute;
   left: 60px;
@@ -217,6 +221,46 @@ nav a:hover, nav .active a {
   min-width: 640px;
 }
 
+/* == Popup Panel == */
+
 .gwt-PopupPanel {
 	z-index: 99999;
 }
+
+/* == Custom widgets == */
+
+.man-MasterCell {
+  min-height: 32px;
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  overflow: hidden;
+}
+
+.man-MasterCell-west {
+  float: left;
+  width: 40px;
+  min-height: 30px;
+  max-height: 40px;
+  height: 100%;
+  background: #f00;
+}
+
+.man-MasterCell-middle {
+  background: #ccc;
+  min-height: 30px;
+}
+
+.man-MasterCell-east {
+  background: #00f;
+  min-height: 30px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  min-width: 5px;
+}
+
+
+

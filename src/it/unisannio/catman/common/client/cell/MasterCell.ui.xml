@@ -1,0 +1,16 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:with field='north' type='com.google.gwt.safehtml.shared.SafeHtml' />
+	<ui:with field='south' type='com.google.gwt.safehtml.shared.SafeHtml' />
+	<ui:with field='west' type='com.google.gwt.safehtml.shared.SafeHtml' />
+	<ui:with field='east' type='com.google.gwt.safehtml.shared.SafeHtml' />
+	
+	<div class="man-MasterCell">
+	    <ui:safehtml from="{west}" />
+	    <ui:safehtml from="{east}" />
+	    <div class="man-MasterCell-middle">
+	        <ui:safehtml from="{north}" />
+	    	<ui:safehtml from="{south}" />
+	    </div>
+	</div>
+</ui:UiBinder>

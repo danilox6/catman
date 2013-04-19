@@ -3,9 +3,11 @@ package it.unisannio.catman.screens.inbox.client;
 import java.util.LinkedList;
 import java.util.List;
 
-import it.unisannio.catman.common.client.cell.BaseListItemCell;
-import it.unisannio.catman.common.client.cell.ListItemCellData;
-import it.unisannio.catman.screens.inbox.client.widget.EventCellData;
+import it.unisannio.catman.common.client.cell.MasterCell;
+import it.unisannio.catman.common.client.cell.CellAdapter;
+import it.unisannio.catman.domain.workflow.Dossier;
+import it.unisannio.catman.domain.workflow.client.DossierProxy;
+import it.unisannio.catman.screens.inbox.client.widget.DossierCellAdapter;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -25,6 +27,9 @@ public class MasterView extends Composite implements Inbox.Master.View {
 	interface MasterViewUiBinder extends UiBinder<Widget, MasterView> {
 	}
 	
+	// Solo per i test
+	private static class DossierProxyMock implements DossierProxy {}
+	
 	@UiField SimplePanel northPanel;
 	@UiField SimplePanel southPanel;
 	@UiField SimplePanel centerPanel;
@@ -34,14 +39,18 @@ public class MasterView extends Composite implements Inbox.Master.View {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		
-		CellList<ListItemCellData> cellList = new CellList<ListItemCellData>(new BaseListItemCell());
+		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(new DossierCellAdapter()));
 		
-		List<ListItemCellData> values = new LinkedList<ListItemCellData>();
-		values.add(new EventCellData("Nome evento", "completato", "Villa Margherita"));
-		values.add(new EventCellData("Nome evento", "completato", "Villa Margherita"));
-		values.add(new EventCellData("Nome evento", "completato", "Villa Margherita"));
-		values.add(new EventCellData("Nome evento", "completato", "Villa Margherita"));
-		cellList.setRowData(values);
+		List<DossierProxy> values = new LinkedList<DossierProxy>();
+		values.add(new DossierProxyMock());
+		values.add(new DossierProxyMock());
+		values.add(new DossierProxyMock());
+		values.add(new DossierProxyMock());
+		
+		cellList.setRowCount(values.size(), true);
+
+	    // Push the data into the widget.
+	    cellList.setRowData(0, values);
 		centerPanel.add(cellList);
 
 		/*

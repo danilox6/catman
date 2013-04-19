@@ -14,35 +14,35 @@ import com.google.gwt.user.cellview.client.CellWidget;
  *  Cell structures like {@link CellList} or {@link CellTree}, instantiate a single {@link CellWidget} object that is recycled to show
  *  data from a {@link List} of &quot;CellData&quot; objects.<br />
  */
-public interface ListItemCellData {
+public interface CellAdapter<T> {
 	/**
 	 * Returns the {@link SafeHtml} to be rendered in the left-aligned div of the Cell  
 	 * @return the {@link SafeHtml} to be rendered in the left-aligned div of the Cell
 	 */
-	SafeHtml getLeftDivHTML();
+	SafeHtml getWest(T object);
 	
 	/**
 	 * Returns the {@link String} used as title
 	 * @return the {@link String} used as title
 	 */
-	String getTitle();
+	SafeHtml getNorth(T object);
 	
 	/**
 	 * Returns the {@link SafeHtml} to be rendered in the div below the title  
 	 * @return the {@link SafeHtml} to be rendered in the div below the title
 	 */
-	SafeHtml getCaptionDivHTML();
+	SafeHtml getSouth(T object);
 	
 	/**
 	 * Returns the {@link SafeHtml} to be rendered in the right-aligned div of the Cell  
 	 * @return the {@link SafeHtml} to be rendered in the right-aligned div of the Cell
 	 */
-	SafeHtml getRightDivHTML();
+	SafeHtml getEast(T object);
 	
 	/**
 	 * Returns the {@link SafeHtml} to be rendered in the top-right-aligned div of the Cell  
 	 * @return the {@link SafeHtml} to be rendered in the top-right-aligned div of the Cell
 	 */
-	SafeHtml getTopRightDivHTML();
+	SafeHtml getOverlay(T object);
 	
 }

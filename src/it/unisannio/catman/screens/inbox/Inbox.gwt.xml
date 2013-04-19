@@ -3,6 +3,7 @@
 <module rename-to="inbox">
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="it.unisannio.catman.common.Common" />
+	<inherits name="it.unisannio.catman.domain.Domain" />
 	<source path="client" />
 	<entry-point class="it.unisannio.catman.screens.inbox.client.Inbox"></entry-point>
 </module>
