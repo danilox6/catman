@@ -9,7 +9,7 @@ import com.google.gwt.user.cellview.client.CellTree;
 import com.google.gwt.user.cellview.client.CellWidget;
 
 /**
- * Used to define &quot;CellData&quot; objects that provides data to be shown in a {@link CellWidget}. <br />
+ * Defines &quot;CellData&quot; objects that provide data to be shown in a {@link CellWidget}. <br />
  *  Rendering elements in a {@link Cell} requires a {@link CellWidget} and an object that contains the informations to be shown.
  *  Cell structures like {@link CellList} or {@link CellTree}, instantiate a single {@link CellWidget} object that is recycled to show
  *  data from a {@link List} of &quot;CellData&quot; objects.<br />
