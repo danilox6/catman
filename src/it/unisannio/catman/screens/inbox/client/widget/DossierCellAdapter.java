@@ -4,7 +4,6 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
-import it.unisannio.catman.domain.workflow.Dossier;
 import it.unisannio.catman.domain.workflow.client.DossierProxy;
 
 public class DossierCellAdapter extends AbstractCellAdapter<DossierProxy>{
@@ -34,7 +33,7 @@ public class DossierCellAdapter extends AbstractCellAdapter<DossierProxy>{
 	@Override
 	public SafeHtml getEast(DossierProxy d) {
 		SafeHtmlBuilder sb = new SafeHtmlBuilder();
-		sb.appendHtmlConstant("<input type='checkbox'/>");
+		sb.appendHtmlConstant("<input type='checkbox'" + (d.isSelected()?"checked='checked'":"") + "/>");
 		return sb.toSafeHtml();
 	}
 }

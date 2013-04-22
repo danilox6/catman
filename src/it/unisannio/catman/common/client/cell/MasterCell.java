@@ -61,5 +61,5 @@ public class MasterCell<T> extends AbstractCell<T> {
 	void onDivGotPressed(ClickEvent event, Element parent, DummyCellInfo value) {
 	  Window.alert("was pressed!");
 	}*/
-
+	
 }

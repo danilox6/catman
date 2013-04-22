@@ -16,6 +16,7 @@
 		</g:Dock>
 		<g:Dock direction="CENTER" width="100%">
 			<g:SimplePanel ui:field="centerPanel">
+			<g:ScrollPanel ui:field="scrollPanel" width="100%"></g:ScrollPanel>
 			<!--cm:MasterItemListPanel width="100%"
 				ui:field="masterItemList">
 				<my:EventMasterItemWidget></my:EventMasterItemWidget>

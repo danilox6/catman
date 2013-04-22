@@ -4,7 +4,7 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 
 /**
  * Implements {@link CellAdapter} providing a base implementation whose methods
- *  doesn't return <code>null</code> if child classes doesn't override them.
+ *  return <code>null</code> if child classes doesn't override them.
  */
 public abstract class AbstractCellAdapter<T> implements CellAdapter<T> {
 
