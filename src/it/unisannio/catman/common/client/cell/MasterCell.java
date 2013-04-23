@@ -15,7 +15,7 @@ public class MasterCell<T> extends AbstractCell<T> {
 	
 	interface MasterCellUiRenderer extends UiRenderer {
 		void render(SafeHtmlBuilder safeHtmlBuilder, SafeHtml north, SafeHtml south, SafeHtml west, SafeHtml east, SafeHtml overlay);
-		void onBrowserEvent(MasterCell cell, NativeEvent event, Element parent, Object n);
+		void onBrowserEvent(MasterCell<?> cell, NativeEvent event, Element parent, Object n);
 	}
 	
 	private static MasterCellUiRenderer renderer = GWT.create(MasterCellUiRenderer.class);
@@ -50,7 +50,6 @@ public class MasterCell<T> extends AbstractCell<T> {
 		return contents;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onBrowserEvent(Context context, Element parent, T value, NativeEvent event, ValueUpdater<T> valueUpdater) {
 		renderer.onBrowserEvent(this, event, parent, value);

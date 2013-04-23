@@ -3,7 +3,6 @@ package it.unisannio.catman.screens.inbox.client;
 import java.util.List;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
-import it.unisannio.catman.common.client.cell.Selectable;
 import it.unisannio.catman.domain.workflow.client.DossierProxy;
 import it.unisannio.catman.screens.inbox.client.widget.DossierCellAdapter;
 
@@ -21,7 +20,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
-import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.MultiSelectionModel;
 
 public class MasterView extends Composite implements Inbox.Master.View {
 	interface Presenter {}
@@ -33,7 +32,7 @@ public class MasterView extends Composite implements Inbox.Master.View {
 	}
 	
 	// Solo per i test
-	private static class DossierProxyMock extends DossierProxy {
+	private static class DossierProxyMock implements DossierProxy {
 	
 	}
 	
@@ -46,20 +45,15 @@ public class MasterView extends Composite implements Inbox.Master.View {
 	public MasterView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		
-		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(new DossierCellAdapter()));
+		DossierCellAdapter cellAdapter = new DossierCellAdapter();
+		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(cellAdapter));
 
 		MultiSelectionModel<DossierProxy> selectionModel = new MultiSelectionModel<DossierProxy>();
-		//FIXME Per qualche ragione il checkbox non appare spuntato squando viene selezionato
 		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<DossierProxy>createCheckboxManager());
 		
-		
-		selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-			@Override
-			public void onSelectionChange(SelectionChangeEvent event) {
-				
-			}
-		});
+		//FIXME Uno dei due metodi è superfluo, scegliere quello più bello
+		cellAdapter.setSelectionModel(selectionModel);
+		selectionModel.addSelectionChangeHandler(cellAdapter);
 		
 		ListDataProvider<DossierProxy> dataProvider = new ListDataProvider<DossierProxy>();
 		dataProvider.addDataDisplay(cellList);
@@ -85,13 +79,5 @@ public class MasterView extends Composite implements Inbox.Master.View {
 				//Window.alert(height + " -n:"+northPanel.getOffsetHeight()+ " -s:"+southPanel.getOffsetHeight());
 			}
 		});
-	}
-
-	class MultiSelectionModel<T extends Selectable> extends com.google.gwt.view.client.MultiSelectionModel<T>{
-		@Override
-		public void setSelected(T item, boolean selected) {
-			item.setSelected(selected);
-			super.setSelected(item, selected);
-		}
 	}
 }
