@@ -15,10 +15,7 @@
 			</g:SimplePanel>
 		</g:Dock>
 		<g:Dock direction="CENTER" width="100%">
-			<cm:MasterItemListPanel width="100%"
-				ui:field="masterItemList">
-				
-			</cm:MasterItemListPanel>
+			<g:ScrollPanel ui:field="centerScrollPanel"></g:ScrollPanel>
 		</g:Dock>
 		<g:Dock direction="SOUTH">
 			<g:SimplePanel ui:field="southPanel">

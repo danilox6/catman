@@ -16,12 +16,6 @@
 		</g:Dock>
 		<g:Dock direction="CENTER" width="100%">
 			<cm:DetailItemListPanel width="100%" ui:field="detailItemList">
-				<cm:DetailSectionWidget title="Prova">
-					<my:ContactDetailItemWidget></my:ContactDetailItemWidget>
-					<my:DocumentDetailItemWidget></my:DocumentDetailItemWidget>
-					<my:RequirementDetailItemWidget></my:RequirementDetailItemWidget>
-					<my:ProviderDetailItemWidget></my:ProviderDetailItemWidget>
-				</cm:DetailSectionWidget>
 				<my:ProfileCardWidget></my:ProfileCardWidget>
 			</cm:DetailItemListPanel>
 		</g:Dock>

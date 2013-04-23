@@ -15,15 +15,7 @@
 			</g:SimplePanel>
 		</g:Dock>
 		<g:Dock direction="CENTER" width="100%">
-			<g:SimplePanel ui:field="centerPanel">
-			<g:ScrollPanel ui:field="scrollPanel" width="100%"></g:ScrollPanel>
-			<!--cm:MasterItemListPanel width="100%"
-				ui:field="masterItemList">
-				<my:EventMasterItemWidget></my:EventMasterItemWidget>
-				<my:DocumentMasterItemWidget></my:DocumentMasterItemWidget>
-				<my:PlanMasterItemWidget></my:PlanMasterItemWidget>
-			</cm:MasterItemListPanel-->
-			</g:SimplePanel>
+			<g:ScrollPanel ui:field="centerScrollPanel" width="100%"></g:ScrollPanel>
 		</g:Dock>
 		<g:Dock direction="SOUTH">
 			<g:SimplePanel ui:field="southPanel">

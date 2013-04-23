@@ -31,16 +31,14 @@ public class MasterView extends Composite implements Inbox.Master.View {
 	interface MasterViewUiBinder extends UiBinder<Widget, MasterView> {
 	}
 	
-	// Solo per i test
+	//FIXME Solo per i test
 	private static class DossierProxyMock implements DossierProxy {
 	
 	}
 	
 	@UiField SimplePanel northPanel;
 	@UiField SimplePanel southPanel;
-	@UiField SimplePanel centerPanel;
-	@UiField ScrollPanel scrollPanel;
-	//@UiField MasterItemListPanel masterItemList;
+	@UiField ScrollPanel centerScrollPanel;
 
 	public MasterView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -66,16 +64,15 @@ public class MasterView extends Composite implements Inbox.Master.View {
 		
 		cellList.setRowCount(values.size(), true);
 
-		scrollPanel.add(cellList);
-
+		centerScrollPanel.add(cellList);
 		
-		scrollPanel.setHeight((Window.getClientHeight() - 24 - 24)+"px"); //FIXME Hardcoded size
+		centerScrollPanel.setHeight((Window.getClientHeight() - 24 - 24)+"px"); //FIXME Hardcoded size
 		Window.addResizeHandler(new ResizeHandler() {
 			
 			@Override
 			public void onResize(ResizeEvent event) {
 				int height = event.getHeight();
-				scrollPanel.setHeight((height - northPanel.getOffsetHeight() - southPanel.getOffsetHeight()) + "px");
+				centerScrollPanel.setHeight((height - northPanel.getOffsetHeight() - southPanel.getOffsetHeight()) + "px");
 				//Window.alert(height + " -n:"+northPanel.getOffsetHeight()+ " -s:"+southPanel.getOffsetHeight());
 			}
 		});

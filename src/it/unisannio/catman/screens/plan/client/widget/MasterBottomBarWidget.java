@@ -4,11 +4,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 
-import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.widget.BaseActionBarWidget;
-import it.unisannio.catman.common.client.widget.MasterItemListPanel;
-import it.unisannio.catman.common.client.widget.MasterItemListPanel.MultiSelectionChangedEvent;
-import it.unisannio.catman.screens.plan.client.MasterView;
 
 public class MasterBottomBarWidget extends BaseActionBarWidget{
 
@@ -22,9 +18,10 @@ public class MasterBottomBarWidget extends BaseActionBarWidget{
 
 			@Override
 			public void onClick(ClickEvent event) {
-				MasterView.getInstance().getMasterItemList().selectOrUnselectAll();
+				//MasterView.getInstance().getMasterItemList().selectOrUnselectAll();
 			}
 		});
+		/*
 		App.getInstance().getEventBus().addHandler(MultiSelectionChangedEvent.TYPE,new MasterItemListPanel.MultiSelectionChangedHandler() {
 
 			@Override
@@ -42,7 +39,7 @@ public class MasterBottomBarWidget extends BaseActionBarWidget{
 				}
 			}
 		});
-
+*/
 		rightPanel.add(selectAllButton);
 	}
 }
