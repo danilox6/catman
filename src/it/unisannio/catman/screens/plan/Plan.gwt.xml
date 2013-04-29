@@ -7,5 +7,5 @@
 	<entry-point class="it.unisannio.catman.screens.plan.client.Plan" />
 	
 	<!-- Child screens -->
-	<inherits name="it.unisannio.catman.screens.personnellpicker.PersonnellPicker" />
+	<inherits name="it.unisannio.catman.screens.personnelpicker.PersonnelPicker" />
 </module> 

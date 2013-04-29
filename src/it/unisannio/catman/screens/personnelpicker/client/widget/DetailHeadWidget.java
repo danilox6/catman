@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.personnellpicker.client.widget;
+package it.unisannio.catman.screens.personnelpicker.client.widget;
 
 import com.google.gwt.user.client.ui.Button;
 

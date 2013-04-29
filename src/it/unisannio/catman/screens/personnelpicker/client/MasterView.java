@@ -1,12 +1,13 @@
-package it.unisannio.catman.screens.personnellpicker.client;
+package it.unisannio.catman.screens.personnelpicker.client;
 
 import java.util.List;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.HeadWidget;
 import it.unisannio.catman.domain.humanresources.client.EmployeeProxy;
-import it.unisannio.catman.screens.personnellpicker.client.DetailView.EmployeeProxyMock;
-import it.unisannio.catman.screens.personnellpicker.client.widget.EmployeCellAdapter;
+import it.unisannio.catman.screens.personnelpicker.client.DetailView.EmployeeProxyMock;
+import it.unisannio.catman.screens.personnelpicker.client.widget.EmployeCellAdapter;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
@@ -21,7 +22,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
-public class MasterView extends Composite implements PersonnellPicker.Master.View {
+public class MasterView extends Composite implements PersonnelPicker.Master.View {
 	interface Presenter {}
 
 	private static MasterViewUiBinder uiBinder = GWT.create(MasterViewUiBinder.class);

@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.personnellpicker.client;
+package it.unisannio.catman.screens.personnelpicker.client;
 
 import com.google.gwt.activity.shared.Activity;
 
@@ -9,7 +9,7 @@ import it.unisannio.catman.common.client.Screen.HasMaster;
 import it.unisannio.catman.common.client.Screen.HasDetail;
 
 
-public class PersonnellPicker extends Screen implements HasMaster, HasDetail{
+public class PersonnelPicker extends Screen implements HasMaster, HasDetail{
 	public static interface Master extends Activity {
 		interface View {}
 	}
@@ -19,8 +19,8 @@ public class PersonnellPicker extends Screen implements HasMaster, HasDetail{
 	}
 	
 
-	protected PersonnellPicker() {
-		super("Personnell Picker", "personnell-picker", Icon.PEOPLE);
+	protected PersonnelPicker() {
+		super("Personnel Picker", "personnel-picker", Icon.PEOPLE);
 		// TODO Auto-generated constructor stub
 	}
 

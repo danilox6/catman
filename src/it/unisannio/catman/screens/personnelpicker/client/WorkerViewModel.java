@@ -1,11 +1,11 @@
-package it.unisannio.catman.screens.personnellpicker.client;
+package it.unisannio.catman.screens.personnelpicker.client;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.domain.humanresources.client.EmployeeProxy;
-import it.unisannio.catman.screens.personnellpicker.client.DetailView.EmployeeProxyMock;
 import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
-import it.unisannio.catman.screens.personnellpicker.client.widget.EmployeCellTreeAdapter;
-import it.unisannio.catman.screens.personnellpicker.client.widget.JobBoardCellTreeAdapter;
+import it.unisannio.catman.screens.personnelpicker.client.DetailView.EmployeeProxyMock;
+import it.unisannio.catman.screens.personnelpicker.client.widget.EmployeCellTreeAdapter;
+import it.unisannio.catman.screens.personnelpicker.client.widget.JobBoardCellTreeAdapter;
 
 import java.util.List;
 

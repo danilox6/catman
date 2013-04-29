@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.personnellpicker.client;
+package it.unisannio.catman.screens.personnelpicker.client;
 
 import java.util.List;
 
@@ -6,15 +6,13 @@ import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.DetailItemListPanel;
 import it.unisannio.catman.common.client.widget.DetailSectionWidget;
 import it.unisannio.catman.domain.humanresources.client.EmployeeProxy;
-import it.unisannio.catman.screens.personnellpicker.client.widget.DetailHeadWidget;
-import it.unisannio.catman.screens.personnellpicker.client.widget.SelectedEmployeeCellAdapter;
-import it.unisannio.catman.screens.personnellpicker.client.widget.SelectedEmployeeCellList;
+import it.unisannio.catman.screens.personnelpicker.client.widget.DetailHeadWidget;
+import it.unisannio.catman.screens.personnelpicker.client.widget.SelectedEmployeeCellAdapter;
+import it.unisannio.catman.screens.personnelpicker.client.widget.SelectedEmployeeCellList;
 
-import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTree;
@@ -24,7 +22,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
-public class DetailView extends Composite implements PersonnellPicker.Detail.View {
+public class DetailView extends Composite implements PersonnelPicker.Detail.View {
 
 	private static DetailViewUiBinder uiBinder = GWT.create(DetailViewUiBinder.class);
 
@@ -53,6 +51,7 @@ public class DetailView extends Composite implements PersonnellPicker.Detail.Vie
 		northPanel.add(new DetailHeadWidget("Ruolo Y 3/5"));
 
 		DetailSectionWidget selectedSection = new DetailSectionWidget("Selected");
+		
 		SelectedEmployeeCellList selectedEmployeeCellList = new SelectedEmployeeCellList(new MasterCell<EmployeeProxy>(new SelectedEmployeeCellAdapter()));
 		ListDataProvider<EmployeeProxy> selectedEmployeeaProvider = new ListDataProvider<EmployeeProxy>();
 		selectedEmployeeaProvider.addDataDisplay(selectedEmployeeCellList);
@@ -81,13 +80,4 @@ public class DetailView extends Composite implements PersonnellPicker.Detail.Vie
 
 	}
 	
-	class ProvaCell extends AbstractCell<EmployeeProxy>{
-
-		@Override
-		public void render(com.google.gwt.cell.client.Cell.Context context, EmployeeProxy value, SafeHtmlBuilder sb) {
-			sb.appendEscaped("Prova");
-		}
-		
-	}
-
 }
