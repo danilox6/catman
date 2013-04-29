@@ -5,7 +5,7 @@
 	<ui:style>
 		.background {
 			background-color: #99C;
-		}
+		} 
 	</ui:style>
 
 	<g:DockPanel width="100%" ui:field="dock">

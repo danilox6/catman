@@ -6,8 +6,8 @@
 		.background {
 			background-color: #99C;
 		}
-	</ui:style>
-
+	</ui:style> 
+ 
 	<g:DockPanel width="100%" ui:field="dock">
 		<g:Dock direction="NORTH">
 			<g:SimplePanel ui:field="northPanel">

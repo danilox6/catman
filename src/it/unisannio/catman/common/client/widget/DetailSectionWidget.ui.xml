@@ -11,7 +11,7 @@
 		.vlpadding {
 			padding-left: 4px;
 		}
-	</ui:style>
+	</ui:style> 
 	<g:VerticalPanel width="100%" styleName="{style.margin}">
 		<g:Label ui:field="titleLabel"  styleName="{style.title}" ></g:Label>
 	<g:VerticalPanel ui:field="contentPanel" width="100%" styleName="{style.vlpadding}"></g:VerticalPanel>

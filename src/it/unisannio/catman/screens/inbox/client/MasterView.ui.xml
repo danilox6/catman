@@ -21,6 +21,6 @@
 			<g:SimplePanel ui:field="southPanel">
 				<my:BottomMasterBar></my:BottomMasterBar>
 			</g:SimplePanel>
-		</g:Dock>
+		</g:Dock> 
 	</g:DockPanel>
 </ui:UiBinder> 

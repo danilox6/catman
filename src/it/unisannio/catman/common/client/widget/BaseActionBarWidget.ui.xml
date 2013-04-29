@@ -5,10 +5,10 @@
 		.border {
 			border: 1px solid Black;
 		}
-	</ui:style>
+	</ui:style> 
 	<g:HorizontalPanel width="100%" styleName='{style.border}'>
 		<g:cell horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE">
-			<g:HorizontalPanel ui:field="leftPanel">
+			<g:HorizontalPanel ui:field="leftPanel"> 
 			</g:HorizontalPanel>
 		</g:cell>
 		<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">

@@ -10,4 +10,4 @@
 		<g:VerticalPanel width="100%" ui:field="verticalPanel" styleName="{style.padding}">
 		</g:VerticalPanel>
 	</g:ScrollPanel>
-</ui:UiBinder> 
+</ui:UiBinder>  

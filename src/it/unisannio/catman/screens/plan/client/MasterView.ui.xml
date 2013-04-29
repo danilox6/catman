@@ -18,7 +18,7 @@
 			<g:ScrollPanel ui:field="centerScrollPanel"></g:ScrollPanel>
 		</g:Dock>
 		<g:Dock direction="SOUTH">
-			<g:SimplePanel ui:field="southPanel">
+			<g:SimplePanel ui:field="southPanel"> 
 				<my:MasterBottomBarWidget></my:MasterBottomBarWidget>
 			</g:SimplePanel>
 		</g:Dock>

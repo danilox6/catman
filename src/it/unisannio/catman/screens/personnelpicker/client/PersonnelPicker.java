@@ -21,7 +21,6 @@ public class PersonnelPicker extends Screen implements HasMaster, HasDetail{
 
 	protected PersonnelPicker() {
 		super("Personnel Picker", "personnel-picker", Icon.PEOPLE);
-		// TODO Auto-generated constructor stub
 	}
 
 

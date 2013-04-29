@@ -13,6 +13,8 @@
 	<!-- Child screens -->
 	<inherits name="it.unisannio.catman.screens.inbox.Inbox" />
 	<inherits name="it.unisannio.catman.screens.eventmanager.EventManager" />
+	<inherits name="it.unisannio.catman.screens.materialsmanager.MaterialsManager"/>
+	<inherits name="it.unisannio.catman.screens.personnelmanager.PersonnelManager"/>
 	
 	<source path="client" />
 	<entry-point class="it.unisannio.catman.screens.main.client.Main"></entry-point>
