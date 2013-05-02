@@ -4,29 +4,29 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
-import it.unisannio.catman.domain.equipment.client.EmployeeProxy;
+import it.unisannio.catman.domain.equipment.client.SupplierProxy;
 
-public class SupplierCellAdapter extends AbstractCellAdapter<EmployeeProxy>{
+public class SupplierCellAdapter extends AbstractCellAdapter<SupplierProxy>{
 	
 	@Override
-	public SafeHtml getWest(EmployeeProxy d) {
+	public SafeHtml getWest(SupplierProxy d) {
 		SafeHtmlBuilder sb = new SafeHtmlBuilder();
 		sb.appendHtmlConstant("<img src='/prova.jpg' width='32px' height='32px' />");
 		return sb.toSafeHtml();
 	}
 
 	@Override
-	public SafeHtml getNorth(EmployeeProxy object) {
+	public SafeHtml getNorth(SupplierProxy object) {
 		return new SafeHtmlBuilder().appendEscaped("Mock").toSafeHtml();
 	}
 	
 	@Override
-	public SafeHtml getSouth(EmployeeProxy d) {
+	public SafeHtml getSouth(SupplierProxy d) {
 		return new SafeHtmlBuilder().appendEscaped("Lorem ipsum dolor sit amet").toSafeHtml();
 	}
 
 	@Override
-	public SafeHtml getEast(EmployeeProxy object) {
+	public SafeHtml getEast(SupplierProxy object) {
 		return new SafeHtmlBuilder().appendHtmlConstant("<input style=\"width:20px;\"/>").toSafeHtml();
 	}
 }

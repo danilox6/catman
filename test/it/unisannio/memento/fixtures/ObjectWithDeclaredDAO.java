@@ -11,7 +11,6 @@ public class ObjectWithDeclaredDAO {
 	/**
 	 * @uml.property  name="id"
 	 */
-	@SuppressWarnings("unused")
 	@Id
 	private int id;
 }

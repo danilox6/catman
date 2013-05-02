@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:cm="urn:import:it.unisannio.catman.common.client.widget">
+	<ui:style>
+	</ui:style>
+
+	<g:DockPanel width="100%" ui:field="dock">
+		<g:Dock direction="NORTH">
+			<g:SimplePanel ui:field="northPanel" title="Title">
+			</g:SimplePanel>
+		</g:Dock>
+		<g:Dock direction="CENTER" width="100%">
+			<g:ScrollPanel ui:field="centerScrollPanel" width="100%"></g:ScrollPanel>
+		</g:Dock>
+		<g:Dock direction="SOUTH">
+			<g:SimplePanel ui:field="southPanel">
+			</g:SimplePanel>
+		</g:Dock> 
+	</g:DockPanel>
+</ui:UiBinder> 

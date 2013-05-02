@@ -1,9 +1,9 @@
 package it.unisannio.catman.screens.personnelpicker.client;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
-import it.unisannio.catman.domain.humanresources.client.EmployeeProxy;
+import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
-import it.unisannio.catman.screens.personnelpicker.client.DetailView.EmployeeProxyMock;
+import it.unisannio.catman.screens.personnelpicker.client.DetailView.WorkerProxyMock;
 import it.unisannio.catman.screens.personnelpicker.client.widget.EmployeCellTreeAdapter;
 import it.unisannio.catman.screens.personnelpicker.client.widget.JobBoardCellTreeAdapter;
 
@@ -15,9 +15,6 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.TreeViewModel;
 
 public class WorkerViewModel implements TreeViewModel{
-	
-	
-	
 	
 	public WorkerViewModel(){
 		
@@ -38,21 +35,21 @@ public class WorkerViewModel implements TreeViewModel{
 			
 			//FIXME Query workers, candidates and JobBoards by categories
 			if(category.getName().equals("Workers")){
-				ListDataProvider<EmployeeProxy> dataProvider = new ListDataProvider<EmployeeProxy>();
-				List<EmployeeProxy> dataList = dataProvider.getList();
-				dataList.add(new EmployeeProxyMock());
-				dataList.add(new EmployeeProxyMock());
-				dataList.add(new EmployeeProxyMock());
+				ListDataProvider<WorkerProxy> dataProvider = new ListDataProvider<WorkerProxy>();
+				List<WorkerProxy> dataList = dataProvider.getList();
+				dataList.add(new WorkerProxyMock());
+				dataList.add(new WorkerProxyMock());
+				dataList.add(new WorkerProxyMock());
 				
-				return new DefaultNodeInfo<EmployeeProxy>(dataProvider,new MasterCell<EmployeeProxy>(new EmployeCellTreeAdapter()));
+				return new DefaultNodeInfo<WorkerProxy>(dataProvider,new MasterCell<WorkerProxy>(new EmployeCellTreeAdapter()));
 			}else if(category.getName().equals("Candidates")){
-				ListDataProvider<EmployeeProxy> dataProvider = new ListDataProvider<EmployeeProxy>();
-				List<EmployeeProxy> dataList = dataProvider.getList();
-				dataList.add(new EmployeeProxyMock());
-				dataList.add(new EmployeeProxyMock());
-				dataList.add(new EmployeeProxyMock());
+				ListDataProvider<WorkerProxy> dataProvider = new ListDataProvider<WorkerProxy>();
+				List<WorkerProxy> dataList = dataProvider.getList();
+				dataList.add(new WorkerProxyMock());
+				dataList.add(new WorkerProxyMock());
+				dataList.add(new WorkerProxyMock());
 				
-				return new DefaultNodeInfo<EmployeeProxy>(dataProvider,new MasterCell<EmployeeProxy>(new EmployeCellTreeAdapter()));
+				return new DefaultNodeInfo<WorkerProxy>(dataProvider,new MasterCell<WorkerProxy>(new EmployeCellTreeAdapter()));
 			} else if(category.getName().equals("Job Boards")){
 				ListDataProvider<JobBoardProxy> dataProvider = new ListDataProvider<JobBoardProxy>();
 				List<JobBoardProxy> dataList = dataProvider.getList();
@@ -68,7 +65,7 @@ public class WorkerViewModel implements TreeViewModel{
 
 	@Override
 	public boolean isLeaf(Object value) {
-		return value instanceof EmployeeProxy || value instanceof JobBoardProxy;
+		return value instanceof WorkerProxy || value instanceof JobBoardProxy;
 	}
 	
 	

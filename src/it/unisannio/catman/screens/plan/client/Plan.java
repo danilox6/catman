@@ -6,9 +6,10 @@ import it.unisannio.catman.common.client.Icon;
 import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasMaster;
+import it.unisannio.catman.common.client.Screen.HasDetail;
 
 
-public class Plan extends Screen  implements HasMaster{
+public class Plan extends Screen  implements HasMaster, HasDetail{
 	public static interface Master extends Activity {
 		interface View {}
 	}
@@ -17,9 +18,8 @@ public class Plan extends Screen  implements HasMaster{
 		interface View {}
 	}
 	
-	
 	public Plan() {
-		super("Plan","plan",Icon.GEAR); //FIXME icona
+		super("Plan","plan",Icon.GEAR); //FIXME icona appropriata
 	}
 	
 	@Override
@@ -27,10 +27,10 @@ public class Plan extends Screen  implements HasMaster{
 		return new MasterActivity();
 	}
 
-	/*
+	
 	@Override
 	public Activity getDetail(Intent i) {
 		return new DetailActivity();
-	}*/
+	}
 
 }

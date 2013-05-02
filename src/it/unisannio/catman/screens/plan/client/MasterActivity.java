@@ -9,7 +9,7 @@ public class MasterActivity extends ScreenActivity implements Plan.Master {
 	
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		panel.setWidget(MasterView.getInstance());
+		panel.setWidget(new MasterView());
 	}
 
 }

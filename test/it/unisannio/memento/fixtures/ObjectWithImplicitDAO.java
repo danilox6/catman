@@ -9,7 +9,6 @@ import it.unisannio.memento.AbstractDAO;
 public class ObjectWithImplicitDAO {
 	public static interface DAO extends AbstractDAO<Integer, ObjectWithImplicitDAO> {}
 	
-	@SuppressWarnings("unused")
 	@Id
 	private int id;
 }

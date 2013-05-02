@@ -1,0 +1,62 @@
+package it.unisannio.catman.screens.personnelpicker.client.widget;
+
+import java.util.List;
+
+import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
+
+import com.google.gwt.cell.client.Cell;
+import com.google.gwt.cell.client.Cell.Context;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.safehtml.client.SafeHtmlTemplates;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.view.client.ProvidesKey;
+import com.google.gwt.view.client.SelectionModel;
+
+/**
+ * Basically an horizontal {@link CellList} 
+ */
+public class SelectedWorkerCellList extends CellList<WorkerProxy>{
+
+	public SelectedWorkerCellList(Cell<WorkerProxy> cell){
+		this(cell, getDefaultResources(), null);
+	}
+
+	public SelectedWorkerCellList(Cell<WorkerProxy> cell, Resources resources) {
+		this(cell, resources, null);
+	}
+
+	public SelectedWorkerCellList(Cell<WorkerProxy> cell, ProvidesKey<WorkerProxy> keyProvider) {
+		this(cell, getDefaultResources(), keyProvider);
+	}
+
+	public SelectedWorkerCellList(Cell<WorkerProxy> cell, Resources resources, ProvidesKey<WorkerProxy> keyProvider) {
+		super(cell, resources, keyProvider);
+	}
+
+	private static Resources getDefaultResources() {
+		return GWT.create(Resources.class);
+	}
+
+	@Override
+	protected void renderRowValues(SafeHtmlBuilder sb, List<WorkerProxy> values, int start, SelectionModel<? super WorkerProxy> selectionModel) {
+	    int end = start + values.size();
+	    for (int i = start; i < end; i++) {
+	      WorkerProxy value = values.get(i - start);
+	      
+	      StringBuilder classesBuilder = new StringBuilder();
+	      SafeHtmlBuilder cellBuilder = new SafeHtmlBuilder();
+	      Context context = new Context(i, 0, getValueKey(value));
+	      getCell().render(context, value, cellBuilder);
+	      sb.append(TEMPLATE.div(i, classesBuilder.toString(), cellBuilder.toSafeHtml()));
+	    }
+	    sb.appendHtmlConstant("<div style=\"clear:both;\"></div>");
+	}
+	private static final Template TEMPLATE = GWT.create(Template.class);
+	interface Template extends SafeHtmlTemplates {
+		@Template("<div onclick=\"\" __idx=\"{0}\" class=\"{1}\" style=\"float:left; outline:none; width: 200px;\" >{2}</div>") //FIXME Hardcoded size
+		SafeHtml div(int idx, String classes, SafeHtml cellContents);
+	}
+
+}

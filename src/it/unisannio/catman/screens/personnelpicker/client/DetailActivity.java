@@ -9,8 +9,6 @@ public class DetailActivity extends ScreenActivity implements PersonnelPicker.De
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		//Path p = getPath();
-	//	panel.setWidget(new Hyperlink(p.toString(), pathTo("inbox").getToken()));
 		panel.setWidget(new DetailView());
 	}
 
