@@ -15,10 +15,15 @@ import com.google.gwt.view.client.ProvidesKey;
 import com.google.gwt.view.client.SelectionModel;
 
 /**
- * Basically an horizontal {@link CellList} 
+ * Basically an horizontal {@link CellList} used to display selected workers 
  */
 public class SelectedWorkerCellList extends CellList<WorkerProxy>{
 
+	/**
+	 * The width of the cells showing selected workers.
+	 */
+	private final static int SELECTED_WORKER_CELL_WIDTH = 200;  //FIXME Hardcoded size
+	
 	public SelectedWorkerCellList(Cell<WorkerProxy> cell){
 		this(cell, getDefaultResources(), null);
 	}
@@ -55,7 +60,7 @@ public class SelectedWorkerCellList extends CellList<WorkerProxy>{
 	}
 	private static final Template TEMPLATE = GWT.create(Template.class);
 	interface Template extends SafeHtmlTemplates {
-		@Template("<div onclick=\"\" __idx=\"{0}\" class=\"{1}\" style=\"float:left; outline:none; width: 200px;\" >{2}</div>") //FIXME Hardcoded size
+		@Template("<div onclick=\"\" __idx=\"{0}\" class=\"{1}\" style=\"float:left; outline:none; width: "+ SELECTED_WORKER_CELL_WIDTH +"px;\" >{2}</div>")
 		SafeHtml div(int idx, String classes, SafeHtml cellContents);
 	}
 

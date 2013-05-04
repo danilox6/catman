@@ -3,7 +3,6 @@ package it.unisannio.catman.common.client.widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
 
-//FIXME nome brutto
 public class SelectAllHandler<T> {
 	
 	private MultiSelectionModel<T> selectionModel;
@@ -36,7 +35,7 @@ public class SelectAllHandler<T> {
 		}
 	}
 	
-	public void selectOrDeselect(){//FIXME nome brutto
+	public void selectOrDeselect(){
 		if(getSelectionState().equals(SelectionState.NONE_SELECTED))
 			selectAll();
 		else

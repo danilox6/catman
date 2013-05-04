@@ -11,7 +11,7 @@ import it.unisannio.catman.domain.workflow.client.CustomerProxy;
 import it.unisannio.catman.domain.workflow.client.CustomerRequest;
 import it.unisannio.catman.domain.workflow.client.DossierProxy;
 import it.unisannio.catman.screens.inbox.client.widget.DossierCellAdapter;
-import it.unisannio.catman.screens.inbox.client.widget.SearchMasterHeadWidget;
+import it.unisannio.catman.screens.inbox.client.widget.MasterHeadWidget;
 import it.unisannio.catman.screens.inbox.client.widget.SelectionHandlerBottomBar;
 
 import com.google.gwt.core.shared.GWT;
@@ -27,7 +27,7 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 
 	public MasterView() {
 
-		northPanel.add(new SearchMasterHeadWidget());
+		northPanel.add(new MasterHeadWidget("Title"));
 
 		DossierCellAdapter cellAdapter = new DossierCellAdapter();
 		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(cellAdapter));
@@ -35,9 +35,7 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 		MultiSelectionModel<DossierProxy> selectionModel = new MultiSelectionModel<DossierProxy>();
 		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<DossierProxy>createCheckboxManager());
 
-		//FIXME Uno dei due metodi è superfluo, scegliere quello più bello
 		cellAdapter.setSelectionModel(selectionModel);
-		selectionModel.addSelectionChangeHandler(cellAdapter);
 
 		ListDataProvider<DossierProxy> dataProvider = new ListDataProvider<DossierProxy>();
 		dataProvider.addDataDisplay(cellList);
@@ -77,7 +75,6 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 
 						@Override
 						public void onFailure(ServerFailure error) {
-							// TODO Auto-generated method stub
 							//super.onFailure(error);
 							GWT.log("Server fail: " + error.getMessage() + error.getStackTraceString());
 						}

@@ -12,12 +12,12 @@ public class SelectionHandlerBottomBar extends BaseActionBarWidget{
 	
 	public SelectionHandlerBottomBar(final SelectAllHandler<DossierProxy> selectAllHandler) {
 		
-		leftPanel.add(new DeleteButton<DossierProxy>("Delete", selectAllHandler.getMultiSelectionModel()));
+		leftPanel.add(new DeleteButton<DossierProxy>(selectAllHandler.getMultiSelectionModel()));
 		leftPanel.add(new Button("F"));
 		leftPanel.add(new Button("I"));
 		rightPanel.add(new Button("N"));
 		rightPanel.add(new Button("T"));
 		rightPanel.add(new Button("I"));
-		rightPanel.add(new SelectAllButton<DossierProxy>("SelectAll", selectAllHandler));
+		rightPanel.add(new SelectAllButton<DossierProxy>(selectAllHandler));
 	}
 }

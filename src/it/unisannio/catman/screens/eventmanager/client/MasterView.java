@@ -2,10 +2,11 @@ package it.unisannio.catman.screens.eventmanager.client;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
+import it.unisannio.catman.common.client.widget.SelectAllHandler;
 import it.unisannio.catman.domain.workflow.client.DossierProxy;
 import it.unisannio.catman.screens.eventmanager.client.widget.DossierCellAdapter;
 import it.unisannio.catman.screens.eventmanager.client.widget.MasterBottomBarWidget;
-import it.unisannio.catman.screens.inbox.client.widget.SearchMasterHeadWidget;
+import it.unisannio.catman.screens.eventmanager.client.widget.MasterHeadWidget;
 
 import java.util.List;
 
@@ -20,17 +21,14 @@ public class MasterView extends AbstractMasterView implements EventManager.Maste
 	
 	public MasterView() {
 		
-		northPanel.add(new SearchMasterHeadWidget());
+		northPanel.add(new MasterHeadWidget("Title"));
 		
 		DossierCellAdapter cellAdapter = new DossierCellAdapter();
 		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(cellAdapter));
 
 		MultiSelectionModel<DossierProxy> selectionModel = new MultiSelectionModel<DossierProxy>();
 		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<DossierProxy>createCheckboxManager());
-		
-		//FIXME Uno dei due metodi è superfluo, scegliere quello più bello
 		cellAdapter.setSelectionModel(selectionModel);
-		selectionModel.addSelectionChangeHandler(cellAdapter);
 		
 		ListDataProvider<DossierProxy> dataProvider = new ListDataProvider<DossierProxy>();
 		dataProvider.addDataDisplay(cellList);
@@ -45,7 +43,7 @@ public class MasterView extends AbstractMasterView implements EventManager.Maste
 
 		centerScrollPanel.add(cellList);
 		
-		southPanel.add(new MasterBottomBarWidget());
+		southPanel.add(new MasterBottomBarWidget<DossierProxy>(new SelectAllHandler<DossierProxy>(selectionModel, dataProvider)));
 		
 	}
 

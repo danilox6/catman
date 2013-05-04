@@ -2,9 +2,10 @@ package it.unisannio.catman.screens.plan.client;
 
 import java.util.List;
 
-import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
 import it.unisannio.catman.common.client.cell.MasterCell;
+import it.unisannio.catman.common.client.cell.SelectorAbstractCellAdapter;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
+import it.unisannio.catman.common.client.widget.SelectAllHandler;
 import it.unisannio.catman.screens.plan.client.widget.MasterBottomBarWidget;
 import it.unisannio.catman.screens.plan.client.widget.MasterHeadBarWidget;
 
@@ -20,7 +21,6 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
-import com.google.gwt.view.client.SelectionModel;
 
 public class MasterView extends AbstractMasterView implements Plan.Master.View, ChangeHandler {
 	interface Presenter {}
@@ -37,14 +37,14 @@ public class MasterView extends AbstractMasterView implements Plan.Master.View, 
 		MultiSelectionModel<PlanProxy> selectionModel = new MultiSelectionModel<PlanProxy>();
 		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<PlanProxy>createCheckboxManager());
 		
-		//FIXME Uno dei due metodi è superfluo, scegliere quello più bello
 		cellAdapter.setSelectionModel(selectionModel);
+		
 		dataProvider = new ListDataProvider<PlanProxy>();
 		dataProvider.addDataDisplay(cellList);
 		
 		centerScrollPanel.add(cellList);
 		
-		southPanel.add(new MasterBottomBarWidget());
+		southPanel.add(new MasterBottomBarWidget<PlanProxy>(new SelectAllHandler<PlanProxy>(selectionModel, dataProvider)));
 		
 		listBox.addChangeHandler(this);
 		DomEvent.fireNativeEvent(Document.get().createChangeEvent(), listBox); //Fa sì che venga sparato il ChangeEvent
@@ -107,10 +107,9 @@ public class MasterView extends AbstractMasterView implements Plan.Master.View, 
 	}
 	
 	//FIXME solo per test
-	interface PlanProxy {}
+	public interface PlanProxy {}
 	class PlanProxyMock implements PlanProxy{}
-	class PlanCellAdapter extends AbstractCellAdapter<PlanProxy>{
-		private SelectionModel<PlanProxy> selectionModel = null;
+	class PlanCellAdapter extends SelectorAbstractCellAdapter<PlanProxy>{
 		
 		@Override
 		public SafeHtml getWest(PlanProxy d) {
@@ -127,14 +126,10 @@ public class MasterView extends AbstractMasterView implements Plan.Master.View, 
 		@Override
 		public SafeHtml getEast(PlanProxy d) {
 			SafeHtmlBuilder sb = new SafeHtmlBuilder();
-			boolean selected = selectionModel != null && selectionModel.isSelected(d);
-			sb.appendHtmlConstant("<input type='checkbox'" + (selected?"checked='checked'":"") + "/>");
+			sb.appendHtmlConstant("<input type='checkbox'" + (isSelected(d)?"checked='checked'":"") + "/>");
 			return sb.toSafeHtml();
 		}
 
-		public void setSelectionModel(SelectionModel<PlanProxy> selectionModel) {
-			this.selectionModel = selectionModel;
-		}
 	}	
 
 }

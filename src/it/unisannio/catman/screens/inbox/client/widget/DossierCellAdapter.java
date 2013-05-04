@@ -2,15 +2,12 @@ package it.unisannio.catman.screens.inbox.client.widget;
 
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.view.client.SelectionChangeEvent;
-import com.google.gwt.view.client.SelectionModel;
 
-import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
+import it.unisannio.catman.common.client.cell.SelectorAbstractCellAdapter;
 import it.unisannio.catman.domain.workflow.client.DossierProxy;
 
-public class DossierCellAdapter extends AbstractCellAdapter<DossierProxy> implements SelectionChangeEvent.Handler{
+public class DossierCellAdapter extends SelectorAbstractCellAdapter<DossierProxy> {
 
-	private SelectionModel<DossierProxy> selectionModel = null;
 	
 	@Override
 	public SafeHtml getWest(DossierProxy d) {
@@ -37,18 +34,7 @@ public class DossierCellAdapter extends AbstractCellAdapter<DossierProxy> implem
 	@Override
 	public SafeHtml getEast(DossierProxy d) {
 		SafeHtmlBuilder sb = new SafeHtmlBuilder();
-		boolean selected = selectionModel != null && selectionModel.isSelected(d);
-		sb.appendHtmlConstant("<input type='checkbox'" + (selected?"checked='checked'":"") + "/>");
+		sb.appendHtmlConstant("<input type='checkbox'" + (isSelected(d)?"checked='checked'":"") + "/>");
 		return sb.toSafeHtml();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void onSelectionChange(SelectionChangeEvent event) {
-		selectionModel = (SelectionModel<DossierProxy>) event.getSource();
-	}
-
-	public void setSelectionModel(SelectionModel<DossierProxy> selectionModel) {
-		this.selectionModel = selectionModel;
 	}
 }

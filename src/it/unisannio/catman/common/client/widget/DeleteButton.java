@@ -11,8 +11,8 @@ public class DeleteButton<T> extends Button implements SelectionChangeEvent.Hand
 	
 	MultiSelectionModel<T> selectionModel;
 
-	public DeleteButton(String html, MultiSelectionModel<T> selectionModel) {
-		super(html);
+	public DeleteButton(MultiSelectionModel<T> selectionModel) {
+		super("Delete");
 		this.selectionModel = selectionModel;
 		this.selectionModel.addSelectionChangeHandler(this);
 		if(selectionModel.getSelectedSet().isEmpty())
@@ -24,7 +24,7 @@ public class DeleteButton<T> extends Button implements SelectionChangeEvent.Hand
 
 	@Override
 	public void onClick(ClickEvent event) {
-		// TODO Auto-generated method stub
+		// TODO Esegui eliminazione
 		Window.alert(selectionModel.getSelectedSet().toString());
 	}
 

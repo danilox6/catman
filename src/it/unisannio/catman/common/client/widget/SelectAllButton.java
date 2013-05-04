@@ -12,11 +12,11 @@ public class SelectAllButton<T> extends Button implements SelectionChangeEvent.H
 	 SelectAllHandler<T> selectAllHandler;
 	
 	public SelectAllButton(String html, MultiSelectionModel<T> selectionModel, ListDataProvider<T> dataProvider) {
-		this(html, new SelectAllHandler<T>(selectionModel, dataProvider));
+		this(new SelectAllHandler<T>(selectionModel, dataProvider));
 	}
 	
-	public SelectAllButton(String html, SelectAllHandler<T> selectAllHandler){
-		super(html);
+	public SelectAllButton(SelectAllHandler<T> selectAllHandler){
+		super("SelectAll");
 		selectAllHandler.getMultiSelectionModel().addSelectionChangeHandler(this);
 		this.selectAllHandler = selectAllHandler;
 		this.addClickHandler(this);
