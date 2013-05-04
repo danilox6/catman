@@ -4,8 +4,9 @@ import java.util.List;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
+import it.unisannio.catman.common.client.widget.SelectAllHandler;
 import it.unisannio.catman.domain.workflow.client.DossierProxy;
-import it.unisannio.catman.screens.inbox.client.widget.BottomMasterBar;
+import it.unisannio.catman.screens.inbox.client.widget.SelectionHandlerBottomBar;
 import it.unisannio.catman.screens.inbox.client.widget.DossierCellAdapter;
 import it.unisannio.catman.screens.inbox.client.widget.SearchMasterHeadWidget;
 
@@ -33,6 +34,7 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 		
 		ListDataProvider<DossierProxy> dataProvider = new ListDataProvider<DossierProxy>();
 		dataProvider.addDataDisplay(cellList);
+		//dataProvider.r
 		
 		List<DossierProxy> values = dataProvider.getList(); //Da javadoc "Get the list that backs this model. Changes to the list will be reflected in the model."
 		values.add(new DossierProxyMock());
@@ -44,7 +46,8 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 
 		centerScrollPanel.add(cellList);
 		
-		southPanel.add(new BottomMasterBar());
+		SelectionHandlerBottomBar bottomBar = new SelectionHandlerBottomBar(new SelectAllHandler<DossierProxy>(selectionModel, dataProvider));
+		southPanel.add(bottomBar);
 	}
 	
 
