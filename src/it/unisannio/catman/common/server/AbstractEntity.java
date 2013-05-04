@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Id;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -123,11 +124,29 @@ public abstract class AbstractEntity {
 
 	public abstract long getId();
 	
+	
 	public void persist() {
-		entityManager.persist(this);
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		try {
+			entityManager.persist(this);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new RuntimeException(e);
+		}
+		
 	}
 	
 	public void remove() {
-		entityManager.remove(this);
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		try {
+			entityManager.remove(this);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new RuntimeException(e);
+		}
 	}
 }
