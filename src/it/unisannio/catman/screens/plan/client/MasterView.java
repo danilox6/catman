@@ -2,6 +2,7 @@ package it.unisannio.catman.screens.plan.client;
 
 import java.util.List;
 
+import it.unisannio.catman.common.client.DataProviderSelectionSyncronizer;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.cell.SelectorAbstractCellAdapter;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
@@ -42,6 +43,8 @@ public class MasterView extends AbstractMasterView implements Plan.Master.View, 
 		dataProvider = new ListDataProvider<PlanProxy>();
 		dataProvider.addDataDisplay(cellList);
 		
+		DataProviderSelectionSyncronizer.<PlanProxy>sync(selectionModel, dataProvider);
+		
 		centerScrollPanel.add(cellList);
 		
 		southPanel.add(new MasterBottomBarWidget<PlanProxy>(new SelectAllHandler<PlanProxy>(selectionModel, dataProvider)));
@@ -64,7 +67,6 @@ public class MasterView extends AbstractMasterView implements Plan.Master.View, 
 			List<PlanProxy> masterItemList = dataProvider.getList();
 			switch (((MasterHeadBarWidget) event.getSource()).getSelection()){
 				case ROLES:
-					
 					masterItemList.clear();
 					masterItemList.add(new PlanProxyMock());
 					masterItemList.add(new PlanProxyMock());
@@ -76,31 +78,6 @@ public class MasterView extends AbstractMasterView implements Plan.Master.View, 
 					masterItemList.add(new PlanProxyMock());
 					masterItemList.add(new PlanProxyMock());
 					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-					masterItemList.add(new PlanProxyMock());
-			
-					
 					break;
 			}
 		}

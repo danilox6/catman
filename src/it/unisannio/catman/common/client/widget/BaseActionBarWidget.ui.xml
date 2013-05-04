@@ -8,10 +8,10 @@
 	</ui:style> 
 	<g:HorizontalPanel width="100%" styleName='{style.border}'>
 		<g:cell horizontalAlignment="ALIGN_LEFT" verticalAlignment="ALIGN_MIDDLE">
-			<g:HorizontalPanel ui:field="leftPanel" width="100%"> 
+			<g:HorizontalPanel ui:field="leftPanel" > 
 			</g:HorizontalPanel>
 		</g:cell>
-		<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" width="100%">
+		<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE" >
 			<g:HorizontalPanel ui:field="rightPanel">
 			</g:HorizontalPanel>
 		</g:cell>

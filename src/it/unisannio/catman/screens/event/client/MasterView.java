@@ -8,11 +8,8 @@ import it.unisannio.catman.common.client.widget.HeadWidget;
 import it.unisannio.catman.domain.workflow.client.DocumentProxy;
 import it.unisannio.catman.screens.event.client.widget.DocumentCellAdapter;
 import it.unisannio.catman.screens.event.client.widget.MasterBottomBarWidget;
-
 import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
-import com.google.gwt.view.client.MultiSelectionModel;
 
 public class MasterView extends AbstractMasterView implements Event.Master.View {
 	interface Presenter {}
@@ -21,12 +18,8 @@ public class MasterView extends AbstractMasterView implements Event.Master.View 
 		
 		northPanel.add(new HeadWidget("Nome evento"));
 		
-		DocumentCellAdapter cellAdapter = new DocumentCellAdapter();
 		//FIXME Proxy adatto
-		CellList<DocumentProxy> cellList = new CellList<DocumentProxy>(new MasterCell<DocumentProxy>(cellAdapter));
-
-		MultiSelectionModel<DocumentProxy> selectionModel = new MultiSelectionModel<DocumentProxy>();
-		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<DocumentProxy>createCheckboxManager());
+		CellList<DocumentProxy> cellList = new CellList<DocumentProxy>(new MasterCell<DocumentProxy>(new DocumentCellAdapter()));
 		
 		ListDataProvider<DocumentProxy> dataProvider = new ListDataProvider<DocumentProxy>();
 		dataProvider.addDataDisplay(cellList);
