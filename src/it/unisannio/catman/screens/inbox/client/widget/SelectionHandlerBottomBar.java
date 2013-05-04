@@ -1,10 +1,6 @@
 package it.unisannio.catman.screens.inbox.client.widget;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.view.client.SelectionChangeEvent;
-
 import it.unisannio.catman.common.client.widget.BaseActionBarWidget;
 import it.unisannio.catman.common.client.widget.DeleteButton;
 import it.unisannio.catman.common.client.widget.SelectAllButton;

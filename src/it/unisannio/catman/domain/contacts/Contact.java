@@ -1,5 +1,7 @@
 package it.unisannio.catman.domain.contacts;
 
-public class Contact implements Contactable{
+import it.unisannio.catman.common.server.AbstractEntity;
+
+public abstract class Contact extends AbstractEntity implements Contactable {
 
 }
