@@ -2,17 +2,24 @@ package it.unisannio.catman.screens.inbox.client;
 
 import java.util.List;
 
+import it.unisannio.catman.common.client.App;
+import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
+import it.unisannio.catman.domain.workflow.client.CustomerProxy;
+import it.unisannio.catman.domain.workflow.client.CustomerRequest;
 import it.unisannio.catman.domain.workflow.client.DossierProxy;
 import it.unisannio.catman.screens.inbox.client.widget.BottomMasterBar;
 import it.unisannio.catman.screens.inbox.client.widget.DossierCellAdapter;
 import it.unisannio.catman.screens.inbox.client.widget.SearchMasterHeadWidget;
 
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
+import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class MasterView extends AbstractMasterView implements Inbox.Master.View {
 	interface Presenter {}
@@ -45,6 +52,44 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 		centerScrollPanel.add(cellList);
 		
 		southPanel.add(new BottomMasterBar());
+		
+		try {
+			final DataStore dataStore = App.getInstance().getDataStore();
+			
+			CustomerRequest customers = dataStore.customers();
+			CustomerProxy customer = customers.create(CustomerProxy.class);
+			
+			customer.setName("Mario");
+			customers.persist().using(customer).fire(new Receiver<Void>() {
+
+				@Override
+				public void onSuccess(Void response) {
+					GWT.log("Created!");
+					
+					dataStore.customers().findByName("Mario").fire(new Receiver<CustomerProxy>() {
+						
+						@Override
+						public void onSuccess(CustomerProxy response) {
+							GWT.log("Success!");
+							//GWT.log("Hello " + response.getName());
+						}
+						
+						@Override
+						public void onFailure(ServerFailure error) {
+							// TODO Auto-generated method stub
+							//super.onFailure(error);
+							GWT.log("Server fail: " + error.getMessage() + error.getStackTraceString());
+						}
+						
+					});
+					
+				}
+				
+			});
+			
+		} catch (Exception e) {
+			GWT.log("fail", e);
+		}
 	}
 	
 
