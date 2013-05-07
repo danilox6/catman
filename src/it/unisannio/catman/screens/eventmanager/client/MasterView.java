@@ -17,7 +17,6 @@ import com.google.gwt.view.client.MultiSelectionModel;
 
 public class MasterView extends AbstractMasterView implements EventManager.Master.View {
 	interface Presenter {}
-
 	
 	public MasterView() {
 		

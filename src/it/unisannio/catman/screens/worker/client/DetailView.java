@@ -18,7 +18,8 @@ import com.google.gwt.user.cellview.client.CellWidget;
 import com.google.gwt.view.client.ListDataProvider;
 
 public class DetailView extends AbstractDetailView implements Worker.Detail.View{
-
+	interface Presenter{}
+	
 	public DetailView() {
 		
 		northPanel.add(new HeadWidget("John Phantom"));

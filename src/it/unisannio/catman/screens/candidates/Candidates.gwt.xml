@@ -5,11 +5,6 @@
 	<inherits name="it.unisannio.catman.common.Common" />
 	<source path="client" />
 	<entry-point
-		class="it.unisannio.catman.screens.personnelmanager.client.PersonnelManager">
+		class="it.unisannio.catman.screens.candidates.client.Candidates">
 	</entry-point>
-	
-	<!-- Child screens -->
-	<inherits name="it.unisannio.catman.screens.workers.Workers"/>
-	<inherits name="it.unisannio.catman.screens.candidates.Candidates"/>
-	<inherits name="it.unisannio.catman.screens.jobboards.JobBoards"/>
 </module>

@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public abstract class AbstractDetailView extends Composite {
-
+	
 	private static AbstractDetailViewUiBinder uiBinder = GWT.create(AbstractDetailViewUiBinder.class);
 
 	interface AbstractDetailViewUiBinder extends UiBinder<Widget, AbstractDetailView> {}

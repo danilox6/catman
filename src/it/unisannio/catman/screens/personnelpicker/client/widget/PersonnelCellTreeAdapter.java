@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.personnelmanager.client.widget;
+package it.unisannio.catman.screens.personnelpicker.client.widget;
 
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
@@ -6,7 +6,7 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 
-public class EmployeCellAdapter extends AbstractCellAdapter<WorkerProxy>{
+public class PersonnelCellTreeAdapter extends AbstractCellAdapter<WorkerProxy>{
 	
 	@Override
 	public SafeHtml getWest(WorkerProxy d) {
@@ -25,4 +25,5 @@ public class EmployeCellAdapter extends AbstractCellAdapter<WorkerProxy>{
 		return new SafeHtmlBuilder().appendEscaped("Mock Job").toSafeHtml();
 	}
 	
+
 }

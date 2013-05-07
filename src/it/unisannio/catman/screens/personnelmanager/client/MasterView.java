@@ -2,10 +2,12 @@ package it.unisannio.catman.screens.personnelmanager.client;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
-import it.unisannio.catman.common.client.widget.BaseActionBarWidget;
 import it.unisannio.catman.common.client.widget.HeadWidget;
-import it.unisannio.catman.domain.equipment.client.SupplierProxy;
-import it.unisannio.catman.screens.materialmanager.client.widget.SupplierCellAdapter;
+import it.unisannio.catman.domain.humanresources.client.CandidatesSource;
+import it.unisannio.catman.domain.humanresources.client.JobBoardSource;
+import it.unisannio.catman.domain.humanresources.client.PersonnelSource;
+import it.unisannio.catman.domain.humanresources.client.WorkersSource;
+import it.unisannio.catman.screens.personnelmanager.client.widget.PersonnelSourceCellAdapter;
 
 import java.util.List;
 
@@ -17,27 +19,22 @@ public class MasterView extends AbstractMasterView implements PersonnelManager.M
 	
 	public MasterView() {
 		
-		northPanel.add(new HeadWidget("Title"));
+		northPanel.add(new HeadWidget("Personnel Manager"));
 		
-		CellList<SupplierProxy> cellList = new CellList<SupplierProxy>(new MasterCell<SupplierProxy>(new SupplierCellAdapter()));
+		CellList<PersonnelSource> cellList = new CellList<PersonnelSource>(new MasterCell<PersonnelSource>(new PersonnelSourceCellAdapter()));
 
-		ListDataProvider<SupplierProxy> dataProvider = new ListDataProvider<SupplierProxy>();
+		ListDataProvider<PersonnelSource> dataProvider = new ListDataProvider<PersonnelSource>();
 		dataProvider.addDataDisplay(cellList);
 		
-		List<SupplierProxy> values = dataProvider.getList();
-		values.add(new WorkerProxyMock());
-		values.add(new WorkerProxyMock());
-		values.add(new WorkerProxyMock());
-		values.add(new WorkerProxyMock());
+		List<PersonnelSource> values = dataProvider.getList();
+		values.add(new WorkersSource());
+		values.add(new CandidatesSource());
+		values.add(new JobBoardSource("Board 1"));
+		values.add(new JobBoardSource("Board 2"));
 		
 		centerScrollPanel.add(cellList);
 		
-		southPanel.add(new BaseActionBarWidget());
 	}
 
-	//FIXME Solo per i test
-	private static class WorkerProxyMock implements SupplierProxy {
-	
-	}
 
 }

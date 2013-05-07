@@ -14,7 +14,8 @@ import it.unisannio.catman.common.client.widget.DetailSectionWidget;
 import it.unisannio.catman.screens.plan.client.widget.DetailHeadWidget;
 
 public class DetailView extends AbstractDetailView implements Plan.Detail.View{
-
+	interface Presenter{}
+	
 	public DetailView() {
 		northPanel.add(new DetailHeadWidget("Plan"));
 

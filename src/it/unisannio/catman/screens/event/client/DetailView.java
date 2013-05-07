@@ -13,6 +13,7 @@ import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.view.client.ListDataProvider;
 
 public class DetailView extends AbstractDetailView implements Event.Detail.View {
+	interface Presenter{}
 
 	public DetailView() {
 		

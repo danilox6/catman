@@ -2,11 +2,11 @@ package it.unisannio.catman.screens.plan.client.widget;
 
 import com.google.gwt.user.client.ui.ListBox;
 
-public class MasterHeadBarWidget extends ListBox {
+public class PlanListBox extends ListBox {
 	
 	public static enum Selection {ROLES, MATERIALS}
 	
-	public MasterHeadBarWidget() {
+	public PlanListBox() {
 		addItem("Ruoli"); //Index 0 -> Selection.ROLES
 		addItem("Materiali"); //Index 1 -> Selection.MATERIALS
 		

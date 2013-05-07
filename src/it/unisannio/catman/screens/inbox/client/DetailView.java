@@ -1,9 +1,10 @@
 package it.unisannio.catman.screens.inbox.client;
 
-import com.google.gwt.user.client.ui.Composite;
+import it.unisannio.catman.common.client.widget.AbstractDetailView;
 
-public class DetailView extends Composite implements Inbox.Detail.View {
-
+public class DetailView extends AbstractDetailView implements Inbox.Detail.View {
+	interface Presenter{}
+	
 	public DetailView() {
 
 	}

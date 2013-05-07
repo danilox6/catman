@@ -14,6 +14,7 @@ import com.google.gwt.user.cellview.client.CellTree;
 import com.google.gwt.view.client.ListDataProvider;
 
 public class DetailView extends AbstractDetailView implements PersonnelPicker.Detail.View {
+	interface Presenter{}
 
 	public DetailView() {
 
@@ -32,20 +33,18 @@ public class DetailView extends AbstractDetailView implements PersonnelPicker.De
 		dataList.add(new WorkerProxyMock());
 		dataList.add(new WorkerProxyMock());
 		
-		
-		
 		selectedSection.add(selectedWorkerCellList);
 		centerVerticalPanel.add(selectedSection);
 
 		DetailSectionWidget availableSection = new DetailSectionWidget("Available");
-		CellTree cellTree = new CellTree(new WorkerViewModel(), null);
+		CellTree cellTree = new CellTree(new PersonnelTreeModel(), null);
 		cellTree.setAnimationEnabled(true);
 		availableSection.add(cellTree);
 		centerVerticalPanel.add(availableSection);
 	}
 
 	//FIXME solo per testing
-	static class WorkerProxyMock implements WorkerProxy{
+	public static class WorkerProxyMock implements WorkerProxy{
 
 	}
 	

@@ -21,7 +21,8 @@ import com.google.gwt.user.cellview.client.CellWidget;
 import com.google.gwt.view.client.ListDataProvider;
 
 public class DetailView extends AbstractDetailView implements Resume.Detail.View{
-
+	interface Presenter{}
+	
 	public DetailView() {
 		
 		northPanel.add(new DetailHeadWidget("John Phantom"));

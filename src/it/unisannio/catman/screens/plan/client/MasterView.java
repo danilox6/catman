@@ -8,7 +8,7 @@ import it.unisannio.catman.common.client.cell.SelectorAbstractCellAdapter;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
 import it.unisannio.catman.common.client.widget.SelectAllHandler;
 import it.unisannio.catman.screens.plan.client.widget.MasterBottomBarWidget;
-import it.unisannio.catman.screens.plan.client.widget.MasterHeadBarWidget;
+import it.unisannio.catman.screens.plan.client.widget.PlanListBox;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -26,8 +26,8 @@ import com.google.gwt.view.client.MultiSelectionModel;
 public class MasterView extends AbstractMasterView implements Plan.Master.View, ChangeHandler {
 	interface Presenter {}
 
-	private ListBox listBox = new MasterHeadBarWidget(); 
-	private ListDataProvider<PlanProxy> dataProvider;
+	private ListBox listBox = new PlanListBox(); 
+	private ListDataProvider<PlanProxy> dataProvider = new ListDataProvider<PlanProxy>();
 	
 	public MasterView() {
 		
@@ -40,7 +40,6 @@ public class MasterView extends AbstractMasterView implements Plan.Master.View, 
 		
 		cellAdapter.setSelectionModel(selectionModel);
 		
-		dataProvider = new ListDataProvider<PlanProxy>();
 		dataProvider.addDataDisplay(cellList);
 		
 		DataProviderSelectionSyncronizer.<PlanProxy>sync(selectionModel, dataProvider);
@@ -65,7 +64,7 @@ public class MasterView extends AbstractMasterView implements Plan.Master.View, 
 	public void onChange(ChangeEvent event) {
 		if(event.getSource().equals(listBox) && dataProvider != null){
 			List<PlanProxy> masterItemList = dataProvider.getList();
-			switch (((MasterHeadBarWidget) event.getSource()).getSelection()){
+			switch (((PlanListBox) event.getSource()).getSelection()){
 				case ROLES:
 					masterItemList.clear();
 					masterItemList.add(new PlanProxyMock());

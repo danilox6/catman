@@ -13,7 +13,8 @@ import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.view.client.ListDataProvider;
 
 public class DetailView extends AbstractDetailView implements MaterialPicker.Detail.View {
-
+	interface Presenter{}
+	
 	public DetailView() {
 		
 		northPanel.add(new DetailHeadWidget("Materiale X (3/5)"));
