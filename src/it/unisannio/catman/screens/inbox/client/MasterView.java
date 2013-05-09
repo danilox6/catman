@@ -2,25 +2,21 @@ package it.unisannio.catman.screens.inbox.client;
 
 import java.util.List;
 
-import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataProviderSelectionSyncronizer;
-import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
 import it.unisannio.catman.common.client.widget.SelectAllHandler;
-import it.unisannio.catman.domain.workflow.client.CustomerProxy;
-import it.unisannio.catman.domain.workflow.client.CustomerRequest;
 import it.unisannio.catman.domain.workflow.client.DossierProxy;
 import it.unisannio.catman.screens.inbox.client.widget.DossierCellAdapter;
 import it.unisannio.catman.screens.inbox.client.widget.MasterHeadWidget;
 import it.unisannio.catman.screens.inbox.client.widget.SelectionHandlerBottomBar;
-import com.google.gwt.core.shared.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
-import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class MasterView extends AbstractMasterView implements Inbox.Master.View {
 	interface Presenter {}
@@ -30,7 +26,15 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 		northPanel.add(new MasterHeadWidget("Title"));
 
 		DossierCellAdapter cellAdapter = new DossierCellAdapter();
-		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(cellAdapter));
+		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(cellAdapter, new ClickHandler() {
+			 
+			@Override
+			public void onClick(ClickEvent event) {
+				Window.alert("Oddio ma questo è un click!\n" +
+						"Id Element cliccato: "+event.getRelativeElement().getId()
+						+"\nSource: "+event.getSource().toString());
+			}
+		}));
 
 		MultiSelectionModel<DossierProxy> selectionModel = new MultiSelectionModel<DossierProxy>();
 		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<DossierProxy>createCheckboxManager());
@@ -52,7 +56,7 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 		centerScrollPanel.add(cellList);
 
 		southPanel.add(new SelectionHandlerBottomBar(new SelectAllHandler<DossierProxy>(selectionModel, dataProvider)));
-
+/*
 		try {
 			final DataStore dataStore = App.getInstance().getDataStore();
 
@@ -88,7 +92,7 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 
 		} catch (Exception e) {
 			GWT.log("fail", e);
-		}
+		}*/
 	}
 
 

@@ -34,7 +34,7 @@ public class DossierCellAdapter extends SelectorAbstractCellAdapter<DossierProxy
 	@Override
 	public SafeHtml getEast(DossierProxy d) {
 		SafeHtmlBuilder sb = new SafeHtmlBuilder();
-		sb.appendHtmlConstant("<input type='checkbox'" + (isSelected(d)?"checked='checked'":"") + "/>");
+		sb.appendHtmlConstant("<button id='button' type='button'>Button</button>");
 		return sb.toSafeHtml();
 	}
 }
