@@ -4,7 +4,7 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
-import it.unisannio.catman.domain.workflow.client.DocumentProxy;
+import it.unisannio.catman.domain.documents.client.DocumentProxy;
 
 public class DocumentCellAdapter extends AbstractCellAdapter<DocumentProxy>{
 	

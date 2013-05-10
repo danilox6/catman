@@ -1,7 +1,10 @@
 package it.unisannio.catman.domain.workflow;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import it.unisannio.catman.domain.contacts.Contact;
@@ -21,6 +24,9 @@ public class Customer extends Contact {
 	@Id private long id;
 	@Version private int version;
 	
+	@OneToMany(mappedBy = "customer")
+	private List<Event> events;
+	
 	public Customer() {}
 	
 	public Customer(String name) {
@@ -33,6 +39,10 @@ public class Customer extends Contact {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public List<Event> getEvents() {
+		return events;
 	}
 	
 	@Override

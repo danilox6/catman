@@ -5,7 +5,7 @@ import it.unisannio.catman.common.client.widget.BaseActionBarWidget;
 import it.unisannio.catman.common.client.widget.DeleteButton;
 import it.unisannio.catman.common.client.widget.SelectAllButton;
 import it.unisannio.catman.common.client.widget.SelectAllHandler;
-import it.unisannio.catman.domain.workflow.client.DossierProxy;
+import it.unisannio.catman.domain.documents.client.DossierProxy;
 
 public class SelectionHandlerBottomBar extends BaseActionBarWidget{
 		

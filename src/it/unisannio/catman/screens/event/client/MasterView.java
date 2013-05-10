@@ -5,7 +5,7 @@ import java.util.List;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
 import it.unisannio.catman.common.client.widget.HeadWidget;
-import it.unisannio.catman.domain.workflow.client.DocumentProxy;
+import it.unisannio.catman.domain.documents.client.DocumentProxy;
 import it.unisannio.catman.screens.event.client.widget.DocumentCellAdapter;
 import it.unisannio.catman.screens.event.client.widget.MasterBottomBarWidget;
 import com.google.gwt.user.cellview.client.CellList;

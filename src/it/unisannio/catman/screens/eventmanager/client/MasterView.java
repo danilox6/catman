@@ -4,7 +4,7 @@ import it.unisannio.catman.common.client.DataProviderSelectionSyncronizer;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
 import it.unisannio.catman.common.client.widget.SelectAllHandler;
-import it.unisannio.catman.domain.workflow.client.DossierProxy;
+import it.unisannio.catman.domain.documents.client.DossierProxy;
 import it.unisannio.catman.screens.eventmanager.client.widget.DossierCellAdapter;
 import it.unisannio.catman.screens.eventmanager.client.widget.MasterBottomBarWidget;
 import it.unisannio.catman.screens.eventmanager.client.widget.MasterHeadWidget;

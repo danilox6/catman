@@ -4,7 +4,7 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import it.unisannio.catman.common.client.cell.SelectorAbstractCellAdapter;
-import it.unisannio.catman.domain.workflow.client.DossierProxy;
+import it.unisannio.catman.domain.documents.client.DossierProxy;
 
 public class DossierCellAdapter extends SelectorAbstractCellAdapter<DossierProxy> {
 
