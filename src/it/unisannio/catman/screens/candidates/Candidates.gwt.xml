@@ -7,4 +7,8 @@
 	<entry-point
 		class="it.unisannio.catman.screens.candidates.client.Candidates">
 	</entry-point>
+	
+	<!-- Child screens -->
+	<inherits name="it.unisannio.catman.screens.worker.Worker"/>
+	<inherits name="it.unisannio.catman.screens.resume.Resume"/>
 </module>

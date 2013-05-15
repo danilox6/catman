@@ -27,6 +27,6 @@ public class SupplierCellAdapter extends AbstractCellAdapter<SupplierProxy>{
 
 	@Override
 	public SafeHtml getEast(SupplierProxy object) {
-		return new SafeHtmlBuilder().appendHtmlConstant("<input style=\"width:20px;\"/>").toSafeHtml();
+		return new SafeHtmlBuilder().appendHtmlConstant("<input id='spinner' type='number' min='0' max='30' step='1' value ='3' style='width:35px;'/>").toSafeHtml();
 	}
 }
