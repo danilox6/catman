@@ -1,5 +1,9 @@
 package it.unisannio.catman.domain.equipment;
 
-public class Sale {
+import java.util.Date;
 
+public class Sale {
+	private Date date;
+	private float price;
+	private int quantity;
 }

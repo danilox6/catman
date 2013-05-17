@@ -9,6 +9,9 @@ public class Worker extends Contact{
 	@Id private long id;
 	@Version private int version;
 	
+	private boolean candidated;
+	private String resume;
+	
 	public Worker findWorker(long id) {
 		return find(Worker.class, id);
 	}
@@ -22,4 +25,19 @@ public class Worker extends Contact{
 	public long getId() {
 		return id;
 	}
+
+	public boolean isCandidated() {
+		return candidated;
+	}
+
+	public void setCandidated(boolean candidated) {
+		this.candidated = candidated;
+	}
+	
+	public boolean isHired(){
+		//TODO
+		return false;
+	}
+	
+	
 }

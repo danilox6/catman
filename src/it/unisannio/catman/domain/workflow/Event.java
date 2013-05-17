@@ -30,6 +30,8 @@ public class Event extends AbstractEntity implements Dossier<EventStatus>{
 	@ManyToOne
 	private Customer customer;
 	
+	private String title;
+	
 	public Event() { }
 
 	@Override
@@ -78,6 +80,10 @@ public class Event extends AbstractEntity implements Dossier<EventStatus>{
 	public SortedSet<Document> getAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String getTitle() {
+		return title;
 	}
 
 }

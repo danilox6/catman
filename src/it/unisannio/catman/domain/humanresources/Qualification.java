@@ -1,6 +1,5 @@
 package it.unisannio.catman.domain.humanresources;
 
-public class JobBoard {
-
+public class Qualification {
 	private String name;
 }
