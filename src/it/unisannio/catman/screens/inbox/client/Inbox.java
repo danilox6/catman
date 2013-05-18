@@ -11,6 +11,10 @@ import it.unisannio.catman.common.client.Screen.HasMaster;
 
 public class Inbox extends Screen implements HasMaster, HasDetail {
 	public static interface Master extends Activity {
+		
+		void openNewDialog();
+		void saveObject();
+		
 		interface View {}
 	}
 	

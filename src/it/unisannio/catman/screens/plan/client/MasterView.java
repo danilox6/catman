@@ -4,7 +4,7 @@ import java.util.List;
 
 import it.unisannio.catman.common.client.DataProviderSelectionSyncronizer;
 import it.unisannio.catman.common.client.cell.MasterCell;
-import it.unisannio.catman.common.client.cell.SelectorAbstractCellAdapter;
+import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
 import it.unisannio.catman.common.client.widget.SelectAllHandler;
 import it.unisannio.catman.screens.plan.client.widget.MasterBottomBarWidget;
@@ -85,7 +85,7 @@ public class MasterView extends AbstractMasterView implements Plan.Master.View, 
 	//FIXME solo per test
 	public interface PlanProxy {}
 	class PlanProxyMock implements PlanProxy{}
-	class PlanCellAdapter extends SelectorAbstractCellAdapter<PlanProxy>{
+	class PlanCellAdapter extends SelectableCellAdapter<PlanProxy>{
 		
 		@Override
 		public SafeHtml getWest(PlanProxy d) {
