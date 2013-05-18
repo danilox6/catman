@@ -5,6 +5,7 @@ import java.util.List;
 import it.unisannio.catman.common.client.DataProviderSelectionSyncronizer;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
+import it.unisannio.catman.common.client.widget.BaseActionBarWidget;
 import it.unisannio.catman.common.client.widget.SelectAllHandler;
 import it.unisannio.catman.domain.documents.client.DossierProxy;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
@@ -16,6 +17,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
@@ -57,7 +59,11 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 
 		centerScrollPanel.add(cellList);
 
+		BaseActionBarWidget bab = new BaseActionBarWidget(); 
+		Button newButton = new Button("New!");
+		southPanel.add(newButton);
 		southPanel.add(new SelectionHandlerBottomBar(new SelectAllHandler<DossierProxy>(selectionModel, dataProvider)));
+		
 /*
 		try {
 			final DataStore dataStore = App.getInstance().getDataStore();

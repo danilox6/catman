@@ -3,10 +3,10 @@ package it.unisannio.catman.screens.eventmanager.client.widget;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
-import it.unisannio.catman.common.client.cell.SelectorAbstractCellAdapter;
+import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.domain.documents.client.DossierProxy;
 
-public class DossierCellAdapter extends SelectorAbstractCellAdapter<DossierProxy> {
+public class DossierCellAdapter extends SelectableCellAdapter<DossierProxy> {
 
 	@Override
 	public SafeHtml getWest(DossierProxy d) {

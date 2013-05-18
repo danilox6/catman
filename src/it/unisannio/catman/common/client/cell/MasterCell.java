@@ -12,12 +12,15 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiRenderer;
 
-public class MasterCell<T> extends AbstractCell<T> {
+public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers {
 
 	List<ClickHandler> clickHandlers = new ArrayList<ClickHandler>();
 
@@ -28,8 +31,10 @@ public class MasterCell<T> extends AbstractCell<T> {
 
 	private static MasterCellUiRenderer renderer = GWT.create(MasterCellUiRenderer.class);
 
-	private final CellAdapter<T> adapter;
+	private CellAdapter<T> adapter;
 	private NativeEvent nativeEvent;
+	
+	
 
 	public MasterCell(CellAdapter<T> adapter) {
 		this(adapter, null);		
@@ -41,14 +46,18 @@ public class MasterCell<T> extends AbstractCell<T> {
 		if(clickHandler!=null)
 			clickHandlers.add(clickHandler);
 	}
+	
+	public void setCellAdapter(CellAdapter<T> adapter) {
+		this.adapter = adapter;
+	}
 
 	@Override
 	public void render(Context context,	T value, SafeHtmlBuilder sb) {
-		SafeHtml north = wrap(adapter.getNorth(value), "north");
-		SafeHtml south = wrap(adapter.getSouth(value), "south");
-		SafeHtml east = wrap(adapter.getEast(value), "east");
-		SafeHtml west = wrap(adapter.getWest(value), "west");
-		SafeHtml overlay = wrap(adapter.getOverlay(value), "overlay");
+		SafeHtml north = wrap(adapter != null ? adapter.getNorth(value) : null, "north");
+		SafeHtml south = wrap(adapter != null ? adapter.getSouth(value) : null, "south");
+		SafeHtml east = wrap(adapter != null ? adapter.getEast(value) : null, "east");
+		SafeHtml west = wrap(adapter != null ? adapter.getWest(value) : null, "west");
+		SafeHtml overlay = wrap(adapter != null ? adapter.getOverlay(value) : null, "overlay");
 
 		renderer.render(sb, north, south, west, east, overlay);
 	}
@@ -62,7 +71,7 @@ public class MasterCell<T> extends AbstractCell<T> {
 			.toSafeHtml();
 		}
 
-		return contents;
+		return new SafeHtmlBuilder().appendHtmlConstant("").toSafeHtml();
 	}
 
 	@Override
@@ -82,8 +91,17 @@ public class MasterCell<T> extends AbstractCell<T> {
 		}
 	}
 
-	public void addClickHandler(ClickHandler handler){
+	public HandlerRegistration addClickHandler(final ClickHandler handler){
 		clickHandlers.add(handler);
+		return new HandlerRegistration() {
+
+			@Override
+			public void removeHandler() {
+				clickHandlers.remove(handler);
+				
+			}
+			
+		};
 	}
 
 	/**
@@ -189,5 +207,11 @@ public class MasterCell<T> extends AbstractCell<T> {
 			}
 			return false;
 		}
+	}
+
+	@Override
+	public void fireEvent(GwtEvent<?> event) {
+		// TODO Auto-generated method stub
+		
 	}
 }
