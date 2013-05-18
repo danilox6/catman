@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
+
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.ValueUpdater;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.BrowserEvents;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasChangeHandlers;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -20,9 +24,10 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiRenderer;
 
-public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers {
+public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, HasChangeHandlers{
 
-	List<ClickHandler> clickHandlers = new ArrayList<ClickHandler>();
+	private List<ClickHandler> clickHandlers = new ArrayList<ClickHandler>();
+	private List<ChangeHandler> changeHandlers = new ArrayList<ChangeHandler>();
 
 	interface MasterCellUiRenderer extends UiRenderer {
 		void render(SafeHtmlBuilder safeHtmlBuilder, SafeHtml north, SafeHtml south, SafeHtml west, SafeHtml east, SafeHtml overlay);
@@ -41,10 +46,9 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers {
 	}
 
 	public MasterCell(CellAdapter<T> adapter, ClickHandler clickHandler) {
-		super(BrowserEvents.CLICK);
+		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
 		this.adapter = adapter;
-		if(clickHandler!=null)
-			clickHandlers.add(clickHandler);
+		addClickHandler(clickHandler);
 	}
 	
 	public void setCellAdapter(CellAdapter<T> adapter) {
@@ -81,29 +85,106 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers {
 	}
 
 	@UiHandler({"masterCell"})
+	void onValueChanged(ChangeEvent event, Element parent, Object value){
+		ChangeEvent changeEvent = new CustomChangeEvent(value);
+		changeEvent.setRelativeElement(getTargetElement(parent));
+		fireEvent(changeEvent);
+	}
+
+	@UiHandler({"masterCell"})
 	void onCellClick(ClickEvent event, Element parent, Object value) {
-		
-		ClickEvent newEvent = new CustomClickEvent(value);
-		newEvent.setRelativeElement(getClickedElement(parent));
-		
-		for(ClickHandler handler : clickHandlers){
-			handler.onClick(newEvent);
+		ClickEvent clickEvent = new CustomClickEvent(value);
+		clickEvent.setRelativeElement(getTargetElement(parent));
+		fireEvent(clickEvent);
+	}
+
+	private void getClickedElementsWithId(Element parent, TreeSet<ElementWrapper> treeSet, int depth){
+		for(int i = 0; i<parent.getChildCount(); i++){
+			Element element = (Element) parent.getChild(i);
+			if(element.getId() != null && !element.getId().equals("")
+					&& isClicked(element))
+				treeSet.add(new ElementWrapper(element, depth)); 
+			if(element.hasChildNodes())
+				getClickedElementsWithId(element, treeSet, depth+1);
 		}
 	}
 
-	public HandlerRegistration addClickHandler(final ClickHandler handler){
-		clickHandlers.add(handler);
-		return new HandlerRegistration() {
+	private Element getTargetElement(Element parent){
+		if(Element.is(nativeEvent.getEventTarget())){
+			Element element = Element.as(nativeEvent.getEventTarget());
+			if(element.getId() != null && !element.getId().equals(""))
+				return element;
+		}
+		
+		TreeSet<ElementWrapper> treeSet = new TreeSet<ElementWrapper>();
+		getClickedElementsWithId(parent, treeSet, 0);
+		if(treeSet.isEmpty())
+			return parent;
+		return treeSet.last().element;
+	}
 
+	private boolean isClicked(Element element){
+		int x =  nativeEvent.getClientX();
+		int y =  nativeEvent.getClientY();
+
+		/*
+		Window.alert("x: "+x+"\n" +
+				"y: "+y+"\n" +
+				"L: "+element.getAbsoluteLeft()+"\n" +
+				"R: "+element.getAbsoluteRight()+"\n" +
+				"T: "+element.getAbsoluteTop()+"\n" +
+				"B: "+element.getAbsoluteBottom());
+		 */
+		return element.getAbsoluteLeft() < x && x < element.getAbsoluteRight() && 
+				element.getAbsoluteTop() < y && y < element.getAbsoluteBottom();
+	}
+
+	
+
+	@Override
+	public void fireEvent(GwtEvent<?> event) {
+		if(event instanceof ClickEvent){
+			ClickEvent clickEvent = (ClickEvent) event;
+			for(ClickHandler handler : clickHandlers)
+				handler.onClick(clickEvent);
+		}else if (event instanceof ChangeEvent){
+			ChangeEvent changeEvent = (ChangeEvent) event;
+			for(ChangeHandler handler : changeHandlers){
+				handler.onChange(changeEvent);
+			}
+		}else
+			throw new RuntimeException("Unable to handle "+event.getClass().getName()+" event");
+			
+	}
+
+	@Override
+	public HandlerRegistration addChangeHandler(ChangeHandler handler) {
+		if(handler == null)
+			return null;
+		changeHandlers.add(handler);
+		final int index = changeHandlers.size()-1;
+		return new HandlerRegistration() {
 			@Override
 			public void removeHandler() {
-				clickHandlers.remove(handler);
-				
+				changeHandlers.remove(index);
 			}
-			
 		};
 	}
 
+	@Override
+	public HandlerRegistration addClickHandler(ClickHandler handler) {
+		if(handler == null)
+			return null;
+		clickHandlers.add(handler);
+		final int index = clickHandlers.size()-1;
+		return new HandlerRegistration() {
+			@Override
+			public void removeHandler() {
+				clickHandlers.remove(index);
+			}
+		};
+	}
+	
 	/**
 	 * Rende pubblico il costruttore di ClickEvent, restituisce il T value nel getSource()
 	 * ed evita che fallisca l'asserzione sulla consumazione dell'evento da parte dell'Handler
@@ -111,7 +192,6 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers {
 	 */
 	class CustomClickEvent extends ClickEvent{
 		private Object value;
-//		private Element relativeElem;
 
 		public CustomClickEvent(Object value) {
 			this.value = value;
@@ -142,47 +222,27 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers {
 			return nativeEvent.getClientX() - target.getAbsoluteLeft() + target.getScrollLeft() +
 					target.getOwnerDocument().getScrollLeft();
 		}
+
+	}
+	
+	class CustomChangeEvent extends ChangeEvent{
+		private Object value;
 		
-	}
-
-	private void getElementsWithId(Element parent, TreeSet<ElementWrapper> treeSet, int depth){
-		for(int i = 0; i<parent.getChildCount(); i++){
-			Element element = (Element) parent.getChild(i);
-			if(element.getId() != null && !element.getId().equals("")
-					&& isClicked(element))
-				treeSet.add(new ElementWrapper(element, depth)); 
-			if(element.hasChildNodes())
-				getElementsWithId(element, treeSet, depth+1);
+		public CustomChangeEvent(Object value) {
+			this.value = value;
 		}
-	}
 
-	private Element getClickedElement(Element parent){
-		TreeSet<ElementWrapper> treeSet = new TreeSet<ElementWrapper>();
-		getElementsWithId(parent, treeSet, 0);
-		if(treeSet.isEmpty())
-			return parent;
-		return treeSet.last().element;
-	}
-
-	private boolean isClicked(Element element){
-		int x =  nativeEvent.getClientX();
-		int y =  nativeEvent.getClientY();
-		/*
-		Window.alert("x: "+x+"\n" +
-				"y: "+y+"\n" +
-				"L: "+element.getAbsoluteLeft()+"\n" +
-				"R: "+element.getAbsoluteRight()+"\n" +
-				"T: "+element.getAbsoluteTop()+"\n" +
-				"B: "+element.getAbsoluteBottom());
-		 */
-		return element.getAbsoluteLeft() < x && x < element.getAbsoluteRight() && 
-				element.getAbsoluteTop() < y && y < element.getAbsoluteBottom();
+		@Override
+		public Object getSource() {
+			return value;
+		}
+		
 	}
 	
 	private class ElementWrapper implements Comparable<ElementWrapper>{
 		Element element;
 		int depth;
-		
+
 		public ElementWrapper(Element element, int depth) {
 			this.element = element;
 			this.depth = depth;
@@ -192,12 +252,12 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers {
 		public int compareTo(ElementWrapper o) {
 			return depth - o.depth;
 		}
-		
+
 		@Override
 		public int hashCode() {
 			return depth;
 		}
-		
+
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof MasterCell.ElementWrapper) {
@@ -209,9 +269,4 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers {
 		}
 	}
 
-	@Override
-	public void fireEvent(GwtEvent<?> event) {
-		// TODO Auto-generated method stub
-		
-	}
 }

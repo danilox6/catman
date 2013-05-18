@@ -7,4 +7,6 @@
 	<entry-point
 		class="it.unisannio.catman.screens.workers.client.Workers">
 	</entry-point>
+	<!-- Child screens -->
+	<inherits name="it.unisannio.catman.screens.worker.Worker"/>
 </module>

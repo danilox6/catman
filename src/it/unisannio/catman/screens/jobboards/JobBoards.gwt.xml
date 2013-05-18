@@ -7,4 +7,6 @@
 	<entry-point
 		class="it.unisannio.catman.screens.jobboards.client.JobBoards">
 	</entry-point>
+	<!-- Child screens -->
+	<inherits name="it.unisannio.catman.screens.resume.Resume"/>
 </module>
