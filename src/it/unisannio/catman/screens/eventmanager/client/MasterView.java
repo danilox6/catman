@@ -3,11 +3,11 @@ package it.unisannio.catman.screens.eventmanager.client;
 import it.unisannio.catman.common.client.DataProviderSelectionSyncronizer;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
+import it.unisannio.catman.common.client.widget.SearchTitleBarWidger;
 import it.unisannio.catman.common.client.widget.SelectAllHandler;
 import it.unisannio.catman.domain.documents.client.DossierProxy;
 import it.unisannio.catman.screens.eventmanager.client.widget.DossierCellAdapter;
 import it.unisannio.catman.screens.eventmanager.client.widget.MasterBottomBarWidget;
-import it.unisannio.catman.screens.eventmanager.client.widget.MasterHeadWidget;
 import java.util.List;
 
 import com.google.gwt.user.cellview.client.CellList;
@@ -20,7 +20,13 @@ public class MasterView extends AbstractMasterView implements EventManager.Maste
 	
 	public MasterView() {
 		
-		northPanel.add(new MasterHeadWidget("Title"));
+		northPanel.add(new SearchTitleBarWidger("Title") {
+			
+			@Override
+			public void handleResearch(String query) {
+				
+			}
+		});
 		
 		DossierCellAdapter cellAdapter = new DossierCellAdapter();
 		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(cellAdapter));

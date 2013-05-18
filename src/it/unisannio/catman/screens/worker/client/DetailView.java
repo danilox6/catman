@@ -5,7 +5,7 @@ import java.util.List;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractDetailView;
 import it.unisannio.catman.common.client.widget.DetailSectionWidget;
-import it.unisannio.catman.common.client.widget.HeadWidget;
+import it.unisannio.catman.common.client.widget.TitleHeadWidget;
 import it.unisannio.catman.domain.contacts.client.ContactProxy;
 import it.unisannio.catman.domain.humanresources.client.JobProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
@@ -22,7 +22,7 @@ public class DetailView extends AbstractDetailView implements Worker.Detail.View
 	
 	public DetailView() {
 		
-		northPanel.add(new HeadWidget("John Phantom"));
+		northPanel.add(new TitleHeadWidget("John Phantom"));
 		
 		CellWidget<WorkerProxy> workerInfoCell = new CellWidget<WorkerProxy>(new MasterCell<WorkerProxy>(new WorkerCellAdapter()));
 		workerInfoCell.setValue(new MockWorkerProxy());

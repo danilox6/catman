@@ -4,7 +4,7 @@ import java.util.List;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
-import it.unisannio.catman.common.client.widget.HeadWidget;
+import it.unisannio.catman.common.client.widget.TitleHeadWidget;
 import it.unisannio.catman.domain.documents.client.DocumentProxy;
 import it.unisannio.catman.screens.event.client.widget.DocumentCellAdapter;
 import it.unisannio.catman.screens.event.client.widget.MasterBottomBarWidget;
@@ -16,7 +16,7 @@ public class MasterView extends AbstractMasterView implements Event.Master.View 
 
 	public MasterView() {
 		
-		northPanel.add(new HeadWidget("Nome evento"));
+		northPanel.add(new TitleHeadWidget("Nome evento"));
 		
 		//FIXME Proxy adatto
 		CellList<DocumentProxy> cellList = new CellList<DocumentProxy>(new MasterCell<DocumentProxy>(new DocumentCellAdapter()));

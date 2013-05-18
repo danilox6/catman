@@ -4,7 +4,7 @@ import java.util.List;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
-import it.unisannio.catman.common.client.widget.HeadWidget;
+import it.unisannio.catman.common.client.widget.TitleHeadWidget;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.screens.personnelpicker.client.DetailView.WorkerProxyMock;
 import it.unisannio.catman.screens.personnelpicker.client.widget.EmployeCellAdapter;
@@ -17,7 +17,7 @@ public class MasterView extends AbstractMasterView implements PersonnelPicker.Ma
 
 	public MasterView() {
 		
-		northPanel.add(new HeadWidget("Ruolo Y 3/5"));
+		northPanel.add(new TitleHeadWidget("Ruolo Y 3/5"));
 		
 		//FIXME Proxy adatto
 		CellList<WorkerProxy> cellList = new CellList<WorkerProxy>(new MasterCell<WorkerProxy>(new EmployeCellAdapter()));

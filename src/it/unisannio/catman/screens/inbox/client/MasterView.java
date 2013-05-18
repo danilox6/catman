@@ -4,9 +4,9 @@ import java.util.List;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
+import it.unisannio.catman.common.client.widget.SearchTitleBarWidger;
 import it.unisannio.catman.domain.documents.client.DossierProxy;
 import it.unisannio.catman.screens.inbox.client.widget.DossierCellAdapter;
-import it.unisannio.catman.screens.inbox.client.widget.MasterHeadWidget;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellList;
@@ -18,7 +18,12 @@ public class MasterView extends AbstractMasterView implements Inbox.Master.View 
 
 	public MasterView() {
 
-		northPanel.add(new MasterHeadWidget("Title"));
+		northPanel.add(new SearchTitleBarWidger("Title") {
+			
+			@Override
+			public void handleResearch(String query) {
+			}
+		});
 
 		DossierCellAdapter cellAdapter = new DossierCellAdapter();
 		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(cellAdapter, new ClickHandler() {

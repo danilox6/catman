@@ -9,7 +9,12 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class SearchActionBarWidget extends BaseActionBarWidget{
+/**
+ * A {@link BaseActionBarWidget} that can switch from/to "search mode".
+ * The {@link Button} that toggles "search mode" must be provided by setSearchButton(Button b) method
+ *
+ */
+public abstract class SearchActionBarWidget extends BaseActionBarWidget{
 	
 	private Button searchModeButton;
 	private List<Widget> leftPanelWidgets = new ArrayList<Widget>();
@@ -45,7 +50,7 @@ public class SearchActionBarWidget extends BaseActionBarWidget{
 		final Button backButton = new Button("Back");
 		final Button searchButton = new Button("Search");
 		final TextBox queryTextBox = new TextBox();
-		//queryTextBox.setWidth("100%");
+		//queryTextBox.setWidth("100%"); //FIXME Il text box deve reiempire il widget
 		
 		ClickHandler clickHandler = new ClickHandler() {
 			
@@ -54,7 +59,7 @@ public class SearchActionBarWidget extends BaseActionBarWidget{
 				if(event.getSource().equals(backButton)){
 					switchToNormalMode();
 				}else if(event.getSource().equals(searchButton)){
-					//TODO Esegui ricerca
+					handleResearch(queryTextBox.getText());
 					switchToNormalMode();
 				}
 			}
@@ -81,4 +86,5 @@ public class SearchActionBarWidget extends BaseActionBarWidget{
 		}
 	}
 	
+	public abstract void handleResearch(String query); //FIXME Giusto per prova
 }

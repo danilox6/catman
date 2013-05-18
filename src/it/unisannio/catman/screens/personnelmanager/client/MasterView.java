@@ -2,7 +2,7 @@ package it.unisannio.catman.screens.personnelmanager.client;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractMasterView;
-import it.unisannio.catman.common.client.widget.HeadWidget;
+import it.unisannio.catman.common.client.widget.TitleHeadWidget;
 import it.unisannio.catman.domain.humanresources.client.CandidatesSource;
 import it.unisannio.catman.domain.humanresources.client.JobBoardSource;
 import it.unisannio.catman.domain.humanresources.client.PersonnelSource;
@@ -19,7 +19,7 @@ public class MasterView extends AbstractMasterView implements PersonnelManager.M
 	
 	public MasterView() {
 		
-		northPanel.add(new HeadWidget("Personnel Manager"));
+		northPanel.add(new TitleHeadWidget("Personnel Manager"));
 		
 		CellList<PersonnelSource> cellList = new CellList<PersonnelSource>(new MasterCell<PersonnelSource>(new PersonnelSourceCellAdapter()));
 
