@@ -3,10 +3,10 @@ package it.unisannio.catman.screens.stock.client.widget;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
-import it.unisannio.catman.common.client.cell.SelectorAbstractCellAdapter;
+import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.domain.equipment.client.MaterialProxy;
 
-public class MaterialMasterCellAdapter extends SelectorAbstractCellAdapter<MaterialProxy>{
+public class MaterialMasterCellAdapter extends SelectableCellAdapter<MaterialProxy>{
 
 	@Override
 	public SafeHtml getWest(MaterialProxy object) {

@@ -73,6 +73,7 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 			.append(contents)
 			.appendHtmlConstant("</div>")
 			.toSafeHtml();
+			return contents;
 		}
 
 		return new SafeHtmlBuilder().appendHtmlConstant("").toSafeHtml();
