@@ -7,5 +7,6 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(Event.class)
 public interface EventProxy extends EntityProxy {
-
+	long getId();
+	String getTitle();
 }

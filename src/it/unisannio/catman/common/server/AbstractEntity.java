@@ -54,11 +54,11 @@ public abstract class AbstractEntity {
 		return entityManager.createQuery(cq).getResultList();
 	}
 
-	protected static <T> long count(Class<T> entityClass) {
+	protected static <T> int count(Class<T> entityClass) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		cq.select(cb.count(cq.from(entityClass)));
-		return entityManager.createQuery(cq).getSingleResult();
+		return entityManager.createQuery(cq).getSingleResult().intValue();
 	}
 
 	protected static <T> List<T> list(Class<T> entityClass, int offset, int size) {

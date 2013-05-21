@@ -24,6 +24,18 @@ public class Event extends AbstractEntity implements Dossier<EventStatus>{
 		return findAll(Event.class);	
 	}
 	
+	public static List<Event> listAll(int start, int length) {
+		return list(Event.class, start, length);
+	}
+	
+	public static void delete(Long... keys) {
+		deleteAll(Event.class, keys);
+	}
+	
+	public static int count() {
+		return count(Event.class);
+	}
+	
 	@Id private long id;
 	@Version private int version;
 	

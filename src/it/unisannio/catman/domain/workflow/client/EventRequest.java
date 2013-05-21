@@ -12,4 +12,6 @@ import it.unisannio.catman.domain.workflow.client.EventProxy;
 @Service(Event.class)
 public interface EventRequest extends RequestContext {
 	Request<List<EventProxy>> findAll();
-}
+	Request<List<EventProxy>> listAll(int start, int length);
+	Request<Integer> count();
+} 
