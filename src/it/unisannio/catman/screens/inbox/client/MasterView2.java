@@ -24,8 +24,7 @@ import com.google.web.bindery.requestfactory.shared.Request;
 
 public class MasterView2 extends Composite {
 
-	private static MasterView2UiBinder uiBinder = GWT
-			.create(MasterView2UiBinder.class);
+	private static MasterView2UiBinder uiBinder = GWT.create(MasterView2UiBinder.class);
 
 	interface MasterView2UiBinder extends UiBinder<Widget, MasterView2> {
 	}
@@ -34,10 +33,10 @@ public class MasterView2 extends Composite {
 	@UiField DataList<SupplierProxy> dataList;
 	
 	private Inbox.Master activity;
-	
+
 	public MasterView2(Inbox.Master activity) {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		this.activity = activity;
 		
 		dataList.setCellAdapter(new SelectableCellAdapter<SupplierProxy>() {
@@ -46,7 +45,7 @@ public class MasterView2 extends Composite {
 			public SafeHtml getNorth(SupplierProxy object) {
 				return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
 			}
-			
+
 		});
 		
 		final DataStore store = App.getInstance().getDataStore();
@@ -82,7 +81,7 @@ public class MasterView2 extends Composite {
 	void handleNew(ClickEvent e) {
 		activity.openNewDialog();
 	}
-	
+
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e) {
 		Window.alert("Hello");

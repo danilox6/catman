@@ -20,6 +20,13 @@ withOperation(new OperationKey("wxSx7jEnu4VgSfdk79FsoofUzqY="),
   .withMethodName("findAll")
   .withRequestContext("it.unisannio.catman.domain.workflow.client.EventRequest")
   .build());
+withOperation(new OperationKey("_SEGtLAuyLSNCY8Ip95MrqrEouM="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/InstanceRequest;")
+  .withDomainMethodDescriptor("()V")
+  .withMethodName("persist")
+  .withRequestContext("it.unisannio.catman.domain.workflow.client.EventRequest")
+  .build());
 withOperation(new OperationKey("L7oKoX2kcXqbbM9JJHUHw7dH5Lw="),
   new OperationData.Builder()
   .withClientMethodDescriptor("(II)Lcom/google/web/bindery/requestfactory/shared/Request;")

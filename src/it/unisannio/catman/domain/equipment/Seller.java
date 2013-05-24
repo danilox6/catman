@@ -27,8 +27,6 @@ public class Seller extends Supplier<Offer, Seller> {
 	@Version 
 	private int version;
 	
-	@OneToMany
-	private List<Offer> supply;
 	
 	public Seller findSeller(long id) {
 		return find(Seller.class, id);
@@ -44,10 +42,6 @@ public class Seller extends Supplier<Offer, Seller> {
 		return id;
 	}
 
-	@Override
-	public List<Offer> getSupply() {
-		return supply;
-	}
 
 
 }

@@ -47,10 +47,13 @@ public abstract class SearchActionBarWidget extends BaseActionBarWidget{
 		}
 		rightPanel.clear();
 		
-		final Button backButton = new Button("Back");
+		final Button backButton = new Button("<");
 		final Button searchButton = new Button("Search");
 		final TextBox queryTextBox = new TextBox();
-		//queryTextBox.setWidth("100%"); //FIXME Il text box deve reiempire il widget
+		
+		backButton.setWidth("20px");
+		searchButton.setWidth("55px");
+		queryTextBox.setWidth((320 - 55 - 20) + "px"); //FIXME Hardcoded size
 		
 		ClickHandler clickHandler = new ClickHandler() {
 			
@@ -87,4 +90,5 @@ public abstract class SearchActionBarWidget extends BaseActionBarWidget{
 	}
 	
 	public abstract void handleResearch(String query); //FIXME Giusto per prova
+	
 }

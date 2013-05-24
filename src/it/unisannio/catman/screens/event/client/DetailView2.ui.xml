@@ -1,0 +1,31 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<c:MasterPanel>
+		<c:header>
+			<c:ActionBar>
+				<c:left>
+					<g:Label ui:field="titleLabel"></g:Label>
+				</c:left>
+				<c:right>
+					<g:Button ui:field="addButton"></g:Button>
+				</c:right>
+			</c:ActionBar>
+		</c:header>
+		<c:content>
+			<g:VerticalPanel>
+				<c:DetailSection title="Vendite">
+					  <c:DataList ui:field="sellsDataList" />
+				</c:DetailSection>
+				<c:DetailSection title="Logistica">
+					  <c:DataList ui:field="logisticDataList" />
+				</c:DetailSection>
+			</g:VerticalPanel>
+		</c:content>
+	</c:MasterPanel>
+	
+</ui:UiBinder> 

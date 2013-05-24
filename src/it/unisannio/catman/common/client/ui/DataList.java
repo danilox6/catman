@@ -1,14 +1,12 @@
 package it.unisannio.catman.common.client.ui;
 
-import it.unisannio.catman.common.client.DataProviderSelectionSyncronizer;
 import it.unisannio.catman.common.client.QueryDataProvider;
-import it.unisannio.catman.common.client.cell.CellAdapter;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
-import it.unisannio.catman.domain.documents.client.DossierProxy;
 
-import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasChangeHandlers;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.dom.client.ScrollEvent;
 import com.google.gwt.event.dom.client.ScrollHandler;
@@ -21,12 +19,10 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.AbstractDataProvider;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.HasRows;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.gwt.view.client.MultiSelectionModel;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 
-public class DataList<T extends EntityProxy> extends Composite implements HasClickHandlers {
+public class DataList<T extends EntityProxy> extends Composite implements HasClickHandlers, HasChangeHandlers {
 	
 	/** 
      * A scrolling pager that automatically increases the range every time the 
@@ -109,6 +105,11 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 	@Override
 	public HandlerRegistration addClickHandler(ClickHandler handler) {
 		return cell.addClickHandler(handler);
+	}
+	
+	@Override
+	public HandlerRegistration addChangeHandler(ChangeHandler handler) {
+		return cell.addChangeHandler(handler);
 	}
 
 	public void setDataProvider(AbstractDataProvider<T> provider) {

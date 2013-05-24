@@ -4,7 +4,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.SortedSet;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
@@ -36,7 +39,9 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus>{
 		return count(Event.class);
 	}
 	
-	@Id private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	@Version private int version;
 	
 	@ManyToOne
@@ -96,6 +101,10 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus>{
 
 	public String getTitle() {
 		return title;
+	}
+	
+	public void setTitle(String title){
+		this.title = title;
 	}
 
 }

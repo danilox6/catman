@@ -9,4 +9,5 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 public interface EventProxy extends EntityProxy {
 	Long getId();
 	String getTitle();
+	void setTitle(String title);
 }

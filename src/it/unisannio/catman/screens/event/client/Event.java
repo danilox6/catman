@@ -7,6 +7,7 @@ import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasDetail;
 import it.unisannio.catman.common.client.Screen.HasMaster;
+import it.unisannio.catman.domain.workflow.client.EventProxy;
 
 public class Event extends Screen implements HasMaster, HasDetail{
 	public static interface Master extends Activity {
@@ -14,7 +15,9 @@ public class Event extends Screen implements HasMaster, HasDetail{
 	}
 	
 	public static interface Detail extends Activity {
-		interface View {}
+		interface View {
+			void setEventProxy(EventProxy eventProxy);
+		}
 	}
 	
 	

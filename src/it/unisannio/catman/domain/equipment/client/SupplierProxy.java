@@ -10,7 +10,8 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(Supplier.class)
 //@ExtraTypes({WarehouseProxy.class, SellerProxy.class})
-public interface SupplierProxy extends EntityProxy {
+public interface SupplierProxy<T extends SupplyProxy> extends EntityProxy {
 
 	String getName();
+	List<SupplyProxy> getSupply();
 }

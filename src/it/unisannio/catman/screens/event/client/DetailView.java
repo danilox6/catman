@@ -6,6 +6,7 @@ import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.widget.AbstractDetailView;
 import it.unisannio.catman.common.client.widget.DetailSectionWidget;
 import it.unisannio.catman.domain.documents.client.DocumentProxy;
+import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.screens.event.client.widget.DetailHeadWidget;
 import it.unisannio.catman.screens.event.client.widget.DocumentCellAdapter;
 
@@ -14,6 +15,8 @@ import com.google.gwt.view.client.ListDataProvider;
 
 public class DetailView extends AbstractDetailView implements Event.Detail.View {
 	interface Presenter{}
+	
+	private EventProxy eventProxy;
 
 	public DetailView() {
 		
@@ -51,9 +54,20 @@ public class DetailView extends AbstractDetailView implements Event.Detail.View 
 		
 	}
 	
+	@Override
+	public void setEventProxy(EventProxy eventProxy) {
+		this.eventProxy = eventProxy;
+	}
+	
+	public EventProxy getEventProxy(){
+		return eventProxy;
+	}
+	
 	//FIXME Solo per i test
 	private static class DocumentProxyMock implements DocumentProxy {
 		
 	}
+
+	
 
 }
