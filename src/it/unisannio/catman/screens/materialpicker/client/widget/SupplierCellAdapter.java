@@ -6,6 +6,7 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
 import it.unisannio.catman.domain.equipment.client.SupplierProxy;
 
+@SuppressWarnings("rawtypes")
 public class SupplierCellAdapter extends AbstractCellAdapter<SupplierProxy>{
 	
 	@Override

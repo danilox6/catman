@@ -17,7 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.EntityType;
 
-public abstract class AbstractEntity {
+public abstract class AbstractEntity<K> {
 	
 	private static final EntityManager entityManager;
 	
@@ -36,17 +36,17 @@ public abstract class AbstractEntity {
 		return entityType.getId(entityType.getIdType().getJavaType()).getName();
 	}
 
-	protected static <T> T find(Class<T> entityClass, long key) {
+	protected static <T, K> T find(Class<T> entityClass, K key) {
 		return entityManager.find(entityClass, key);
 	}
 
-	protected static <T> List<T> findAll(Class<T> entityClass, long... keys) {
+	protected static <T, K> List<T> findAll(Class<T> entityClass, K... keys) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<T> cq = cb.createQuery(entityClass);
 		Root<T> root = cq.from(entityClass);
 		if(keys.length > 0) {
 			In<Object> in = cb.in(root.get(getEntityId(entityClass)));
-			for(long key : keys)
+			for(K key : keys)
 				in.value(key);
 			cq.where(in);
 		}
@@ -70,8 +70,8 @@ public abstract class AbstractEntity {
 				.getResultList();
 	}
 
-	protected static <T> void deleteAll(Class<T> entityClass, Long... keys) {
-		List<Long> ids = Arrays.asList(keys);
+	protected static <T, K> void deleteAll(Class<T> entityClass, K... keys) {
+		List<K> ids = Arrays.asList(keys);
 		String id = getEntityId(entityClass);
 		TypedQuery<T> select = entityManager.createQuery("SELECT o from " + entityClass.getName() + " o WHERE " + id +" IN (:in)", entityClass);
 		select.setParameter("in", ids);
@@ -119,7 +119,7 @@ public abstract class AbstractEntity {
 	
 	public abstract int getVersion();
 
-	public abstract long getId();
+	public abstract K getId();
 	
 	
 	public void persist() {

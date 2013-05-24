@@ -1,5 +1,7 @@
 package it.unisannio.catman.domain.workflow;
 
+import it.unisannio.catman.domain.contacts.Contactable;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,15 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
-import it.unisannio.catman.domain.contacts.Contact;
 
 @Entity
-public class Customer extends Contact {
+public class Customer extends Contactable {
 	public static Customer findByName(String name) {
 		return findBy(Customer.class, "name = ?1", name);
 	}
 	
-	public static Customer findCustomer(long id) {
+	public static Customer findCustomer(Long id) {
 		return find(Customer.class, id);
 	}
 	
@@ -51,7 +52,7 @@ public class Customer extends Contact {
 	}
 	
 	@Override
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 }

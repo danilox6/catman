@@ -3,9 +3,9 @@ package it.unisannio.catman.domain.humanresources;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
-import it.unisannio.catman.domain.contacts.Contact;
+import it.unisannio.catman.domain.contacts.Contactable;
 
-public class Worker extends Contact{
+public class Worker extends Contactable {
 	@Id private long id;
 	@Version private int version;
 	
@@ -22,7 +22,7 @@ public class Worker extends Contact{
 	}
 
 	@Override
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

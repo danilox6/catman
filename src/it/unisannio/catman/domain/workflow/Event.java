@@ -14,9 +14,9 @@ import it.unisannio.catman.domain.documents.Document;
 import it.unisannio.catman.domain.documents.Dossier;
 
 @Entity
-public class Event extends AbstractEntity implements Dossier<EventStatus>{
+public class Event extends AbstractEntity<Long> implements Dossier<EventStatus>{
 	
-	public static Event findEvent(long id) {
+	public static Event findEvent(Long id) {
 		return find(Event.class, id);
 	}
 	
@@ -52,7 +52,7 @@ public class Event extends AbstractEntity implements Dossier<EventStatus>{
 	}
 
 	@Override
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

@@ -19,6 +19,7 @@ import com.google.gwt.view.client.ListDataProvider;
 public class DetailView extends AbstractDetailView implements MaterialPicker.Detail.View {
 	interface Presenter{}
 	
+	@SuppressWarnings("rawtypes")
 	public DetailView() {
 		
 		northPanel.add(new DetailHeadWidget("Materiale X (3/5)"));
@@ -44,16 +45,8 @@ public class DetailView extends AbstractDetailView implements MaterialPicker.Det
 		suppliersDataProvider.addDataDisplay(cellList);
 		
 		List<SupplierProxy> suppliers = suppliersDataProvider.getList();
-		suppliers.add(new SupplierProxyMock());
-		suppliers.add(new SupplierProxyMock());
-		suppliers.add(new SupplierProxyMock());
-		suppliers.add(new SupplierProxyMock());
 
 	}
 	
-	//FIXME Solo per i test
-	private static class SupplierProxyMock implements SupplierProxy {
-		
-	}
 
 }

@@ -1,37 +1,29 @@
 package it.unisannio.catman.domain.assets;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Version;
+
 import it.unisannio.catman.domain.contacts.Addressable;
 
-public class Location implements Addressable{
+@Entity
+public class Location extends Addressable {
+
+	@Id
+	private long id;
 	
-	private String address;
-	private String city;
-	private String state;
-	private String country;
-	private String postalCode;
+	@Version
+	private int version;
 	
 	@Override
-	public String getAddress() {
-		return address;
+	public int getVersion() {
+		return version;
 	}
 
 	@Override
-	public String getCity() {
-		return city;
+	public Long getId() {
+		return id;
 	}
+	
 
-	@Override
-	public String getState() {
-		return state;
-	}
-
-	@Override
-	public String getCountry() {
-		return country;
-	}
-
-	@Override
-	public String getPostalCode() {
-		return postalCode;
-	}
 }

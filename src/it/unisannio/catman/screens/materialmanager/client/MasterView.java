@@ -15,6 +15,7 @@ import com.google.gwt.view.client.ListDataProvider;
 public class MasterView extends AbstractMasterView implements MaterialManager.Master.View {
 	interface Presenter {}
 	
+	@SuppressWarnings("rawtypes")
 	public MasterView() {
 		
 		northPanel.add(new TitleHeadWidget("Sources"));
@@ -25,20 +26,12 @@ public class MasterView extends AbstractMasterView implements MaterialManager.Ma
 		dataProvider.addDataDisplay(cellList);
 		
 		List<SupplierProxy> values = dataProvider.getList();
-		values.add(new SupplierProxyMock());
-		values.add(new SupplierProxyMock());
-		values.add(new SupplierProxyMock());
-		values.add(new SupplierProxyMock());
+
 		
 		centerScrollPanel.add(cellList);
 		
 		southPanel.add(new BaseActionBarWidget());
 		
-	}
-
-	//FIXME Solo per i test
-	private static class SupplierProxyMock implements SupplierProxy {
-	
 	}
 
 }

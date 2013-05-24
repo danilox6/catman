@@ -3,17 +3,14 @@ package it.unisannio.catman.screens.inbox.client;
 import java.util.List;
 
 import it.unisannio.catman.common.client.App;
+import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.common.client.ui.DataList;
-import it.unisannio.catman.domain.workflow.client.CustomerProxy;
-import it.unisannio.catman.domain.workflow.client.EventProxy;
-import it.unisannio.catman.domain.workflow.client.EventRequest;
-
+import it.unisannio.catman.domain.equipment.client.SupplierProxy;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -22,10 +19,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.Request;
 
 public class MasterView2 extends Composite {
@@ -37,7 +31,7 @@ public class MasterView2 extends Composite {
 	}
 
 	@UiField Button makeNew;
-	@UiField DataList<EventProxy> dataList;
+	@UiField DataList<SupplierProxy> dataList;
 	
 	private Inbox.Master activity;
 	
@@ -46,41 +40,41 @@ public class MasterView2 extends Composite {
 		
 		this.activity = activity;
 		
-		dataList.setCellAdapter(new SelectableCellAdapter<EventProxy>() {
+		dataList.setCellAdapter(new SelectableCellAdapter<SupplierProxy>() {
 
 			@Override
-			public SafeHtml getNorth(EventProxy object) {
-				return new SafeHtmlBuilder().appendEscaped(object.getTitle()).toSafeHtml();
+			public SafeHtml getNorth(SupplierProxy object) {
+				return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
 			}
 			
 		});
 		
-		final EventRequest rp = App.getInstance().getDataStore().events();
+		final DataStore store = App.getInstance().getDataStore();
 		
-		Query<EventProxy> query = new Query<EventProxy>() {
+		Query<SupplierProxy> query = new Query<SupplierProxy>() {
 
 			@Override
-			public Request<List<EventProxy>> list(int start, int length) {
-				return rp.listAll(start, length);
+			public Request<List<SupplierProxy>> list(int start, int length) {
+				return store.suppliers().listAll(start, length);
 			}
 
 			@Override
 			public Request<Integer> count() {
-				return rp.count();
+				return store.events().count();
 			}
 
 			@Override
-			public Request<Void> deleteAll(List<EventProxy> skip) {
+			public Request<Void> deleteAll(List<SupplierProxy> skip) {
 				throw new UnsupportedOperationException(); // FIXME
 			}
 
 			@Override
-			public Request<Void> deleteSet(List<EventProxy> set) {
+			public Request<Void> deleteSet(List<SupplierProxy> set) {
 				throw new UnsupportedOperationException(); // FIXME
 			}
 		};
 		
-		dataList.setDataProvider(new QueryDataProvider<EventProxy>(query));
+		dataList.setDataProvider(new QueryDataProvider<SupplierProxy>(query));
 		
 	}
 

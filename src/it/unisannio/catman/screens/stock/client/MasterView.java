@@ -38,10 +38,6 @@ public class MasterView extends AbstractMasterView implements Stock.Master.View 
 		dataProvider.addDataDisplay(cellList);
 		
 		List<MaterialProxy> dataList = dataProvider.getList();
-		dataList.add(new MockMaterialProxy());
-		dataList.add(new MockMaterialProxy());
-		dataList.add(new MockMaterialProxy());
-		dataList.add(new MockMaterialProxy());
 		
 		DataProviderSelectionSyncronizer.<MaterialProxy>sync(selectionModel, dataProvider);
 		
@@ -50,7 +46,5 @@ public class MasterView extends AbstractMasterView implements Stock.Master.View 
 		southPanel.add(new MasterBottomBarWidget<MaterialProxy>(new SelectAllHandler<MaterialProxy>(selectionModel, dataProvider)));
 		
 	}
-	
-	class MockMaterialProxy implements MaterialProxy{}
 	
 }
