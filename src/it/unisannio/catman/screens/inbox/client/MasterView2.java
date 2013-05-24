@@ -30,33 +30,34 @@ import com.google.web.bindery.requestfactory.shared.Request;
 
 public class MasterView2 extends Composite {
 
-	private static MasterView2UiBinder uiBinder = GWT
-			.create(MasterView2UiBinder.class);
+	private static MasterView2UiBinder uiBinder = GWT.create(MasterView2UiBinder.class);
 
 	interface MasterView2UiBinder extends UiBinder<Widget, MasterView2> {
 	}
 
-	@UiField Button makeNew;
-	@UiField DataList<EventProxy> dataList;
-	
+	@UiField
+	Button makeNew;
+	@UiField 
+	DataList<EventProxy> dataList;
+
 	private Inbox.Master activity;
-	
+
 	public MasterView2(Inbox.Master activity) {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 		this.activity = activity;
-		
+
 		dataList.setCellAdapter(new SelectableCellAdapter<EventProxy>() {
 
 			@Override
 			public SafeHtml getNorth(EventProxy object) {
 				return new SafeHtmlBuilder().appendEscaped(object.getTitle()).toSafeHtml();
 			}
-			
+
 		});
-		
+
 		final EventRequest rp = App.getInstance().getDataStore().events();
-		
+
 		Query<EventProxy> query = new Query<EventProxy>() {
 
 			@Override
@@ -79,16 +80,16 @@ public class MasterView2 extends Composite {
 				throw new UnsupportedOperationException(); // FIXME
 			}
 		};
-		
-		dataList.setDataProvider(new QueryDataProvider<EventProxy>(query));
-		
+
+		// dataList.setDataProvider(new QueryDataProvider<EventProxy>(query));
+
 	}
 
 	@UiHandler("makeNew")
 	void handleNew(ClickEvent e) {
 		activity.openNewDialog();
 	}
-	
+
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e) {
 		Window.alert("Hello");

@@ -3,6 +3,7 @@ package it.unisannio.catman.common.client;
 
 import it.unisannio.catman.common.client.Screen.HasDetail;
 import it.unisannio.catman.common.client.Screen.HasMaster;
+import it.unisannio.catman.screens.inbox.client.MockEntityPersister;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -19,6 +20,8 @@ public class ScreenActivityMapper implements ActivityMapper {
 	
 	@Override
 	public Activity getActivity(Place place) {
+		MockEntityPersister.persist(); //FIXME Rimuovere questo coso
+		
 		if(!(place instanceof Path))
 			return null;
 		

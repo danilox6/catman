@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.view.client.AbstractDataProvider;
 import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
@@ -17,20 +18,19 @@ import com.google.gwt.view.client.SelectionModel;
 public class DataProviderSelectionSyncronizer<T> implements HasData<T> { //FIXME nome brutto
 
 	private MultiSelectionModel<T> selectionModel;
-	private ListDataProvider<T> dataProvider;
+	//private int rowCount = Integer.MAX_VALUE;
 	
-	public static<T> void sync(MultiSelectionModel<T> selectionModel, ListDataProvider<T> dataProvider){
+	public static<T> void sync(MultiSelectionModel<T> selectionModel, AbstractDataProvider<T> dataProvider){
 		dataProvider.addDataDisplay(new DataProviderSelectionSyncronizer<T>(selectionModel, dataProvider));
 	}
 	
-	private DataProviderSelectionSyncronizer(MultiSelectionModel<T> selectionModel, ListDataProvider<T> dataProvider) {
+	private DataProviderSelectionSyncronizer(MultiSelectionModel<T> selectionModel, AbstractDataProvider<T> dataProvider) {
 		this.selectionModel = selectionModel;
-		this.dataProvider = dataProvider;
 	}
 	
 	@Override
 	public Range getVisibleRange() {
-		return new Range(0, dataProvider.getList().size());
+		return new Range(0, Integer.MAX_VALUE);
 	}
 	
 	@Override
@@ -47,7 +47,9 @@ public class DataProviderSelectionSyncronizer<T> implements HasData<T> { //FIXME
 		};
 	}
 	@Override
-	public void setRowCount(int count, boolean isExact) {}
+	public void setRowCount(int count, boolean isExact) {
+		//rowCount = count;
+	}
 
 	
 	@Override

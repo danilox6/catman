@@ -40,12 +40,16 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 	private NativeEvent nativeEvent;
 	
 	
-
-	public MasterCell(CellAdapter<T> adapter) {
-		this(adapter, null);		
+	public MasterCell(){
+		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
 	}
 
-	public MasterCell(CellAdapter<T> adapter, ClickHandler clickHandler) {
+	public MasterCell(CellAdapter<T> adapter) { //FIXME Potrebbe non essere necessario
+		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
+		this.adapter = adapter;
+	}
+
+	public MasterCell(CellAdapter<T> adapter, ClickHandler clickHandler) { //FIXME Da eliminare
 		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
 		this.adapter = adapter;
 		addClickHandler(clickHandler);

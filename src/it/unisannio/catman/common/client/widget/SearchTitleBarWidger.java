@@ -5,10 +5,13 @@ import com.google.gwt.user.client.ui.Label;
 
 public abstract class SearchTitleBarWidger extends SearchActionBarWidget{
 	
+	Button searchButton;
+	
 	public SearchTitleBarWidger(String title) {
 		leftPanel.add(new Label(title));
-		Button searchButton = new Button("Search");
+		searchButton = new Button("Search");
 		rightPanel.add(searchButton);
 		setSearchButton(searchButton);
 	}
+	
 }

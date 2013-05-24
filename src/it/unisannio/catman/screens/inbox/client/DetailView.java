@@ -6,7 +6,7 @@ public class DetailView extends AbstractDetailView implements Inbox.Detail.View 
 	interface Presenter{}
 	
 	public DetailView() {
-
+		
 	}
 
 }
