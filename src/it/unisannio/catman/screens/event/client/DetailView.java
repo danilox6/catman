@@ -9,7 +9,6 @@ import it.unisannio.catman.domain.documents.client.DocumentProxy;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.screens.event.client.widget.DetailHeadWidget;
 import it.unisannio.catman.screens.event.client.widget.DocumentCellAdapter;
-
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.view.client.ListDataProvider;
 

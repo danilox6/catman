@@ -63,11 +63,13 @@ withOperation(new OperationKey("F7H040zxbIDPukNCBAdDqhXvvps="),
   .withRequestContext("it.unisannio.catman.domain.equipment.client.SupplierRequest")
   .build());
 withRawTypeToken("cg9eEJ2hO3lfhbzsnrqa7m9MWp4=", "it.unisannio.catman.domain.equipment.client.SupplierProxy");
+withRawTypeToken("XkuKEyFugkzIvYoeceVndUdhvkM=", "it.unisannio.catman.domain.equipment.client.SupplyProxy");
 withRawTypeToken("PKMl$REw_DoJBDtmhK8T4vjkq4A=", "it.unisannio.catman.domain.workflow.client.CustomerProxy");
 withRawTypeToken("PpLTWIzrraS9Nsz6GfgnalkzeDU=", "it.unisannio.catman.domain.workflow.client.EventProxy");
 withRawTypeToken("w1Qg$YHpDaNcHrR5HZ$23y518nA=", "com.google.web.bindery.requestfactory.shared.EntityProxy");
 withRawTypeToken("FXHD5YU0TiUl3uBaepdkYaowx9k=", "com.google.web.bindery.requestfactory.shared.BaseProxy");
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.Supplier", Arrays.asList("it.unisannio.catman.domain.equipment.client.SupplierProxy"));
+withClientToDomainMappings("it.unisannio.catman.domain.equipment.Supply", Arrays.asList("it.unisannio.catman.domain.equipment.client.SupplyProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.workflow.Customer", Arrays.asList("it.unisannio.catman.domain.workflow.client.CustomerProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.workflow.Event", Arrays.asList("it.unisannio.catman.domain.workflow.client.EventProxy"));
 }}

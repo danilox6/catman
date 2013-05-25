@@ -2,7 +2,6 @@ package it.unisannio.catman.domain.workflow.client;
 
 import java.util.List;
 
-import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 import com.google.web.bindery.requestfactory.shared.InstanceRequest;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;

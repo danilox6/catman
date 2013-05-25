@@ -40,4 +40,11 @@ public class MasterPanel extends Composite {
 	public void addToContent(IsWidget w) {
 		content.add(w);
 	}
+	
+	@Override
+	public void setWidth(String width) {
+		
+		content.setWidth(width);
+		super.setWidth(width);
+	}
 }

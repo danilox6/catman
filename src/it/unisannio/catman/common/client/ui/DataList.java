@@ -1,6 +1,7 @@
 package it.unisannio.catman.common.client.ui;
 
 import it.unisannio.catman.common.client.QueryDataProvider;
+import it.unisannio.catman.common.client.cell.CellAdapter;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 
@@ -82,23 +83,27 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
     } 
 
 	private MasterCell<T> cell;
-	private CellList<T> list;
+	private CellList<T> cellList;
 	private ScrollingPager pager;
 	
-	private SelectionModel<T> selectionModel;
+	private SelectionModel<? super T> selectionModel;
 	
-	private SelectableCellAdapter<T> adapter;
+	private CellAdapter<T> adapter;
 	private AbstractDataProvider<T> provider;
 	
 	public DataList() {
-		cell = new MasterCell<T>(null); // FIXME
-		list = new CellList<T>(cell); 
+		this(null);
+	}
+	
+	public DataList(CellAdapter<T> cellAdapter) {
+		cell = new MasterCell<T>(cellAdapter); 
+		cellList = new CellList<T>(cell); 
 		
 		pager = new ScrollingPager();
-		pager.setDisplay(list);
+		pager.setDisplay(cellList);
+		pager.setHeight("100%");
 		
-		list.setPageSize(20); // FIXME Configurabile
-		
+		cellList.setPageSize(20); // FIXME Configurabile
 		initWidget(pager);
 	}
 
@@ -112,26 +117,33 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 		return cell.addChangeHandler(handler);
 	}
 
+	/*
 	public void setDataProvider(AbstractDataProvider<T> provider) {
 		this.provider = provider;
-		this.provider.addDataDisplay(list);
+		this.provider.addDataDisplay(cellList);
 	}
+	*/
 	
-	public void setSelectionModel(SelectionModel<T> selectionModel) {
+	
+	public void setSelectionModel(SelectionModel<? super T> selectionModel) {
 		this.selectionModel = selectionModel;
-		list.setSelectionModel(selectionModel, DefaultSelectionEventManager.<T>createCheckboxManager());
+		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<T>createCheckboxManager());
 	}
 	
-	public void setDataProvider(QueryDataProvider<T> provider) {
+	@SuppressWarnings("unchecked")
+	public void setDataProvider(AbstractDataProvider<T> provider) {
 		this.provider = provider;
-		this.provider.addDataDisplay(list);
-		setSelectionModel(provider);
-		provider.reload();
+		this.provider.addDataDisplay(cellList);
+		if(provider instanceof QueryDataProvider){
+			setSelectionModel((SelectionModel<? super T>) provider);
+			((QueryDataProvider<T>) provider).reload();
+		}
 	}
 	
-	public void setCellAdapter(SelectableCellAdapter<T> adapter) {
+	public void setCellAdapter(CellAdapter<T> adapter) {
 		this.adapter = adapter;
-		this.adapter.setSelectionModel(selectionModel);
+		if(adapter instanceof SelectableCellAdapter && selectionModel!=null)
+			((SelectableCellAdapter<T>)this.adapter).setSelectionModel(selectionModel);
 		cell.setCellAdapter(adapter);
 	}
 	

@@ -4,8 +4,6 @@ import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
-import it.unisannio.catman.screens.inbox.client.MockEntityPersister;
-
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;

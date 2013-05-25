@@ -18,7 +18,7 @@
 		</c:header>
 		<c:content>
 			<g:VerticalPanel>
-				<c:DetailSection title="Vendite">
+				<c:DetailSection title="Vendite" ui:field="sells">
 					  <c:DataList ui:field="sellsDataList" />
 				</c:DetailSection>
 				<c:DetailSection title="Logistica">

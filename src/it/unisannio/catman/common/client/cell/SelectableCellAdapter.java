@@ -4,7 +4,7 @@ import com.google.gwt.view.client.SelectionModel;
 
 //FIXME nome brutto 
 public abstract class SelectableCellAdapter<T> extends AbstractCellAdapter<T>{
-	private SelectionModel<T> selectionModel = null;
+	private SelectionModel<? super T> selectionModel = null;
 	
 	public SelectableCellAdapter(SelectionModel<T> selectionModel) {
 		this.selectionModel = selectionModel;
@@ -12,7 +12,7 @@ public abstract class SelectableCellAdapter<T> extends AbstractCellAdapter<T>{
 	
 	public SelectableCellAdapter() {}
 	
-	public  void setSelectionModel(SelectionModel<T> selectionModel) {
+	public  void setSelectionModel(SelectionModel<? super T> selectionModel) {
 		this.selectionModel = selectionModel;
 	}
 	
