@@ -19,29 +19,17 @@ public class Seller extends Supplier<Offer, Seller> {
 	public static Seller findSeller(Long id) {
 		return find(Seller.class, id);
 	}
-	
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@Version 
-	private int version;
+
+	@OneToMany(mappedBy="supplier")
+	private List<Offer> supply;
 	
 	
 	public Seller findSeller(long id) {
 		return find(Seller.class, id);
 	}
 
-	@Override
-	public int getVersion() {
-		return version;
+	public List<Offer> getSupply() {
+		return supply;
 	}
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-
 
 }
