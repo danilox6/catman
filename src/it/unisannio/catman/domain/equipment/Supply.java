@@ -7,12 +7,16 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
+/* TODO Questa struttura porta ad avere delle colonne duplicate per gli id. Funziona, ma sarebbe da sistemare */
 @Entity
 @IdClass(Supply.Key.class)
-public class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> extends AbstractEntity<Supply.Key>{
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> extends AbstractEntity<Supply.Key>{
 	
 	public static class Key implements Serializable {
 		/**
@@ -56,13 +60,10 @@ public class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> extends Abst
 	private int version;
 	
 	@Id
-	private long supplierId;
+	protected long supplierId;
 	
 	@Id
 	private long materialId;
-	
-	@OneToOne
-	private S supplier;
 	
 	@OneToOne
 	private Material material;
@@ -78,9 +79,6 @@ public class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> extends Abst
 
 	private int quantity;
 
-	public Supply() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public int getQuantity() {
 		return quantity;
@@ -90,14 +88,10 @@ public class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> extends Abst
 		this.quantity = quantity;
 	}
 	
-	public S getSupplier() {
-		return supplier;
-	}
+	public abstract S getSupplier();
+	public abstract void setSupplier(S supplier);
+	
 
-	public void setSupplier(S supplier) {
-		this.supplier = supplier;
-		supplierId = supplier.getId();
-	}
 	
 	public int getVersion() {
 		return version;
