@@ -3,7 +3,6 @@ package it.unisannio.catman.screens.event.client;
 import java.util.List;
 
 import it.unisannio.catman.common.client.ui.DataList;
-import it.unisannio.catman.common.client.ui.DetailSection;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.screens.event.client.widget.EventCellAdapter;
 
@@ -30,14 +29,12 @@ public class DetailView2 extends Composite implements Event.Detail.View {
 	
 	@UiField Label titleLabel;
 	@UiField Button addButton;
-	//@UiField DataList<EventProxy> sellsDataList;
+	@UiField DataList<EventProxy> sellsDataList;
 	@UiField DataList<EventProxy> logisticDataList;
-	@UiField DetailSection sells;
 
 	public DetailView2() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		DataList<EventProxy> sellsDataList = new DataList<EventProxy>();
 		logisticDataList = new DataList<EventProxy>();
 		addButton.setText("+ Aggiungi");
 		
@@ -59,7 +56,7 @@ public class DetailView2 extends Composite implements Event.Detail.View {
 		data.add(new MockEventProxy());
 		data.add(new MockEventProxy());
 		
-		sells.add(sellsDataList);
+		//sells.add(sellsDataList);
 	}
 
 	@Override

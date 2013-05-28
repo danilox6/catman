@@ -7,7 +7,7 @@
 	        <g:Label>Title</g:Label>
 	    </c:header>
 	    <c:content>
-	        <c:DataList ui:field="dataList" />
+	        <c:DataList ui:field="dataList"/>
 	    </c:content>
 	    <c:footer>
 	        <c:ActionBar>

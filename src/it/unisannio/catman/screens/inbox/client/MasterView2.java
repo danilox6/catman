@@ -9,6 +9,7 @@ import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.equipment.client.SupplierProxy;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.safehtml.shared.SafeHtml;
@@ -20,6 +21,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.ListDataProvider;
+import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 import com.google.web.bindery.requestfactory.shared.Request;
 
 public class MasterView2 extends Composite {
@@ -30,6 +33,7 @@ public class MasterView2 extends Composite {
 	}
 
 	@UiField Button makeNew;
+	
 	@UiField DataList<SupplierProxy> dataList;
 	
 	private Inbox.Master activity;
@@ -39,14 +43,37 @@ public class MasterView2 extends Composite {
 
 		this.activity = activity;
 		
+		
 		dataList.setCellAdapter(new SelectableCellAdapter<SupplierProxy>() {
 
 			@Override
 			public SafeHtml getNorth(SupplierProxy object) {
-				return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
+				return new SafeHtmlBuilder().appendEscaped("Lorem ipsum").toSafeHtml();
+				//return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
 			}
 
 		});
+		
+		/*
+		ListDataProvider<SupplierProxy> dataProvider = new ListDataProvider<SupplierProxy>();
+		dataList.setDataProvider(dataProvider);
+		//dataProvider.addDataDisplay(sellsDataList);
+		
+		List<SupplierProxy> data = dataProvider.getList();
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		data.add(new MockSupplierProxy());
+		
+		*/
+		
 		
 		final DataStore store = App.getInstance().getDataStore();
 		
@@ -82,8 +109,32 @@ public class MasterView2 extends Composite {
 		activity.openNewDialog();
 	}
 
+	
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e) {
 		Window.alert("Hello");
 	}
+	
+	/*
+	class MockSupplierProxy implements SupplierProxy{
+
+		@Override
+		public EntityProxyId<?> stableId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public List getSupply() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}*/
 }

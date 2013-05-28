@@ -102,6 +102,8 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 		pager = new ScrollingPager();
 		pager.setDisplay(cellList);
 		pager.setHeight("100%");
+		pager.setWidth("100%");
+		cellList.setWidth("100%");
 		
 		cellList.setPageSize(20); // FIXME Configurabile
 		initWidget(pager);

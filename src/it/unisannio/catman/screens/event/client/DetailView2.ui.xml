@@ -17,8 +17,8 @@
 			</c:ActionBar>
 		</c:header>
 		<c:content>
-			<g:VerticalPanel>
-				<c:DetailSection title="Vendite" ui:field="sells">
+			<g:VerticalPanel width="100%">
+				<c:DetailSection title="Vendite">
 					  <c:DataList ui:field="sellsDataList" />
 				</c:DetailSection>
 				<c:DetailSection title="Logistica">
@@ -26,6 +26,7 @@
 				</c:DetailSection>
 			</g:VerticalPanel>
 		</c:content>
+	
 	</c:MasterPanel>
 	
 </ui:UiBinder> 

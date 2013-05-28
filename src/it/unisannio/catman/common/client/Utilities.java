@@ -5,7 +5,7 @@ import java.util.Iterator;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
-public class Utilities {
+public class Utilities { //FIXME Eliminare
 
 	public static Widget getFirstChild(Widget parent) {
 		if (parent instanceof HasWidgets) {

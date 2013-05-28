@@ -31,6 +31,8 @@ public class DetailSection extends Composite implements HasWidgets{
 		setTitle(title);
 		if(widgets != null)
 			setWidgets(widgets);
+		this.setWidth("100%");
+		contentPanel.setWidth("100%");
 	}
 
 	public void setTitle(String title){

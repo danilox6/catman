@@ -6,6 +6,7 @@ import com.google.gwt.uibinder.client.UiChild;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ActionBar extends Composite  {
@@ -29,12 +30,12 @@ public class ActionBar extends Composite  {
 	}
 
 	@UiChild(tagname = "left")
-	public void addLeftWidget(Widget w) {
+	public void addLeftWidget(IsWidget w) {
 		leftPanel.add(w);
 	}
 
 	@UiChild(tagname = "right")
-	public void addRightWidget(Widget w) {
+	public void addRightWidget(IsWidget w) {
 		rightPanel.add(w);
 	}
 
