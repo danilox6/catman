@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.inbox.client;
+package it.unisannio.catman.common.client;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.web.bindery.requestfactory.shared.Receiver;
@@ -13,6 +13,7 @@ public class MockEntityPersister {
 	
 	public static void persist(){
 		if(!done){
+			
 			DataStore dataStore = App.getInstance().getDataStore();
 	
 			EventRequest events = dataStore.events();

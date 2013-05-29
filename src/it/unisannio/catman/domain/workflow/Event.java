@@ -105,5 +105,5 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus>{
 	public void setTitle(String title){
 		this.title = title;
 	}
-
+	
 }

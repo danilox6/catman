@@ -9,6 +9,8 @@ import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.equipment.client.SupplierProxy;
+import it.unisannio.catman.domain.workflow.client.CustomerProxy;
+import it.unisannio.catman.domain.workflow.client.CustomerRequest;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -23,6 +25,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.Request;
 
 public class MasterView2 extends Composite {
@@ -100,7 +103,21 @@ public class MasterView2 extends Composite {
 			}
 		};
 		
-		dataList.setDataProvider(new QueryDataProvider<SupplierProxy>(query));
+		//dataList.setDataProvider(new QueryDataProvider<SupplierProxy>(query));
+		/*
+		DataStore dataStore = App.getInstance().getDataStore();
+
+		CustomerRequest customers = dataStore.customers();
+		CustomerProxy customer = customers.create(CustomerProxy.class);
+
+		customer.setName("Mario");
+		customers.persist().using(customer).fire(new Receiver<Void>() {
+
+			@Override
+			public void onSuccess(Void response) {
+				Window.alert("Created!");
+			}
+		});*/
 		
 	}
 

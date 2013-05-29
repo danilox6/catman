@@ -3,7 +3,6 @@ package it.unisannio.catman.common.client;
 
 import it.unisannio.catman.common.client.Screen.HasDetail;
 import it.unisannio.catman.common.client.Screen.HasMaster;
-import it.unisannio.catman.screens.inbox.client.MockEntityPersister;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
