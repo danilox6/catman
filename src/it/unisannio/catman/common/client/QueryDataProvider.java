@@ -8,6 +8,7 @@ import java.util.Map;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.view.client.AsyncDataProvider;
 import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.Range;
@@ -60,7 +61,7 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 	
 				@Override
 				public void onSuccess(List<E> response) {
-					cache.ensureCapacity(loadStart + loadLength);
+					ensureSize(cache, loadStart + loadLength);
 					for(int i = 0; i < response.size(); ++i) {
 						E entity = response.get(i);
 						cache.set(loadStart + i, entity);
@@ -174,5 +175,13 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 	public void fireEvent(GwtEvent<?> event) {
 		handlers.fireEvent(event);
 		
+	}
+	
+private void ensureSize(ArrayList<?> list, int size) {
+	    // Prevent excessive copying while we're adding
+	    list.ensureCapacity(size);
+	    while (list.size() < size) {
+	        list.add(null);
+	    }
 	}
 }
