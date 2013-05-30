@@ -8,10 +8,7 @@ import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.common.client.ui.DataList;
-import it.unisannio.catman.domain.equipment.client.SupplierProxy;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
-import it.unisannio.catman.domain.workflow.client.CustomerRequest;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.safehtml.shared.SafeHtml;
@@ -23,9 +20,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.web.bindery.requestfactory.shared.EntityProxyId;
-import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.Request;
 
 public class MasterView2 extends Composite {
@@ -37,7 +31,7 @@ public class MasterView2 extends Composite {
 
 	@UiField Button makeNew;
 	
-	@UiField DataList<SupplierProxy> dataList;
+	@UiField DataList<CustomerProxy> dataList;
 	
 	private Inbox.Master activity;
 
@@ -47,12 +41,12 @@ public class MasterView2 extends Composite {
 		this.activity = activity;
 		
 		
-		dataList.setCellAdapter(new SelectableCellAdapter<SupplierProxy>() {
+		dataList.setCellAdapter(new SelectableCellAdapter<CustomerProxy>() {
 
 			@Override
-			public SafeHtml getNorth(SupplierProxy object) {
-				return new SafeHtmlBuilder().appendEscaped("Lorem ipsum").toSafeHtml();
-				//return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
+			public SafeHtml getNorth(CustomerProxy object) {
+				//return new SafeHtmlBuilder().appendEscaped("Lorem ipsum").toSafeHtml();
+				return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
 			}
 
 		});
@@ -80,11 +74,11 @@ public class MasterView2 extends Composite {
 		
 		final DataStore store = App.getInstance().getDataStore();
 		
-		Query<SupplierProxy> query = new Query<SupplierProxy>() {
+		Query<CustomerProxy> query = new Query<CustomerProxy>() {
 
 			@Override
-			public Request<List<SupplierProxy>> list(int start, int length) {
-				return store.suppliers().listAll(start, length);
+			public Request<List<CustomerProxy>> list(int start, int length) {
+				return store.customers().listAll(start, length);
 			}
 
 			@Override
@@ -93,17 +87,17 @@ public class MasterView2 extends Composite {
 			}
 
 			@Override
-			public Request<Void> deleteAll(List<SupplierProxy> skip) {
+			public Request<Void> deleteAll(List<CustomerProxy> skip) {
 				throw new UnsupportedOperationException(); // FIXME
 			}
 
 			@Override
-			public Request<Void> deleteSet(List<SupplierProxy> set) {
+			public Request<Void> deleteSet(List<CustomerProxy> set) {
 				throw new UnsupportedOperationException(); // FIXME
 			}
 		};
 		
-		//dataList.setDataProvider(new QueryDataProvider<SupplierProxy>(query));
+		dataList.setDataProvider(new QueryDataProvider<CustomerProxy>(query));
 		/*
 		DataStore dataStore = App.getInstance().getDataStore();
 
@@ -129,7 +123,7 @@ public class MasterView2 extends Composite {
 	
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e) {
-		Window.alert("Hello");
+		Window.alert("Hello "+ ((CustomerProxy) e.getSource()).getName());
 	}
 	
 	/*

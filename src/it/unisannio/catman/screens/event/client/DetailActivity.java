@@ -9,6 +9,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class DetailActivity extends ScreenActivity implements Event.Detail {
 
@@ -29,8 +30,13 @@ public class DetailActivity extends ScreenActivity implements Event.Detail {
 
 				@Override
 				public void onSuccess(EventProxy response) {
-					GWT.log("Success "+ response.getTitle());
+					GWT.log("Retrieved event "+ response.getTitle());
 					detailView.setEventProxy(response);
+				}
+				
+				@Override
+				public void onFailure(ServerFailure error) {
+					GWT.log("Event not found");
 				}
 			});		
 		

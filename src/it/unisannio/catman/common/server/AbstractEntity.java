@@ -4,7 +4,6 @@ import it.unisannio.catman.Setup;
 
 import java.util.Arrays;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -88,7 +87,6 @@ public abstract class AbstractEntity<K> {
 		for(int i = 0; i < args.length; ++i) {
 			query.setParameter(i + 1, args[i]);
 		}
-		
 		return query;
 	}
 	

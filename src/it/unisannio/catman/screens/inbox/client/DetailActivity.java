@@ -1,6 +1,7 @@
 package it.unisannio.catman.screens.inbox.client;
 
 import it.unisannio.catman.common.client.DataStore;
+import it.unisannio.catman.common.client.MockEntityPersister;
 import it.unisannio.catman.common.client.ScreenActivity;
 
 import com.google.gwt.core.shared.GWT;
@@ -13,6 +14,7 @@ public class DetailActivity extends ScreenActivity implements Inbox.Detail {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		//Path p = getPath();
 		//panel.setWidget(new Hyperlink(p.toString(), pathTo("inbox").getToken()));
+		MockEntityPersister.persist();
 		panel.setWidget(new DetailView());
 	}
 

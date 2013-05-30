@@ -19,6 +19,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>requestFactoryServlet</servlet-name>
 		<url-pattern>/gwtRequest</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+		<filter-name>OSIVFilter</filter-name>
+		<filter-class>it.unisannio.catman.common.server.OSIVFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>OSIVFilter</filter-name>
+		<url-pattern>/gwtRequest</url-pattern>
+	</filter-mapping>
+	
 	<!-- TODO: Add <servlet> tags for each servlet here. -->
 	<!-- TODO: Add <servlet-mapping> tags for each <servlet> here. -->
 	<!-- TODO: Optionally add a <welcome-file-list> tag to display a welcome file. -->

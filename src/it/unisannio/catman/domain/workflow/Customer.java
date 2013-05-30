@@ -5,6 +5,8 @@ import it.unisannio.catman.domain.contacts.Contactable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
@@ -22,7 +24,9 @@ public class Customer extends Contactable {
 	
 	private String name;
 	
-	@Id private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	@Version private int version;
 	
 	@OneToMany(mappedBy = "customer")
@@ -54,5 +58,9 @@ public class Customer extends Contactable {
 	@Override
 	public Long getId() {
 		return id;
+	}
+	
+	public static List<Customer> listAll(int start, int length) {
+		return list(Customer.class, start, length);
 	}
 }

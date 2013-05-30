@@ -43,6 +43,8 @@ public class App {
 	}
 	
 	public DataStore getDataStore() {
+//		DataStore dataStore = GWT.create(DataStore.class); //FIXME Rimuovere
+//	    dataStore.initialize(App.getInstance().getEventBus()); 
 		return dataStore;
 	}
 }
