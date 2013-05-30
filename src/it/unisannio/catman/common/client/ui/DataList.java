@@ -55,8 +55,8 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
                     int maxScrollTop = scrollable.getWidget().getOffsetHeight()  - scrollable.getOffsetHeight(); 
                     if (lastScrollPos >= maxScrollTop) { 
                         // We are near the end, so increase the page size. 
-                        int newPageSize = Math.min(display.getVisibleRange().getLength() + incrementSize, display.getRowCount()); 
-                        display.setVisibleRange(0, newPageSize); 
+//                        int newPageSize = Math.min(display.getVisibleRange().getLength() + incrementSize, display.getRowCount()); 
+                        display.setVisibleRange(0, display.getVisibleRange().getLength() + incrementSize); 
                     } 
                 } 
             }); 

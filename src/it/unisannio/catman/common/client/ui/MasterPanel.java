@@ -24,7 +24,7 @@ public class MasterPanel extends Composite {
 	}
 	
 	protected @UiField SimplePanel header;
-	protected @UiField ScrollPanel content;
+	protected @UiField SimplePanel content;
 	protected @UiField SimplePanel footer;
 	protected @UiField DivElement footerDiv;
 	protected @UiField MasterPanelStyle style;

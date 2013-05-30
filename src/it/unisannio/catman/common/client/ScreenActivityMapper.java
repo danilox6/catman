@@ -19,6 +19,7 @@ public class ScreenActivityMapper implements ActivityMapper {
 	
 	@Override
 	public Activity getActivity(Place place) {
+		MockEntityPersister.persist(); //FIXME Rimuovere
 		
 		if(!(place instanceof Path))
 			return null;

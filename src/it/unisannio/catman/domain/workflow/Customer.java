@@ -60,6 +60,10 @@ public class Customer extends Contactable {
 		return id;
 	}
 	
+	public static Integer count() {
+		return count(Customer.class);
+	}
+	
 	public static List<Customer> listAll(int start, int length) {
 		return list(Customer.class, start, length);
 	}

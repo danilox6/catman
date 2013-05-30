@@ -20,6 +20,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.Request;
 
 public class MasterView2 extends Composite {
@@ -51,27 +52,6 @@ public class MasterView2 extends Composite {
 
 		});
 		
-		/*
-		ListDataProvider<SupplierProxy> dataProvider = new ListDataProvider<SupplierProxy>();
-		dataList.setDataProvider(dataProvider);
-		//dataProvider.addDataDisplay(sellsDataList);
-		
-		List<SupplierProxy> data = dataProvider.getList();
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		data.add(new MockSupplierProxy());
-		
-		*/
-		
-		
 		final DataStore store = App.getInstance().getDataStore();
 		
 		Query<CustomerProxy> query = new Query<CustomerProxy>() {
@@ -83,7 +63,7 @@ public class MasterView2 extends Composite {
 
 			@Override
 			public Request<Integer> count() {
-				return store.events().count();
+				return store.customers().count();
 			}
 
 			@Override
@@ -98,6 +78,7 @@ public class MasterView2 extends Composite {
 		};
 		
 		dataList.setDataProvider(new QueryDataProvider<CustomerProxy>(query));
+		
 		/*
 		DataStore dataStore = App.getInstance().getDataStore();
 

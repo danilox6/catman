@@ -11,72 +11,83 @@ import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.domain.workflow.client.EventRequest;
 
 public class MockEntityPersister {
+	static  boolean done = false;
 
 	public static void persist(){
+		if(!done){
 
-		DataStore dataStore = App.getInstance().getDataStore();
+			final DataStore dataStore = App.getInstance().getDataStore();
 
-		
-		EventRequest events = dataStore.events();
-		EventProxy event = events.create(EventProxy.class);
-		event.setTitle("Delirium Party");
-		GWT.log(event.getId() + " - " + dataStore.getHistoryToken(event.stableId()));
-		events.persist().using(event).fire(new Receiver<Void>() {
 
-			@Override
-			public void onSuccess(Void response) {
-				GWT.log("Persisted");
-			}
-		});
-		
-		
-		CustomerRequest customers = dataStore.customers();
-		CustomerProxy customer1 = customers.create(CustomerProxy.class);
-		customer1.setName("Marcello");
-		customers.persist().using(customer1);
-		
-		CustomerProxy customer2 = customers.create(CustomerProxy.class);
-		customer2.setName("Pio");
-		customers.persist().using(customer2);
-		
-		CustomerProxy customer3 = customers.create(CustomerProxy.class);
-		customer3.setName("Filippo");
-		customers.persist().using(customer3);
-		
-		CustomerProxy customer4 = customers.create(CustomerProxy.class);
-		customer4.setName("Roberto");
-		customers.persist().using(customer4);
-		
-		CustomerProxy customer5 = customers.create(CustomerProxy.class);
-		customer5.setName("Massimo");
-		customers.persist().using(customer5);
-		
-		CustomerProxy customer6 = customers.create(CustomerProxy.class);
-		customer6.setName("Andrea");
-		customers.persist().using(customer6);
-		
-		CustomerProxy customer7 = customers.create(CustomerProxy.class);
-		customer7.setName("Marco");
-		customers.persist().using(customer7);
-		
-		CustomerProxy customer8 = customers.create(CustomerProxy.class);
-		customer8.setName("Cosimo");
-		customers.persist().using(customer8);
-		
-		CustomerProxy customer9 = customers.create(CustomerProxy.class);
-		customer9.setName("Gino");
-		customers.persist().using(customer9);
-		
-		CustomerProxy customer10 = customers.create(CustomerProxy.class);
-		customer10.setName("Damiano");
-		customers.persist().using(customer10);
-		
-		customers.fire(new Receiver<Void>() {
+			EventRequest events = dataStore.events();
+			events.count().fire(new Receiver<Integer>() {
 
-			@Override
-			public void onSuccess(Void response) {
-				GWT.log("Created!");
-			}
-		});
+				@Override
+				public void onSuccess(Integer response) {
+					if(response == 0){
+						EventRequest events = dataStore.events();
+						EventProxy event = events.create(EventProxy.class);
+						event.setTitle("Delirium Party");
+						GWT.log("Event token: " + dataStore.getHistoryToken(event.stableId()));
+						events.persist().using(event).fire(new Receiver<Void>() {
+
+							@Override
+							public void onSuccess(Void response) {
+								GWT.log("Event persisted");
+							}
+						});
+					}
+				}
+			});
+
+			CustomerRequest customers = dataStore.customers();
+
+			customers.count().fire(new Receiver<Integer>() {
+
+				@Override
+				public void onSuccess(Integer response) {
+					if(response==0){
+						CustomerRequest customers = dataStore.customers();
+						for(int i = 0; i < MALE_FIRST_NAMES.length; i++){
+							CustomerProxy customer = customers.create(CustomerProxy.class);
+							customer.setName(MALE_FIRST_NAMES[i]);
+							customers.persist().using(customer);
+						}
+						customers.fire(new Receiver<Void>() {
+
+							@Override
+							public void onSuccess(Void response) {
+								GWT.log(MALE_FIRST_NAMES.length + " customers persisted!");
+							}
+						});
+					}
+				}
+			});
+			done = true;
+		}
 	}
+
+	private static final String[] MALE_FIRST_NAMES = {
+		"James", "John", "Robert", "Michael", "William", "David", "Richard", "Charles", "Joseph",
+		"Thomas", "Christopher", "Daniel", "Paul", "Mark", "Donald", "George", "Kenneth", "Steven",
+		"Edward", "Brian", "Ronald", "Anthony", "Kevin", "Jason", "Matthew", "Gary", "Timothy",
+		"Jose", "Larry", "Jeffrey", "Frank", "Scott", "Eric", "Stephen", "Andrew", "Raymond",
+		"Gregory", "Joshua", "Jerry", "Dennis", "Walter", "Patrick", "Peter", "Harold", "Douglas",
+		"Henry", "Carl", "Arthur", "Ryan", "Roger", "Joe", "Juan", "Jack", "Albert", "Jonathan",
+		"Justin", "Terry", "Gerald", "Keith", "Samuel", "Willie", "Ralph", "Lawrence", "Nicholas",
+		"Roy", "Benjamin", "Bruce", "Brandon", "Adam", "Harry", "Fred", "Wayne", "Billy", "Steve",
+		"Louis", "Jeremy", "Aaron", "Randy", "Howard", "Eugene", "Carlos", "Russell", "Bobby",
+		"Victor", "Martin", "Ernest", "Phillip", "Todd", "Jesse", "Craig", "Alan", "Shawn",
+		"Clarence", "Sean", "Philip", "Chris", "Johnny", "Earl", "Jimmy", "Antonio", "Danny",
+		"Bryan", "Tony", "Luis", "Mike", "Stanley", "Leonard", "Nathan", "Dale", "Manuel", "Rodney",
+		"Curtis", "Norman", "Allen", "Marvin", "Vincent", "Glenn", "Jeffery", "Travis", "Jeff",
+		"Chad", "Jacob", "Lee", "Melvin", "Alfred", "Kyle", "Francis", "Bradley", "Jesus", "Herbert",
+		"Frederick", "Ray", "Joel", "Edwin", "Don", "Eddie", "Ricky", "Troy", "Randall", "Barry",
+		"Alexander", "Bernard", "Mario", "Leroy", "Francisco", "Marcus", "Micheal", "Theodore",
+		"Clifford", "Miguel", "Oscar", "Jay", "Jim", "Tom", "Calvin", "Alex", "Jon", "Ronnie",
+		"Bill", "Lloyd", "Tommy", "Leon", "Derek", "Warren", "Darrell", "Jerome", "Floyd", "Leo",
+		"Alvin", "Tim", "Wesley", "Gordon", "Dean", "Greg", "Jorge", "Dustin", "Pedro", "Derrick",
+		"Dan", "Lewis", "Zachary", "Corey", "Herman", "Maurice", "Vernon", "Roberto", "Clyde",
+		"Glen", "Hector", "Shane", "Ricardo", "Sam", "Rick", "Lester", "Brent", "Ramon", "Charlie",
+		"Tyler", "Gilbert", "Gene"};
 }

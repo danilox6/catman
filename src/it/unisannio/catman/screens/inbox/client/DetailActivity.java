@@ -14,7 +14,6 @@ public class DetailActivity extends ScreenActivity implements Inbox.Detail {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		//Path p = getPath();
 		//panel.setWidget(new Hyperlink(p.toString(), pathTo("inbox").getToken()));
-		MockEntityPersister.persist();
 		panel.setWidget(new DetailView());
 	}
 
