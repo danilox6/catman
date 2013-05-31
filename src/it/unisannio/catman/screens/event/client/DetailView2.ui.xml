@@ -5,7 +5,7 @@
 	<ui:style>
 		
 	</ui:style>
-	<c:MasterPanel>
+	<c:MasterPanel ui:field="masterPanel">
 		<c:header>
 			<c:ActionBar>
 				<c:left>
@@ -18,15 +18,14 @@
 		</c:header>
 		<c:content>
 			<g:VerticalPanel width="100%">
-				<c:DetailSection title="Vendite">
+				<c:DetailSection title="Vendite" ui:field="sellsSection">
 					  <c:DataList ui:field="sellsDataList" />
 				</c:DetailSection>
-				<c:DetailSection title="Logistica">
+				<c:DetailSection title="Logistica" ui:field="logisticSection">
 					  <c:DataList ui:field="logisticDataList" />
 				</c:DetailSection>
 			</g:VerticalPanel>
 		</c:content>
-	
 	</c:MasterPanel>
 	
 </ui:UiBinder> 

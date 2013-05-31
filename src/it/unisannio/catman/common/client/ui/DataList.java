@@ -1,10 +1,13 @@
 package it.unisannio.catman.common.client.ui;
 
+import java.util.List;
+
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.CellAdapter;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 
+import com.google.gwt.cell.client.Cell;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasChangeHandlers;
@@ -13,9 +16,9 @@ import com.google.gwt.event.dom.client.ScrollEvent;
 import com.google.gwt.event.dom.client.ScrollHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.cellview.client.AbstractPager;
-import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.AbstractDataProvider;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
@@ -36,9 +39,9 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 
         public ScrollingPager() { 
             initWidget(scrollable); 
-            scrollable.setPixelSize(250, 350); // FIXME 
+            //scrollable.setPixelSize(250, 350); // FIXME 
             scrollable.getElement().setTabIndex(-1); 
-
+            
             // Handle scroll events. 
             scrollable.addScrollHandler(new ScrollHandler() { 
                 public void onScroll(ScrollEvent p_event) { 
@@ -56,10 +59,10 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
                     if (lastScrollPos >= maxScrollTop) { 
                         // We are near the end, so increase the page size. 
 //                        int newPageSize = Math.min(display.getVisibleRange().getLength() + incrementSize, display.getRowCount()); 
-                        display.setVisibleRange(0, display.getVisibleRange().getLength() + incrementSize); 
+                        executeIncrement(); 
                     } 
                 } 
-            }); 
+            });
         } 
 
         public int getIncrementSize() { 
@@ -79,7 +82,12 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 
         @Override 
         protected void onRangeOrRowCountChanged() { 
-        } 
+        }
+        
+        public void executeIncrement(){
+        	if(getDisplay()!=null)
+        		getDisplay().setVisibleRange(0, getDisplay().getVisibleRange().getLength() + incrementSize);
+        }
     } 
 
 	private MasterCell<T> cell;
@@ -87,9 +95,12 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 	private ScrollingPager pager;
 	
 	private SelectionModel<? super T> selectionModel;
+	private SimplePanel parentPanel;
 	
 	private CellAdapter<T> adapter;
 	private AbstractDataProvider<T> provider;
+	private final int DEFAULT_PAGER_SIZE = 20;
+	
 	
 	public DataList() {
 		this(null);
@@ -105,8 +116,10 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 		pager.setWidth("100%");
 		cellList.setWidth("100%");
 		
-		cellList.setPageSize(20); // FIXME Configurabile
+		setPageSize(DEFAULT_PAGER_SIZE);
 		initWidget(pager);
+		
+		
 	}
 
 	@Override
@@ -148,5 +161,35 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 			((SelectableCellAdapter<T>)this.adapter).setSelectionModel(selectionModel);
 		cell.setCellAdapter(adapter);
 	}
+	
+	public void setPageSize(int size){
+		cellList.setPageSize(size);
+		pager.setIncrementSize(size);
+	}
+	
+	class CellList<E extends EntityProxy> extends com.google.gwt.user.cellview.client.CellList<E>{
+
+		private int previousHeight = 0;
+		
+		public CellList(Cell<E> cell) {
+			super(cell);
+		}
+		
+		@Override
+		public void setRowData(int start, List<? extends E> values) {
+			
+			super.setRowData(start, values);
+			parentPanel = (SimplePanel) this.getParent();
+			//Window.alert(values.isEmpty() + " " +parentPanel.getOffsetHeight() + " " + this.getOffsetHeight());
+			if(this.getOffsetHeight()!=0 && this.getOffsetHeight()<=parentPanel.getOffsetHeight()){
+				if(previousHeight !=  this.getOffsetHeight()){
+					previousHeight =  this.getOffsetHeight();
+					pager.executeIncrement();
+				}
+			}
+		}
+		
+	}
+	
 	
 }

@@ -9,39 +9,27 @@ import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
+
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.Request;
 
-public class MasterView2 extends Composite {
+public class DetailView2 extends Composite {
 
-	private static MasterView2UiBinder uiBinder = GWT.create(MasterView2UiBinder.class);
+	private static DetailActivity2UiBinder uiBinder = GWT.create(DetailActivity2UiBinder.class);
 
-	interface MasterView2UiBinder extends UiBinder<Widget, MasterView2> {
-	}
+	interface DetailActivity2UiBinder extends UiBinder<Widget, DetailView2> {}
 
-	@UiField Button makeNew;
 	
 	@UiField DataList<CustomerProxy> dataList;
 	
-	private Inbox.Master activity;
-
-	public MasterView2(Inbox.Master activity) {
+	public DetailView2() {
 		initWidget(uiBinder.createAndBindUi(this));
-
-		this.activity = activity;
-		
-		dataList.setPageSize(20);
 		
 		dataList.setCellAdapter(new SelectableCellAdapter<CustomerProxy>() {
 
@@ -79,41 +67,6 @@ public class MasterView2 extends Composite {
 		};
 		
 		dataList.setDataProvider(new QueryDataProvider<CustomerProxy>(query));
-		
-		
 	}
 
-	@UiHandler("makeNew")
-	void handleNew(ClickEvent e) {
-		activity.openNewDialog();
-	}
-
-	
-	@UiHandler("dataList")
-	void handleCellClick(ClickEvent e) {
-		Window.alert("Hello "+ ((CustomerProxy) e.getSource()).getName());
-	}
-	
-	/*
-	class MockSupplierProxy implements SupplierProxy{
-
-		@Override
-		public EntityProxyId<?> stableId() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public List getSupply() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-	}*/
 }

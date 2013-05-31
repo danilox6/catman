@@ -3,17 +3,18 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
 		.title {
-			font-weight: bold;
+		font-weight: bold;
 		}
 		.margin{
-			margin-bottom: 2px;
+		margin-bottom: 2px;
 		}
 		.vlpadding {
-			padding-left: 4px;
+		padding-left: 4px;
 		}
-	</ui:style> 
+	</ui:style>
 	<g:VerticalPanel width="100%" styleName="{style.margin}">
-		<g:Label ui:field="titleLabel"  styleName="{style.title}" ></g:Label>
-	<g:VerticalPanel ui:field="contentPanel" width="100%" styleName="{style.vlpadding}"></g:VerticalPanel>
+		<g:Label ui:field="titleLabel" styleName="{style.title}"></g:Label>
+		<g:SimplePanel ui:field="contentPanel" width="100%"
+			styleName="{style.vlpadding}"></g:SimplePanel>
 	</g:VerticalPanel>
 </ui:UiBinder> 
