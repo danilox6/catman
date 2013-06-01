@@ -1,13 +1,9 @@
 package it.unisannio.catman.common.server;
 
-import it.unisannio.catman.Setup;
-
 import java.util.Arrays;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,29 +13,27 @@ import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.EntityType;
 
 public abstract class AbstractEntity<K> {
-	
-	private static final EntityManager entityManager;
-	
-	static {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory(Setup.DATABASE_PERSISTENCE_UNIT);
-		entityManager = emf.createEntityManager();
-	}
-	
-	
+		
 	protected static EntityManager getEntityManager() {
-		return entityManager;
+		return ThreadLocalEntityManager.get();
 	}
 	
 	protected static String getEntityId(Class<?> entityClass) {
+		EntityManager entityManager = getEntityManager();
+		
 		EntityType<?> entityType = entityManager.getMetamodel().entity(entityClass);
 		return entityType.getId(entityType.getIdType().getJavaType()).getName();
 	}
 
 	protected static <T, K> T find(Class<T> entityClass, K key) {
+		EntityManager entityManager = getEntityManager();
+		
 		return entityManager.find(entityClass, key);
 	}
 
 	protected static <T, K> List<T> findAll(Class<T> entityClass, K... keys) {
+		EntityManager entityManager = getEntityManager();
+		
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<T> cq = cb.createQuery(entityClass);
 		Root<T> root = cq.from(entityClass);
@@ -54,6 +48,8 @@ public abstract class AbstractEntity<K> {
 	}
 
 	protected static <T> int count(Class<T> entityClass) {
+		EntityManager entityManager = getEntityManager();
+		
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		cq.select(cb.count(cq.from(entityClass)));
@@ -61,6 +57,8 @@ public abstract class AbstractEntity<K> {
 	}
 
 	protected static <T> List<T> list(Class<T> entityClass, int offset, int size) {
+		EntityManager entityManager = getEntityManager();
+		
 		CriteriaQuery<T> cq = entityManager.getCriteriaBuilder().createQuery(entityClass);
 		cq.from(entityClass);
 		return entityManager.createQuery(cq)
@@ -70,6 +68,8 @@ public abstract class AbstractEntity<K> {
 	}
 
 	protected static <T, K> void deleteAll(Class<T> entityClass, K... keys) {
+		EntityManager entityManager = getEntityManager();
+		
 		List<K> ids = Arrays.asList(keys);
 		String id = getEntityId(entityClass);
 		TypedQuery<T> select = entityManager.createQuery("SELECT o from " + entityClass.getName() + " o WHERE " + id +" IN (:in)", entityClass);
@@ -82,6 +82,8 @@ public abstract class AbstractEntity<K> {
 	}
 	
 	private static <T> Query buildQuery(Class<T> entityClass, String prologue, String filter, Object... args) {
+		EntityManager entityManager = getEntityManager();
+		
 		StringBuffer jpqlBuf = new StringBuffer(prologue).append(" FROM ").append(entityClass.getName()).append(" obj WHERE ").append(filter);
 		Query query = entityManager.createQuery(jpqlBuf.toString());
 		for(int i = 0; i < args.length; ++i) {
@@ -121,27 +123,14 @@ public abstract class AbstractEntity<K> {
 	
 	
 	public void persist() {
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
-		try {
-			entityManager.persist(this);
-			transaction.commit();
-		} catch (Exception e) {
-			transaction.rollback();
-			throw new RuntimeException(e);
-		}
+		EntityManager entityManager = getEntityManager();
+		entityManager.persist(this);
 		
 	}
 	
 	public void remove() {
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
-		try {
-			entityManager.remove(this);
-			transaction.commit();
-		} catch (Exception e) {
-			transaction.rollback();
-			throw new RuntimeException(e);
-		}
+		EntityManager entityManager = getEntityManager();
+		entityManager.remove(this);
 	}
+	
 }

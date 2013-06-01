@@ -13,8 +13,6 @@ public class Inbox extends Screen implements HasMaster, HasDetail {
 	public static interface Master extends Activity {
 		
 		void openNewDialog();
-		void saveObject();
-		
 		interface View {}
 	}
 	
