@@ -124,16 +124,7 @@ public abstract class AbstractEntity<K> {
 	
 	public void persist() {
 		EntityManager entityManager = getEntityManager();
-		
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
-		try {
-			entityManager.persist(this);
-			transaction.commit();
-		} catch (Exception e) {
-			transaction.rollback();
-			throw new RuntimeException(e);
-		}
+		entityManager.persist(this);
 		
 	}
 	
