@@ -142,7 +142,9 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 	
 	public void setSelectionModel(SelectionModel<? super T> selectionModel) {
 		this.selectionModel = selectionModel;
-		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<T>createCheckboxManager());
+		if(adapter instanceof SelectableCellAdapter && selectionModel!=null)
+			((SelectableCellAdapter<T>)this.adapter).setSelectionModel(selectionModel);
+		cellList.setSelectionModel(selectionModel,DefaultSelectionEventManager.<T>createCheckboxManager());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -190,6 +192,11 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 		}
 		
 	}
+
+	public void redraw() {
+		cellList.redraw();
+	}
+	
 	
 	
 }

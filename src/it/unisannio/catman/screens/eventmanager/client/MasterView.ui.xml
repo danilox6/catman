@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<c:MasterPanel>
+	    <c:header>
+	        <g:Label>Qua ci vuole la search bar</g:Label>
+	    </c:header>
+	    <c:content>
+	        <c:DataList ui:field="dataList"/>
+	    </c:content>
+	    <c:footer>
+	        <c:ActionBar>
+	            <c:left>
+	                <g:Button ui:field="calendarButton">Calendar</g:Button>
+	            </c:left>
+	            
+	            <c:right>
+	                <c:SelectAllButton ui:field="selectButton">Select</c:SelectAllButton>
+	            </c:right>
+	        </c:ActionBar>
+	    </c:footer>
+	</c:MasterPanel>
+</ui:UiBinder> 
