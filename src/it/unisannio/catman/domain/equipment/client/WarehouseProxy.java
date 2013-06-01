@@ -9,4 +9,6 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 @ProxyFor(Warehouse.class)
 public interface WarehouseProxy extends SupplierProxy{
 	List<StockProxy> getSupply();
+	String getName();
+	void setName(String name);
 }

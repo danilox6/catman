@@ -1,6 +1,10 @@
 package it.unisannio.catman.screens.inbox.client;
 
+import it.unisannio.catman.common.client.App;
+import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.ScreenActivity;
+import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
+import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
@@ -11,7 +15,6 @@ import com.google.gwt.user.client.ui.DialogBox;
 
 public class MasterActivity extends ScreenActivity implements Inbox.Master {
 	
-	interface Driver extends SimpleBeanEditorDriver<FakeObject, FakeObjectEditor> {}
 	
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
@@ -21,31 +24,13 @@ public class MasterActivity extends ScreenActivity implements Inbox.Master {
 		panel.setWidget(new MasterView2(this));
 	}
 	
-	private Driver driver = GWT.create(Driver.class);
-	private DialogBox dialog = new DialogBox();
 
 	@Override
 	public void openNewDialog() {
-		
-		FakeObjectEditor editor = new FakeObjectEditor();
-		editor.setActivity(this);
-		driver.initialize(editor);
-		
-		FakeObject fake = new FakeObject();
-		fake.setA("Hello");
-		fake.setB("World");
-		driver.edit(fake);
-		
-		
-		dialog.add(editor);
-		dialog.center();
-	}
-
-	@Override
-	public void saveObject() {
-		FakeObject edited = driver.flush();
-		Window.alert(edited.toString());
-		dialog.hide();
+		DataStore ds = App.getInstance().getDataStore();
+		WarehouseRequest wr = ds.warehouses();
+		WarehouseProxy wp = wr.create(WarehouseProxy.class);
+		new WarehouseEditor(wp,wr);
 		
 	}
 

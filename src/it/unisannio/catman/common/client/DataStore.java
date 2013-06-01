@@ -1,6 +1,7 @@
 package it.unisannio.catman.common.client;
 
 import it.unisannio.catman.domain.equipment.client.SupplierRequest;
+import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
 import it.unisannio.catman.domain.workflow.client.CustomerRequest;
 import it.unisannio.catman.domain.workflow.client.EventRequest;
 
@@ -10,4 +11,5 @@ public interface DataStore extends RequestFactory {
 	CustomerRequest customers();
 	EventRequest events();
 	SupplierRequest suppliers();
+	WarehouseRequest warehouses();
 }

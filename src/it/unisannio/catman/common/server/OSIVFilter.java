@@ -5,6 +5,7 @@ import it.unisannio.catman.Setup;
 import java.io.IOException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -20,17 +21,19 @@ public class OSIVFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        EntityManager entityManager = factory.createEntityManager();
+        EntityManager em = factory.createEntityManager();
+        ThreadLocalEntityManager.set(em);
         
-        entityManager.getTransaction().begin();
-        chain.doFilter(request, response);
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
         try {
-            entityManager.getTransaction().commit();
+            chain.doFilter(request, response);
+            tx.commit();
         } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            throw new ServletException(e);
+            tx.rollback();
         } finally {
-            entityManager.close();
+            em.close();
         }
     }
 

@@ -20,4 +20,9 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 		return supply;
 	}
 
+	@Override
+	public void persist() {
+		// TODO Auto-generated method stub
+		super.persist();
+	}
 }
