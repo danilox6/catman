@@ -12,7 +12,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -24,11 +23,13 @@ public class MasterPanel extends Composite {
 	}
 	
 	protected @UiField SimplePanel header;
-	protected @UiField ScrollPanel content;
+	protected @UiField SimplePanel content;
 	protected @UiField SimplePanel footer;
 	protected @UiField DivElement footerDiv;
 	protected @UiField MasterPanelStyle style;
 
+	private int contentHeight = 0; 
+	
 	public MasterPanel() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
@@ -71,7 +72,8 @@ public class MasterPanel extends Composite {
 		if(! (footerDiv.getStyle().getDisplay().equalsIgnoreCase(Display.NONE.toString())))
 			footerHeight = getCssPropertyIntValue("height", getCssByClass(style.footer(), 	style.getText()));
 		
-		content.setHeight((clientHeight - headerHeight - footerHeight) + "px");
+		contentHeight = clientHeight - headerHeight - footerHeight;
+		content.setHeight(contentHeight + "px");
 	}
 	
 	private String getCssByClass(String cssClass, String css){
@@ -104,5 +106,7 @@ public class MasterPanel extends Composite {
 		String footer();
 	}
 	
-	
+	public int getContentHeight() {
+		return contentHeight;
+	}
 }

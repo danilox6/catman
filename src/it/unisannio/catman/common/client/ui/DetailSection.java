@@ -9,7 +9,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DetailSection extends Composite implements HasWidgets{
@@ -19,7 +19,9 @@ public class DetailSection extends Composite implements HasWidgets{
 	interface DetailSectionWidgetUiBinder extends UiBinder<Widget, DetailSection> {}
 
 	@UiField protected Label titleLabel;
-	@UiField protected VerticalPanel contentPanel;
+	@UiField protected SimplePanel contentPanel;
+	
+	private String heightString = "100%";
 	
 	
 	public @UiConstructor DetailSection(String title){
@@ -55,7 +57,8 @@ public class DetailSection extends Composite implements HasWidgets{
 	}
 	
 	public void removeWidget(int index){
-		contentPanel.remove(index);
+		//contentPanel.remove(index);
+		removeWidget(contentPanel.getWidget());
 	}
 	
 	public boolean removeWidget(Widget widget){
@@ -80,5 +83,22 @@ public class DetailSection extends Composite implements HasWidgets{
 	@Override
 	public boolean remove(Widget w) {
 		return removeWidget(w);
+	}
+	
+	@Override
+	public void setHeight(String sHeight) {
+		this.heightString = sHeight;
+		if(sHeight.endsWith("px")){
+			int height = Integer.parseInt(heightString.substring(0, heightString.lastIndexOf("px")).trim());
+			contentPanel.setHeight((height-titleLabel.getOffsetHeight())+"px");
+		}
+		//contentPanel.setHeight(sHeight);
+		super.setHeight(heightString);
+	}
+	
+	@Override
+	protected void onLoad() {
+		setHeight(heightString);
+		super.onLoad();
 	}
 }

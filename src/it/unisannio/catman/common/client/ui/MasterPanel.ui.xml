@@ -46,7 +46,7 @@
 				<g:SimplePanel ui:field="header"></g:SimplePanel>
 			</div>
 			<div class="{style.content}">
-				<g:ScrollPanel ui:field="content"></g:ScrollPanel>
+				<g:SimplePanel ui:field="content"></g:SimplePanel>
 			</div>
 			<div class="{style.footer}" ui:field="footerDiv">
 				<g:SimplePanel ui:field="footer"></g:SimplePanel>

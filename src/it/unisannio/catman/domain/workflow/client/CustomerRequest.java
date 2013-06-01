@@ -13,5 +13,6 @@ import com.google.web.bindery.requestfactory.shared.Service;
 public interface CustomerRequest extends RequestContext {
 	Request<CustomerProxy> findByName(String name);
 	Request<List<CustomerProxy>> listAll(int start, int length);
+	Request<Integer> count();
 	InstanceRequest<CustomerProxy, Void> persist();
 }
