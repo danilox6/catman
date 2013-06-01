@@ -130,15 +130,7 @@ public abstract class AbstractEntity<K> {
 	
 	public void remove() {
 		EntityManager entityManager = getEntityManager();
-		
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
-		try {
-			entityManager.remove(this);
-			transaction.commit();
-		} catch (Exception e) {
-			transaction.rollback();
-			throw new RuntimeException(e);
-		}
+		entityManager.remove(this);
 	}
+	
 }
