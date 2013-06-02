@@ -4,6 +4,9 @@
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="it.unisannio.catman.domain.Domain"/>
 	<inherits name="com.google.gwt.activity.Activity"/>
-	<inherits name='com.google.web.bindery.requestfactory.RequestFactory' /> 
+	<inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
+	
+	<inherits name="com.github.gwtbootstrap.Bootstrap" />
+	
 	<source path="client"/>
 </module>

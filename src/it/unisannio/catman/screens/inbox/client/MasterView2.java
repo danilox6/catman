@@ -47,7 +47,6 @@ public class MasterView2 extends Composite {
 
 			@Override
 			public SafeHtml getNorth(CustomerProxy object) {
-				//return new SafeHtmlBuilder().appendEscaped("Lorem ipsum").toSafeHtml();
 				return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
 			}
 
@@ -94,26 +93,4 @@ public class MasterView2 extends Composite {
 		Window.alert("Hello "+ ((CustomerProxy) e.getSource()).getName());
 	}
 	
-	/*
-	class MockSupplierProxy implements SupplierProxy{
-
-		@Override
-		public EntityProxyId<?> stableId() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public List getSupply() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-	}*/
 }

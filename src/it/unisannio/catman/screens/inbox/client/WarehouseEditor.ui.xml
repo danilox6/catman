@@ -1,11 +1,21 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
 		
 	</ui:style>
-	<g:HTMLPanel>
-	    <g:TextBox ui:field="nameEditor" />
-	    <g:Button ui:field="okButton">Salva</g:Button>
-	</g:HTMLPanel>
+	<b:Modal title="Add Warehouse" animation="true" dynamicSafe="true" backdrop="STATIC" closeVisible="true" keyboard="true" >
+	    <b:Form type="HORIZONTAL">
+	        <b:ControlGroup>
+	            <b:ControlLabel>Name: </b:ControlLabel>
+	            <b:Controls>
+	                <b:TextBox ui:field="nameEditor" />
+	            </b:Controls>
+	        </b:ControlGroup>
+	    </b:Form>
+	    <b:ModalFooter>
+	        <b:Button type="PRIMARY" icon="OK" ui:field="okButton">Save</b:Button>
+	    </b:ModalFooter>
+     </b:Modal>
 </ui:UiBinder> 

@@ -8,23 +8,25 @@ import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
 
+import com.github.gwtbootstrap.client.ui.Alert;
+import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.Modal;
+import com.github.gwtbootstrap.client.ui.TextBox;
+import com.github.gwtbootstrap.client.ui.constants.AlertType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
+import com.google.gwt.editor.client.EditorError;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
-public class WarehouseEditor extends DialogBox implements Editor<WarehouseProxy> {
+public class WarehouseEditor implements Editor<WarehouseProxy> {
 
 	private static WarehouseEditorUiBinder uiBinder = GWT
 			.create(WarehouseEditorUiBinder.class);
@@ -44,9 +46,10 @@ public class WarehouseEditor extends DialogBox implements Editor<WarehouseProxy>
 	private WarehouseProxy object;
 	private WarehouseRequest context;
 	
+	private final Modal modal;
+	
 	public WarehouseEditor(WarehouseProxy object, WarehouseRequest context) {
-		setWidget(uiBinder.createAndBindUi(this));
-		getElement().getStyle().setZIndex(10000); // Workaround
+		modal = (Modal) uiBinder.createAndBindUi(this);
 		
 		this.object = object;
 		this.context = context;
@@ -55,7 +58,7 @@ public class WarehouseEditor extends DialogBox implements Editor<WarehouseProxy>
 		driver.initialize(App.getInstance().getDataStore(), this);
 		
 		driver.edit(object, context);
-		center();
+		modal.show();
 	}
 	
 	@UiHandler("okButton")
@@ -65,24 +68,27 @@ public class WarehouseEditor extends DialogBox implements Editor<WarehouseProxy>
 
 			@Override
 			public void onSuccess(Void response) {
-				Window.alert("Great success!");
+				modal.hide();
 			}
-			
 			
 			@Override
 			public void onFailure(ServerFailure error) {
-				Window.alert(error.getStackTraceString());
+				Window.alert("An error occurred during the operation. Please retry.");
+				GWT.log("Error during editor save: " + error.getStackTraceString());
 			}
 			
 			@Override
 			public void onConstraintViolation(
 					Set<ConstraintViolation<?>> violations) {
-				Window.alert("Violations!");
-				super.onConstraintViolation(violations);
+				for(ConstraintViolation<?> v : violations) {
+					Alert a = new Alert(v.getMessage(), AlertType.ERROR, false);
+					a.setAnimation(true);
+					modal.insert(a, 0);
+				}
 			}
 		});
 		
-		hide();
+		
 		
 	}
 
