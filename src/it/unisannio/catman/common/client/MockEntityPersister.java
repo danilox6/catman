@@ -29,11 +29,20 @@ public class MockEntityPersister {
 						EventProxy event = events.create(EventProxy.class);
 						event.setTitle("Delirium Party");
 						GWT.log("Event token: " + dataStore.getHistoryToken(event.stableId()));
-						events.persist().using(event).fire(new Receiver<Void>() {
+						events.persist().using(event);
+						EventProxy event2 = events.create(EventProxy.class);
+						event2.setTitle("Erasmus Party");
+						events.persist().using(event2);
+						EventProxy event3 = events.create(EventProxy.class);
+						event3.setTitle("Giovanni Di Muccio Party");
+						events.persist().using(event3);
+						
+						
+						events.fire(new Receiver<Void>() {
 
 							@Override
 							public void onSuccess(Void response) {
-								GWT.log("Event persisted");
+								GWT.log("Events persisted");
 							}
 						});
 					}

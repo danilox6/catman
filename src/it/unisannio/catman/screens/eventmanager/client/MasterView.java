@@ -1,61 +1,102 @@
 package it.unisannio.catman.screens.eventmanager.client;
 
-import it.unisannio.catman.common.client.DataProviderSelectionSyncronizer;
-import it.unisannio.catman.common.client.cell.MasterCell;
-import it.unisannio.catman.common.client.widget.AbstractMasterView;
-import it.unisannio.catman.common.client.widget.SearchTitleBarWidger;
-import it.unisannio.catman.common.client.widget.SelectAllHandler;
-import it.unisannio.catman.domain.documents.client.DossierProxy;
-import it.unisannio.catman.screens.eventmanager.client.widget.DossierCellAdapter;
-import it.unisannio.catman.screens.eventmanager.client.widget.MasterBottomBarWidget;
 import java.util.List;
 
-import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.view.client.DefaultSelectionEventManager;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.gwt.view.client.MultiSelectionModel;
+import it.unisannio.catman.common.client.App;
+import it.unisannio.catman.common.client.DataStore;
+import it.unisannio.catman.common.client.Query;
+import it.unisannio.catman.common.client.QueryDataProvider;
+import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
+import it.unisannio.catman.common.client.ui.DataList;
+import it.unisannio.catman.common.client.ui.SelectAllButton;
+import it.unisannio.catman.common.client.widget.DatePickerPopupPanel;
+import it.unisannio.catman.domain.workflow.client.EventProxy;
 
-public class MasterView extends AbstractMasterView implements EventManager.Master.View {
-	interface Presenter {}
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.requestfactory.shared.Request;
+
+public class MasterView extends Composite {
+
+	private static MasterView2UiBinder uiBinder = GWT.create(MasterView2UiBinder.class);
+
+	interface MasterView2UiBinder extends UiBinder<Widget, MasterView> {}
+
+	@UiField DataList<EventProxy> dataList;
+	@UiField Button calendarButton;
+	@UiField SelectAllButton selectButton;
 	
+	private DatePickerPopupPanel datePickerPopupPanel = new DatePickerPopupPanel(true);
+	private QueryDataProvider<EventProxy> dataProvider;
+
 	public MasterView() {
-		
-		northPanel.add(new SearchTitleBarWidger("Title") {
+		initWidget(uiBinder.createAndBindUi(this));
+
+		dataList.setCellAdapter(new SelectableCellAdapter<EventProxy>(dataProvider) {
+
+			@Override
+			public SafeHtml getNorth(EventProxy object) {
+				return new SafeHtmlBuilder().appendEscaped(object.getTitle()).toSafeHtml();
+			}
 			
 			@Override
-			public void handleResearch(String query) {
-				
+			public SafeHtml getEast(EventProxy object) {
+				SafeHtmlBuilder sb = new SafeHtmlBuilder();
+				sb.appendHtmlConstant("<input id='selection' type='checkbox'" + (isSelected(object)?"checked='checked'":"") + "/>");
+				return sb.toSafeHtml();
 			}
 		});
-		
-		DossierCellAdapter cellAdapter = new DossierCellAdapter();
-		CellList<DossierProxy> cellList = new CellList<DossierProxy>(new MasterCell<DossierProxy>(cellAdapter));
 
-		MultiSelectionModel<DossierProxy> selectionModel = new MultiSelectionModel<DossierProxy>();
-		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<DossierProxy>createCheckboxManager());
-		cellAdapter.setSelectionModel(selectionModel);
-		
-		ListDataProvider<DossierProxy> dataProvider = new ListDataProvider<DossierProxy>();
-		dataProvider.addDataDisplay(cellList);
-		DataProviderSelectionSyncronizer.<DossierProxy>sync(selectionModel, dataProvider);
-		
-		List<DossierProxy> values = dataProvider.getList();
-		values.add(new DossierProxyMock());
-		values.add(new DossierProxyMock());
-		values.add(new DossierProxyMock());
-		values.add(new DossierProxyMock());
-		
-		cellList.setRowCount(values.size(), true);
+		final DataStore store = App.getInstance().getDataStore();
 
-		centerScrollPanel.add(cellList);
+		Query<EventProxy> query = new Query<EventProxy>() {
+
+			@Override
+			public Request<List<EventProxy>> list(int start, int length) {
+				return store.events().listAll(start, length);
+			}
+
+			@Override
+			public Request<Integer> count() {
+				return store.events().count();
+			}
+
+			@Override
+			public Request<Void> deleteAll(List<EventProxy> skip) {
+				throw new UnsupportedOperationException(); // FIXME
+			}
+
+			@Override
+			public Request<Void> deleteSet(List<EventProxy> set) {
+				throw new UnsupportedOperationException(); // FIXME
+			}
+		};
+
+		dataProvider = new QueryDataProvider<EventProxy>(query);
+		selectButton.setDataProvider(dataProvider);
 		
-		southPanel.add(new MasterBottomBarWidget<DossierProxy>(new SelectAllHandler<DossierProxy>(selectionModel, dataProvider)));
-		
+		dataList.setDataProvider(dataProvider);
 	}
-
-	//FIXME Solo per i test
-	private static class DossierProxyMock implements DossierProxy {
 	
+	@UiHandler("calendarButton")
+	protected void handleCalendarButtonClick(ClickEvent event){
+		int left = calendarButton.getAbsoluteLeft() + 5 ;
+		int bottom = calendarButton.getAbsoluteTop() + 0; 
+		datePickerPopupPanel.setLeftBottomPosition(left, bottom);
+		datePickerPopupPanel.show();
+	}
+	
+	@UiHandler("dataList")
+	void handleCellClick(ClickEvent e) {
+
 	}
 
 }
