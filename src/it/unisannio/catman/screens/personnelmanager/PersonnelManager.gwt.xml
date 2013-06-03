@@ -10,6 +10,4 @@
 	
 	<!-- Child screens -->
 	<inherits name="it.unisannio.catman.screens.workers.Workers"/>
-	<inherits name="it.unisannio.catman.screens.candidates.Candidates"/>
-	<inherits name="it.unisannio.catman.screens.jobboards.JobBoards"/>
 </module>

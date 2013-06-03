@@ -22,11 +22,11 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.shared.Request;
 
-public class MasterView2 extends Composite {
+public class MasterView extends Composite {
 
-	private static MasterView2UiBinder uiBinder = GWT.create(MasterView2UiBinder.class);
+	private static MasterViewUiBinder uiBinder = GWT.create(MasterViewUiBinder.class);
 
-	interface MasterView2UiBinder extends UiBinder<Widget, MasterView2> {
+	interface MasterViewUiBinder extends UiBinder<Widget, MasterView> {
 	}
 
 	@UiField Button makeNew;
@@ -35,7 +35,7 @@ public class MasterView2 extends Composite {
 	
 	private Inbox.Master activity;
 
-	public MasterView2(Inbox.Master activity) {
+	public MasterView(Inbox.Master activity) {
 		initWidget(uiBinder.createAndBindUi(this));
 
 		this.activity = activity;

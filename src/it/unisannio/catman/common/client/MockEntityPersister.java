@@ -28,7 +28,7 @@ public class MockEntityPersister {
 						EventRequest events = dataStore.events();
 						EventProxy event = events.create(EventProxy.class);
 						event.setTitle("Delirium Party");
-						GWT.log("Event token: " + dataStore.getHistoryToken(event.stableId()));
+					//	GWT.log("Event token: " + dataStore.getHistoryToken(event.stableId()));
 						events.persist().using(event);
 						EventProxy event2 = events.create(EventProxy.class);
 						event2.setTitle("Erasmus Party");

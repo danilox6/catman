@@ -1,11 +1,11 @@
 package it.unisannio.catman.domain.humanresources.client;
 
-import it.unisannio.catman.domain.humanresources.Worker;
+import it.unisannio.catman.domain.humanresources.Qualification;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
-@ProxyFor(Worker.class)
-public interface WorkerProxy extends EntityProxy{
+@ProxyFor(Qualification.class)
+public interface QualificationProxy extends EntityProxy{
 	String getName();
 }

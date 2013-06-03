@@ -1,5 +1,7 @@
 package it.unisannio.catman.domain.humanresources;
 
+import java.util.List;
+
 import javax.persistence.Id;
 import javax.persistence.Version;
 
@@ -12,8 +14,12 @@ public class Worker extends Contactable {
 	private boolean candidated;
 	private String resume;
 	
-	public Worker findWorker(long id) {
+	public static Worker findWorker(Long id) {
 		return find(Worker.class, id);
+	}
+	
+	public static List<Worker> findAll() {
+		return findAll(Worker.class);	
 	}
 
 	@Override

@@ -33,6 +33,10 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 	public static enum SelectionState {ALL_SELECTED, SOME_SELECTED, NONE_SELECTED};
 
 	private Query<E> query;
+	
+	public QueryDataProvider(){
+		this(null);
+	}
 
 	public QueryDataProvider(Query<E> query) {
 		super(new EntityProxyKeyProvider<E>());

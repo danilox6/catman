@@ -19,6 +19,7 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.CellWidget;
 import com.google.gwt.view.client.ListDataProvider;
+import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 
 public class DetailView extends AbstractDetailView implements Resume.Detail.View{
 	interface Presenter{}
@@ -64,7 +65,19 @@ public class DetailView extends AbstractDetailView implements Resume.Detail.View
 	}
 
 	//FIXME solo per testing
-	class MockWorkerProxy implements WorkerProxy{}
+	class MockWorkerProxy implements WorkerProxy{
+
+		@Override
+		public EntityProxyId<?> stableId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+			return null;
+		}}
 	class MockContactProxy implements ContactProxy{}
 	class MockResumeProxy implements ResumeProxy{}
 	

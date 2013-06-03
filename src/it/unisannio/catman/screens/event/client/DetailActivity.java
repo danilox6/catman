@@ -5,7 +5,6 @@ import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.ErrorHandler;
 import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
@@ -17,7 +16,7 @@ public class DetailActivity extends ScreenActivity implements Event.Detail {
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 
-		final DetailView2 detailView = new DetailView2();
+		final DetailView detailView = new DetailView();
 		
 		DataStore dataStore = App.getInstance().getDataStore();
 		EntityProxyId<EventProxy> entityId = null;			  
@@ -31,13 +30,12 @@ public class DetailActivity extends ScreenActivity implements Event.Detail {
 
 				@Override
 				public void onSuccess(EventProxy response) {
-					GWT.log("Retrieved event "+ response.getTitle());
 					detailView.setEventProxy(response);
 				}
 				
 				@Override
 				public void onFailure(ServerFailure error) {
-					GWT.log("Event not found");
+					ErrorHandler.handle(error.getMessage()); 
 				}
 			});		
 		

@@ -21,7 +21,7 @@ public class MasterActivity extends ScreenActivity implements Inbox.Master {
 	//	Path p = getPath();
 	//	Intent in = new Intent("inbox").withParams(String.valueOf(p.size() + 1));
 		//panel.setWidget(new Hyperlink(p.toString(), pathTo(in).getToken()));
-		panel.setWidget(new MasterView2(this));
+		panel.setWidget(new MasterView(this));
 	}
 	
 

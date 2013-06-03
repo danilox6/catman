@@ -2,71 +2,188 @@ package it.unisannio.catman.screens.event.client;
 
 import java.util.List;
 
-import it.unisannio.catman.common.client.cell.MasterCell;
-import it.unisannio.catman.common.client.widget.AbstractDetailView;
-import it.unisannio.catman.common.client.widget.DetailSectionWidget;
-import it.unisannio.catman.domain.documents.client.DocumentProxy;
+import it.unisannio.catman.common.client.App;
+import it.unisannio.catman.common.client.DataStore;
+import it.unisannio.catman.common.client.Query;
+import it.unisannio.catman.common.client.QueryDataProvider;
+import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
+import it.unisannio.catman.common.client.cell.CellAdapter;
+import it.unisannio.catman.common.client.ui.DataList;
+import it.unisannio.catman.common.client.ui.DetailSection;
+import it.unisannio.catman.common.client.ui.MasterPanel;
+import it.unisannio.catman.domain.workflow.client.CustomerProxy;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
-import it.unisannio.catman.screens.event.client.widget.DetailHeadWidget;
-import it.unisannio.catman.screens.event.client.widget.DocumentCellAdapter;
-import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.view.client.ListDataProvider;
 
-public class DetailView extends AbstractDetailView implements Event.Detail.View {
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.logical.shared.ResizeEvent;
+import com.google.gwt.event.logical.shared.ResizeHandler;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.web.bindery.requestfactory.shared.Request;
+
+public class DetailView extends Composite implements Event.Detail.View {
 	interface Presenter{}
-	
+
+	private static DetailViewUiBinder uiBinder = GWT.create(DetailViewUiBinder.class);
+
+	interface DetailViewUiBinder extends UiBinder<Widget, DetailView> {}
+
 	private EventProxy eventProxy;
 
+	@UiField MasterPanel masterPanel;
+	@UiField Label titleLabel;
+	@UiField Button addButton;
+	@UiField DataList<CustomerProxy> sellsDataList;
+	@UiField DataList<CustomerProxy> logisticDataList;
+	@UiField DetailSection sellsSection;
+	@UiField DetailSection logisticSection;
+
 	public DetailView() {
+		initWidget(uiBinder.createAndBindUi(this));
+
+		addButton.setText("+ Aggiungi");
+
+		CellAdapter<CustomerProxy> adapter = new AbstractCellAdapter<CustomerProxy>() {
+			@Override
+			public SafeHtml getNorth(CustomerProxy object) {
+				return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
+			}
+		};
 		
-		northPanel.add(new DetailHeadWidget("Nome evento"));
+
+		sellsDataList.setCellAdapter(adapter);
+		logisticDataList.setCellAdapter(adapter);
 		
-		DetailSectionWidget sellsSection = new DetailSectionWidget("Vendite");
+		sellsDataList.setPageSize(5);
+		logisticDataList.setPageSize(5);
 		
-		CellList<DocumentProxy> sellsCellList = new CellList<DocumentProxy>(new MasterCell<DocumentProxy>(new DocumentCellAdapter()));
+		Window.addResizeHandler(new ResizeHandler() {
+			@Override
+			public void onResize(ResizeEvent event) {
+				adaptHeight();
+			}
+		});
 		
-		sellsSection.add(sellsCellList);
-		centerVerticalPanel.add(sellsSection);
+		final DataStore store = App.getInstance().getDataStore();
+
+		Query<CustomerProxy> query1 = new Query<CustomerProxy>() {
+
+			@Override
+			public Request<List<CustomerProxy>> list(int start, int length) {
+				return store.customers().listAll(start, length);
+			}
+
+			@Override
+			public Request<Integer> count() {
+				return store.customers().count();
+			}
+
+			@Override
+			public Request<Void> deleteAll(List<CustomerProxy> skip) {
+				throw new UnsupportedOperationException(); // FIXME
+			}
+
+			@Override
+			public Request<Void> deleteSet(List<CustomerProxy> set) {
+				throw new UnsupportedOperationException(); // FIXME
+			}
+		};
+
+		sellsDataList.setDataProvider(new QueryDataProvider<CustomerProxy>(query1));
 		
-		ListDataProvider<DocumentProxy> sellsDataProvider = new ListDataProvider<DocumentProxy>();
-		sellsDataProvider.addDataDisplay(sellsCellList);
 		
-		List<DocumentProxy> sellsValues = sellsDataProvider.getList();
-		sellsValues.add(new DocumentProxyMock());
-		sellsValues.add(new DocumentProxyMock());
-		sellsValues.add(new DocumentProxyMock());
-		sellsValues.add(new DocumentProxyMock());
+		Query<CustomerProxy> query2 = new Query<CustomerProxy>() {
+
+			@Override
+			public Request<List<CustomerProxy>> list(int start, int length) {
+				return store.customers().listAll(start, length);
+			}
+
+			@Override
+			public Request<Integer> count() {
+				return store.customers().count();
+			}
+
+			@Override
+			public Request<Void> deleteAll(List<CustomerProxy> skip) {
+				throw new UnsupportedOperationException(); // FIXME
+			}
+
+			@Override
+			public Request<Void> deleteSet(List<CustomerProxy> set) {
+				throw new UnsupportedOperationException(); // FIXME
+			}
+		};
 		
-		DetailSectionWidget logisticSection = new DetailSectionWidget("Logistica");
-		CellList<DocumentProxy> logisticCellList = new CellList<DocumentProxy>(new MasterCell<DocumentProxy>(new DocumentCellAdapter()));
-		logisticSection.add(logisticCellList);
-		centerVerticalPanel.add(logisticSection);
 		
-		ListDataProvider<DocumentProxy> logisticDataProvider = new ListDataProvider<DocumentProxy>();
-		logisticDataProvider.addDataDisplay(logisticCellList);
+		logisticDataList.setDataProvider(new QueryDataProvider<CustomerProxy>(query2));
+
+	}
+
+	@Override
+	public void setEventProxy(EventProxy eventProxy) {
+		this.eventProxy = eventProxy; 
+		titleLabel.setText(eventProxy.getTitle());
+
 		
-		List<DocumentProxy> logisticValues = logisticDataProvider.getList();
-		logisticValues.add(new DocumentProxyMock());
-		logisticValues.add(new DocumentProxyMock());
-		logisticValues.add(new DocumentProxyMock());
-		logisticValues.add(new DocumentProxyMock());
-		
+
+	}
+
+	public EventProxy getEventProxy() {
+		return eventProxy;
+	}
+
+	@UiHandler("addButton")
+	void handleAddButton(ClickEvent event){
+
+	}
+
+	class MockEventProxy implements EventProxy{
+
+		@Override
+		public EntityProxyId<?> stableId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Long getId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public String getTitle() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void setTitle(String title) {
+			// TODO Auto-generated method stub
+
+		}
+
 	}
 	
 	@Override
-	public void setEventProxy(EventProxy eventProxy) {
-		this.eventProxy = eventProxy;
+	protected void onLoad() {
+		adaptHeight();
 	}
 	
-	public EventProxy getEventProxy(){
-		return eventProxy;
+	private void adaptHeight(){
+		int height = masterPanel.getContentHeight();
+		sellsSection.setHeight(height/2+"px");
+		logisticSection.setHeight(height/2+"px");
 	}
-	
-	//FIXME Solo per i test
-	private static class DocumentProxyMock implements DocumentProxy {
-		
-	}
-
-	
-
 }

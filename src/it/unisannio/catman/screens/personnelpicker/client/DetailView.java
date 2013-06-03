@@ -12,6 +12,7 @@ import it.unisannio.catman.screens.personnelpicker.client.widget.SelectedWorkerC
 
 import com.google.gwt.user.cellview.client.CellTree;
 import com.google.gwt.view.client.ListDataProvider;
+import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 
 public class DetailView extends AbstractDetailView implements PersonnelPicker.Detail.View {
 	interface Presenter{}
@@ -45,6 +46,18 @@ public class DetailView extends AbstractDetailView implements PersonnelPicker.De
 
 	//FIXME solo per testing
 	public static class WorkerProxyMock implements WorkerProxy{
+
+		@Override
+		public EntityProxyId<?> stableId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 	}
 	
