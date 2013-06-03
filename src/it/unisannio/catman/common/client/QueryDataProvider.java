@@ -21,6 +21,7 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
+@SuppressWarnings("unchecked")
 public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<E> implements SelectionModel<E> {
 	private ArrayList<E> cache;
 	private Map<EntityProxyId<E>, Boolean> selection;
@@ -44,40 +45,43 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 		handlers = new HandlerManager(this);
 
 		this.query = query;
-		
-		queryForCount();
 	}
 
 
 	@Override
 	protected void onRangeChanged(HasData<E> display) {
-		// Get the new range.
-		final Range range = display.getVisibleRange();
-		int start = range.getStart();
-		int length = range.getLength();
+		if(query!=null){
+			if(count==-1)
+				queryForCount();
 
-		final int loadStart = getLoadStart(start);
-		final int loadLength = length - (Math.max(0, loadStart - start));
+			// Get the new range.
+			final Range range = display.getVisibleRange();
+			int start = range.getStart();
+			int length = range.getLength();
 
-		if(loadLength > 0) {
-			query.list(loadStart, loadLength).fire(new Receiver<List<E>>() {
+			final int loadStart = getLoadStart(start);
+			final int loadLength = length - (Math.max(0, loadStart - start));
+
+			if(loadLength > 0) {
+				query.list(loadStart, loadLength).fire(new Receiver<List<E>>() {
 
 
-				@Override
-				public void onSuccess(List<E> response) {
-					ensureSize(cache, loadStart + loadLength);
-					for(int i = 0; i < response.size(); ++i) {
-						E entity = response.get(i);
-						cache.set(loadStart + i, entity);
-						mapping.put((EntityProxyId<E>) entity.stableId(), entity);
+					@Override
+					public void onSuccess(List<E> response) {
+						ensureSize(cache, loadStart + loadLength);
+						for(int i = 0; i < response.size(); ++i) {
+							E entity = response.get(i);
+							cache.set(loadStart + i, entity);
+							mapping.put((EntityProxyId<E>) entity.stableId(), entity);
+						}
+
+						updateRowData(loadStart, response);
+						updateRowCount(loadStart + loadLength, false);
+
 					}
 
-					updateRowData(loadStart, response);
-					updateRowCount(loadStart + loadLength, false);
-
-				}
-
-			});
+				});
+			}
 		}
 
 	}
@@ -106,9 +110,8 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 		selection.clear();
 		mapping.clear();
 		SelectionChangeEvent.fire(this);
+		count =-1;
 
-		queryForCount();
-		
 		for(HasData<E> display : getDataDisplays()) {
 			display.setVisibleRangeAndClearData(display.getVisibleRange(), true);
 		}
@@ -151,7 +154,7 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 		EntityProxyId<E> key = (EntityProxyId<E>)object.stableId();
 		if(selection.containsKey(key))
 			return selection.get(key);
-		
+
 		return selectedAll;
 	}
 
@@ -203,7 +206,7 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 	public void toggleSelection(E object) {
 		setSelected(object, !isSelected(object));
 	}
-	
+
 	public SelectionState getSelectionState(){
 		if(selectedAll)
 			if (selection.isEmpty())
@@ -217,7 +220,7 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 				return SelectionState.SOME_SELECTED;
 		return SelectionState.NONE_SELECTED;
 	}
-	
+
 	private void queryForCount(){
 		query.count().fire(new Receiver<Integer>(){
 
@@ -225,10 +228,10 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 			public void onSuccess(Integer response) {
 				count = response;
 			}
-			
+
 		});
 	}
-	
+
 	/**
 	 * Returns <code>true</code> if all query results were selected manually
 	 * @return <code>true</code> if all query results were selected manually
