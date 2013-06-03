@@ -3,10 +3,12 @@ package it.unisannio.catman.common.client.ui;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.QueryDataProvider.SelectionState;
 
+import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.constants.ButtonType;
+import com.github.gwtbootstrap.client.ui.constants.IconType;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.AbstractHasData;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.SelectionChangeEvent;
 
@@ -15,6 +17,7 @@ public class SelectAllButton extends Button{
 	private QueryDataProvider<?> dataProvider;
 	
 	public SelectAllButton() {
+		setType(ButtonType.LINK);
 		addClickHandler(new ClickHandler() {
 			
 			@Override
@@ -35,13 +38,13 @@ public class SelectAllButton extends Button{
 			public void onSelectionChange(SelectionChangeEvent event) {
 				switch (dataProvider.getSelectionState()) {
 					case ALL_SELECTED:
-						setText("Deselect All"); //TODO Icona tutto selezionato
+						setIcon(IconType.CHECK); //TODO Icona tutto selezionato
 						break;
 					case SOME_SELECTED:
-						setText("Deselect All"); //TODO Icona alcuni selezionati (vedi Gmail)
+						setIcon(IconType.CHECK_MINUS); //TODO Icona alcuni selezionati (vedi Gmail)
 						break;
 					case NONE_SELECTED:
-						setText("Select All"); //TODO Icona nessuno selezionato
+						setIcon(IconType.CHECK_EMPTY); //TODO Icona nessuno selezionato
 						break;
 					}
 			}

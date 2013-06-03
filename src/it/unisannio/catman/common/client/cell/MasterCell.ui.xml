@@ -4,13 +4,79 @@
 	<ui:with field='south' type='com.google.gwt.safehtml.shared.SafeHtml' />
 	<ui:with field='west' type='com.google.gwt.safehtml.shared.SafeHtml' />
 	<ui:with field='east' type='com.google.gwt.safehtml.shared.SafeHtml' />
+	<ui:style field="style" type='it.unisannio.catman.common.client.cell.MasterCell.Style'>
+	    .cell {
+			box-sizing: border-box;
+			min-height: 32px;
+			width: 100%;
+			padding: 5px;
+			border-bottom: 1px solid #ccc;
+			position: relative;
+			overflow: hidden;
+			display: table;
+			border-collapse: separate;
+			background: #fff;
+			transition: background 0.3s ease;
+			-webkit-transition: background 0.3s ease;
+			-moz-transition: background 0.3s ease;
+			color: #333 !important;
+		}
+		
+		.cell:hover {
+			background: #ddd;
+			
+		}
+		
+		.middle {
+			min-height: 30px;
+			display: table-cell;
+			vertical-align: middle;
+			padding-left: 10px;
+		}
+		
+		.west {
+			  display: table-cell;
+			  text-align: center;
+			  vertical-align: middle;
+			  width: 40px;
+			  min-height: 30px;
+			  max-height: 40px;
+			  height: 100%;
+		}
+		
+		.east {
+  			  min-height: 30px;
+  			  width: 20px;
+  			  text-align: center;
+  			  display: table-cell;
+  			  vertical-align: middle;
+		}
+		
+		.east > input {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.north {
+			font-weight:bold;
+		}
+		
+		.south {
+			font-size: 0.75rem;
+			font-style: italic;
+			color: #999 !important;
+		}
+		
+		.overlay {
 	
-	<div id='masterCell' ui:field="masterCell" class="man-MasterCell">
-	    <ui:safehtml from="{west}" />
-	    <ui:safehtml from="{east}" />
-	    <div class="man-MasterCell-middle">
-	        <ui:safehtml from="{north}" />
-	    	<ui:safehtml from="{south}" />
+		}
+	</ui:style>
+	<div ui:field="masterCell" class="{style.cell}">
+	    <ui:safehtml from="{west}"/>
+	    <div class="{style.middle}">
+	        <ui:safehtml from="{north}"/>
+	    	<ui:safehtml from="{south}"/>
 	    </div>
+	    <ui:safehtml from="{east}"/>
 	</div>
 </ui:UiBinder>

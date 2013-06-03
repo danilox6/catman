@@ -1,6 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
 	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
 	<ui:style>
 		
@@ -9,22 +10,30 @@
 		<c:header>
 			<c:ActionBar>
 				<c:left>
-					<g:Label ui:field="titleLabel"></g:Label>
+					<b:Heading size="3" ui:field="titleLabel"></b:Heading>
 				</c:left>
 				<c:right>
-					<g:Button ui:field="addButton"></g:Button>
+					<b:Button ui:field="addButton" icon="PLUS" type="PRIMARY">Aggiungi</b:Button>
 				</c:right>
 			</c:ActionBar>
 		</c:header>
 		<c:content>
-			<g:VerticalPanel width="100%">
-				<c:DetailSection title="Vendite" ui:field="sellsSection">
-					  <c:DataList ui:field="sellsDataList" />
-				</c:DetailSection>
-				<c:DetailSection title="Logistica" ui:field="logisticSection">
-					  <c:DataList ui:field="logisticDataList" />
-				</c:DetailSection>
-			</g:VerticalPanel>
+		    <g:ScrollPanel>
+		        <g:FlowPanel>
+		            <b:WellForm>
+		    <b:Fieldset>
+		        <b:Legend>Vendite</b:Legend>
+		        <c:DataList ui:field="sellsDataList" />
+		    </b:Fieldset>
+		    </b:WellForm>
+		    
+		    <b:Fieldset>
+		        <b:Legend>Logistica</b:Legend>
+		        <c:DataList ui:field="logisticDataList" />
+		    </b:Fieldset>
+		        </g:FlowPanel>
+		    </g:ScrollPanel>
+		        
 		</c:content>
 	</c:MasterPanel>
 	

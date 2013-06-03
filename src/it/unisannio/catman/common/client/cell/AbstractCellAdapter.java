@@ -11,22 +11,22 @@ public abstract class AbstractCellAdapter<T> implements CellAdapter<T> {
 
 	@Override
 	public SafeHtml getWest(T object) {
-		return new SafeHtmlBuilder().toSafeHtml();
+		return null;
 	}
 
 	@Override
 	public SafeHtml getSouth(T object) {
-		return new SafeHtmlBuilder().toSafeHtml();
+		return null;
 	}
 
 	@Override
 	public SafeHtml getEast(T object) {
-		return new SafeHtmlBuilder().toSafeHtml();
+		return null;
 	}
 
 	@Override
 	public SafeHtml getOverlay(T object) {
-		return new SafeHtmlBuilder().toSafeHtml();
+		return null;
 	}
 	
 }
