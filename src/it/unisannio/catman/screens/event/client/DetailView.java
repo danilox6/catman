@@ -14,6 +14,8 @@ import it.unisannio.catman.common.client.ui.MasterPanel;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 
+import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.Heading;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.ResizeEvent;
@@ -24,9 +26,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 import com.google.web.bindery.requestfactory.shared.Request;
@@ -41,17 +41,13 @@ public class DetailView extends Composite implements Event.Detail.View {
 	private EventProxy eventProxy;
 
 	@UiField MasterPanel masterPanel;
-	@UiField Label titleLabel;
+	@UiField Heading titleLabel;
 	@UiField Button addButton;
 	@UiField DataList<CustomerProxy> sellsDataList;
 	@UiField DataList<CustomerProxy> logisticDataList;
-	@UiField DetailSection sellsSection;
-	@UiField DetailSection logisticSection;
 
 	public DetailView() {
 		initWidget(uiBinder.createAndBindUi(this));
-
-		addButton.setText("+ Aggiungi");
 
 		CellAdapter<CustomerProxy> adapter = new AbstractCellAdapter<CustomerProxy>() {
 			@Override
@@ -181,9 +177,9 @@ public class DetailView extends Composite implements Event.Detail.View {
 		adaptHeight();
 	}
 	
-	private void adaptHeight(){
+	private void adaptHeight(){ // FIXME Ci torno dopo
 		int height = masterPanel.getContentHeight();
-		sellsSection.setHeight(height/2+"px");
-		logisticSection.setHeight(height/2+"px");
+		//sellsSection.setHeight(height/2+"px");
+		//logisticSection.setHeight(height/2+"px");
 	}
 }

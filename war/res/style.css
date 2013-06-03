@@ -15,7 +15,12 @@ html, body {
   height: 100%;
 }
 
-* {
+nav, 
+nav *, 
+#loader *, 
+#master, 
+#detail, 
+[role=main] {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -34,7 +39,7 @@ html, body {
   z-index: 9999;
   opacity: 1;
   background: rgba(30, 30, 30, 0.3);
-    transition: all 0.5s linear;
+  transition: all 0.5s linear;
   -webkit-transition: all 0.5s linear;
   -moz-transition: all 0.5s linear;
   -o-transition: all 0.5s linear;
@@ -229,38 +234,13 @@ nav a:hover, nav .active a {
 
 /* == Custom widgets == */
 
-.man-MasterCell {
-  min-height: 32px;
-  width: 100%;
-  padding: 5px;
-  border-bottom: 1px solid #ccc;
-  position: relative;
-  overflow: hidden;
+.btn-link {
+	transition: color 0.3s ease;
+	-webkit-transition: color 0.3s ease;
+	-moz-transition: color 0.3s ease;
 }
 
-.man-MasterCell-west {
-  float: left;
-  width: 40px;
-  min-height: 30px;
-  max-height: 40px;
-  height: 100%;
-  background: #f00;
+a:hover, .btn-link:hover {
+	text-decoration: none !important;
 }
-
-.man-MasterCell-middle {
-  background: #ccc;
-  min-height: 30px;
-}
-
-.man-MasterCell-east {
-  background: #00f;
-  min-height: 30px;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  bottom: 5px;
-  min-width: 5px;
-}
-
-
 

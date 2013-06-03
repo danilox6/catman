@@ -1,10 +1,11 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"	
+	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
 	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
 	<c:MasterPanel>
 	    <c:header>
-	        <g:Label>Title</g:Label>
+	        <b:Heading size="3">Inbox</b:Heading>
 	    </c:header>
 	    <c:content>
 	        <c:DataList ui:field="dataList"/>
@@ -12,11 +13,12 @@
 	    <c:footer>
 	        <c:ActionBar>
 	            <c:left>
-	                <g:Button ui:field="makeNew">New</g:Button>
+	                <b:Button ui:field="makeNew" icon="PLUS_SIGN" type="LINK">Add</b:Button>
+	                
 	            </c:left>
 	            
 	            <c:right>
-	                <g:Button>Select</g:Button>
+	                <b:Button icon="CHECK" type="LINK"></b:Button>
 	            </c:right>
 	        </c:ActionBar>
 	    </c:footer>

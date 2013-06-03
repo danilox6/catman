@@ -9,6 +9,8 @@ import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
+
+import com.github.gwtbootstrap.client.ui.Button;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.safehtml.shared.SafeHtml;
@@ -17,7 +19,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.shared.Request;

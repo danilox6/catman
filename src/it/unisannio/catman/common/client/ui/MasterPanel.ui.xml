@@ -17,8 +17,23 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		height: 30px;
-		border-bottom: 1px #ccc solid;
+		height: 73px;
+		background: #eee;
+		border-bottom: 3px #ddd solid;
+		display: table;
+		width: 100%;
+		overflow:hidden;
+		border-collapse: separate;
+		box-sizing: border-box;
+		padding: 10px;
+		padding-left: 15px;
+		}
+		
+		.header h3 {
+			margin: 0;
+			line-height:30px;
+			color: #999;
+			text-shadow: -1px -1px #fff;
 		}
 
 		.footer {
@@ -27,12 +42,13 @@
 		left: 0;
 		right: 0;
 		height: 30px;
-		border-top: 1px #ccc solid;
+		background: #efefef;
+		border-top: 2px #dedede solid;
 		}
 
 		.content {
 		position: absolute;
-		top: 30px;
+		top: 50px;
 		bottom: 30px;
 		left: 0;
 		right: 0;
@@ -42,9 +58,8 @@
 
 	<g:HTMLPanel>
 		<div class="{style.container}">
-			<div class="{style.header}">
-				<g:SimplePanel ui:field="header"></g:SimplePanel>
-			</div>
+			<g:SimplePanel ui:field="header" styleName="{style.header}"></g:SimplePanel>
+			
 			<div class="{style.content}">
 				<g:SimplePanel ui:field="content"></g:SimplePanel>
 			</div>
