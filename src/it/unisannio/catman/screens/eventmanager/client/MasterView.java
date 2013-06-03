@@ -2,6 +2,7 @@ package it.unisannio.catman.screens.eventmanager.client;
 
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
+import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.common.client.ui.SelectAllButton;
 import it.unisannio.catman.common.client.widget.DatePickerPopupPanel;
@@ -54,7 +55,7 @@ public class MasterView extends Composite implements EventManager.Master.View{
 	
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e) {
-
+		EventProxy event = (EventProxy) e.getSource();
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
+import it.unisannio.catman.screens.event.client.Event;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -46,6 +47,7 @@ public class MasterActivity extends ScreenActivity implements EventManager.Maste
 		
 		masterView.setEventQuery(query);
 		panel.setWidget(masterView);
+		
 	}
 
 }

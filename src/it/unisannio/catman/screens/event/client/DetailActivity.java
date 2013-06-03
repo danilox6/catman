@@ -2,6 +2,7 @@ package it.unisannio.catman.screens.event.client;
 
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
+import it.unisannio.catman.common.client.ErrorHandler;
 import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 import com.google.gwt.core.shared.GWT;
@@ -21,9 +22,9 @@ public class DetailActivity extends ScreenActivity implements Event.Detail {
 		DataStore dataStore = App.getInstance().getDataStore();
 		EntityProxyId<EventProxy> entityId = null;			  
 		try{
-			entityId = dataStore.getProxyId(getIntent().get(0, "1@1@PpLTWIzrraS9Nsz6GfgnalkzeDU=")); //FIXME un token di prova creato a mano
+			entityId = dataStore.getProxyId(getIntent().get(0, ""));
 		}catch(IllegalArgumentException e){
-			GWT.log("Errore token"); //FIXME
+			ErrorHandler.handle(); 
 		}
 		if(entityId!=null)
 			dataStore.events().find(entityId).fire(new Receiver<EventProxy>() {
