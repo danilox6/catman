@@ -4,8 +4,8 @@ import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.common.client.ui.SelectAllButton;
-import it.unisannio.catman.common.client.widget.DatePickerPopupPanel;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
+import it.unisannio.catman.screens.event.client.widgets.DatePickerPopupPanel;
 import it.unisannio.catman.screens.eventmanager.client.adapters.EventCellAdapter;
 
 import com.github.gwtbootstrap.client.ui.Button;

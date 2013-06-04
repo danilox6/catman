@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.materialpicker.client.widget;
+package it.unisannio.catman.screens.materialpicker.client.adapters;
 
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;

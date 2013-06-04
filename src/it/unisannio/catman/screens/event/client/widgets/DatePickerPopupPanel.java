@@ -1,4 +1,4 @@
-package it.unisannio.catman.common.client.widget;
+package it.unisannio.catman.screens.event.client.widgets;
 
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
