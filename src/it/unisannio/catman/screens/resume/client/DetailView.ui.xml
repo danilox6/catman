@@ -1,0 +1,39 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+	xmlns:cw="urn:import:com.google.gwt.user.cellview.client" xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<c:MasterPanel ui:field="masterPanel" scrollable="true">
+		<c:header>
+			<c:ActionBar>
+				<c:left>
+					<b:Heading size="3" ui:field="titleLabel"></b:Heading>
+				</c:left>
+				<c:right>
+					<b:Button icon="STAR" type="PRIMARY">Aggiungi ai candidati</b:Button>
+				</c:right>
+			</c:ActionBar>
+		</c:header>
+		<c:content>
+			<cw:CellWidget ui:field="workerInfo"></cw:CellWidget>
+		</c:content>
+		<c:content>
+			<b:Fieldset>
+				<b:Legend>Info Contatto</b:Legend>
+			</b:Fieldset>
+		</c:content>
+		<c:content>
+			<b:Fieldset>
+				<b:Legend>Resume</b:Legend>
+			</b:Fieldset>
+		</c:content>
+		<c:content>
+			<b:Fieldset>
+				<b:Legend>Disponibile come</b:Legend>
+				<c:DataList ui:field="dataList" cellType="STANDALONE" />
+			</b:Fieldset>
+		</c:content>
+	</c:MasterPanel>
+</ui:UiBinder> 

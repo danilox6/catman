@@ -9,7 +9,7 @@ public class DetailActivity extends ScreenActivity implements Stock.Detail{
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		panel.setWidget(new DetailView());
+	//	panel.setWidget(new DetailView());
 	}
 
 }

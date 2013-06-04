@@ -1,74 +1,39 @@
 package it.unisannio.catman.screens.worker.client;
 
-import java.util.List;
-
+import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
 import it.unisannio.catman.common.client.cell.MasterCell;
-import it.unisannio.catman.common.client.widget.AbstractDetailView;
-import it.unisannio.catman.common.client.widget.DetailSectionWidget;
-import it.unisannio.catman.common.client.widget.TitleHeadWidget;
-import it.unisannio.catman.domain.contacts.client.ContactProxy;
-import it.unisannio.catman.domain.humanresources.client.JobProxy;
+import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
-import it.unisannio.catman.screens.worker.client.widget.ContactCell;
-import it.unisannio.catman.screens.worker.client.widget.ContractCellAdapter;
-import it.unisannio.catman.screens.worker.client.widget.WorkerCellAdapter;
 
-import com.google.gwt.user.cellview.client.CellList;
+import com.github.gwtbootstrap.client.ui.Heading;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellWidget;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
 
-public class DetailView extends AbstractDetailView implements Worker.Detail.View{
-	interface Presenter{}
+public class DetailView extends Composite {
+
+	private static DetailViewUiBinder uiBinder = GWT.create(DetailViewUiBinder.class);
+
+	interface DetailViewUiBinder extends UiBinder<Widget, DetailView> {}
 	
+	@UiField(provided = true) CellWidget<WorkerProxy> workerInfo;
+	@UiField Heading titleLabel;
+//	@UiField DataList<ContractProxy> dataList;
+
 	public DetailView() {
+		workerInfo = new CellWidget<WorkerProxy>(new MasterCell<WorkerProxy>(new AbstractCellAdapter<WorkerProxy>() {
+			@Override
+			public SafeHtml getNorth(WorkerProxy object) {
+				return new SafeHtmlBuilder().appendEscaped(object!=null?object.getName():"").toSafeHtml();
+			}
+		}));
+		initWidget(uiBinder.createAndBindUi(this));
 		
-		northPanel.add(new TitleHeadWidget("John Phantom"));
-		
-		CellWidget<WorkerProxy> workerInfoCell = new CellWidget<WorkerProxy>(new MasterCell<WorkerProxy>(new WorkerCellAdapter()));
-		workerInfoCell.setValue(new MockWorkerProxy());
-		workerInfoCell.setWidth("100%");
-		centerVerticalPanel.add(workerInfoCell);
-		
-		DetailSectionWidget contactInfoSection = new DetailSectionWidget("Contact Info");
-		CellWidget<ContactProxy> contactInfoCell = new CellWidget<ContactProxy>(new ContactCell());
-		contactInfoCell.setValue(new MockContactProxy());
-		contactInfoCell.setWidth("100%");
-		contactInfoSection.add(contactInfoCell);
-		centerVerticalPanel.add(contactInfoSection);
-		
-		DetailSectionWidget contractsSection = new DetailSectionWidget("Contracts");
-		CellList<JobProxy> cellList = new CellList<JobProxy>(new MasterCell<JobProxy>(new ContractCellAdapter()));
-		ListDataProvider<JobProxy> dataProvider = new ListDataProvider<JobProxy>();
-		dataProvider.addDataDisplay(cellList);
-		
-		List<JobProxy> contracts = dataProvider.getList();
-		contracts.add(new MockContractProxy());
-		contracts.add(new MockContractProxy());
-		contracts.add(new MockContractProxy());
-		contracts.add(new MockContractProxy());
-		contracts.add(new MockContractProxy());
-		contracts.add(new MockContractProxy());
-		
-		contractsSection.add(cellList);
-		centerVerticalPanel.add(contractsSection);
 	}
-
-	//FIXME solo per testing
-	class MockWorkerProxy implements WorkerProxy{
-
-		@Override
-		public EntityProxyId<?> stableId() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}}
-	class MockContactProxy implements ContactProxy{}
-	class MockContractProxy implements JobProxy{}
 
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<c:MasterPanel>
+	    <c:header>
+	        <c:SwitchPanel>
+	            <c:normal>
+	                <b:Heading size="3" ui:field="titleLabel">Titolo</b:Heading>
+	            </c:normal>
+	            <c:alternate>
+	                <b:Form type="SEARCH">
+	                    <b:TextBox searchQuery="true" placeholder="cerca..." />
+	                </b:Form>
+	            </c:alternate>
+	            <c:switch>
+	                <b:Button icon="SEARCH" toggle="true"></b:Button>
+	            </c:switch>
+	        </c:SwitchPanel>
+	    </c:header>
+	    <c:content>
+	        <c:DataList ui:field="dataList"/>
+	    </c:content>
+	    <c:footer>
+	        <c:ActionBar>
+	            <c:left>
+	                <b:Button ui:field="deleteButton" icon="TRASH" type="LINK"></b:Button>
+	            </c:left>
+	            
+	            <c:right>
+	                <c:SelectAllButton ui:field="selectButton"></c:SelectAllButton>
+	            </c:right>
+	        </c:ActionBar>
+	    </c:footer>
+	</c:MasterPanel>
+</ui:UiBinder> 

@@ -1,50 +1,27 @@
 package it.unisannio.catman.screens.stock.client;
 
-import java.util.List;
+import it.unisannio.catman.common.client.ui.SelectAllButton;
 
-import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.view.client.DefaultSelectionEventManager;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.gwt.view.client.MultiSelectionModel;
+import com.github.gwtbootstrap.client.ui.Heading;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
 
-import it.unisannio.catman.common.client.DataProviderSelectionSyncronizer;
-import it.unisannio.catman.common.client.cell.MasterCell;
-import it.unisannio.catman.common.client.widget.AbstractMasterView;
-import it.unisannio.catman.common.client.widget.SearchTitleBarWidger;
-import it.unisannio.catman.common.client.widget.SelectAllHandler;
-import it.unisannio.catman.domain.equipment.client.MaterialProxy;
-import it.unisannio.catman.screens.stock.client.widget.MasterBottomBarWidget;
-import it.unisannio.catman.screens.stock.client.widget.MaterialMasterCellAdapter;
+public class MasterView extends Composite {
 
-public class MasterView extends AbstractMasterView implements Stock.Master.View {
-	interface Presenter{}
+	private static MasterViewUiBinder uiBinder = GWT.create(MasterViewUiBinder.class);
+
+	interface MasterViewUiBinder extends UiBinder<Widget, MasterView> {}
+	
+	//TODO il bottone per cancellare deve apparire solo quando qualcosa è selezionato, altrimenti va mostrato quello per aggiungere
+
+	@UiField Heading titleLabel;
+	@UiField SelectAllButton selectButton; //FIXME per qualche motivo non si vede
 	
 	public MasterView() {
-		northPanel.add(new SearchTitleBarWidger("Title") {
-			
-			@Override
-			public void handleResearch(String query) {
-				
-			}
-		});
-		
-		MaterialMasterCellAdapter cellAdapter = new MaterialMasterCellAdapter();
-		CellList<MaterialProxy> cellList = new CellList<MaterialProxy>(new MasterCell<MaterialProxy>(cellAdapter));
-		MultiSelectionModel<MaterialProxy> selectionModel = new MultiSelectionModel<MaterialProxy>();
-		cellList.setSelectionModel(selectionModel, DefaultSelectionEventManager.<MaterialProxy>createCheckboxManager());
-		cellAdapter.setSelectionModel(selectionModel);
-		
-		ListDataProvider<MaterialProxy> dataProvider = new ListDataProvider<MaterialProxy>();
-		dataProvider.addDataDisplay(cellList);
-		
-		List<MaterialProxy> dataList = dataProvider.getList();
-		
-		DataProviderSelectionSyncronizer.<MaterialProxy>sync(selectionModel, dataProvider);
-		
-		centerScrollPanel.add(cellList);
-		
-		southPanel.add(new MasterBottomBarWidget<MaterialProxy>(new SelectAllHandler<MaterialProxy>(selectionModel, dataProvider)));
-		
+		initWidget(uiBinder.createAndBindUi(this));
 	}
-	
+
 }
