@@ -6,12 +6,8 @@ import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
 
-import com.google.gwt.core.shared.GWT;
-import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.user.client.ui.DialogBox;
 
 public class MasterActivity extends ScreenActivity implements Inbox.Master {
 	

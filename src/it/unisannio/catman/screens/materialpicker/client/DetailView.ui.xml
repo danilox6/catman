@@ -1,0 +1,45 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
+	<ui:style>
+	</ui:style>
+
+	<c:MasterPanel ui:field="masterPanel">
+		<c:header>
+			<c:ActionBar>
+				<c:left>
+					<b:Heading size="3" ui:field="titleLabel"></b:Heading>
+				</c:left>
+				<c:right>
+					<b:ButtonGroup>
+						<b:Button icon="REMOVE_SIGN" type="DANGER" />
+						<b:Button ui:field="completedButton" icon="OK" type="SUCCESS">Completato</b:Button>
+					</b:ButtonGroup>
+				</c:right>
+			</c:ActionBar>
+		</c:header>
+		<c:content>
+			<g:ScrollPanel>
+				<g:FlowPanel>
+					<b:WellForm>
+						<b:Fieldset>
+							<b:Legend>Fornitori</b:Legend>
+							<c:DataList ui:field="dataList" />
+							<b:Pagination alignment="centered" ui:field="pagination">
+								<b:NavLink>«</b:NavLink>
+								<b:NavLink>1</b:NavLink>
+								<b:NavLink>2</b:NavLink>
+								<b:NavLink>3</b:NavLink>
+								<b:NavLink>4</b:NavLink>
+								<b:NavLink>5</b:NavLink>
+								<b:NavLink>»</b:NavLink>
+							</b:Pagination>
+						</b:Fieldset>
+					</b:WellForm>
+				</g:FlowPanel>
+			</g:ScrollPanel>
+
+		</c:content>
+	</c:MasterPanel>
+</ui:UiBinder> 

@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.personnelpicker.client.widget;
+package it.unisannio.catman.screens.personnelpicker.client.widgets;
 
 import java.util.List;
 
@@ -17,26 +17,26 @@ import com.google.gwt.view.client.SelectionModel;
 /**
  * Basically an horizontal {@link CellList} used to display selected workers 
  */
-public class SelectedWorkerCellList extends CellList<WorkerProxy>{
+public class SelectedWorkersCellList extends CellList<WorkerProxy>{
 
 	/**
 	 * The width of the cells showing selected workers.
 	 */
 	private final static int SELECTED_WORKER_CELL_WIDTH = 200;  //FIXME Hardcoded size
 	
-	public SelectedWorkerCellList(Cell<WorkerProxy> cell){
+	public SelectedWorkersCellList(Cell<WorkerProxy> cell){
 		this(cell, getDefaultResources(), null);
 	}
 
-	public SelectedWorkerCellList(Cell<WorkerProxy> cell, Resources resources) {
+	public SelectedWorkersCellList(Cell<WorkerProxy> cell, Resources resources) {
 		this(cell, resources, null);
 	}
 
-	public SelectedWorkerCellList(Cell<WorkerProxy> cell, ProvidesKey<WorkerProxy> keyProvider) {
+	public SelectedWorkersCellList(Cell<WorkerProxy> cell, ProvidesKey<WorkerProxy> keyProvider) {
 		this(cell, getDefaultResources(), keyProvider);
 	}
 
-	public SelectedWorkerCellList(Cell<WorkerProxy> cell, Resources resources, ProvidesKey<WorkerProxy> keyProvider) {
+	public SelectedWorkersCellList(Cell<WorkerProxy> cell, Resources resources, ProvidesKey<WorkerProxy> keyProvider) {
 		super(cell, resources, keyProvider);
 	}
 

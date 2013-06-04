@@ -9,7 +9,6 @@ import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
 import it.unisannio.catman.common.client.cell.CellAdapter;
 import it.unisannio.catman.common.client.ui.DataList;
-import it.unisannio.catman.common.client.ui.DetailSection;
 import it.unisannio.catman.common.client.ui.MasterPanel;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
@@ -45,7 +44,7 @@ public class DetailView extends Composite implements Event.Detail.View {
 	@UiField Button addButton;
 	@UiField DataList<CustomerProxy> sellsDataList;
 	@UiField DataList<CustomerProxy> logisticDataList;
-
+	
 	public DetailView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -123,7 +122,7 @@ public class DetailView extends Composite implements Event.Detail.View {
 		
 		
 		logisticDataList.setDataProvider(new QueryDataProvider<CustomerProxy>(query2));
-
+		
 	}
 
 	@Override
@@ -143,6 +142,8 @@ public class DetailView extends Composite implements Event.Detail.View {
 	void handleAddButton(ClickEvent event){
 
 	}
+	
+	
 
 	class MockEventProxy implements EventProxy{
 
