@@ -25,13 +25,15 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiRenderer;
 
-public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, HasChangeHandlers{
+public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, HasChangeHandlers {
+	
+	public static enum Type { STANDALONE, EMBEDDED; }
 
 	private List<ClickHandler> clickHandlers = new ArrayList<ClickHandler>();
 	private List<ChangeHandler> changeHandlers = new ArrayList<ChangeHandler>();
 
 	interface MasterCellUiRenderer extends UiRenderer {
-		void render(SafeHtmlBuilder safeHtmlBuilder, SafeHtml north, SafeHtml south, SafeHtml west, SafeHtml east, SafeHtml overlay);
+		void render(SafeHtmlBuilder safeHtmlBuilder, SafeHtml north, SafeHtml south, SafeHtml west, SafeHtml east, SafeHtml overlay, String type);
 		void onBrowserEvent(MasterCell<?> cell, NativeEvent event, Element parent, Object n);
 		Style getStyle();
 	}
@@ -42,6 +44,9 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 		String north();
 		String south();
 		String overlay();
+		
+		String standalone();
+		String embedded();
 	}
 
 	private static MasterCellUiRenderer renderer = GWT.create(MasterCellUiRenderer.class);
@@ -49,6 +54,7 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 	private CellAdapter<T> adapter;
 	private NativeEvent nativeEvent;
 	
+	private Type type = Type.EMBEDDED;
 	
 	public MasterCell(){
 		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
@@ -58,15 +64,13 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
 		this.adapter = adapter;
 	}
-
-	public MasterCell(CellAdapter<T> adapter, ClickHandler clickHandler) { //FIXME Da eliminare
-		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
-		this.adapter = adapter;
-		addClickHandler(clickHandler);
-	}
 	
 	public void setCellAdapter(CellAdapter<T> adapter) {
 		this.adapter = adapter;
+	}
+	
+	public void setType(Type type) {
+		this.type = type;
 	}
 
 	@Override
@@ -78,7 +82,7 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 		SafeHtml west = wrap(adapter != null ? adapter.getWest(value) : null, style.west());
 		SafeHtml overlay = wrap(adapter != null ? adapter.getOverlay(value) : null, style.overlay());
 
-		renderer.render(sb, north, south, west, east, overlay);
+		renderer.render(sb, north, south, west, east, overlay, type == Type.EMBEDDED ? style.embedded() : style.standalone());
 	}
 
 	private SafeHtml wrap(SafeHtml contents, final String region) {

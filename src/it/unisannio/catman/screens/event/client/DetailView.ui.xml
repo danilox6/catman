@@ -6,7 +6,7 @@
 	<ui:style>
 		
 	</ui:style>
-	<c:MasterPanel ui:field="masterPanel">
+	<c:MasterPanel ui:field="masterPanel" scrollable="true">
 		<c:header>
 			<c:ActionBar>
 				<c:left>
@@ -18,22 +18,16 @@
 			</c:ActionBar>
 		</c:header>
 		<c:content>
-		    <g:ScrollPanel>
-		        <g:FlowPanel>
-		            <b:WellForm>
 		    <b:Fieldset>
 		        <b:Legend>Vendite</b:Legend>
-		        <c:DataList ui:field="sellsDataList" />
+		        <c:DataList ui:field="sellsDataList" cellType="STANDALONE" />
 		    </b:Fieldset>
-		    </b:WellForm>
-		    
+		 </c:content>
+		 <c:content>   
 		    <b:Fieldset>
 		        <b:Legend>Logistica</b:Legend>
-		        <c:DataList ui:field="logisticDataList" />
-		    </b:Fieldset>
-		        </g:FlowPanel>
-		    </g:ScrollPanel>
-		        
+		        <c:DataList ui:field="logisticDataList" cellType="STANDALONE" />
+		    </b:Fieldset>		        
 		</c:content>
 	</c:MasterPanel>
 	

@@ -178,7 +178,7 @@ public class DetailView extends Composite implements Event.Detail.View {
 	}
 	
 	private void adaptHeight(){ // FIXME Ci torno dopo
-		int height = masterPanel.getContentHeight();
+		//int height = masterPanel.getContentHeight();
 		//sellsSection.setHeight(height/2+"px");
 		//logisticSection.setHeight(height/2+"px");
 	}
