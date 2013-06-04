@@ -13,7 +13,7 @@ public class MaterialManager extends Screen implements HasMaster{
 	}
 
 	protected MaterialManager() {
-		super("Material Manager", "material-manager", Icon.CABINET); //FIXME icona appropriata
+		super("Materials", "material-manager", Icon.PACKAGE);
 	}
 
 	@Override

@@ -7,13 +7,18 @@ import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.ScreenActivityMapper;
 import it.unisannio.catman.common.client.Path;
+import it.unisannio.catman.common.client.ui.ListItemWidget;
+import it.unisannio.catman.common.client.ui.UnorderedListWidget;
 
+import com.github.gwtbootstrap.client.ui.Tooltip;
+import com.github.gwtbootstrap.client.ui.constants.Placement;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -23,7 +28,7 @@ import com.google.web.bindery.event.shared.EventBus;
 public class Main extends Screen {
 
 	protected Main() {
-		super("Main menu", "", Icon.CIRCLES);
+		super("Main menu", "", Icon.MOUSTACHE);
 	}
 
 	@Override
@@ -52,40 +57,47 @@ public class Main extends Screen {
 		RootPanel root = RootPanel.get("navigation");
 
 		Path menuPath = current.getMenuPath();
-		StringBuffer buf = new StringBuffer();
+		
+		UnorderedListWidget trail = new UnorderedListWidget();
+		trail.setId("trail");
 		
         for(Path p = menuPath; p != null; p = p.pop()) {
         	Intent in = p.peek();
         	Screen s = in.getScreen();
         	Hyperlink a = new Hyperlink(s.getIcon().toString(), p.getToken());
         	a.setTitle(s.getTitle());
-        	buf.insert(0,"</li>")
-                .insert(0, a)
-                .insert(0, "<li>");
         	
-        	
+        	ListItemWidget li = new ListItemWidget();
+        	li.add(a);
+        	trail.insert(li, 0, true);       	
         }
         
-        buf.insert(0, "<ul id=\"trail\">");
-        buf.append("</ul>");
         
 		Screen menuScreen = menuPath.peek().getScreen();
 		
+		UnorderedListWidget navigation = new UnorderedListWidget();
+		navigation.setId("navigation");
 		
-		
-       	buf.append("<ul id=\"navigation\">");
         for(Screen s : menuScreen.getChildren()) {
         	Hyperlink a = new Hyperlink(s.getIcon().toString(), new Path(menuPath, s.getSlug()).getToken());
-        	a.setTitle(s.getTitle());
-            buf
-                .append("<li id=\"link-" + s.getSlug() + "\">")
-                .append(a)
-                .append("</li>");
+        	Tooltip tt = new Tooltip(s.getTitle());
+        	tt.setPlacement(Placement.RIGHT);
+        	tt.add(a);
+        	
+        	ListItemWidget li = new ListItemWidget();
+        	li.setId("link-" + s.getSlug());
+            
+        	li.add(tt);
+        	navigation.add(li);
         }
-        buf.append("</ul>");
         
         root.clear();
-        root.add(new HTML(buf.toString()));	
+        
+        FlowPanel flow = new FlowPanel();
+        flow.add(trail);
+        flow.add(navigation);
+        
+        root.add(flow);	
         
         Intent masterIntent = current.getMaster();
 		if(masterIntent != null) {

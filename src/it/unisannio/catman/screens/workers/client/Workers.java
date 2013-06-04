@@ -18,7 +18,7 @@ public class Workers extends Screen implements HasMaster, HasDetail{
 	}
 	
 	protected Workers() {
-		super("Workers", "workers", Icon.PEOPLE); //FIXME Icona appropriata
+		super("Workers", "workers", Icon.OFFICE_CHAIR); 
 	}
 
 	@Override

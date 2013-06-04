@@ -20,7 +20,7 @@ public class EventManager extends Screen implements HasMaster{
 	}
 
 	protected EventManager() {
-		super("Event Manager", "event-manager", Icon.CALENDAR);
+		super("Events", "event-manager", Icon.CALENDAR);
 	}
 
 	@Override

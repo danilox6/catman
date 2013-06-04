@@ -13,7 +13,7 @@ public class Resume extends Screen implements HasDetail{
 	}
 
 	protected Resume() {
-		super("Resume", "resume", Icon.PEOPLE); //FIXME Icona appropriata
+		super("Resume", "resume", Icon.CONTACT); 
 	}
 	
 	@Override

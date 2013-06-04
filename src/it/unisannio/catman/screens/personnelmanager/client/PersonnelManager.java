@@ -14,7 +14,7 @@ public class PersonnelManager extends Screen implements HasMaster{
 	}
 
 	protected PersonnelManager() {
-		super("Personnel Manager", "personnel-manager", Icon.PEOPLE);
+		super("Personnel", "personnel-manager", Icon.TIE);
 	}
 
 	@Override

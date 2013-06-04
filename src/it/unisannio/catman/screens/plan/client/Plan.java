@@ -19,7 +19,7 @@ public class Plan extends Screen  implements HasMaster, HasDetail{
 	}
 	
 	public Plan() {
-		super("Plan","plan",Icon.GEAR); //FIXME icona appropriata
+		super("Plan", "plan", Icon.CHECKLIST); 
 	}
 	
 	@Override

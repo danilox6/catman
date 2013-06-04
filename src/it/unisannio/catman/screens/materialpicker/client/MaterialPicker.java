@@ -13,7 +13,7 @@ public class MaterialPicker extends Screen implements HasDetail{
 	}
 
 	protected MaterialPicker() {
-		super("Material Picker","material-picker", Icon.CABINET); // FIXME Icona appropriata
+		super("Material Picker","material-picker", Icon.BASKET);
 	}
 
 	@Override

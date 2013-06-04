@@ -22,7 +22,7 @@ public class Event extends Screen implements HasMaster, HasDetail{
 	
 	
 	protected Event() {
-		super("Event", "event", Icon.CABINET); //FIXME icona appropriata
+		super("Event", "event", Icon.NOTES);
 	}
 
 	@Override

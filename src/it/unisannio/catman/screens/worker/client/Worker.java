@@ -13,7 +13,7 @@ public class Worker extends Screen implements HasDetail{
 	}
 	
 	protected Worker() {
-		super("Worker", "worker", Icon.PEOPLE); //FIXME Icona appropriata
+		super("Worker", "worker", Icon.CONTACT); 
 	}
 
 	@Override

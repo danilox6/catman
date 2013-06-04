@@ -17,7 +17,7 @@ public class Stock extends Screen implements HasDetail, HasMaster{
 	}
 
 	protected Stock() {
-		super("Stock", "stock", Icon.CABINET); //FIXME icona appropriata
+		super("Stock", "stock", Icon.FORKLIFT); 
 	}
 
 	@Override

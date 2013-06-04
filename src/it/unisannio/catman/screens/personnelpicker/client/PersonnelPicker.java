@@ -19,7 +19,7 @@ public class PersonnelPicker extends Screen implements HasMaster, HasDetail{
 	}
 
 	protected PersonnelPicker() {
-		super("Personnel Picker", "personnel-picker", Icon.PEOPLE);
+		super("Personnel Picker", "personnel-picker", Icon.CHEF);
 	}
 
 

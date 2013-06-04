@@ -21,7 +21,7 @@ public class Inbox extends Screen implements HasMaster, HasDetail {
 	}
 
 	public Inbox() {
-		super("Richieste", "inbox", Icon.INBOX);
+		super("Dark Side of the Moon", "inbox", Icon.DARK_SIDE_OF_THE_MOON);
 	}
 
 	@Override
