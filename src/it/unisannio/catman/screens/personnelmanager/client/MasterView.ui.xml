@@ -1,0 +1,14 @@
+	<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"	
+	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
+	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
+	<c:MasterPanel>
+	    <c:header>
+	        <b:Heading size="3">Personnel Manager </b:Heading>
+	    </c:header>
+	    <c:content>
+	        <c:DataList ui:field="dataList"/>
+	    </c:content>
+	</c:MasterPanel>
+</ui:UiBinder> 

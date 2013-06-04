@@ -16,6 +16,7 @@ import it.unisannio.catman.domain.workflow.client.EventProxy;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Heading;
+import com.github.gwtbootstrap.client.ui.Pagination;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.ResizeEvent;
@@ -45,6 +46,8 @@ public class DetailView extends Composite implements Event.Detail.View {
 	@UiField Button addButton;
 	@UiField DataList<CustomerProxy> sellsDataList;
 	@UiField DataList<CustomerProxy> logisticDataList;
+	
+	@UiField Pagination pagination;
 
 	public DetailView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -123,7 +126,7 @@ public class DetailView extends Composite implements Event.Detail.View {
 		
 		
 		logisticDataList.setDataProvider(new QueryDataProvider<CustomerProxy>(query2));
-
+		
 	}
 
 	@Override
@@ -143,6 +146,8 @@ public class DetailView extends Composite implements Event.Detail.View {
 	void handleAddButton(ClickEvent event){
 
 	}
+	
+	
 
 	class MockEventProxy implements EventProxy{
 

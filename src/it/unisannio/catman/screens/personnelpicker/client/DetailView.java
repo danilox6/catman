@@ -1,64 +1,32 @@
 package it.unisannio.catman.screens.personnelpicker.client;
 
-import java.util.List;
-
 import it.unisannio.catman.common.client.cell.MasterCell;
-import it.unisannio.catman.common.client.widget.AbstractDetailView;
-import it.unisannio.catman.common.client.widget.DetailSectionWidget;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
-import it.unisannio.catman.screens.personnelpicker.client.widget.DetailHeadWidget;
-import it.unisannio.catman.screens.personnelpicker.client.widget.SelectedWorkerCellAdapter;
-import it.unisannio.catman.screens.personnelpicker.client.widget.SelectedWorkerCellList;
+import it.unisannio.catman.screens.personnelpicker.client.adapters.SelectedWorkerAdapter;
+import it.unisannio.catman.screens.personnelpicker.client.widgets.SelectedWorkersCellList;
+import it.unisannio.catman.screens.personnelpicker.client.widgets.WorkersTreeModel;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTree;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
 
-public class DetailView extends AbstractDetailView implements PersonnelPicker.Detail.View {
-	interface Presenter{}
+public class DetailView extends Composite {
 
-	public DetailView() {
+	private static DetailViewUiBinder uiBinder = GWT.create(DetailViewUiBinder.class);
 
-		northPanel.add(new DetailHeadWidget("Ruolo Y 3/5"));
+	interface DetailViewUiBinder extends UiBinder<Widget, DetailView> {}
 
-		DetailSectionWidget selectedSection = new DetailSectionWidget("Selected");
-		
-		SelectedWorkerCellList selectedWorkerCellList = new SelectedWorkerCellList(new MasterCell<WorkerProxy>(new SelectedWorkerCellAdapter()));
-		ListDataProvider<WorkerProxy> selectedWorkerProvider = new ListDataProvider<WorkerProxy>();
-		selectedWorkerProvider.addDataDisplay(selectedWorkerCellList);
-		
-		List<WorkerProxy> dataList = selectedWorkerProvider.getList();
-		dataList.add(new WorkerProxyMock());
-		dataList.add(new WorkerProxyMock());
-		dataList.add(new WorkerProxyMock());
-		dataList.add(new WorkerProxyMock());
-		dataList.add(new WorkerProxyMock());
-		
-		selectedSection.add(selectedWorkerCellList);
-		centerVerticalPanel.add(selectedSection);
-
-		DetailSectionWidget availableSection = new DetailSectionWidget("Available");
-		CellTree cellTree = new CellTree(new PersonnelTreeModel(), null);
-		cellTree.setAnimationEnabled(true);
-		availableSection.add(cellTree);
-		centerVerticalPanel.add(availableSection);
-	}
-
-	//FIXME solo per testing
-	public static class WorkerProxyMock implements WorkerProxy{
-
-		@Override
-		public EntityProxyId<?> stableId() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-	}
+	@UiField(provided = true) SelectedWorkersCellList selectedCellList;
+/*	@UiField(provided = true)*/ CellTree cellTree;
 	
+	public DetailView() {
+		selectedCellList = new SelectedWorkersCellList(new MasterCell<WorkerProxy>(new SelectedWorkerAdapter()));
+		cellTree = new CellTree(new WorkersTreeModel(), null);
+		cellTree.setAnimationEnabled(true);
+		initWidget(uiBinder.createAndBindUi(this));
+	}
+
 }

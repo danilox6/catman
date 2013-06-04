@@ -1,5 +1,7 @@
 package it.unisannio.catman.domain.documents.client;
 
-public interface DossierProxy {
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
+
+public interface DossierProxy extends EntityProxy{
 	
 }
