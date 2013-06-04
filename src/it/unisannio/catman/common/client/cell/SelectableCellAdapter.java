@@ -7,7 +7,7 @@ import com.google.gwt.view.client.SelectionModel;
 public abstract class SelectableCellAdapter<T> extends AbstractCellAdapter<T>{
 	private SelectionModel<? super T> selectionModel = null;
 	
-	public static final String SELECTION_CHECK_ID = "selection";
+	public static final String SELECTOR_CLASS = "selector";
 	
 	public void setSelectionModel(SelectionModel<? super T> selectionModel) {
 		this.selectionModel = selectionModel;
@@ -19,7 +19,7 @@ public abstract class SelectableCellAdapter<T> extends AbstractCellAdapter<T>{
 	
 	protected SafeHtml getSimpleSelectionCheckBox(T object){
 		SafeHtmlBuilder sb = new SafeHtmlBuilder();
-		sb.appendHtmlConstant("<input id='"+SELECTION_CHECK_ID+"' type='checkbox'" + (isSelected(object)?"checked='checked'":"") + "/>");
+		sb.appendHtmlConstant("<input data-selector='true' type='checkbox' " + (isSelected(object)?"checked='checked'":"") + "/>");
 		return sb.toSafeHtml();
 	}
 }
