@@ -1,7 +1,6 @@
 package it.unisannio.catman.common.client.cell;
 
 import com.google.gwt.safehtml.shared.SafeHtml;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 /**
  * Implements {@link CellAdapter} providing a base implementation whose methods

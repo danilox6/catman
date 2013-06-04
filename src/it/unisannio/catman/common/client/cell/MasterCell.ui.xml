@@ -4,13 +4,14 @@
 	<ui:with field='south' type='com.google.gwt.safehtml.shared.SafeHtml' />
 	<ui:with field='west' type='com.google.gwt.safehtml.shared.SafeHtml' />
 	<ui:with field='east' type='com.google.gwt.safehtml.shared.SafeHtml' />
+	
+	<ui:with field="type" type="java.lang.String" />
 	<ui:style field="style" type='it.unisannio.catman.common.client.cell.MasterCell.Style'>
 	    .cell {
 			box-sizing: border-box;
 			min-height: 32px;
 			width: 100%;
 			padding: 5px;
-			border-bottom: 1px solid #ccc;
 			position: relative;
 			overflow: hidden;
 			display: table;
@@ -20,6 +21,16 @@
 			-webkit-transition: background 0.3s ease;
 			-moz-transition: background 0.3s ease;
 			color: #333 !important;
+		}
+		
+		.standalone {
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			margin-bottom: 10px;
+		}
+		
+		.embedded {
+			border-bottom: 1px solid #ccc;
 		}
 		
 		.cell:hover {
@@ -71,7 +82,7 @@
 	
 		}
 	</ui:style>
-	<div ui:field="masterCell" class="{style.cell}">
+	<div ui:field="masterCell" class="{style.cell} {type}">
 	    <ui:safehtml from="{west}"/>
 	    <div class="{style.middle}">
 	        <ui:safehtml from="{north}"/>

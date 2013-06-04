@@ -169,6 +169,11 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 		pager.setIncrementSize(size);
 	}
 	
+	public void setCellType(MasterCell.Type type) {
+		cell.setType(type);
+		cellList.redraw();
+	}
+	
 	class CellList<E extends EntityProxy> extends com.google.gwt.user.cellview.client.CellList<E>{
 
 		private int previousHeight = 0;

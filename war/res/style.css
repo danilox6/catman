@@ -114,6 +114,7 @@ nav *,
   left: 0;
   right: 0;
   z-index: 1;
+  overflow-x: auto;
 }
 
 .loaded [role=main] {
@@ -225,6 +226,7 @@ nav a:hover, nav .active a {
   bottom: 0;
   min-width: 640px;
 }
+
 
 /* == Popup Panel == */
 

@@ -20,7 +20,7 @@ public class DetailView extends Composite {
 	interface DetailViewUiBinder extends UiBinder<Widget, DetailView> {}
 
 	@UiField(provided = true) SelectedWorkersCellList selectedCellList;
-/*	@UiField(provided = true)*/ CellTree cellTree;
+	@UiField(provided = true) CellTree cellTree;
 	
 	public DetailView() {
 		selectedCellList = new SelectedWorkersCellList(new MasterCell<WorkerProxy>(new SelectedWorkerAdapter()));

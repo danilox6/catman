@@ -9,14 +9,12 @@ import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
 import it.unisannio.catman.common.client.cell.CellAdapter;
 import it.unisannio.catman.common.client.ui.DataList;
-import it.unisannio.catman.common.client.ui.DetailSection;
 import it.unisannio.catman.common.client.ui.MasterPanel;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Heading;
-import com.github.gwtbootstrap.client.ui.Pagination;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.ResizeEvent;
@@ -47,8 +45,6 @@ public class DetailView extends Composite implements Event.Detail.View {
 	@UiField DataList<CustomerProxy> sellsDataList;
 	@UiField DataList<CustomerProxy> logisticDataList;
 	
-	@UiField Pagination pagination;
-
 	public DetailView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -183,7 +179,7 @@ public class DetailView extends Composite implements Event.Detail.View {
 	}
 	
 	private void adaptHeight(){ // FIXME Ci torno dopo
-		int height = masterPanel.getContentHeight();
+		//int height = masterPanel.getContentHeight();
 		//sellsSection.setHeight(height/2+"px");
 		//logisticSection.setHeight(height/2+"px");
 	}

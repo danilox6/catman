@@ -28,11 +28,11 @@ xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.githu
 				<my:SelectedWorkersCellList ui:field="selectedCellList"></my:SelectedWorkersCellList>
 			</b:Fieldset>
 		</c:content>
-		<!--c:content>
+		<c:content>
 			<b:Fieldset>
 				<b:Legend>Disponibili</b:Legend>
 				<ct:CellTree ui:field="cellTree" />
 			</b:Fieldset>
-		</c:content-->
+		</c:content>
 	</c:MasterPanel>
 </ui:UiBinder>  

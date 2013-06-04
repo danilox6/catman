@@ -3,45 +3,32 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
 	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
 	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
-
-	<c:MasterPanel ui:field="masterPanel">
+	<ui:style>
+		
+	</ui:style>
+	<c:MasterPanel ui:field="masterPanel" scrollable="true">
 		<c:header>
 			<c:ActionBar>
 				<c:left>
 					<b:Heading size="3" ui:field="titleLabel"></b:Heading>
 				</c:left>
 				<c:right>
-					<b:Button ui:field="addButton" icon="PLUS" type="SUCCESS">Completato</b:Button>
+					<b:Button ui:field="addButton" icon="PLUS" type="PRIMARY">Aggiungi</b:Button>
 				</c:right>
 			</c:ActionBar>
 		</c:header>
 		<c:content>
-			<g:ScrollPanel>
-				<g:FlowPanel>
-					<b:WellForm>
-						<b:Fieldset>
-							<b:Legend>Fornitori</b:Legend>
-							<c:DataList ui:field="sellsDataList" />
-							<b:Pagination alignment="centered" ui:field="pagination">
-								<b:NavLink>«</b:NavLink>
-								<b:NavLink>1</b:NavLink>
-								<b:NavLink>2</b:NavLink>
-								<b:NavLink>3</b:NavLink>
-								<b:NavLink>4</b:NavLink>
-								<b:NavLink>5</b:NavLink>
-								<b:NavLink>»</b:NavLink>
-							</b:Pagination>
-						</b:Fieldset>
-					</b:WellForm>
-
-					<b:Fieldset>
-						<b:Legend>Logistica</b:Legend>
-						<c:DataList ui:field="logisticDataList" />
-					</b:Fieldset>
-				</g:FlowPanel>
-			</g:ScrollPanel>
-
+		    <b:Fieldset>
+		        <b:Legend>Vendite</b:Legend>
+		        <c:DataList ui:field="sellsDataList" cellType="STANDALONE" />
+		    </b:Fieldset>
+		 </c:content>
+		 <c:content>   
+		    <b:Fieldset>
+		        <b:Legend>Logistica</b:Legend>
+		        <c:DataList ui:field="logisticDataList" cellType="STANDALONE" />
+		    </b:Fieldset>		        
 		</c:content>
 	</c:MasterPanel>
-
+	
 </ui:UiBinder> 
