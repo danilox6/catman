@@ -10,6 +10,7 @@ import com.google.gwt.cell.client.ValueUpdater;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.BrowserEvents;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.EventTarget;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -106,60 +107,24 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 
 	@UiHandler({"masterCell"})
 	void onValueChanged(ChangeEvent event, Element parent, Object value){
-		ChangeEvent changeEvent = new CustomChangeEvent(value);
-		changeEvent.setRelativeElement(getTargetElement(parent));
+		ChangeEvent changeEvent = new CellChangeEvent(value);
+		//changeEvent.setRelativeElement(getTargetElement(parent));
 		fireEvent(changeEvent);
 	}
 
 	@UiHandler({"masterCell"})
 	void onCellClick(ClickEvent event, Element parent, Object value) {
-		ClickEvent clickEvent = new CustomClickEvent(value);
-		clickEvent.setRelativeElement(getTargetElement(parent));
-		fireEvent(clickEvent);
-	}
-
-	private void getClickedElementsWithId(Element parent, TreeSet<ElementWrapper> treeSet, int depth){
-		for(int i = 0; i<parent.getChildCount(); i++){
-			Element element = (Element) parent.getChild(i);
-			if(element.getId() != null && !element.getId().equals("")
-					&& isClicked(element))
-				treeSet.add(new ElementWrapper(element, depth)); 
-			if(element.hasChildNodes())
-				getClickedElementsWithId(element, treeSet, depth+1);
-		}
-	}
-
-	private Element getTargetElement(Element parent){
-		if(Element.is(nativeEvent.getEventTarget())){
-			Element element = Element.as(nativeEvent.getEventTarget());
-			if(element.getId() != null && !element.getId().equals(""))
-				return element;
+		EventTarget et = nativeEvent.getEventTarget();
+		if(!Element.is(et))
+			throw new RuntimeException("Event target must be an element!");
+		
+		Element element = Element.as(et);
+		if(element.hasAttribute("data-selector")) {
+			return;
 		}
 		
-		TreeSet<ElementWrapper> treeSet = new TreeSet<ElementWrapper>();
-		getClickedElementsWithId(parent, treeSet, 0);
-		if(treeSet.isEmpty())
-			return parent;
-		return treeSet.last().element;
-	}
-
-	private boolean isClicked(Element element){
-		int x =  nativeEvent.getClientX();
-		int y =  nativeEvent.getClientY();
-
-		/*
-		Window.alert("x: "+x+"\n" +
-				"y: "+y+"\n" +
-				"L: "+element.getAbsoluteLeft()+"\n" +
-				"R: "+element.getAbsoluteRight()+"\n" +
-				"T: "+element.getAbsoluteTop()+"\n" +
-				"B: "+element.getAbsoluteBottom());
-		 */
-		return element.getAbsoluteLeft() < x && x < element.getAbsoluteRight() && 
-				element.getAbsoluteTop() < y && y < element.getAbsoluteBottom();
-	}
-
-	
+		fireEvent(new CellClickEvent(value));
+	}	
 
 	@Override
 	public void fireEvent(GwtEvent<?> event) {
@@ -210,10 +175,10 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 	 * ed evita che fallisca l'asserzione sulla consumazione dell'evento da parte dell'Handler
 	 *
 	 */
-	class CustomClickEvent extends ClickEvent{
+	private class CellClickEvent extends ClickEvent{
 		private Object value;
 
-		public CustomClickEvent(Object value) {
+		public CellClickEvent(Object value) {
 			this.value = value;
 		}
 
@@ -245,10 +210,10 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 
 	}
 	
-	class CustomChangeEvent extends ChangeEvent{
+	private class CellChangeEvent extends ChangeEvent{
 		private Object value;
 		
-		public CustomChangeEvent(Object value) {
+		public CellChangeEvent(Object value) {
 			this.value = value;
 		}
 
@@ -258,35 +223,4 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 		}
 		
 	}
-	
-	private class ElementWrapper implements Comparable<ElementWrapper>{
-		Element element;
-		int depth;
-
-		public ElementWrapper(Element element, int depth) {
-			this.element = element;
-			this.depth = depth;
-		}
-
-		@Override
-		public int compareTo(ElementWrapper o) {
-			return depth - o.depth;
-		}
-
-		@Override
-		public int hashCode() {
-			return depth;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (obj instanceof MasterCell.ElementWrapper) {
-				@SuppressWarnings("unchecked")
-				ElementWrapper eWrapper = (ElementWrapper) obj;
-				return depth == eWrapper.depth;
-			}
-			return false;
-		}
-	}
-
 }
