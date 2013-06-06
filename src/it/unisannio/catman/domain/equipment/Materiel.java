@@ -8,10 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Version;
 
 @Entity
-public class Material extends AbstractEntity<Long> {
+public class Materiel extends AbstractEntity<Long> {
 	
-	public static Material findMaterial(Long id) {
-		return find(Material.class, id);
+	public static Materiel findMateriel(Long id) {
+		return find(Materiel.class, id);
 	}
 	
 	@Id
@@ -22,6 +22,8 @@ public class Material extends AbstractEntity<Long> {
 	private int version;
 
 	private String name;
+	
+	private boolean consumable = false;
 	
 	public String getName() {
 		return name;
@@ -37,5 +39,13 @@ public class Material extends AbstractEntity<Long> {
 
 	public int getVersion() {
 		return version;
+	}
+
+	public boolean isConsumable() {
+		return consumable;
+	}
+
+	public void setConsumable(boolean consumable) {
+		this.consumable = consumable;
 	}	
 }

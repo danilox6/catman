@@ -16,7 +16,7 @@ import it.unisannio.catman.domain.documents.Document;
 import it.unisannio.catman.domain.documents.Dossier;
 
 @Entity
-public class Event extends AbstractEntity<Long> implements Dossier<EventStatus>{
+public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, Event>{
 	
 	public static Event findEvent(Long id) {
 		return find(Event.class, id);
@@ -69,7 +69,7 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus>{
 	}
 	
 	@Override
-	public Iterator<Document> iterator() {
+	public Iterator<Document<EventStatus,Event>> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -81,19 +81,19 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus>{
 	}
 
 	@Override
-	public void add(Document d) {
+	public void add(Document<EventStatus,Event> d) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void remove(Document d) {
+	public void remove(Document<EventStatus,Event> d) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public SortedSet<Document> getAll() {
+	public SortedSet<Document<EventStatus,Event>> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}

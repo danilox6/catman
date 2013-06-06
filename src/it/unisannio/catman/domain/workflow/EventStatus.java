@@ -3,7 +3,7 @@ package it.unisannio.catman.domain.workflow;
 import it.unisannio.catman.domain.documents.Document;
 import it.unisannio.catman.domain.documents.Dossier;
 
-public enum EventStatus implements Dossier.Status<EventStatus> {
+public enum EventStatus implements Dossier.Status<EventStatus, Event> {
 	A, B, C;
 	static {
 		A.setNext(B);
@@ -30,13 +30,13 @@ public enum EventStatus implements Dossier.Status<EventStatus> {
 	}
 
 	@Override
-	public Class<? extends Document> getDocumentType() {
+	public Class<? extends Document<EventStatus, Event>> getDocumentType() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Document getDocument() {
+	public Document<EventStatus, Event> getDocument() {
 		// TODO Auto-generated method stub
 		return null;
 	}

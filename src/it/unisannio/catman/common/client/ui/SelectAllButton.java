@@ -38,13 +38,13 @@ public class SelectAllButton extends Button{
 			public void onSelectionChange(SelectionChangeEvent event) {
 				switch (dataProvider.getSelectionState()) {
 					case ALL_SELECTED:
-						setIcon(IconType.CHECK); //TODO Icona tutto selezionato
+						setIcon(IconType.CHECK); 
 						break;
 					case SOME_SELECTED:
-						setIcon(IconType.CHECK_MINUS); //TODO Icona alcuni selezionati (vedi Gmail)
+						setIcon(IconType.CHECK_MINUS); 
 						break;
 					case NONE_SELECTED:
-						setIcon(IconType.CHECK_EMPTY); //TODO Icona nessuno selezionato
+						setIcon(IconType.CHECK_EMPTY); 
 						break;
 					}
 			}
