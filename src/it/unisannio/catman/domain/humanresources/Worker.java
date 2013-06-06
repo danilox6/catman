@@ -34,7 +34,7 @@ public class Worker extends Contactable {
 	
 	private String resume;
 	
-	@OneToMany(mappedBy="contract", orphanRemoval=true, cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="worker", orphanRemoval=true, cascade={CascadeType.ALL})
 	private Set<Contract> contracts;
 	
 	@ManyToMany

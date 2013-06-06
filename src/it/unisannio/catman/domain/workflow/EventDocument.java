@@ -2,6 +2,7 @@ package it.unisannio.catman.domain.workflow;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,7 +17,7 @@ import it.unisannio.catman.domain.documents.Document;
 public abstract class EventDocument extends AbstractEntity<Long> implements Document<EventStatus, Event> {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
 	
 	@Version

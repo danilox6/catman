@@ -15,10 +15,10 @@ public class Plan extends EventDocument {
 		return find(Plan.class, id);
 	}
 	
-	@OneToMany(mappedBy="plan")
+	@OneToMany(mappedBy="plan", targetEntity = Requirement.class)
 	private List<Procurement> procurements;
 	
-	@OneToMany(mappedBy="plan")
+	@OneToMany(mappedBy="plan", targetEntity = Requirement.class)
 	private List<Position> positions;
 	
 	public boolean isComplete(){

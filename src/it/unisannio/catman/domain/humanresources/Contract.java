@@ -39,6 +39,7 @@ public class Contract extends AbstractEntity<Long>{
 	private Date endDate;
 	
 	@NotNull
+	@ManyToOne
 	private Qualification qualification;
 	
 	public Qualification getQualification() {

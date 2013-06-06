@@ -6,6 +6,7 @@ import it.unisannio.catman.domain.equipment.Supply;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
 @Entity
@@ -24,7 +25,8 @@ public class Source extends AbstractEntity<Long> {
 	
 	private int quantity;
 	
-	private Supply<?,?> supply;
+	@ManyToOne
+	private Supply supply;
 
 	@Override
 	public int getVersion() {
