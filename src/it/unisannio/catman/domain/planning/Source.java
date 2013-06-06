@@ -24,7 +24,7 @@ public class Source extends AbstractEntity<Long> {
 	
 	private int quantity;
 	
-	private Supply<?,?> source;
+	private Supply<?,?> supply;
 
 	@Override
 	public int getVersion() {
@@ -44,12 +44,12 @@ public class Source extends AbstractEntity<Long> {
 		this.quantity = quantity;
 	}
 
-	public Supply<?,?> getSource() {
-		return source;
+	public Supply<?,?> getSupply() {
+		return supply;
 	}
 
-	public void setSource(Supply<?,?> source) {
-		this.source = source;
+	public void setSupply(Supply<?,?> source) {
+		this.supply = source;
 	}
 	
 	

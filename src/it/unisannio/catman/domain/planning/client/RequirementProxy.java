@@ -7,5 +7,5 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(Requirement.class)
 public interface RequirementProxy extends EntityProxy {
-	// TODO
+	String getDescription();
 }

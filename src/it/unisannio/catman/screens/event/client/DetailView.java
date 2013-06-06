@@ -1,5 +1,6 @@
 package it.unisannio.catman.screens.event.client;
 
+import java.util.Date;
 import java.util.List;
 
 import it.unisannio.catman.common.client.App;
@@ -153,11 +154,6 @@ public class DetailView extends Composite implements Event.Detail.View {
 			return null;
 		}
 
-		@Override
-		public Long getId() {
-			// TODO Auto-generated method stub
-			return null;
-		}
 
 		@Override
 		public String getTitle() {
@@ -169,6 +165,34 @@ public class DetailView extends Composite implements Event.Detail.View {
 		public void setTitle(String title) {
 			// TODO Auto-generated method stub
 
+		}
+
+
+		@Override
+		public Date getStartDate() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+		@Override
+		public void setStartDate(Date d) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+		@Override
+		public Date getEndDate() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+		@Override
+		public void setEndDate(Date d) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}

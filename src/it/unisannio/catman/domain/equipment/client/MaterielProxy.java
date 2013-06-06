@@ -8,4 +8,6 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 @ProxyFor(Materiel.class)
 public interface MaterielProxy extends EntityProxy {
 	String getName();
+	boolean isConsumable();
+	void setConsumable(boolean c); 
 }

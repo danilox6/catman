@@ -1,7 +1,9 @@
 package it.unisannio.catman.domain.contacts;
 
+import it.unisannio.catman.domain.contacts.client.IsContactable;
 
-public abstract class Contactable extends Addressable {
+
+public abstract class Contactable extends Addressable implements IsContactable {
 	
 	private String name;
 	private String email;

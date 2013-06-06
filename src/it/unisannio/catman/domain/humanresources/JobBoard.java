@@ -17,7 +17,7 @@ public class JobBoard extends AbstractEntity<Long> {
 		return find(JobBoard.class, id);
 	}
 	
-	public List<JobBoard> findAll() {
+	public static List<JobBoard> findAll() {
 		return findAll(JobBoard.class);
 	}
 	

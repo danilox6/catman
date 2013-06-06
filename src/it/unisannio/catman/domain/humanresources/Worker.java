@@ -15,6 +15,14 @@ import it.unisannio.catman.domain.contacts.Contactable;
 
 @Entity
 public class Worker extends Contactable {
+	public static Worker findWorker(Long id) {
+		return find(Worker.class, id);
+	}
+	
+	public static List<Worker> findAll() {
+		return findAll(Worker.class);	
+	}
+	
 	@Id 
 	@GeneratedValue
 	private long id;
@@ -60,13 +68,6 @@ public class Worker extends Contactable {
 		this.contracts.remove(c);
 	}
 
-	public static Worker findWorker(Long id) {
-		return find(Worker.class, id);
-	}
-	
-	public static List<Worker> findAll() {
-		return findAll(Worker.class);	
-	}
 
 	@Override
 	public int getVersion() {
@@ -103,7 +104,6 @@ public class Worker extends Contactable {
 		
 		return false;
 	}
-	
 	
 	public boolean isWorking(){
 		for(Contract c : getContracts()) {

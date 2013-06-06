@@ -8,4 +8,5 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 @ProxyFor(Qualification.class)
 public interface QualificationProxy extends EntityProxy{
 	String getName();
+	void setName(String n);
 }

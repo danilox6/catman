@@ -1,9 +1,10 @@
 package it.unisannio.catman.domain.contacts;
 
 import it.unisannio.catman.common.server.AbstractEntity;
+import it.unisannio.catman.domain.contacts.client.IsAddressable;
 
 
-public abstract class Addressable extends AbstractEntity<Long> {
+public abstract class Addressable extends AbstractEntity<Long> implements IsAddressable {
 	
 	
 	private String address;
