@@ -12,8 +12,8 @@ import javax.persistence.criteria.Root;
 
 @Entity
 public class Stock extends Supply<Stock, Warehouse> {
-	public static Stock findStock(Supply.Key key) {
-		return find(Stock.class, key);
+	public static Stock findStock(SupplyKey supplyKey) {
+		return find(Stock.class, supplyKey);
 	}
 
 	public static List<Stock> listStocksByWarehouse(Warehouse warehouse, int offset, int size){

@@ -2,7 +2,6 @@ package it.unisannio.catman.domain.equipment;
 
 import it.unisannio.catman.common.server.AbstractEntity;
 
-import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,46 +13,12 @@ import javax.persistence.Version;
 
 /* TODO Questa struttura porta ad avere delle colonne duplicate per gli id. Funziona, ma sarebbe da sistemare */
 @Entity
-@IdClass(Supply.Key.class)
+@IdClass(SupplyKey.class)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> extends AbstractEntity<Supply.Key>{
+public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> extends AbstractEntity<SupplyKey>{
 	
-	public static class Key implements Serializable {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 2861529191874673599L;
-		private long supplierId;
-		private long materialId;
-		
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + (int) (materialId ^ (materialId >>> 32));
-			result = prime * result + (int) (supplierId ^ (supplierId >>> 32));
-			return result;
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Key other = (Key) obj;
-			if (materialId != other.materialId)
-				return false;
-			if (supplierId != other.supplierId)
-				return false;
-			return true;
-		}
-	}
-	
-	public static Supply<?,?> findSupply(Supply.Key key) {
-		return find(Supply.class, key);
+	public static Supply<?,?> findSupply(SupplyKey supplyKey) {
+		return find(Supply.class, supplyKey);
 	}
 	
 	@Version
@@ -97,8 +62,8 @@ public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> ext
 		return version;
 	}
 	
-	public Key getId() {
-		Key k = new Key();
+	public SupplyKey getId() {
+		SupplyKey k = new SupplyKey();
 		
 		k.materialId = materialId;
 		k.supplierId = supplierId;

@@ -5,7 +5,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Offer extends Supply<Offer, Seller> {
 	
-	public static Offer findOffer(Supply.Key id) {
+	public static Offer findOffer(SupplyKey id) {
 		return find(Offer.class, id);
 		
 	}
