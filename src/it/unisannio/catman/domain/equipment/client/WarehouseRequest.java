@@ -9,4 +9,5 @@ import it.unisannio.catman.domain.equipment.Warehouse;
 @Service(Warehouse.class)
 public interface WarehouseRequest extends RequestContext {
 	InstanceRequest<WarehouseProxy, Void> persist();
+	InstanceRequest<WarehouseProxy, Void> addSupply(StockProxy proxy);
 }

@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.5.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.5.0/distro-source/core/src/gwt-module.dtd">
-<module rename-to="materialmanager">
+<module rename-to="warehouse">
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="it.unisannio.catman.common.Common" />
 	<source path="client" />
 	<entry-point
-		class="it.unisannio.catman.screens.materialmanager.client.MaterialManager">
+		class="it.unisannio.catman.screens.warehouse.client.Warehouse">
 	</entry-point>
-	
-	<!-- Child screens -->
-	<inherits name="it.unisannio.catman.screens.warehouse.Warehouse"/>
 </module>

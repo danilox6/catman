@@ -68,11 +68,11 @@ public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> ext
 	@OneToOne
 	private Materiel materiel;
 	
-	public Materiel getMaterial() {
+	public Materiel getMateriel() {
 		return materiel;
 	}
 
-	public void setMaterial(Materiel materiel) {
+	public void setMateriel(Materiel materiel) {
 		this.materiel = materiel;
 		materialId = materiel.getId();
 	}

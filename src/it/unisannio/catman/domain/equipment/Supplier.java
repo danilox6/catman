@@ -40,6 +40,7 @@ public abstract class Supplier<T extends Supply<T,S>, S extends Supplier<T,S>> e
 	}
 	
 	public abstract List<T> getSupply();
+	public abstract void addSupply(T supply);
 
 	public String getName() {
 		return name;

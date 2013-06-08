@@ -7,5 +7,9 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(Supply.class)
 public interface SupplyProxy extends EntityProxy {
-
+	 int getQuantity();
+	 void setQuantity(int quantity);
+	 MaterielProxy getMateriel();
+	 void setMateriel(MaterielProxy materiel);
+	 
 }

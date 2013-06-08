@@ -7,6 +7,8 @@ import com.google.gwt.safehtml.shared.SafeHtml;
  *  doesn't return <code>null</code> if child classes doesn't override them.
  */
 public abstract class AbstractCellAdapter<T> implements CellAdapter<T> {
+	
+	public static final String DATA_LIST_ICON_CLASS = "data-list-icon";
 
 	@Override
 	public SafeHtml getWest(T object) {

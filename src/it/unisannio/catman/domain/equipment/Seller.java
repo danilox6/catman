@@ -1,5 +1,6 @@
 package it.unisannio.catman.domain.equipment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ public class Seller extends Supplier<Offer, Seller> {
 	}
 
 	@OneToMany(mappedBy="supplier")
-	private List<Offer> supply;
+	private List<Offer> supply = new ArrayList<Offer>(); //FIXME va inizializzata?
 	
 	
 	public Seller findSeller(long id) {
@@ -26,6 +27,11 @@ public class Seller extends Supplier<Offer, Seller> {
 
 	public List<Offer> getSupply() {
 		return supply;
+	}
+
+	@Override
+	public void addSupply(Offer offer) {
+		supply.add(offer);
 	}
 
 }

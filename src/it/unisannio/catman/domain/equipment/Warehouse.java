@@ -1,6 +1,7 @@
 package it.unisannio.catman.domain.equipment;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 	}
 
 	@OneToMany(mappedBy="supplier")
-	private List<Stock> supply;
+	private List<Stock> supply = new ArrayList<Stock>(); //FIXME va inizializzata?
 
 	@Override
 	public List<Stock> getSupply() {
@@ -25,4 +26,9 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 		// TODO Auto-generated method stub
 		super.persist();
 	}
+	
+	public void addSupply(Stock stock){
+		supply.add(stock);
+	}
+	
 }

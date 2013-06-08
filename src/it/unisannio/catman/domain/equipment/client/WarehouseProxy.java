@@ -2,6 +2,7 @@ package it.unisannio.catman.domain.equipment.client;
 
 import java.util.List;
 
+import it.unisannio.catman.domain.equipment.Stock;
 import it.unisannio.catman.domain.equipment.Warehouse;
 
 import com.google.web.bindery.requestfactory.shared.ProxyFor;

@@ -1,6 +1,7 @@
 package it.unisannio.catman.screens.event.client;
 
 import com.google.gwt.activity.shared.Activity;
+import com.google.gwt.user.client.ui.IsWidget;
 
 import it.unisannio.catman.common.client.Icon;
 import it.unisannio.catman.common.client.Intent;
@@ -11,11 +12,13 @@ import it.unisannio.catman.domain.workflow.client.EventProxy;
 
 public class Event extends Screen implements HasMaster, HasDetail{
 	public static interface Master extends Activity {
-		interface View {}
+		interface View extends IsWidget{
+			
+		}
 	}
 	
 	public static interface Detail extends Activity {
-		interface View {
+		interface View extends IsWidget{
 			void setEventProxy(EventProxy eventProxy);
 		}
 	}

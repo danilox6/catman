@@ -13,6 +13,9 @@ public class Materiel extends AbstractEntity<Long> {
 	public static Materiel findMateriel(Long id) {
 		return find(Materiel.class, id);
 	}
+	public static Integer count() {
+		return count(Materiel.class);
+	}
 	
 	@Id
 	@GeneratedValue
@@ -22,6 +25,7 @@ public class Materiel extends AbstractEntity<Long> {
 	private int version;
 
 	private String name;
+	private String description;
 	
 	private boolean consumable = false;
 	
@@ -47,5 +51,13 @@ public class Materiel extends AbstractEntity<Long> {
 
 	public void setConsumable(boolean consumable) {
 		this.consumable = consumable;
-	}	
+	}
+	
+	public String getDescription(){
+		return description;
+	}
+	
+	public void setDescription(String description){
+		this.description = description;
+	}
 }

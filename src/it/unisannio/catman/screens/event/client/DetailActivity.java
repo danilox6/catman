@@ -16,29 +16,27 @@ public class DetailActivity extends ScreenActivity implements Event.Detail {
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 
-		final DetailView detailView = new DetailView();
-		
+		final Event.Detail.View detailView = new DetailView();
+
 		DataStore dataStore = App.getInstance().getDataStore();
-		EntityProxyId<EventProxy> entityId = null;			  
 		try{
-			entityId = dataStore.getProxyId(getIntent().get(0, ""));
-		}catch(IllegalArgumentException e){
-			ErrorHandler.handle(); 
-		}
-		if(entityId!=null)
+			EntityProxyId<EventProxy> entityId = dataStore.getProxyId(getIntent().get(0, ""));
 			dataStore.events().find(entityId).fire(new Receiver<EventProxy>() {
 
 				@Override
 				public void onSuccess(EventProxy response) {
 					detailView.setEventProxy(response);
 				}
-				
+
 				@Override
 				public void onFailure(ServerFailure error) {
 					ErrorHandler.handle(error.getMessage()); 
 				}
-			});		
-		
+			});
+		}catch(IllegalArgumentException e){
+			ErrorHandler.handle(); 
+		}
+
 		panel.setWidget(detailView);
 	}
 
