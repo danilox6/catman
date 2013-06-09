@@ -16,5 +16,6 @@ public interface SupplyProxy extends EntityProxy {
 	
 	MaterielProxy getMateriel();
 	void setMateriel(MaterielProxy materiel);
+	//void setSupplier(SupplierProxy supplier);
 	 
 }

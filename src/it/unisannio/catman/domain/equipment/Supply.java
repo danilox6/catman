@@ -3,18 +3,18 @@ package it.unisannio.catman.domain.equipment;
 import it.unisannio.catman.common.server.AbstractEntity;
 
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 /* TODO Questa struttura porta ad avere delle colonne duplicate per gli id. Funziona, ma sarebbe da sistemare */
+//TODO Michele, forse basta mettere materiel e supplier solamente in SupplyKey ?
 @Entity
-@IdClass(SupplyKey.class)
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+//@IdClass(SupplyKey.class)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> extends AbstractEntity<SupplyKey>{
 	
 	public static Supply<?,?> findSupply(SupplyKey supplyKey) {
@@ -24,11 +24,8 @@ public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> ext
 	@Version
 	private int version;
 	
-	@Id
-	protected long supplierId;
-	
-	@Id
-	private long materialId;
+	@EmbeddedId
+	private SupplyKey id = new SupplyKey();
 	
 	@OneToOne
 	private Materiel materiel;
@@ -39,7 +36,7 @@ public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> ext
 
 	public void setMateriel(Materiel materiel) {
 		this.materiel = materiel;
-		materialId = materiel.getId();
+		id.materielId = materiel.getId();
 	}
 
 	private int quantity;
@@ -63,12 +60,7 @@ public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> ext
 	}
 	
 	public SupplyKey getId() {
-		SupplyKey k = new SupplyKey();
-		
-		k.materialId = materialId;
-		k.supplierId = supplierId;
-		
-		return k;
+		return id;
 	}
 
 }

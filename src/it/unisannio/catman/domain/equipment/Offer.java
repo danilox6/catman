@@ -28,10 +28,9 @@ public class Offer extends Supply<Offer, Seller> {
 		return supplier;
 	}
 
-	@Override
 	public void setSupplier(Seller supplier) {
 		this.supplier = supplier;
-		supplierId = supplier.getId();
+		getId().supplierId = supplier.getId();
 	}
 	
 	

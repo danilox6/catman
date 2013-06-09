@@ -75,8 +75,8 @@ public class MockEntityPersister {
 							public void onSuccess(Void response) {
 								GWT.log(MALE_FIRST_NAMES.length + " customers persisted!");
 							}
-							
-							
+
+
 						});
 					}
 				}
@@ -87,7 +87,7 @@ public class MockEntityPersister {
 
 				@Override
 				public void onSuccess(Integer response) {
-					if(true){ //if(response == 0){
+					if(response == 0){
 						MaterielRequest materiels = dataStore.materiels();
 						final MaterielProxy materiel = materiels.create(MaterielProxy.class);
 						materiel.setName("Material X");
@@ -96,44 +96,42 @@ public class MockEntityPersister {
 
 							@Override
 							public void onSuccess(Void response) {
-								StockRequest stocks = dataStore.stocks();
-								final StockProxy stock = stocks.create(StockProxy.class);
-								stock.setMateriel(materiel);
-								stock.setQuantity(10);
-								stocks.persist().using(stock).fire(new Receiver<Void>() {
+
+
+								WarehouseRequest warehouses = dataStore.warehouses();
+								final WarehouseProxy warehouse = warehouses.create(WarehouseProxy.class); //IjEi@0@NiB6YzH5ss6oGAvNWB3UvR6z1vY=
+								warehouse.setName("Magazzino 1");
+
+								warehouses.persist().using(warehouse).fire(new Receiver<Void>()  {
 
 									@Override
 									public void onSuccess(Void response) {
-										WarehouseRequest warehouses = dataStore.warehouses();
-										final WarehouseProxy warehouse = warehouses.create(WarehouseProxy.class);
-										warehouse.setName("Magazzino 1");
-										warehouses.persist().using(warehouse).fire(new Receiver<Void>() {
+
+										StockRequest stocks = dataStore.stocks();
+										final StockProxy stock = stocks.create(StockProxy.class);
+										stock.setMateriel(materiel);
+										stock.setSupplier(warehouse);
+										stock.setQuantity(10);
+										
+										stocks.persist().using(stock).fire(new Receiver<Void>() {
 											@Override
 											public void onSuccess(Void response) {
-												dataStore.warehouses().addSupply(stock).using(warehouse).fire(new Receiver<Void>() {
-													@Override
-													public void onSuccess(Void response) {
-														GWT.log("Forse è andato tutto a buon fine");
-													}
-													
-													public void onFailure(ServerFailure error) {
-														GWT.log("Fail 3");
-													};
-												});
+												GWT.log("Material -> Warehouse -> Stock persited");
 											}
-											
+
 											public void onFailure(ServerFailure error) {
 												GWT.log("Fail 2");
 											};
 										});
+										
 									}
-									
+
 									public void onFailure(ServerFailure error) {
 										GWT.log("Fail 1");
 									};
 								});
 							}
-							
+
 							public void onFailure(ServerFailure error) {
 								GWT.log("Fail 0");
 							};
@@ -141,7 +139,7 @@ public class MockEntityPersister {
 					}
 				}
 			});
-			
+
 
 			done = true;
 		}

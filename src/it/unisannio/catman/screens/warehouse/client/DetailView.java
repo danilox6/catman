@@ -26,7 +26,6 @@ public class DetailView extends Composite implements Warehouse.Detail.View{
 	@UiField Heading titleLabel;
 	@UiField DataList<StockProxy> dataList;
 	
-	private WarehouseProxy warehouseProxy;
 	private QueryDataProvider<StockProxy> dataProvider = new QueryDataProvider<StockProxy>();
 	
 	public DetailView() {
@@ -38,8 +37,7 @@ public class DetailView extends Composite implements Warehouse.Detail.View{
 
 	@Override
 	public void setWarehouseProxy(WarehouseProxy warehouseProxy) {
-		this.warehouseProxy = warehouseProxy;
-		titleLabel.setText(this.warehouseProxy.getName());
+		titleLabel.setText(warehouseProxy.getName());
 	}
 	
 	@Override

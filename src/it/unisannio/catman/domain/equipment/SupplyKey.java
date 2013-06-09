@@ -2,13 +2,19 @@ package it.unisannio.catman.domain.equipment;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class SupplyKey implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2861529191874673599L;
+	@Column
 	long supplierId;
-	long materialId;
+	@Column
+	long materielId;
 	
 	public long getSupplierId() {
 		return supplierId;
@@ -19,11 +25,11 @@ public class SupplyKey implements Serializable {
 	}
 	
 	public long getMaterielId() {
-		return materialId;
+		return materielId;
 	}
 	
 	public void setMaterielId(long id) {
-		this.materialId = id;
+		this.materielId = id;
 	}
 	 
 	
@@ -31,7 +37,7 @@ public class SupplyKey implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (materialId ^ (materialId >>> 32));
+		result = prime * result + (int) (materielId ^ (materielId >>> 32));
 		result = prime * result + (int) (supplierId ^ (supplierId >>> 32));
 		return result;
 	}
@@ -45,7 +51,7 @@ public class SupplyKey implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		SupplyKey other = (SupplyKey) obj;
-		if (materialId != other.materialId)
+		if (materielId != other.materielId)
 			return false;
 		if (supplierId != other.supplierId)
 			return false;

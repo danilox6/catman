@@ -30,33 +30,33 @@ public class DetailActivity extends ScreenActivity implements Warehouse.Detail{
 			dataStore.warehouses().find(entityId).fire(new Receiver<WarehouseProxy>() {
 
 				@Override
-				public void onSuccess(final WarehouseProxy response) {
-					detailView.setWarehouseProxy(response);
+				public void onSuccess(final WarehouseProxy warehouse) {
+					detailView.setWarehouseProxy(warehouse);
 					Query<StockProxy> query = new Query<StockProxy>() {
 						
 						@Override
 						public Request<List<StockProxy>> list(int start, int length) {
-							return dataStore.stocks().listStocksByWarehouse(response, start, length);
-						}
-						
-						@Override
-						public Request<Void> deleteSet(List<StockProxy> set) {
-							// TODO Auto-generated method stub
-							return null;
-						}
-						
-						@Override
-						public Request<Void> deleteAll(List<StockProxy> skip) {
-							// TODO Auto-generated method stub
-							return null;
+							return dataStore.stocks().listByWarehouse(warehouse, start, length).with("materiel.name","materiel.description");
 						}
 						
 						@Override
 						public Request<Integer> count() {
-							// TODO Auto-generated method stub
-							return null;
+							return dataStore.stocks().countByWarehouse(warehouse);
 						}
+						
+						@Override
+						public Request<Void> deleteSet(List<StockProxy> set) {
+							throw new UnsupportedOperationException(); //FIXME
+						}
+						
+						@Override
+						public Request<Void> deleteAll(List<StockProxy> skip) {
+							throw new UnsupportedOperationException(); //FIXME
+						}
+						
 					};
+					
+					detailView.setStockProxyQuery(query);
 				}
 
 				@Override

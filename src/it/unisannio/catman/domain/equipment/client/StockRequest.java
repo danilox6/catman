@@ -12,6 +12,9 @@ import com.google.web.bindery.requestfactory.shared.Service;
 
 @Service(Stock.class)
 public interface StockRequest extends RequestContext{
-	Request<List<StockProxy>> listStocksByWarehouse(WarehouseProxy warehouse, int offset, int size);
+	Request<List<StockProxy>> listByWarehouse(WarehouseProxy warehouse, int start, int length);
 	InstanceRequest<StockProxy, Void> persist();
+	Request<List<StockProxy>> listAll(int start, int length);
+	Request<Integer> count();
+	Request<Integer> countByWarehouse(WarehouseProxy warehouse);
 }
