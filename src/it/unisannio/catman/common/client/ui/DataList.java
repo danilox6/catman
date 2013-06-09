@@ -157,6 +157,12 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 		}
 	}
 	
+	public void reload() {
+		if(provider instanceof QueryDataProvider){
+			((QueryDataProvider<T>) provider).reload();
+		}
+	}
+	
 	public void setCellAdapter(CellAdapter<T> adapter) {
 		this.adapter = adapter;
 		if(adapter instanceof SelectableCellAdapter && selectionModel!=null)

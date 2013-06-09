@@ -7,6 +7,7 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.Service;
 
+import it.unisannio.catman.domain.planning.client.PlanProxy;
 import it.unisannio.catman.domain.workflow.Event;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 
@@ -16,4 +17,5 @@ public interface EventRequest extends RequestContext {
 	Request<List<EventProxy>> listAll(int start, int length);
 	Request<Integer> count();
 	InstanceRequest<EventProxy, Void> persist();
+	InstanceRequest<EventProxy, PlanProxy> addPlan();
 } 

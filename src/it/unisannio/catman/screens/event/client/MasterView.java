@@ -2,8 +2,13 @@ package it.unisannio.catman.screens.event.client;
 
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
-import it.unisannio.catman.domain.documents.client.DocumentProxy;
+import it.unisannio.catman.domain.planning.client.PlanProxy;
+import it.unisannio.catman.domain.workflow.client.EventDocumentProxy;
+import it.unisannio.catman.domain.workflow.client.EventProxy;
+import it.unisannio.catman.screens.event.client.Event.Presenter;
+import it.unisannio.catman.screens.event.client.Event.View;
 import it.unisannio.catman.screens.event.client.adapters.DocumentMasterAdapter;
+import it.unisannio.catman.screens.event.client.queries.EventDocumentQuery;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Heading;
@@ -15,35 +20,61 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MasterView extends Composite {
+public class MasterView extends Composite implements View {
 
 	private static MasterViewUiBinder uiBinder = GWT.create(MasterViewUiBinder.class);
 
 	interface MasterViewUiBinder extends UiBinder<Widget, MasterView> {}
 	
 	@UiField Heading titleLabel;
-	@UiField DataList<DocumentProxy> dataList;
+	@UiField DataList<EventDocumentProxy> dataList;
 	@UiField Button addButton;
 	
-	private QueryDataProvider<DocumentProxy> dataProvider;
+	private Presenter presenter;
+	
+	private QueryDataProvider<EventDocumentProxy> dataProvider;
+	
+	private EventProxy eventProxy;
 
 	public MasterView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		dataList.setCellAdapter(new DocumentMasterAdapter());
 		
-		dataProvider = new QueryDataProvider<DocumentProxy>();
+		dataProvider = new QueryDataProvider<EventDocumentProxy>();
 		dataList.setDataProvider(dataProvider);
 	}
 	
+	public void setPresenter(Presenter p) {
+		this.presenter = p;
+	}
+	
 	@UiHandler("addButton")
-	void handleAddButonClick(ClickEvent e){
-		
+	void handleAddButtonClick(ClickEvent e){
+		presenter.addPlan();
 	}
 	
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e) {
+		presenter.goToPlan((PlanProxy) e.getSource());
+	}
+
+	@Override
+	public void refresh() {
+		dataProvider.reload();
 		
+	}
+
+	@Override
+	public void setEventProxy(EventProxy eventProxy) {
+
+		this.eventProxy = eventProxy; 
+		titleLabel.setText(eventProxy.getTitle());
+	}
+
+	@Override
+	public void setDocumentQuery(EventDocumentQuery edq) {
+		dataProvider.setQuery(edq);		
 	}
 
 }

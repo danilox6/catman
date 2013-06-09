@@ -31,7 +31,9 @@ public class OSIVFilter implements Filter {
             chain.doFilter(request, response);
             tx.commit();
         } catch (Exception e) {
-            tx.rollback();
+        	if (tx != null && tx.isActive())
+        		tx.rollback();
+            throw new RuntimeException(e);
         } finally {
             em.close();
         }

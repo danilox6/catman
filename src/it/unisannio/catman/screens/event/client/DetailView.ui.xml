@@ -13,22 +13,22 @@
 					<b:Heading size="3" ui:field="titleLabel"></b:Heading>
 				</c:left>
 				<c:right>
-					<b:Button ui:field="addButton" icon="PLUS" type="PRIMARY">Aggiungi</b:Button>
+				
+					<b:DropdownButton icon="PLUS" type="PRIMARY" text="Add" rightDropdown="true">
+						<b:NavLink disabled="true">Brief</b:NavLink>
+						<b:NavLink disabled="true">Guest list</b:NavLink>
+					    <b:NavLink ui:field="addPlan" >Plan</b:NavLink> 
+					</b:DropdownButton>
 				</c:right>
 			</c:ActionBar>
 		</c:header>
 		<c:content>
 		    <b:Fieldset>
-		        <b:Legend>Vendite</b:Legend>
-		        <c:DataList ui:field="sellsDataList" cellType="STANDALONE" />
+		        <b:Legend>Documents</b:Legend>
+		        <c:DataList ui:field="documentsDataList" cellType="STANDALONE" />
 		    </b:Fieldset>
 		 </c:content>
-		 <c:content>   
-		    <b:Fieldset>
-		        <b:Legend>Logistica</b:Legend>
-		        <c:DataList ui:field="logisticDataList" cellType="STANDALONE" />
-		    </b:Fieldset>		        
-		</c:content>
+		 
 	</c:MasterPanel>
 	
 </ui:UiBinder> 

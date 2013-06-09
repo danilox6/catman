@@ -18,7 +18,7 @@ public abstract class ScreenActivity extends AbstractActivity {
 		return getPath().peek();
 	}
 	
-	protected void goTo(Intent in) {
+	public void goTo(Intent in) {
 		App.goTo(pathTo(in));
 	}
 	
@@ -30,4 +30,7 @@ public abstract class ScreenActivity extends AbstractActivity {
 		return pathTo(new Intent(s));
 	}
 
+	protected static DataStore getDataStore() {
+		return App.getInstance().getDataStore();
+	}
 }

@@ -40,16 +40,9 @@ public abstract class EventDocument extends AbstractEntity<Long> implements Docu
 	@ManyToOne
 	private Event dossier;
 	
-	private String title;
 
 	@Override
-	public String getTitle() {
-		return title;
-	}
-	
-	public void setTitle(String title) {
-		this.title = title;
-	}
+	public abstract String getTitle();
 
 	@Override
 	public Event getDossier() {

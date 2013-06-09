@@ -24,14 +24,25 @@ public class Plan extends EventDocument {
 	private List<Position> positions;
 	
 	public boolean isComplete(){
-		for(Procurement p : getProcurements()) {
-			if(!p.isFilled())
-				return false;
+		List<Procurement> procurements = getProcurements();
+		List<Position> positions = getPositions();
+		
+		// not even started
+		if(procurements == null && positions == null)
+			return false;
+		
+		if(procurements != null) {
+			for(Procurement p : procurements) {
+				if(!p.isFilled())
+					return false;
+			}
 		}
 		
-		for(Position p : getPositions()) {
-			if(!p.isFilled())
-				return false;
+		if(positions != null) {
+			for(Position p : positions) {
+				if(!p.isFilled())
+					return false;
+			}
 		}
 		
 		return true;
@@ -72,11 +83,17 @@ public class Plan extends EventDocument {
 		super.setDossier(event);
 	}
 	
+	
 	@PrePersist
 	private void updateStatus() {
 		Event evt = getDossier();
 		if(evt != null) {
 			evt.setStatus(isComplete() ? EventStatus.PLANNED : EventStatus.PLANNING);
 		}
+	}
+
+	@Override
+	public String getTitle() {
+		return "Plan";
 	}
 }

@@ -1,62 +1,27 @@
 package it.unisannio.catman.screens.event.client;
 
-import java.util.List;
-
-import it.unisannio.catman.common.client.App;
-import it.unisannio.catman.common.client.DataStore;
-import it.unisannio.catman.common.client.ErrorHandler;
-import it.unisannio.catman.common.client.ScreenActivity;
-import it.unisannio.catman.domain.workflow.client.EventDocumentProxy;
+import it.unisannio.catman.common.client.LoadingScreenActivity;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
+import it.unisannio.catman.domain.workflow.client.EventRequest;
+import it.unisannio.catman.screens.event.client.Event.Presenter;
+import it.unisannio.catman.screens.event.client.Event.View;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.web.bindery.requestfactory.shared.EntityProxyId;
-import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.google.web.bindery.requestfactory.shared.ServerFailure;
+public class DetailActivity extends LoadingScreenActivity<EventRequest, EventProxy, Event.View> {
 
-public class DetailActivity extends ScreenActivity implements Event.Detail {
-
-	@Override
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-
-		final Event.Detail.View detailView = new DetailView();
-
-		final DataStore dataStore = App.getInstance().getDataStore();
-		try{
-			EntityProxyId<EventProxy> entityId = dataStore.getProxyId(getIntent().get(0, ""));
-			dataStore.events().find(entityId).fire(new Receiver<EventProxy>() {
-
-				@Override
-				public void onSuccess(EventProxy response) {
-					detailView.setEventProxy(response);
-					
-					dataStore.eventDocuments().listByEvent(response, 0, 100).fire(new Receiver<List<EventDocumentProxy>>() {
-
-						@Override
-						public void onSuccess(List<EventDocumentProxy> response) {
-							GWT.log(response.toString());
-							
-						}
-					
-						@Override
-						public void onFailure(ServerFailure error) {
-							ErrorHandler.handle(error.getMessage()); 
-						}
-					});
-				}
-
-				@Override
-				public void onFailure(ServerFailure error) {
-					ErrorHandler.handle(error.getMessage()); 
-				}
-			});
-		}catch(IllegalArgumentException e){
-			ErrorHandler.handle(); 
-		}
-
-		panel.setWidget(detailView);
+	public DetailActivity() {
+		super(getDataStore().events());
 	}
 
+	@Override
+	protected View onViewSetup() {
+		return new DetailView();
+	}
+
+	@Override
+	protected void onLoad(EventProxy object) {
+		View view = getView();
+		Presenter p = new EventPresenter(object, this);
+		view.setPresenter(p);
+		p.setView(view);
+	}
 }

@@ -3,6 +3,7 @@ package it.unisannio.catman.domain.workflow;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.Version;
 import it.unisannio.catman.common.server.AbstractEntity;
 import it.unisannio.catman.domain.documents.Document;
 import it.unisannio.catman.domain.documents.Dossier;
+import it.unisannio.catman.domain.planning.Plan;
 
 @Entity
 public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, Event>{
@@ -52,7 +54,7 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, 
 	
 	private Date endDate;
 	
-	@OneToMany(mappedBy="dossier")
+	@OneToMany(mappedBy="dossier", cascade = CascadeType.ALL)
 	private List<EventDocument> documents;
 	
 	private EventStatus status;
@@ -127,6 +129,15 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, 
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	
+	public Plan addPlan() {
+		Plan plan = new Plan();
+		
+		plan.setDossier(this);
+		addDocument(plan);
+		
+		return plan;
 	}
 	
 }

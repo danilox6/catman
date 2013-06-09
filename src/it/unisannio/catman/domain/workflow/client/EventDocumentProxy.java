@@ -7,5 +7,6 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(EventDocument.class)
 public interface EventDocumentProxy extends EntityProxy {
-
+	boolean isComplete();
+	String getTitle();
 }
