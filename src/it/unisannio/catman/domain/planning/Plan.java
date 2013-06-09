@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 
+import it.unisannio.catman.domain.workflow.Event;
 import it.unisannio.catman.domain.workflow.EventDocument;
 import it.unisannio.catman.domain.workflow.EventStatus;
 
@@ -35,12 +37,6 @@ public class Plan extends EventDocument {
 		return true;
 	}
 
-	@Override
-	public EventStatus getStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public List<Procurement> getProcurements() {
 		return procurements;
 	}
@@ -63,5 +59,24 @@ public class Plan extends EventDocument {
 	
 	public void removePosition(Position p) {
 		this.positions.remove(p);
+	}
+	
+	@Override
+	public void setDossier(Event event) {
+		if(event == null && getDossier() != null) {
+			getDossier().setStatus(EventStatus.NOT_PLANNED);
+		} else {
+			event.setStatus(EventStatus.PLANNING);
+		}
+		
+		super.setDossier(event);
+	}
+	
+	@PrePersist
+	private void updateStatus() {
+		Event evt = getDossier();
+		if(evt != null) {
+			evt.setStatus(isComplete() ? EventStatus.PLANNED : EventStatus.PLANNING);
+		}
 	}
 }

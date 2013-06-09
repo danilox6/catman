@@ -1,10 +1,15 @@
 package it.unisannio.catman.screens.event.client;
 
+import java.util.List;
+
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.ErrorHandler;
 import it.unisannio.catman.common.client.ScreenActivity;
+import it.unisannio.catman.domain.workflow.client.EventDocumentProxy;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
+
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
@@ -18,7 +23,7 @@ public class DetailActivity extends ScreenActivity implements Event.Detail {
 
 		final Event.Detail.View detailView = new DetailView();
 
-		DataStore dataStore = App.getInstance().getDataStore();
+		final DataStore dataStore = App.getInstance().getDataStore();
 		try{
 			EntityProxyId<EventProxy> entityId = dataStore.getProxyId(getIntent().get(0, ""));
 			dataStore.events().find(entityId).fire(new Receiver<EventProxy>() {
@@ -26,6 +31,20 @@ public class DetailActivity extends ScreenActivity implements Event.Detail {
 				@Override
 				public void onSuccess(EventProxy response) {
 					detailView.setEventProxy(response);
+					
+					dataStore.eventDocuments().listByEvent(response, 0, 100).fire(new Receiver<List<EventDocumentProxy>>() {
+
+						@Override
+						public void onSuccess(List<EventDocumentProxy> response) {
+							GWT.log(response.toString());
+							
+						}
+					
+						@Override
+						public void onFailure(ServerFailure error) {
+							ErrorHandler.handle(error.getMessage()); 
+						}
+					});
 				}
 
 				@Override

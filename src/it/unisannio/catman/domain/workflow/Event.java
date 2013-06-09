@@ -1,15 +1,14 @@
 package it.unisannio.catman.domain.workflow;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.SortedSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import it.unisannio.catman.common.server.AbstractEntity;
@@ -53,6 +52,11 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, 
 	
 	private Date endDate;
 	
+	@OneToMany(mappedBy="dossier")
+	private List<EventDocument> documents;
+	
+	private EventStatus status;
+	
 	public Event() { }
 
 	@Override
@@ -73,34 +77,32 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, 
 		this.customer = customer;
 	}
 	
-	@Override
-	public Iterator<Document<EventStatus,Event>> iterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public EventStatus getStatus() {
-		// TODO Auto-generated method stub
-		return null;
+		return status;
+	}
+	
+	public void setStatus(EventStatus es) {
+		this.status = es;
 	}
 
 	@Override
-	public void add(Document<EventStatus,Event> d) {
-		// TODO Auto-generated method stub
+	public void addDocument(Document<EventStatus,Event> d) {
+		documents.add((EventDocument) d);
+		d.setDossier(this);
 		
 	}
 
 	@Override
-	public void remove(Document<EventStatus,Event> d) {
-		// TODO Auto-generated method stub
-		
+	public void removeDocument(Document<EventStatus,Event> d) {
+		documents.remove((EventDocument) d);
+		d.setDossier(null);
 	}
 
 	@Override
-	public SortedSet<Document<EventStatus,Event>> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<? extends Document<EventStatus, Event>> getDocuments() {
+		return documents;
 	}
 
 	public String getTitle() {

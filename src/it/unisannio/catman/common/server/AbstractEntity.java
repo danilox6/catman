@@ -91,6 +91,30 @@ public abstract class AbstractEntity<K> {
 		return query;
 	}
 	
+	protected static <T> List<T> listByQuery(Class<T> entityClass, int start, int len, String query, Object... args) {
+		EntityManager entityManager = getEntityManager();
+		Query q = entityManager.createQuery(query);
+		for(int i = 0; i < args.length; ++i) {
+			q.setParameter(i + 1, args[i]);
+		}
+		
+		q.setFirstResult(start);
+		if(len != -1)
+			q.setMaxResults(len);
+		
+		return (List<T>) q.getResultList();
+	}
+	
+	protected static <T> int countByQuery(String query, Object... args) {
+		EntityManager entityManager = getEntityManager();
+		Query q = entityManager.createQuery(query);
+		for(int i = 0; i < args.length; ++i) {
+			q.setParameter(i + 1, args[i]);
+		}
+		
+		return ((Long) q.getSingleResult()).intValue();
+	}
+	
 	@SuppressWarnings("unchecked")
 	protected static <T> List<T> findAllBy(Class<T> entityClass, String filter, Object... args) {
 		Query query = buildQuery(entityClass, "SELECT obj", filter, args);

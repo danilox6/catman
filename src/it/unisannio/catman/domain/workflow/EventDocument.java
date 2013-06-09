@@ -1,5 +1,7 @@
 package it.unisannio.catman.domain.workflow;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,18 @@ import it.unisannio.catman.domain.documents.Document;
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class EventDocument extends AbstractEntity<Long> implements Document<EventStatus, Event> {
 	
+	public static EventDocument findEventDocument(Long id) {
+		return find(EventDocument.class, id);
+	}
+	
+	public static List<EventDocument> listByEvent(Event evt, int start, int length) {
+		return listByQuery(EventDocument.class, start, length, "SELECT ed FROM EventDocument ed WHERE ed.dossier = ?1", evt);
+	}
+	
+	public static int countByEvent(Event evt) {
+		return countByQuery("SELECT COUNT(ed) FROM EventDocument ed WHERE ed.dossier = ?1", evt);
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
@@ -24,7 +38,7 @@ public abstract class EventDocument extends AbstractEntity<Long> implements Docu
 	private int version;
 	
 	@ManyToOne
-	private Event event;
+	private Event dossier;
 	
 	private String title;
 
@@ -39,12 +53,12 @@ public abstract class EventDocument extends AbstractEntity<Long> implements Docu
 
 	@Override
 	public Event getDossier() {
-		return event;
+		return dossier;
 	}
 
 	@Override
 	public void setDossier(Event event) {
-		this.event = event;		
+		this.dossier = event;		
 	}
 	
 	public Long getId() {

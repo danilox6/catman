@@ -8,8 +8,6 @@ public interface Document<S extends Enum<S> & Status<S,D>, D extends Dossier<S,D
 	
 	public boolean isComplete();
 	
-	public S getStatus(); 
-	
 	public D getDossier();
 	
 	public void setDossier(D dossier);

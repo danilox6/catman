@@ -125,10 +125,22 @@ withOperation(new OperationKey("F7H040zxbIDPukNCBAdDqhXvvps="),
   .withMethodName("listAll")
   .withRequestContext("it.unisannio.catman.domain.equipment.client.SupplierRequest")
   .build());
+withOperation(new OperationKey("R4jqPzPdqnO6_1BaLsCsHzkufnU="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(Lit/unisannio/catman/domain/workflow/client/EventProxy;)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(Lit/unisannio/catman/domain/workflow/Event;)I")
+  .withMethodName("countByEvent")
+  .withRequestContext("it.unisannio.catman.domain.workflow.client.EventDocumentRequest")
+  .build());
+withOperation(new OperationKey("U6OF_6jSUR2zS3dv0K2wJXTvlI4="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(Lit/unisannio/catman/domain/workflow/client/EventProxy;II)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(Lit/unisannio/catman/domain/workflow/Event;II)Ljava/util/List;")
+  .withMethodName("listByEvent")
+  .withRequestContext("it.unisannio.catman.domain.workflow.client.EventDocumentRequest")
+  .build());
 withRawTypeToken("8KVVbwaaAtl6KgQNlOTsLCp9TIU=", "com.google.web.bindery.requestfactory.shared.ValueProxy");
 withRawTypeToken("Ny1VCTReNGNjRGg_PwkAAbaumjo=", "it.unisannio.catman.domain.equipment.client.MaterielProxy");
-withRawTypeToken("GHORNp9nnWJA5Rl4mNx9pwC6KTU=", "it.unisannio.catman.domain.equipment.client.OfferProxy");
-withRawTypeToken("atCchOaCSGqiyANH7RYDVCgSCco=", "it.unisannio.catman.domain.equipment.client.SellerProxy");
 withRawTypeToken("gypaLf4tVqt8ZcLfDC69xbrzNLY=", "it.unisannio.catman.domain.equipment.client.StockProxy");
 withRawTypeToken("w1Qg$YHpDaNcHrR5HZ$23y518nA=", "com.google.web.bindery.requestfactory.shared.EntityProxy");
 withRawTypeToken("FXHD5YU0TiUl3uBaepdkYaowx9k=", "com.google.web.bindery.requestfactory.shared.BaseProxy");
@@ -141,12 +153,11 @@ withRawTypeToken("_mlcqvUaqtcWmO7eXX3ciIRIAHo=", "it.unisannio.catman.domain.hum
 withRawTypeToken("Ar13JuOitj3mAmj6EncTDJSrrxc=", "it.unisannio.catman.domain.humanresources.client.QualificationProxy");
 withRawTypeToken("XmewBjjv_8qxU1fHui2QzGUodhw=", "it.unisannio.catman.domain.humanresources.client.WorkerProxy");
 withRawTypeToken("PKMl$REw_DoJBDtmhK8T4vjkq4A=", "it.unisannio.catman.domain.workflow.client.CustomerProxy");
+withRawTypeToken("MsVy_vMqgRGSAYDOT8BZMww$hOE=", "it.unisannio.catman.domain.workflow.client.EventDocumentProxy");
 withRawTypeToken("PpLTWIzrraS9Nsz6GfgnalkzeDU=", "it.unisannio.catman.domain.workflow.client.EventProxy");
 withRawTypeToken("w1Qg$YHpDaNcHrR5HZ$23y518nA=", "com.google.web.bindery.requestfactory.shared.EntityProxy");
 withRawTypeToken("FXHD5YU0TiUl3uBaepdkYaowx9k=", "com.google.web.bindery.requestfactory.shared.BaseProxy");
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.Materiel", Arrays.asList("it.unisannio.catman.domain.equipment.client.MaterielProxy"));
-withClientToDomainMappings("it.unisannio.catman.domain.equipment.Offer", Arrays.asList("it.unisannio.catman.domain.equipment.client.OfferProxy"));
-withClientToDomainMappings("it.unisannio.catman.domain.equipment.Seller", Arrays.asList("it.unisannio.catman.domain.equipment.client.SellerProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.Stock", Arrays.asList("it.unisannio.catman.domain.equipment.client.StockProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.Supplier", Arrays.asList("it.unisannio.catman.domain.equipment.client.SupplierProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.Supply", Arrays.asList("it.unisannio.catman.domain.equipment.client.SupplyProxy"));
@@ -158,4 +169,5 @@ withClientToDomainMappings("it.unisannio.catman.domain.humanresources.Qualificat
 withClientToDomainMappings("it.unisannio.catman.domain.humanresources.Worker", Arrays.asList("it.unisannio.catman.domain.humanresources.client.WorkerProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.workflow.Customer", Arrays.asList("it.unisannio.catman.domain.workflow.client.CustomerProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.workflow.Event", Arrays.asList("it.unisannio.catman.domain.workflow.client.EventProxy"));
+withClientToDomainMappings("it.unisannio.catman.domain.workflow.EventDocument", Arrays.asList("it.unisannio.catman.domain.workflow.client.EventDocumentProxy"));
 }}
