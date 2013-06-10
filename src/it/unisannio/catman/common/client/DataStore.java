@@ -1,6 +1,8 @@
 package it.unisannio.catman.common.client;
 
 import it.unisannio.catman.domain.equipment.client.MaterielRequest;
+import it.unisannio.catman.domain.equipment.client.OfferRequest;
+import it.unisannio.catman.domain.equipment.client.SellerRequest;
 import it.unisannio.catman.domain.equipment.client.StockRequest;
 import it.unisannio.catman.domain.equipment.client.SupplierRequest;
 import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
@@ -27,6 +29,8 @@ public interface DataStore extends RequestFactory {
 	
 	WarehouseRequest warehouses();
 	
+	SellerRequest sellers();
+	
 	JobBoardRequest jobBoards();
 	
 	WorkerRequest workers();
@@ -34,6 +38,8 @@ public interface DataStore extends RequestFactory {
 	QualificationRequest qualifications();
 	
 	StockRequest stocks();
+	
+	OfferRequest offers();
 	
 	MaterielRequest materiels();
 	

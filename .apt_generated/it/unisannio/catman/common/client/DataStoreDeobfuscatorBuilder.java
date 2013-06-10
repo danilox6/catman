@@ -6,6 +6,13 @@ import com.google.web.bindery.requestfactory.vm.impl.OperationData;
 import com.google.web.bindery.requestfactory.vm.impl.OperationKey;
 public final class DataStoreDeobfuscatorBuilder extends com.google.web.bindery.requestfactory.vm.impl.Deobfuscator.Builder {
 {
+withOperation(new OperationKey("SFcrds9IYjt85oseT4L2bOIYr2k="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/InstanceRequest;")
+  .withDomainMethodDescriptor("()V")
+  .withMethodName("persist")
+  .withRequestContext("it.unisannio.catman.domain.equipment.client.SellerRequest")
+  .build());
 withOperation(new OperationKey("YUIxJBs$Fdo6UEsIRKx0M50iVcY="),
   new OperationData.Builder()
   .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/Request;")
@@ -76,6 +83,83 @@ withOperation(new OperationKey("L7oKoX2kcXqbbM9JJHUHw7dH5Lw="),
   .withMethodName("listAll")
   .withRequestContext("it.unisannio.catman.domain.workflow.client.EventRequest")
   .build());
+withOperation(new OperationKey("hIKY6fdX6N9HDRnbZlN9RHMYb_4="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("()I")
+  .withMethodName("count")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("Ptho7cXBhZIVXiOu82VdCmjg4Fw="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/InstanceRequest;")
+  .withDomainMethodDescriptor("()V")
+  .withMethodName("persist")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("f_lTRHSaMcFMk4NlhQ8PtdNnumo="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(II)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(II)Ljava/util/List;")
+  .withMethodName("listAll")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("Bq5ESnR_Blf0kDpVsZ1d7hxX66E="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(Lit/unisannio/catman/domain/humanresources/client/JobBoardProxy;II)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(Lit/unisannio/catman/domain/humanresources/JobBoard;II)Ljava/util/List;")
+  .withMethodName("listByJobBoard")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("LGmF0ZVe3OXWYjsn5ZgIMLGnnrU="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(Lit/unisannio/catman/domain/humanresources/client/JobBoardProxy;)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(Lit/unisannio/catman/domain/humanresources/JobBoard;)I")
+  .withMethodName("countByJobBoard")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("ZtjB1I2lyNM0FX6zpSaRVUocCfo="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(II)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(II)Ljava/util/List;")
+  .withMethodName("listWorkersSource")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("ZZ8t4sudWYVbp19Wu2uezLsplRo="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(II)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(II)Ljava/util/List;")
+  .withMethodName("listCandidates")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("nRXsKnjzEGRQv3UAGXIJ0fxniwE="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(Ljava/lang/Long;)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(Ljava/lang/Long;)Lit/unisannio/catman/domain/humanresources/Worker;")
+  .withMethodName("findWorker")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("uL_RRsoU8tnV3l$ebYpKjTtsSFk="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("()I")
+  .withMethodName("countWorkersSource")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("EmbEo8ZrIsAK5WWPqyhFgnrwqYM="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("()Ljava/util/List;")
+  .withMethodName("findAll")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
+withOperation(new OperationKey("c77$P78AhpIeqaXZXOwe$1b2zzI="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("()I")
+  .withMethodName("countCandidates")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.WorkerRequest")
+  .build());
 withOperation(new OperationKey("n5FYgHTly73AoOfd10qC7zWxQ_M="),
   new OperationData.Builder()
   .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/Request;")
@@ -111,11 +195,25 @@ withOperation(new OperationKey("bfMRNjOjZXHise29t_6hoDMx$7g="),
   .withMethodName("listByWarehouse")
   .withRequestContext("it.unisannio.catman.domain.equipment.client.StockRequest")
   .build());
+withOperation(new OperationKey("V6EYg9q7Cu4hawqFeCXdPaZmKaI="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(Lit/unisannio/catman/domain/humanresources/client/WorkerProxy;)Lcom/google/web/bindery/requestfactory/shared/InstanceRequest;")
+  .withDomainMethodDescriptor("(Lit/unisannio/catman/domain/humanresources/Worker;)V")
+  .withMethodName("addWorker")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.JobBoardRequest")
+  .build());
 withOperation(new OperationKey("wchTWW7I1StVTXF7ArRDsZIdm20="),
   new OperationData.Builder()
   .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/Request;")
   .withDomainMethodDescriptor("()Ljava/util/List;")
   .withMethodName("findAll")
+  .withRequestContext("it.unisannio.catman.domain.humanresources.client.JobBoardRequest")
+  .build());
+withOperation(new OperationKey("IJKEh6kQ17wnGSAqHdpDQ5p4SQI="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/InstanceRequest;")
+  .withDomainMethodDescriptor("()V")
+  .withMethodName("persist")
   .withRequestContext("it.unisannio.catman.domain.humanresources.client.JobBoardRequest")
   .build());
 withOperation(new OperationKey("DWBa$o7X6Gr3Jwq6OcxFBzQuxnQ="),
@@ -131,6 +229,27 @@ withOperation(new OperationKey("ErDDGV6U58qTmdUFdQUKADXcxyU="),
   .withDomainMethodDescriptor("()V")
   .withMethodName("persist")
   .withRequestContext("it.unisannio.catman.domain.equipment.client.WarehouseRequest")
+  .build());
+withOperation(new OperationKey("lwj3FX$9LhTKeVdz1HYm003acDg="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(Lit/unisannio/catman/domain/equipment/client/SellerProxy;II)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(Lit/unisannio/catman/domain/equipment/Seller;II)Ljava/util/List;")
+  .withMethodName("listBySeller")
+  .withRequestContext("it.unisannio.catman.domain.equipment.client.OfferRequest")
+  .build());
+withOperation(new OperationKey("Vpz9vIi8hSuL4H$y1jFGjFwCTe8="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/InstanceRequest;")
+  .withDomainMethodDescriptor("()V")
+  .withMethodName("persist")
+  .withRequestContext("it.unisannio.catman.domain.equipment.client.OfferRequest")
+  .build());
+withOperation(new OperationKey("85Bp8XZKA1CBdKsC0B4PPkIgefY="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(Lit/unisannio/catman/domain/equipment/client/SellerProxy;)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(Lit/unisannio/catman/domain/equipment/Seller;)I")
+  .withMethodName("countBySeller")
+  .withRequestContext("it.unisannio.catman.domain.equipment.client.OfferRequest")
   .build());
 withOperation(new OperationKey("RkBsjwsyYHFE1QjUXFtXJzckYIk="),
   new OperationData.Builder()
@@ -224,10 +343,17 @@ withOperation(new OperationKey("U6OF_6jSUR2zS3dv0K2wJXTvlI4="),
   .withRequestContext("it.unisannio.catman.domain.workflow.client.EventDocumentRequest")
   .build());
 withRawTypeToken("Ny1VCTReNGNjRGg_PwkAAbaumjo=", "it.unisannio.catman.domain.equipment.client.MaterielProxy");
+withRawTypeToken("GHORNp9nnWJA5Rl4mNx9pwC6KTU=", "it.unisannio.catman.domain.equipment.client.OfferProxy");
+withRawTypeToken("atCchOaCSGqiyANH7RYDVCgSCco=", "it.unisannio.catman.domain.equipment.client.SellerProxy");
+withRawTypeToken("w1Qg$YHpDaNcHrR5HZ$23y518nA=", "com.google.web.bindery.requestfactory.shared.EntityProxy");
+withRawTypeToken("8KVVbwaaAtl6KgQNlOTsLCp9TIU=", "com.google.web.bindery.requestfactory.shared.ValueProxy");
+withRawTypeToken("FXHD5YU0TiUl3uBaepdkYaowx9k=", "com.google.web.bindery.requestfactory.shared.BaseProxy");
 withRawTypeToken("gypaLf4tVqt8ZcLfDC69xbrzNLY=", "it.unisannio.catman.domain.equipment.client.StockProxy");
 withRawTypeToken("cg9eEJ2hO3lfhbzsnrqa7m9MWp4=", "it.unisannio.catman.domain.equipment.client.SupplierProxy");
+withRawTypeToken("zD24fJHg_2jposS5c2KuWHk875g=", "it.unisannio.catman.domain.equipment.client.SupplyKeyProxy");
 withRawTypeToken("XkuKEyFugkzIvYoeceVndUdhvkM=", "it.unisannio.catman.domain.equipment.client.SupplyProxy");
 withRawTypeToken("NiB6YzH5ss6oGAvNWB3UvR6z1vY=", "it.unisannio.catman.domain.equipment.client.WarehouseProxy");
+withRawTypeToken("cg9eEJ2hO3lfhbzsnrqa7m9MWp4=", "it.unisannio.catman.domain.equipment.client.SupplierProxy");
 withRawTypeToken("i4h66tGt2CMja3hmf2n9cPWPD34=", "it.unisannio.catman.domain.humanresources.client.ContractProxy");
 withRawTypeToken("_mlcqvUaqtcWmO7eXX3ciIRIAHo=", "it.unisannio.catman.domain.humanresources.client.JobBoardProxy");
 withRawTypeToken("Ar13JuOitj3mAmj6EncTDJSrrxc=", "it.unisannio.catman.domain.humanresources.client.QualificationProxy");
@@ -235,23 +361,21 @@ withRawTypeToken("XmewBjjv_8qxU1fHui2QzGUodhw=", "it.unisannio.catman.domain.hum
 withRawTypeToken("zUt$zPFUenjXQY85EJjjKQi1tD8=", "it.unisannio.catman.domain.planning.client.PlanProxy");
 withRawTypeToken("1nVasLtivuNfyWJW7c7Z_v7iqiM=", "it.unisannio.catman.domain.planning.client.PositionProxy");
 withRawTypeToken("dC0OjKx3k6oV$SpgVON1w9em3xA=", "it.unisannio.catman.domain.planning.client.ProcurementProxy");
+withRawTypeToken("w1Qg$YHpDaNcHrR5HZ$23y518nA=", "com.google.web.bindery.requestfactory.shared.EntityProxy");
+withRawTypeToken("FXHD5YU0TiUl3uBaepdkYaowx9k=", "com.google.web.bindery.requestfactory.shared.BaseProxy");
+withRawTypeToken("iYUCrvF0jpECR_EcCjx_GHxeY40=", "it.unisannio.catman.domain.planning.client.RequirementProxy");
 withRawTypeToken("XR_TKipv2aSvutetFSemp6mkdRI=", "it.unisannio.catman.domain.planning.client.SourceProxy");
 withRawTypeToken("PKMl$REw_DoJBDtmhK8T4vjkq4A=", "it.unisannio.catman.domain.workflow.client.CustomerProxy");
 withRawTypeToken("MsVy_vMqgRGSAYDOT8BZMww$hOE=", "it.unisannio.catman.domain.workflow.client.EventDocumentProxy");
 withRawTypeToken("PpLTWIzrraS9Nsz6GfgnalkzeDU=", "it.unisannio.catman.domain.workflow.client.EventProxy");
-withRawTypeToken("w1Qg$YHpDaNcHrR5HZ$23y518nA=", "com.google.web.bindery.requestfactory.shared.EntityProxy");
-withRawTypeToken("zD24fJHg_2jposS5c2KuWHk875g=", "it.unisannio.catman.domain.equipment.client.SupplyKeyProxy");
-withRawTypeToken("8KVVbwaaAtl6KgQNlOTsLCp9TIU=", "com.google.web.bindery.requestfactory.shared.ValueProxy");
-withRawTypeToken("FXHD5YU0TiUl3uBaepdkYaowx9k=", "com.google.web.bindery.requestfactory.shared.BaseProxy");
-withRawTypeToken("iYUCrvF0jpECR_EcCjx_GHxeY40=", "it.unisannio.catman.domain.planning.client.RequirementProxy");
-withRawTypeToken("MsVy_vMqgRGSAYDOT8BZMww$hOE=", "it.unisannio.catman.domain.workflow.client.EventDocumentProxy");
-withRawTypeToken("PpLTWIzrraS9Nsz6GfgnalkzeDU=", "it.unisannio.catman.domain.workflow.client.EventProxy");
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.Materiel", Arrays.asList("it.unisannio.catman.domain.equipment.client.MaterielProxy"));
+withClientToDomainMappings("it.unisannio.catman.domain.equipment.Offer", Arrays.asList("it.unisannio.catman.domain.equipment.client.OfferProxy"));
+withClientToDomainMappings("it.unisannio.catman.domain.equipment.Seller", Arrays.asList("it.unisannio.catman.domain.equipment.client.SellerProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.Stock", Arrays.asList("it.unisannio.catman.domain.equipment.client.StockProxy"));
-withClientToDomainMappings("it.unisannio.catman.domain.equipment.Warehouse", Arrays.asList("it.unisannio.catman.domain.equipment.client.WarehouseProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.Supplier", Arrays.asList("it.unisannio.catman.domain.equipment.client.SupplierProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.Supply", Arrays.asList("it.unisannio.catman.domain.equipment.client.SupplyProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.equipment.SupplyKey", Arrays.asList("it.unisannio.catman.domain.equipment.client.SupplyKeyProxy"));
+withClientToDomainMappings("it.unisannio.catman.domain.equipment.Warehouse", Arrays.asList("it.unisannio.catman.domain.equipment.client.WarehouseProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.humanresources.Contract", Arrays.asList("it.unisannio.catman.domain.humanresources.client.ContractProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.humanresources.JobBoard", Arrays.asList("it.unisannio.catman.domain.humanresources.client.JobBoardProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.humanresources.Qualification", Arrays.asList("it.unisannio.catman.domain.humanresources.client.QualificationProxy"));

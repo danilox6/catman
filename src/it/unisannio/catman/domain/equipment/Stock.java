@@ -18,7 +18,7 @@ public class Stock extends Supply<Stock, Warehouse> {
 	
 	public static Integer count(){
 		return count(Stock.class);
-	}
+	} 
 
 	public static List<Stock> listByWarehouse(Warehouse warehouse, int start, int length){
 		return listByQuery(Stock.class, start, length, "SELECT st FROM Stock st WHERE st.supplier = ?1", warehouse);
@@ -37,6 +37,7 @@ public class Stock extends Supply<Stock, Warehouse> {
 	
 	public void setSupplier(Warehouse supplier) {
 		this.supplier = supplier;
+		
 		this.supplier.addSupply(this);
 		getId().supplierId = supplier.getId();
 	}

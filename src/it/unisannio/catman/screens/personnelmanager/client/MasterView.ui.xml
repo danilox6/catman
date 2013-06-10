@@ -5,7 +5,7 @@
 	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
 	<c:MasterPanel>
 	    <c:header>
-	        <b:Heading size="3">Personnel Manager </b:Heading>
+	        <b:Heading size="3">Personnel Manager</b:Heading>
 	    </c:header>
 	    <c:content>
 	        <c:DataList ui:field="dataList"/>

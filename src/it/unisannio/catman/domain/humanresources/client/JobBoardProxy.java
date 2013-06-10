@@ -14,4 +14,6 @@ public interface JobBoardProxy extends EntityProxy {
 	
 	List<WorkerProxy> getWorkers();
 	
+	int getWorkersCount();
+	
 }
