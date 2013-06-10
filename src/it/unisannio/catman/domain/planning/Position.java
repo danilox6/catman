@@ -18,6 +18,15 @@ public class Position extends Requirement {
 		return find(Position.class, id);
 	}
 	
+
+	public static List<Position> listByPlan(Plan p, int start, int len) {
+		return listByQuery(Position.class, start, len, "SELECT p FROM Position p WHERE p.plan = ?1", p);
+	}
+	
+	public static int countByPlan(Plan p) {
+		return countByQuery("SELECT COUNT(p) FROM Position p WHERE p.plan = ?1", p);
+	}
+	
 	@NotNull
 	@ManyToOne
 	Qualification qualification;
@@ -45,6 +54,14 @@ public class Position extends Requirement {
 	
 	public void removeFiller(Contract c) {
 		fillers.remove(c);
+	}
+	
+	public void setQualification(Qualification q) {
+		this.qualification = q;
+	}
+	
+	public Qualification getQualification() {
+		return this.qualification;
 	}
 	
 	@AssertTrue(message = "Contracts must be either specific to this position or open ended")

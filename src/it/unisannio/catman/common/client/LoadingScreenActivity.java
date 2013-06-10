@@ -6,6 +6,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
@@ -13,9 +14,11 @@ public abstract class LoadingScreenActivity<R extends RequestContext, E extends 
 	
 	private R context;
 	private V view;
+	private String[] with;
 
-	public LoadingScreenActivity(R context) {
+	public LoadingScreenActivity(R context, String... with) {
 		this.context = context;
+		this.with = with;
 	}
 	
 	@Override
@@ -26,7 +29,10 @@ public abstract class LoadingScreenActivity<R extends RequestContext, E extends 
 		try{
 			DataStore ds = getDataStore();
 			EntityProxyId<E> entityId = ds.getProxyId(getIntent().get(0, ""));
-			context.find(entityId).fire(new Receiver<E>() {
+			Request<E> r = context.find(entityId);
+			if(with.length > 0)
+				r.with(with);
+			r.fire(new Receiver<E>() {
 
 				@Override
 				public void onSuccess(E response) {

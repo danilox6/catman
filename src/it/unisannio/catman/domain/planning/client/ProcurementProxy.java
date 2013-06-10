@@ -4,9 +4,14 @@ import java.util.Set;
 
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
+import it.unisannio.catman.domain.equipment.client.MaterielProxy;
 import it.unisannio.catman.domain.planning.Procurement;
 
 @ProxyFor(Procurement.class)
 public interface ProcurementProxy extends RequirementProxy {
 	Set<SourceProxy> getSources();
+	
+	void setMateriel(MaterielProxy m);
+	MaterielProxy getMateriel();
+
 }

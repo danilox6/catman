@@ -3,19 +3,31 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
 	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
 
-	<c:MasterPanel ui:field="masterPanel">
+	<c:MasterPanel ui:field="masterPanel" scrollable="true">
 		<c:header>
 			<c:ActionBar>
 				<c:left>
 					<b:Heading size="3">Plan</b:Heading>
 				</c:left>
 				<c:right>
-					<b:Button ui:field="addButton" icon="PLUS" type="PRIMARY">Aggiungi</b:Button>
+					<b:DropdownButton icon="PLUS" type="PRIMARY" text="Add" rightDropdown="true">
+					    <b:NavLink ui:field="addProcurement">Materiel</b:NavLink>
+					    <b:NavLink ui:field="addPosition">Personnel</b:NavLink> 
+					</b:DropdownButton>
 				</c:right>
 			</c:ActionBar>
 		</c:header>
 		<c:content>
-
-		</c:content>
+		    <b:Fieldset>
+		        <b:Legend>Personnel</b:Legend>
+		        <c:DataList ui:field="procurementsList" cellType="STANDALONE" />
+		    </b:Fieldset>
+		 </c:content>
+		 <c:content>
+		    <b:Fieldset>
+		        <b:Legend>Materiels</b:Legend>
+		        <c:DataList ui:field="positionsList" cellType="STANDALONE" />
+		    </b:Fieldset>
+		 </c:content>
 	</c:MasterPanel>
 </ui:UiBinder> 

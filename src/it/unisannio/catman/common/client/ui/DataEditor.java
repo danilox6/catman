@@ -98,9 +98,7 @@ public abstract class DataEditor<E extends EntityProxy, R extends RequestContext
 					public void onConstraintViolation(
 							Set<ConstraintViolation<?>> violations) {
 						for(ConstraintViolation<?> v : violations) {
-							Alert a = new Alert(v.getMessage(), AlertType.ERROR, false);
-							a.setAnimation(true);
-							modal.insert(a, 0);
+							alert(v.getMessage(), AlertType.ERROR);
 						}
 					}
 				});
@@ -108,6 +106,14 @@ public abstract class DataEditor<E extends EntityProxy, R extends RequestContext
 			}
 			
 		});
+	}
+	
+	protected Alert alert(String message, AlertType alert) {
+		Alert a = new Alert(message, alert, false);
+		a.setAnimation(true);
+		modal.insert(a, 0);
+		
+		return a;
 	}
 	
 	public void open() {
