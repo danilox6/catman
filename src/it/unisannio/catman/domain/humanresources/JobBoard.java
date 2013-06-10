@@ -1,5 +1,6 @@
 package it.unisannio.catman.domain.humanresources;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unisannio.catman.common.server.AbstractEntity;
@@ -31,7 +32,7 @@ public class JobBoard extends AbstractEntity<Long> {
 	private String name;
 	
 	@ManyToMany
-	private List<Worker> workers;
+	private List<Worker> workers = new ArrayList<Worker>();
 
 	@Override
 	public int getVersion() {
@@ -56,6 +57,10 @@ public class JobBoard extends AbstractEntity<Long> {
 	
 	public void removeWorker(Worker w) {
 		this.workers.remove(w);
+	}
+	
+	public int getWorkersCount(){
+		return this.workers.size();
 	}
 
 	@Override

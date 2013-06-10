@@ -23,6 +23,41 @@ public class Worker extends Contactable {
 		return findAll(Worker.class);	
 	}
 	
+	public static List<Worker> listWorkersSource(int start, int length){
+		return listByQuery(Worker.class, start, length, "SELECT w FROM  JobBoard jb " +
+														"LEFT OUTER JOIN jb.workers w " +
+														"WHERE w.candidate = ?1 " +
+														"AND jb IS NULL",false);
+	}
+	
+	public static List<Worker> listCandidates(int start, int length){
+		return listByQuery(Worker.class, start, length, "SELECT w FROM Worker w " +
+														"WHERE w.candidate = ?1",true);
+	}
+	
+	public static List<Worker> listByJobBoard(JobBoard jobBoard, int start, int length){
+		return listByQuery(Worker.class, start, length, "SELECT w FROM Worker w " +
+														"INNER JOIN w.jobBoards jb " +
+														"WHERE jb = ?1", jobBoard);
+	}
+	
+	public static int countWorkersSource(){
+		return countByQuery("SELECT COUNT(w) FROM  JobBoard jb " +
+				"LEFT OUTER JOIN jb.workers w " +
+				"WHERE w.candidate = ?1 " +
+				"AND jb IS NULL",false);
+	}
+	
+	public static int countCandidates(){
+		return countByQuery("SELECT COUNT(w) FROM Worker w WHERE w.candidate = ?1",true);
+	}
+	
+	public  static int countByJobBoard(JobBoard jobBoard){
+		return countByQuery("SELECT COUNT(w) FROM Worker w " +
+							"INNER JOIN w.jobboards jb " +
+							"WHERE jb = ?1", jobBoard);
+	}
+	
 	@Id 
 	@GeneratedValue
 	private long id;
