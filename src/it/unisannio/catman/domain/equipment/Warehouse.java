@@ -14,7 +14,7 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 	}
 
 	@OneToMany(mappedBy="supplier")
-	private List<Stock> supply = new ArrayList<Stock>(); //FIXME va inizializzata?
+	private List<Stock> supply = new ArrayList<Stock>(); 
 
 	@Override
 	public List<Stock> getSupply() {
@@ -23,7 +23,6 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 
 	@Override
 	public void persist() {
-		// TODO Auto-generated method stub
 		super.persist();
 	}
 	

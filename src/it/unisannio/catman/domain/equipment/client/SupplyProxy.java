@@ -16,6 +16,7 @@ public interface SupplyProxy extends EntityProxy {
 	
 	MaterielProxy getMateriel();
 	void setMateriel(MaterielProxy materiel);
-	//void setSupplier(SupplierProxy supplier);
+	//void setSupplier(SupplierProxy supplier); FIXME togliere setter e getter Supplier da Stock e Offer e metterli qui
+	
 	 
 }
