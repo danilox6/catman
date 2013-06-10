@@ -5,7 +5,7 @@
 	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
 	<c:MasterPanel>
 	    <c:header>
-	        <b:Heading size="3">Sources</b:Heading>
+	        <b:Heading size="3">Suppliers</b:Heading>
 	    </c:header>
 	    <c:content>
 	        <c:DataList ui:field="dataList"/>

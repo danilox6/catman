@@ -30,8 +30,8 @@ public class Seller extends Supplier<Offer, Seller> {
 
 	@Override
 	public void addSupply(Offer offer) {
-		//offer.setSupplier(this);
 		supply.add(offer);
 	}
+
 
 }

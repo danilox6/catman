@@ -29,7 +29,7 @@ public class StockDetailAdapter extends AbstractCellAdapter<StockProxy>{
 	@Override
 	public SafeHtml getWest(StockProxy object) {
 		// FIXME Icona
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+Icon.FORKLIFT+"</span>").toSafeHtml();
+		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+Icon.PACKAGE+"</span>").toSafeHtml();
 	}
 	
 

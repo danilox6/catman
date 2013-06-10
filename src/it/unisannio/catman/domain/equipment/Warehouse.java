@@ -28,7 +28,6 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 	}
 	
 	public void addSupply(Stock stock){
-		//stock.setSupplier(this);
 		supply.add(stock);
 	}
 	

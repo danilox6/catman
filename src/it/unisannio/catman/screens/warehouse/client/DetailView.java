@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DetailView extends Composite implements Warehouse.Detail.View{
-	interface Presenter{}
 
 	private static DetailViewUiBinder uiBinder = GWT.create(DetailViewUiBinder.class);
 

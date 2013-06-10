@@ -14,4 +14,6 @@ public interface SupplierProxy<T extends SupplyProxy> extends EntityProxy {
 
 	String getName();
 	List<T> getSupply();
+	
+	int getSupplyCount();
 }
