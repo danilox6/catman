@@ -23,9 +23,17 @@ public class Worker extends Contactable {
 		return findAll(Worker.class);	
 	}
 	
+	public static List<Worker> listAll(int start, int length){
+		return list(Worker.class, start,length);
+	}
+	
+	public static int count(){
+		return count(Worker.class);
+	}
+	
 	public static List<Worker> listWorkersSource(int start, int length){
 		return listByQuery(Worker.class, start, length, "SELECT w FROM  JobBoard jb " +
-														"LEFT OUTER JOIN jb.workers w " +
+														"RIGHT OUTER JOIN jb.workers w " +
 														"WHERE w.candidate = ?1 " +
 														"AND jb IS NULL",false);
 	}
@@ -43,7 +51,7 @@ public class Worker extends Contactable {
 	
 	public static int countWorkersSource(){
 		return countByQuery("SELECT COUNT(w) FROM  JobBoard jb " +
-				"LEFT OUTER JOIN jb.workers w " +
+				"RIGHT OUTER JOIN jb.workers w " +
 				"WHERE w.candidate = ?1 " +
 				"AND jb IS NULL",false);
 	}

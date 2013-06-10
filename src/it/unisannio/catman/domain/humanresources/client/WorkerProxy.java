@@ -14,4 +14,7 @@ public interface WorkerProxy extends EntityProxy, IsContactable {
 	
 	String getResume();
 	void setResume(String r);
+	
+	boolean isCandidate();
+	void setCandidate(boolean candidate);
 }

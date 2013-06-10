@@ -9,7 +9,7 @@ import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkersSource;
-import it.unisannio.catman.domain.humanresources.client.WorkersSource.ListType;
+import it.unisannio.catman.domain.humanresources.client.WorkersSource.Source;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -26,8 +26,8 @@ public class MasterActivity extends ScreenActivity implements PersonnelManager.M
 		
 		final List<WorkersSource> workersLists = new ArrayList<WorkersSource>();
 		
-		final WorkersSource workersWList = new WorkersSource(ListType.WORKERS);
-		final WorkersSource candidatesWList = new WorkersSource(ListType.CANDIDATES);
+		final WorkersSource workersWList = new WorkersSource(Source.WORKERS);
+		final WorkersSource candidatesWList = new WorkersSource(Source.CANDIDATES);
 		
 		workersLists.add(workersWList);
 		workersLists.add(candidatesWList);
@@ -66,7 +66,12 @@ public class MasterActivity extends ScreenActivity implements PersonnelManager.M
 
 	@Override
 	public void goToWorkersScreen(WorkersSource w) {
-		goTo(new Intent("workers").withParams(w.toString()));
+		String [] params;
+		if(w.getSourceType() == Source.JOB_BOARD)
+			params = new String[]{w.getSourceType().toString(),w.getJobBoardHystoryToken()};
+		else
+			params = new String[]{w.getSourceType().toString()};
+		goTo(new Intent("workers").withParams(params));
 	}
 
 }

@@ -16,6 +16,10 @@ import it.unisannio.catman.domain.equipment.client.StockProxy;
 import it.unisannio.catman.domain.equipment.client.StockRequest;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
+import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
+import it.unisannio.catman.domain.humanresources.client.JobBoardRequest;
+import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
+import it.unisannio.catman.domain.humanresources.client.WorkerRequest;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
 import it.unisannio.catman.domain.workflow.client.CustomerRequest;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
@@ -28,7 +32,6 @@ public class MockEntityPersister {
 		if(!done){
 
 			final DataStore dataStore = App.getInstance().getDataStore();
-
 
 			EventRequest events = dataStore.events();
 			events.count().fire(new Receiver<Integer>() {
@@ -47,7 +50,6 @@ public class MockEntityPersister {
 						EventProxy event3 = events.create(EventProxy.class);
 						event3.setTitle("Giovanni Di Muccio Party");
 						events.persist().using(event3);
-
 
 						events.fire(new Receiver<Void>() {
 
@@ -80,12 +82,10 @@ public class MockEntityPersister {
 								GWT.log(MALE_FIRST_NAMES.length + " customers persisted!");
 							}
 
-
 						});
 					}
 				}
 			});
-
 
 			dataStore.materiels().count().fire(new Receiver<Integer>() {
 
@@ -140,17 +140,9 @@ public class MockEntityPersister {
 											public void onSuccess(Void response) {
 												GWT.log("Material -> Warehouse -> Stock persited");
 											}
-
-											public void onFailure(ServerFailure error) {
-												GWT.log("Fail 2 - Stock");
-											};
 										});
 
 									}
-
-									public void onFailure(ServerFailure error) {
-										GWT.log("Fail 1 - Warehouse");
-									};
 								});
 
 								SellerRequest sellers = dataStore.sellers();
@@ -168,44 +160,124 @@ public class MockEntityPersister {
 										offer1.setQuantity(30);
 										offer1.setPrice(9999.99F);
 										offers.persist().using(offer1);
-										
+
 										OfferProxy offer2 = offers.create(OfferProxy.class);
 										offer2.setMateriel(materiel2);
 										offer2.setSupplier(seller);
 										offer2.setPrice(12);
 										offer2.setQuantity(300);
 										offers.persist().using(offer2);
-										
+
 										offers.fire(new Receiver<Void>() {
 
 											@Override
 											public void onSuccess(Void response) {
 												GWT.log("Material -> Seller -> Offer persited");
 											}
-
-											public void onFailure(ServerFailure error) {
-												GWT.log("Fail 2 - Offer");
-											};
 										});
-										
+
 									}
-									
-									public void onFailure(ServerFailure error) {
-										super.onFailure(error);
-										GWT.log("Fail 1 - Seller");
-									};
 								});
 
 							}
-
-							public void onFailure(ServerFailure error) {
-								GWT.log("Fail 0");
-							};
 						});
 					}
 				}
 			});
 
+
+			dataStore.workers().count().fire(new Receiver<Integer>() {
+
+				@Override
+				public void onSuccess(Integer response) {
+					if(response == 0){
+
+						JobBoardRequest jobBoards = dataStore.jobBoards();
+						final JobBoardProxy jobBoard1 = jobBoards.create(JobBoardProxy.class);
+						jobBoard1.setName("Job Board 1");
+						jobBoards.persist().using(jobBoard1);
+						final JobBoardProxy jobBoard2 = jobBoards.create(JobBoardProxy.class);
+						jobBoard2.setName("Job Board 2");
+						jobBoards.persist().using(jobBoard2);
+						jobBoards.fire(new Receiver<Void>() {
+
+							@Override
+							public void onSuccess(Void response) {
+								WorkerRequest workers = dataStore.workers();
+								final WorkerProxy worker1 = workers.create(WorkerProxy.class);
+								worker1.setName("Robertino");
+								worker1.setCandidate(false);
+								workers.persist().using(worker1);
+
+								final WorkerProxy worker2 = workers.create(WorkerProxy.class);
+								worker2.setName("Filippino");
+								worker2.setCandidate(false);
+								workers.persist().using(worker2);
+
+								final WorkerProxy worker3 = workers.create(WorkerProxy.class);
+								worker3.setName("Carlino");
+								worker3.setCandidate(false);
+								workers.persist().using(worker3);
+
+								final WorkerProxy worker4 = workers.create(WorkerProxy.class);
+								worker4.setName("Marino");
+								worker4.setCandidate(false);
+								workers.persist().using(worker4);
+
+								final WorkerProxy worker5 = workers.create(WorkerProxy.class);
+								worker5.setName("Gino");
+								worker5.setCandidate(true);
+								workers.persist().using(worker5);
+
+								final WorkerProxy worker6 = workers.create(WorkerProxy.class);
+								worker6.setName("Pino");
+								worker6.setCandidate(true);
+								workers.persist().using(worker6);
+
+								final WorkerProxy worker7 = workers.create(WorkerProxy.class);
+								worker7.setName("Mino");
+								worker7.setCandidate(true);
+								workers.persist().using(worker7);
+
+								final WorkerProxy worker8 = workers.create(WorkerProxy.class);
+								worker8.setName("Salvatore");
+								worker8.setCandidate(false);
+								workers.persist().using(worker8);
+
+								final WorkerProxy worker9 = workers.create(WorkerProxy.class);
+								worker9.setName("Francesco");
+								worker9.setCandidate(false);
+								workers.persist().using(worker9);
+
+								final WorkerProxy worker10 = workers.create(WorkerProxy.class);
+								worker10.setName("Matteo");
+								worker10.setCandidate(false);
+								workers.persist().using(worker10);
+
+								workers.fire(new Receiver<Void>() {
+
+									@Override
+									public void onSuccess(Void response) {
+										JobBoardRequest jobBoards = dataStore.jobBoards();
+										jobBoards.addWorker(worker7).using(jobBoard1);
+										jobBoards.addWorker(worker8).using(jobBoard1);
+										jobBoards.addWorker(worker9).using(jobBoard1);
+										jobBoards.addWorker(worker10).using(jobBoard2);
+
+										jobBoards.fire(new Receiver<Void>() {
+
+											@Override
+											public void onSuccess(Void response) {
+												GWT.log("Workers & JobBoards persisted");
+											}
+										});
+									}
+								});
+							}
+						});
+					}
+				}
+			});
 
 			done = true;
 		}
