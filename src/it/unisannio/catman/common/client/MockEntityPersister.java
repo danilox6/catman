@@ -297,7 +297,7 @@ public class MockEntityPersister {
 														WorkerRequest workers = dataStore.workers();
 														workers.addQualification(qualification1).using(worker1);
 														workers.addQualification(qualification2).using(worker7);
-														workers.addQualification(qualification3).using(worker8);
+														workers.addQualification(qualification3).using(worker9);
 														workers.addQualification(qualification4).using(worker10);
 														workers.addQualification(qualification2).using(worker1);
 														workers.addQualification(qualification4).using(worker5);
