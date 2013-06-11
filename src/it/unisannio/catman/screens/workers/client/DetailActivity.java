@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import it.unisannio.catman.common.client.ScreenActivity;
 
-public class DetailActivity extends ScreenActivity implements Workers.Detail {
+public class DetailActivity extends ScreenActivity implements Workers.Presenter{
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {

@@ -1,20 +1,26 @@
 package it.unisannio.catman.screens.workers.client;
 
+import java.util.List;
+
 import com.google.gwt.activity.shared.Activity;
+import com.google.gwt.user.client.ui.IsWidget;
 
 import it.unisannio.catman.common.client.Icon;
 import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasDetail;
 import it.unisannio.catman.common.client.Screen.HasMaster;
+import it.unisannio.catman.domain.humanresources.client.QualificationProxy;
+import it.unisannio.catman.domain.humanresources.client.WorkersSource;
 
 public class Workers extends Screen implements HasMaster, HasDetail{
-	public static interface Master extends Activity {
-		interface View {}
+	public static interface View extends IsWidget{
+		void setQualificationsList(List<QualificationProxy> qualifications);
+		void setWorkersSource(WorkersSource workersSource);
 	}
 	
-	public static interface Detail extends Activity {
-		interface View {}
+	public static interface Presenter{
+		
 	}
 	
 	protected Workers() {
