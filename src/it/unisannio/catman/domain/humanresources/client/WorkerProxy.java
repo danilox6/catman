@@ -17,4 +17,8 @@ public interface WorkerProxy extends EntityProxy, IsContactable {
 	
 	boolean isCandidate();
 	void setCandidate(boolean candidate);
+	
+	Set<QualificationProxy> getQualifications();
+	
+	
 }

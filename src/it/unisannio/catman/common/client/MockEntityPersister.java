@@ -2,7 +2,6 @@ package it.unisannio.catman.common.client;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
@@ -18,6 +17,8 @@ import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
 import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
 import it.unisannio.catman.domain.humanresources.client.JobBoardRequest;
+import it.unisannio.catman.domain.humanresources.client.QualificationProxy;
+import it.unisannio.catman.domain.humanresources.client.QualificationRequest;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerRequest;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
@@ -26,13 +27,12 @@ import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.domain.workflow.client.EventRequest;
 
 public class MockEntityPersister {
-	static  boolean done = false;
+	static boolean done = false;
 
 	public static void persist(){
 		if(!done){
 
 			final DataStore dataStore = App.getInstance().getDataStore();
-
 			EventRequest events = dataStore.events();
 			events.count().fire(new Receiver<Integer>() {
 
@@ -70,7 +70,7 @@ public class MockEntityPersister {
 				public void onSuccess(Integer response) {
 					if(response==0){
 						CustomerRequest customers = dataStore.customers();
-						for(int i = 0; i < MALE_FIRST_NAMES.length; i++){
+						for(int i = 0; i < 50; i++){
 							CustomerProxy customer = customers.create(CustomerProxy.class);
 							customer.setName(MALE_FIRST_NAMES[i]);
 							customers.persist().using(customer);
@@ -268,7 +268,61 @@ public class MockEntityPersister {
 
 											@Override
 											public void onSuccess(Void response) {
-												GWT.log("Workers & JobBoards persisted");
+												
+												QualificationRequest qualifications = dataStore.qualifications();
+												final QualificationProxy qualification1 = qualifications.create(QualificationProxy.class);
+												qualification1.setName("Cameriere");
+												qualifications.persist().using(qualification1);
+												
+												final QualificationProxy qualification2 = qualifications.create(QualificationProxy.class);
+												qualification2.setName("Cuoco");
+												qualifications.persist().using(qualification2);
+												
+												final QualificationProxy qualification3 = qualifications.create(QualificationProxy.class);
+												qualification3.setName("Sommelier");
+												qualifications.persist().using(qualification3);
+												
+												final QualificationProxy qualification4 = qualifications.create(QualificationProxy.class);
+												qualification4.setName("Animatore");
+												qualifications.persist().using(qualification4);
+												
+												final QualificationProxy qualification5 = qualifications.create(QualificationProxy.class);
+												qualification5.setName("Sguattero");
+												qualifications.persist().using(qualification5);
+
+												qualifications.fire(new Receiver<Void>() {
+
+													@Override
+													public void onSuccess(Void response) {
+														WorkerRequest workers = dataStore.workers();
+														workers.addQualification(qualification1).using(worker1);
+														workers.addQualification(qualification2).using(worker7);
+														workers.addQualification(qualification3).using(worker8);
+														workers.addQualification(qualification4).using(worker10);
+														workers.addQualification(qualification2).using(worker1);
+														workers.addQualification(qualification4).using(worker5);
+														workers.addQualification(qualification5).using(worker7);
+														workers.addQualification(qualification1).using(worker4);
+														workers.addQualification(qualification1).using(worker2);
+														workers.addQualification(qualification4).using(worker8);
+														workers.addQualification(qualification1).using(worker8);
+														workers.addQualification(qualification5).using(worker2);
+														workers.addQualification(qualification2).using(worker10);
+														workers.addQualification(qualification1).using(worker6);
+														workers.addQualification(qualification5).using(worker5);
+														workers.addQualification(qualification3).using(worker6);
+														
+														workers.fire(new Receiver<Void>() {
+
+															@Override
+															public void onSuccess(Void response) {
+																GWT.log("Workers & JobBoards & Qualifications persisted");
+															}
+														});
+													}
+												});
+												
+												
 											}
 										});
 									}
@@ -278,9 +332,36 @@ public class MockEntityPersister {
 					}
 				}
 			});
-
 			done = true;
+			
 		}
+		
+		/*
+			final DataStore dataStore = App.getInstance().getDataStore();
+			WorkerRequest workers = dataStore.workers();
+			final WorkerProxy worker = workers.create(WorkerProxy.class);
+			worker.setName("Danilo");
+			workers.persist().using(worker).fire(new Receiver<Void>() {
+
+				@Override
+				public void onSuccess(Void response) {
+					EntityProxyId<WorkerProxy> id = dataStore.getProxyId(dataStore.getHistoryToken(worker.stableId()));
+					dataStore.workers().find(id).fire(new Receiver<WorkerProxy>() {
+
+						@Override
+						public void onSuccess(WorkerProxy response) {
+							GWT.log("Trovato "+response.getName());
+						}
+						
+						@Override
+						public void onFailure(ServerFailure error) {
+							GWT.log("Non trovato");
+						}
+					});
+				}
+			});
+			*/
+			
 	}
 
 	private static final String[] MALE_FIRST_NAMES = {

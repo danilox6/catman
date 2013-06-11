@@ -32,7 +32,7 @@ public class MasterActivity extends ScreenActivity implements PersonnelManager.M
 		workersLists.add(workersWList);
 		workersLists.add(candidatesWList);
 		
-		dataStore.workers().countWorkersSource().fire(new Receiver<Integer>() {
+		dataStore.workers().countInWorkersSource().fire(new Receiver<Integer>() {
 
 			@Override
 			public void onSuccess(Integer response) {
@@ -41,7 +41,7 @@ public class MasterActivity extends ScreenActivity implements PersonnelManager.M
 			}
 		});
 		
-		dataStore.workers().countCandidates().fire(new Receiver<Integer>() {
+		dataStore.workers().countInCandidates().fire(new Receiver<Integer>() {
 
 			@Override
 			public void onSuccess(Integer response) {
@@ -67,10 +67,10 @@ public class MasterActivity extends ScreenActivity implements PersonnelManager.M
 	@Override
 	public void goToWorkersScreen(WorkersSource w) {
 		String [] params;
-		if(w.getSourceType() == Source.JOB_BOARD)
-			params = new String[]{w.getSourceType().toString(),w.getJobBoardHystoryToken()};
+		if(w.getSource() == Source.JOB_BOARD)
+			params = new String[]{w.getSource().toString(),w.getJobBoardHystoryToken()};
 		else
-			params = new String[]{w.getSourceType().toString()};
+			params = new String[]{w.getSource().toString()};
 		goTo(new Intent("workers").withParams(params));
 	}
 

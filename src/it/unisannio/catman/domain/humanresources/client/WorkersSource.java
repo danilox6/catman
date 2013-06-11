@@ -9,33 +9,30 @@ public class WorkersSource implements EntityProxy{
 	public static enum Source {WORKERS, CANDIDATES, JOB_BOARD};
 
 	private Source sourceType;
-	private String jobBoardToken;
-	private String name;
+	private JobBoardProxy jobBoardProxy;
 	private int count = -1;
 
-	public WorkersSource(Source listType){
-		this.sourceType = listType;
-		if(listType == Source.WORKERS)
-			name = "Workers";
-		else if(listType == Source.CANDIDATES)
-			name = "Candidates";
-		else
-			throw new IllegalArgumentException();
+	public WorkersSource(Source sourceType){
+		this.sourceType = sourceType;
 	}
 	
 	public WorkersSource(JobBoardProxy jobBoard){
 		this.sourceType = Source.JOB_BOARD;
-		this.name = jobBoard.getName();
-		this.jobBoardToken = App.getInstance().getDataStore().getHistoryToken(jobBoard.stableId());
-		this.count = jobBoard.getWorkersCount();
+		this.jobBoardProxy = jobBoard; 
 	}
 
-	public Source getSourceType() {
+	public WorkersSource(String sourceType) {
+		this.sourceType = fromString(sourceType);
+	}
+
+	public Source getSource() {
 		return sourceType;
 	}
 
 	public String getJobBoardHystoryToken() {
-		return jobBoardToken;
+		if (sourceType == Source.JOB_BOARD)
+			return App.getInstance().getDataStore().getHistoryToken(getJobBoardProxy().stableId());
+		return null;
 	}
 
 	public void setCount(int count) {
@@ -43,15 +40,27 @@ public class WorkersSource implements EntityProxy{
 	}
 
 	public int getCount() {
+		if (sourceType == Source.JOB_BOARD)
+			return getJobBoardProxy().getWorkersCount();
 		return count;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getName() {
-		return name;
+		if(sourceType == Source.WORKERS)
+			return "Workers";
+		if(sourceType == Source.CANDIDATES)
+			return "Candidates";
+		return getJobBoardProxy().getName();
+	}
+	
+	public JobBoardProxy getJobBoardProxy() {
+		if(jobBoardProxy==null)
+			throw new IllegalStateException("JobBoardProxy cannot be null if sourceType is JOB_BOARD");
+		return jobBoardProxy;
+	}
+	
+	public void setJobBoardProxy(JobBoardProxy jobBoardProxy) {
+		this.jobBoardProxy = jobBoardProxy;
 	}
 	
 	public static Source fromString(String string){

@@ -20,11 +20,26 @@ public interface WorkerRequest extends RequestContext {
 	Request<List<WorkerProxy>> listAll(int start, int length);
 	Request<Integer> count();
 	
-	Request<List<WorkerProxy>> listWorkersSource(int start, int length);
-	Request<List<WorkerProxy>> listCandidates(int start, int length);
+	Request<List<WorkerProxy>> listInWorkersSource(int start, int length);
+	Request<List<WorkerProxy>> listInCandidates(int start, int length);
 	Request<List<WorkerProxy>> listByJobBoard(JobBoardProxy jobBoard, int start, int length);
 	
-	Request<Integer> countCandidates();
-	Request<Integer> countWorkersSource();
+	Request<Integer> countInCandidates();
+	Request<Integer> countInWorkersSource();
 	Request<Integer> countByJobBoard(JobBoardProxy jobBoard);
+	
+	Request<List<WorkerProxy>> listByQualificationInWorkersSource(QualificationProxy qualification, int start, int length);
+	Request<Integer> countByQualificationInWorkersSource(QualificationProxy qualification);
+	
+	Request<List<WorkerProxy>> listByQualificationInCandidates(QualificationProxy qualification, int start, int length);
+	Request<Integer> countByQualificationInCandidates(QualificationProxy qualification);
+	
+	Request<List<WorkerProxy>> listByQualificationInJobBoard(QualificationProxy qualification, JobBoardProxy jobBoard, int start, int length);
+	Request<Integer> countByQualificationInJobBoard(QualificationProxy qualification, JobBoardProxy jobBoard);
+	
+	
+	InstanceRequest<WorkerProxy, Void> addQualification(QualificationProxy qualification);
+	InstanceRequest<WorkerProxy, Void> removeQualification(QualificationProxy qualification);
+	InstanceRequest<WorkerProxy, Boolean> hasQualification(QualificationProxy qualification);
+	
 }

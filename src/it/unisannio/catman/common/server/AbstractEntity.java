@@ -105,6 +105,15 @@ public abstract class AbstractEntity<K> {
 		return (List<T>) q.getResultList();
 	}
 	
+	protected static <T> List<T> findByQuery(String query, Object... args) {
+		EntityManager entityManager = getEntityManager();
+		Query q = entityManager.createQuery(query);
+		for(int i = 0; i < args.length; ++i) {
+			q.setParameter(i + 1, args[i]);
+		}
+		return (List<T>) q.getResultList();
+	}
+	
 	protected static <T> int countByQuery(String query, Object... args) {
 		EntityManager entityManager = getEntityManager();
 		Query q = entityManager.createQuery(query);
