@@ -3,7 +3,7 @@ package it.unisannio.catman.screens.personnelpicker.client.widgets;
 import it.unisannio.catman.common.client.cell.MasterCell;
 import it.unisannio.catman.domain.humanresources.client.QualificationProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
-import it.unisannio.catman.screens.workers.client.adapters.WorkerDetailCellAdapter;
+import it.unisannio.catman.screens.workers.client.adapters.WorkerDetailAdapter;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
@@ -22,7 +22,7 @@ public class WorkersTreeModel implements TreeViewModel{
 		}
 		if(value instanceof WorkerProxy){
 			ListDataProvider<WorkerProxy> dataProvider = new ListDataProvider<WorkerProxy>();
-			return new DefaultNodeInfo<WorkerProxy>(dataProvider, new MasterCell<WorkerProxy>(new WorkerDetailCellAdapter()));
+			return new DefaultNodeInfo<WorkerProxy>(dataProvider, new MasterCell<WorkerProxy>(new WorkerDetailAdapter()));
 		}
 		return null;
 	}

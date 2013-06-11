@@ -208,4 +208,8 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 		cellList.redraw();
 	}
 	
+	public MasterCell<T> getCell() {
+		return cell;
+	}
+	
 }

@@ -6,7 +6,7 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 
-public class WorkerDetailCellAdapter extends AbstractCellAdapter<WorkerProxy>{
+public class WorkerDetailAdapter extends AbstractCellAdapter<WorkerProxy>{
 
 	@Override
 	public SafeHtml getNorth(WorkerProxy object) {
