@@ -24,4 +24,7 @@ public interface ContractProxy extends EntityProxy {
 	
 	Date getEndDate();
 	void setEndDate(Date d);
+	
+	boolean isOpenEnded();
+	boolean isFreelance();
 }

@@ -10,6 +10,7 @@ import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkersSource;
 import it.unisannio.catman.screens.workers.client.Workers.Presenter;
 import it.unisannio.catman.screens.workers.client.adapters.WorkerMasterAdapter;
+import it.unisannio.catman.screens.workers.client.queries.WorkersByQualificationQuery;
 
 import com.github.gwtbootstrap.client.ui.ListBox;
 import com.google.gwt.core.client.GWT;

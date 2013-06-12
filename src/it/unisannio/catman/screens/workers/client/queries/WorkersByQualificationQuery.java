@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.workers.client;
+package it.unisannio.catman.screens.workers.client.queries;
 
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
@@ -12,17 +12,15 @@ import java.util.List;
 
 import com.google.web.bindery.requestfactory.shared.Request;
 
-//FIXME È un problema se questa query non viene fornita dal presenter?
-class WorkersByQualificationQuery implements Query<WorkerProxy>{
+public class WorkersByQualificationQuery implements Query<WorkerProxy>{
+	private static final DataStore dataStore = App.getInstance().getDataStore();
 	
 	private QualificationProxy qualification;
 	private WorkersSource source;
-	private DataStore dataStore;
 	
 	public WorkersByQualificationQuery(QualificationProxy qualification, WorkersSource source) {
 		this.qualification = qualification;
 		this.source = source;
-		dataStore = App.getInstance().getDataStore();
 	}
 
 	@Override

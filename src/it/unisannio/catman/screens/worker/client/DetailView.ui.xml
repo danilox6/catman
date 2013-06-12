@@ -10,17 +10,30 @@
 			<b:Heading size="3" ui:field="titleLabel"></b:Heading>
 		</c:header>
 		<c:content>
-			<cw:CellWidget ui:field="workerInfo"></cw:CellWidget>
+			<cw:CellWidget ui:field="workerInfoCell" width="100%"></cw:CellWidget>
+		</c:content>
+		<c:content>
+			<b:Fieldset ui:field="contactInfoFieldset" visible="false">
+				<b:Legend>Info Contatto</b:Legend>
+				<g:HTML ui:field="contactInfoHtml"></g:HTML>
+			</b:Fieldset>
+		</c:content>
+		<c:content>
+			<b:Fieldset ui:field="resumeFieldset" visible="false">
+				<b:Legend>Resume</b:Legend>
+				<b:Paragraph ui:field="resumeParagraph">John worked for many years in the field of software testing: he started working in the industry as mock object, but soon his qualities led him to be promoted by his empoyers to being a test user. Since then, he participated in more than 10'000  unit tests, being one of the most prolific dummy users of the history</b:Paragraph>
+			</b:Fieldset>
 		</c:content>
 		<c:content>
 			<b:Fieldset>
-				<b:Legend>Info Contatto</b:Legend>
+				<b:Legend>Disponibile come</b:Legend>
+				<c:DataList ui:field="qualificationList" cellType="STANDALONE" />
 			</b:Fieldset>
 		</c:content>
 		<c:content>
 			<b:Fieldset>
 				<b:Legend>Contratti</b:Legend>
-				<c:DataList ui:field="dataList" cellType="STANDALONE" />
+				<c:DataList ui:field="contractList" cellType="STANDALONE" />
 			</b:Fieldset>
 		</c:content>
 	</c:MasterPanel>

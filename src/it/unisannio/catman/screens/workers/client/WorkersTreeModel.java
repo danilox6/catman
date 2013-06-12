@@ -8,6 +8,7 @@ import it.unisannio.catman.domain.humanresources.client.QualificationProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkersSource;
 import it.unisannio.catman.screens.workers.client.adapters.WorkerDetailAdapter;
+import it.unisannio.catman.screens.workers.client.queries.WorkersByQualificationQuery;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;
