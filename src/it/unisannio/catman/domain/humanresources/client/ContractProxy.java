@@ -9,7 +9,7 @@ import com.google.web.bindery.requestfactory.shared.ExtraTypes;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(Contract.class)
-@ExtraTypes({FreelanceContractProxy.class, EmploymentContractProxy.class})
+//@ExtraTypes({FreelanceContractProxy.class, EmploymentContractProxy.class})
 public interface ContractProxy extends EntityProxy {
 	
 	PieceworkProxy getPiecework();
