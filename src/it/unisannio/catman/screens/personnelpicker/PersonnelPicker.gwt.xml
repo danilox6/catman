@@ -10,5 +10,4 @@
 	
 	<!-- Child screens -->
 	<inherits name="it.unisannio.catman.screens.worker.Worker"/>
-	<inherits name="it.unisannio.catman.screens.resume.Resume"/>
 </module>
