@@ -15,12 +15,14 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
-public class MasterActivity extends ScreenActivity implements PersonnelManager.Master {
+public class MasterActivity extends ScreenActivity implements PersonnelManager.Presenter {
 	
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		
-		final PersonnelManager.Master.View masterView = new MasterView(this);
+		final PersonnelManager.View masterView = new MasterView();
+		
+		masterView.setPresenter(this);
 		
 		final DataStore dataStore = App.getInstance().getDataStore();
 		

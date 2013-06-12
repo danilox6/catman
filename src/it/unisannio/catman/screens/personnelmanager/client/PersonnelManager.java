@@ -13,13 +13,13 @@ import it.unisannio.catman.domain.humanresources.client.WorkersSource;
 import it.unisannio.catman.screens.personnelmanager.client.MasterActivity;
 
 public class PersonnelManager extends Screen implements HasMaster{
-	public static interface Master extends Activity {
-		
+	public static interface Presenter {
 		void goToWorkersScreen(WorkersSource workersSource);
-		
-		interface View extends IsWidget{
-			void setWorkersSources(List<WorkersSource> workersSources);
-		}
+	}
+	
+	public static interface View extends IsWidget{
+		void setWorkersSources(List<WorkersSource> workersSources);
+		void setPresenter(Presenter presenter);
 	}
 
 	protected PersonnelManager() {

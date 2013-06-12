@@ -5,6 +5,7 @@ import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.equipment.client.SupplierProxy;
 import it.unisannio.catman.screens.materialmanager.client.adapters.SupplierCellAdapter;
+import it.unisannio.catman.screens.materialmanager.client.MaterialManager.Presenter;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -15,7 +16,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
 @SuppressWarnings("rawtypes") 
-public class MasterView extends Composite implements MaterialManager.Master.View{
+public class MasterView extends Composite implements MaterialManager.View{
 
 	private static MasterViewUiBinder uiBinder = GWT.create(MasterViewUiBinder.class);
 
@@ -25,15 +26,13 @@ public class MasterView extends Composite implements MaterialManager.Master.View
 	
 	private QueryDataProvider<SupplierProxy> dataProvider = new QueryDataProvider<SupplierProxy>();
 	
-	private MaterialManager.Master presenter;
+	private Presenter presenter;
 	
-	public MasterView(MaterialManager.Master presenter) {
+	public MasterView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		dataList.setCellAdapter(new SupplierCellAdapter());
 		dataList.setDataProvider(dataProvider);
-		
-		this.presenter = presenter;
 		
 	}
 
@@ -47,4 +46,7 @@ public class MasterView extends Composite implements MaterialManager.Master.View
 		presenter.goToSupplyScreen((SupplierProxy) e.getSource());
 	}
 
+	public void setPresenter(Presenter presenter) {
+		this.presenter = presenter;
+	}
 }
