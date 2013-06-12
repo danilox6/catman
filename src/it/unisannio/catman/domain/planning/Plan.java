@@ -48,10 +48,6 @@ public class Plan extends EventDocument {
 		
 		return true;
 	}
-	
-	public Procurement getFake() {
-		return null;
-	}
 
 	public List<Procurement> getProcurements() {
 		return procurements;

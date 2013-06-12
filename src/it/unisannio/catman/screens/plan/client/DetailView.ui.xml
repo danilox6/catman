@@ -19,13 +19,13 @@
 		</c:header>
 		<c:content>
 		    <b:Fieldset>
-		        <b:Legend>Personnel</b:Legend>
+		        <b:Legend>Materiels</b:Legend>
 		        <c:DataList ui:field="procurementsList" cellType="STANDALONE" />
 		    </b:Fieldset>
 		 </c:content>
 		 <c:content>
 		    <b:Fieldset>
-		        <b:Legend>Materiels</b:Legend>
+		        <b:Legend>Personnel</b:Legend>
 		        <c:DataList ui:field="positionsList" cellType="STANDALONE" />
 		    </b:Fieldset>
 		 </c:content>

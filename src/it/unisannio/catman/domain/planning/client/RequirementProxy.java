@@ -9,6 +9,8 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 public interface RequirementProxy extends EntityProxy {
 	String getDescription();
 	
+	int getQuantityFilled();
+	
 	int getQuantity();
 	void setQuantity(int q);
 

@@ -24,9 +24,6 @@ public class DetailActivity extends LoadingScreenActivity<PlanRequest, PlanProxy
 		Presenter presenter = new PlanPresenter(this, object);
 		View view = getView();
 		view.setPresenter(presenter);
-		presenter.setView(view);
-		
+		presenter.setView(view);		
 	}
-
-
 }

@@ -1,26 +1,21 @@
-package it.unisannio.catman.screens.plan.client;
-
-import java.util.List;
+package it.unisannio.catman.screens.plan.client.editors;
 
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.ui.DataEditor;
+import it.unisannio.catman.common.client.ui.EntityListBox;
 import it.unisannio.catman.domain.equipment.client.MaterielProxy;
+import it.unisannio.catman.domain.equipment.client.MaterielRequest;
 import it.unisannio.catman.domain.planning.client.PlanProxy;
 import it.unisannio.catman.domain.planning.client.ProcurementProxy;
 import it.unisannio.catman.domain.planning.client.ProcurementRequest;
 
-import com.github.gwtbootstrap.client.ui.Alert;
 import com.github.gwtbootstrap.client.ui.IntegerBox;
-import com.github.gwtbootstrap.client.ui.ValueListBox;
-import com.github.gwtbootstrap.client.ui.constants.AlertType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
-import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class ProcurementEditor extends DataEditor<ProcurementProxy, ProcurementRequest, ProcurementEditor> {
 
@@ -37,16 +32,16 @@ public class ProcurementEditor extends DataEditor<ProcurementProxy, ProcurementR
 	IntegerBox quantityEditor;
 	
 	@UiField(provided = true)
-	ValueListBox<MaterielProxy> materielEditor = new ValueListBox<MaterielProxy>(new AbstractRenderer<MaterielProxy>() {
-
-		@Override
-		public String render(MaterielProxy object) {
-			if(object == null)
-				return "--";
-			return object.getName();
-		}
-		
-	});
+	EntityListBox<MaterielProxy, MaterielRequest> materielEditor = new EntityListBox<MaterielProxy, MaterielRequest>(
+			App.getInstance().getDataStore().materiels(),
+			new AbstractRenderer<MaterielProxy>() {
+				@Override
+				public String render(MaterielProxy object) {
+					if(object == null)
+						return "--";
+					return object.getName();
+				}
+		});
 	
 	private PlanProxy plan;
 
@@ -55,27 +50,7 @@ public class ProcurementEditor extends DataEditor<ProcurementProxy, ProcurementR
 		setForm(uiBinder.createAndBindUi(this));
 		setTitle("Add/edit Material Requirement");
 		
-		
 		this.plan = plan;
-		materielEditor.setEnabled(false);
-		final Alert a = alert("Loading materiels, just a moment...", AlertType.INFO);
-		
-		App.getInstance().getDataStore().materiels().findAll().fire(new Receiver<List<MaterielProxy>> () {
-
-			@Override
-			public void onSuccess(List<MaterielProxy> response) {
-				a.removeFromParent();
-
-				materielEditor.setEnabled(true);
-				materielEditor.setAcceptableValues(response);
-			}
-			
-			@Override
-			public void onFailure(ServerFailure error) {
-				GWT.log("Error loading materiels!");
-				super.onFailure(error);
-			}
-		});
 	}
 
 	@Override

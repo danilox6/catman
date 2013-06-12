@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.unisannio.catman.domain.planning.Position;
 
+import com.google.web.bindery.requestfactory.shared.InstanceRequest;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.Service;
@@ -12,4 +13,6 @@ import com.google.web.bindery.requestfactory.shared.Service;
 public interface PositionRequest extends RequestContext {
 	Request<List<PositionProxy>> listByPlan(PlanProxy pp, int start, int length);
 	Request<Integer> countByPlan(PlanProxy pp);
+	
+	InstanceRequest<PositionProxy, Void> persist();
 }

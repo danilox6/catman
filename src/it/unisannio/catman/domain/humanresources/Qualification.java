@@ -17,6 +17,10 @@ public class Qualification extends AbstractEntity<Long>{
 		return find(Qualification.class, id);
 	}
 	
+	public static List<Qualification> findAll() {
+		return findAll(Qualification.class);
+	}
+	
 	public static List<Qualification> findInWorkersSource(){
 		return findByQuery("SELECT DISTINCT q FROM  JobBoard jb " +
 							"RIGHT OUTER JOIN jb.workers w " +

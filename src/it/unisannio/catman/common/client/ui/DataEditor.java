@@ -1,5 +1,7 @@
 package it.unisannio.catman.common.client.ui;
 
+import it.unisannio.catman.common.client.App;
+
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -22,7 +24,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiChild;
 import com.google.gwt.user.client.Window;
@@ -35,7 +36,7 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
-public abstract class DataEditor<E extends EntityProxy, R extends RequestContext, D extends DataEditor<E, R, D> & Editor<E>> extends Composite implements Editor<E>, HasValueChangeHandlers<E>{
+public abstract class DataEditor<E extends EntityProxy, R extends RequestContext, D extends DataEditor<E, R, D> & Editor<E>> extends Composite implements Editor<E>, HasValueChangeHandlers<E> {
 
 	Modal modal;
 	SimplePanel formContainer;
@@ -49,13 +50,10 @@ public abstract class DataEditor<E extends EntityProxy, R extends RequestContext
 	
 	private boolean isNew = false;
 	
-	private HandlerManager handlers;
 
 	public DataEditor(R ctx, Class<E> clazz) {
 		this.context = ctx;
 		this.clazz = clazz;
-		
-		handlers = new HandlerManager(this);
 		
 		modal = new Modal();
 		modal.setAnimation(true);
@@ -85,12 +83,14 @@ public abstract class DataEditor<E extends EntityProxy, R extends RequestContext
 					@Override
 					public void onSuccess(Void response) {
 						modal.hide();
-						ValueChangeEvent.fire(DataEditor.this, object);
+						fireChangeEvent(object);
 					}
 					
 					@Override
 					public void onFailure(ServerFailure error) {
 						Window.alert("An error occurred during the operation. Please retry.");
+						GWT.log(error.getExceptionType());
+						GWT.log(error.getMessage());
 						GWT.log("Error during editor save: " + error.getStackTraceString());
 					}
 					
@@ -106,6 +106,10 @@ public abstract class DataEditor<E extends EntityProxy, R extends RequestContext
 			}
 			
 		});
+	}
+	
+	protected void fireChangeEvent(E value) {
+		ValueChangeEvent.fire(DataEditor.this, value);
 	}
 	
 	protected Alert alert(String message, AlertType alert) {
@@ -146,9 +150,11 @@ public abstract class DataEditor<E extends EntityProxy, R extends RequestContext
 		formContainer.setWidget(w);		
 	}
 	
+	
+	
 	@Override
 	public HandlerRegistration addValueChangeHandler(ValueChangeHandler<E> handler) {
-		return handlers.addHandler(ValueChangeEvent.getType(), handler);
+		return addHandler(handler, ValueChangeEvent.getType());
 	}
 	
 	protected abstract void save(R context, E entity);

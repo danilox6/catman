@@ -1,5 +1,6 @@
 package it.unisannio.catman.domain.planning;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unisannio.catman.domain.humanresources.Contract;
@@ -18,7 +19,6 @@ public class Position extends Requirement {
 	public static Position findPosition(Long id) {
 		return find(Position.class, id);
 	}
-	
 
 	public static List<Position> listByPlan(Plan p, int start, int len) {
 		return listByQuery(Position.class, start, len, "SELECT p FROM Position p WHERE p.plan = ?1", p);
@@ -33,7 +33,7 @@ public class Position extends Requirement {
 	Qualification qualification;
 	
 	@OneToMany
-	private List<Contract> fillers;
+	private List<Contract> fillers = new ArrayList<Contract>();
 
 	@Override
 	public String getDescription() {
