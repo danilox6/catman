@@ -7,6 +7,7 @@ import it.unisannio.catman.domain.equipment.client.StockRequest;
 import it.unisannio.catman.domain.equipment.client.SupplierRequest;
 import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
 import it.unisannio.catman.domain.humanresources.client.JobBoardRequest;
+import it.unisannio.catman.domain.humanresources.client.PieceworkRequest;
 import it.unisannio.catman.domain.humanresources.client.QualificationRequest;
 import it.unisannio.catman.domain.humanresources.client.WorkerRequest;
 import it.unisannio.catman.domain.planning.client.PlanRequest;
@@ -48,4 +49,6 @@ public interface DataStore extends RequestFactory {
 	ProcurementRequest procurements();
 	
 	PositionRequest positions();
+	
+	PieceworkRequest pieceworks();
 }

@@ -46,6 +46,7 @@ public class Piecework extends AbstractEntity<Long> {
 
 	public void setWorker(Worker worker) {
 		this.worker = worker;
+		this.worker.addPiecework(this);
 	}
 
 	public Qualification getQualification() {

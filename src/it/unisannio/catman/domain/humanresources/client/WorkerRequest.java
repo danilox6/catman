@@ -39,4 +39,6 @@ public interface WorkerRequest extends RequestContext {
 	
 	InstanceRequest<WorkerProxy, Boolean> hasQualification(QualificationProxy qualification);
 	
+//	InstanceRequest<WorkerProxy, Void> addPiecework(PieceworkProxy p);
+	
 }

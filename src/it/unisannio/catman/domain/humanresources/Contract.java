@@ -23,7 +23,7 @@ public abstract class Contract extends AbstractEntity<Long> {
 	}
 	
 	public static List<Contract> findByWorker(Worker worker) {
-		return findByQuery("SELECT Contract c FROM Contract c, Worker w, Piecework p WHERE p.worker = w AND c.piecework = p", worker);
+		return findByQuery("SELECT c FROM Contract c, Worker w, Piecework p WHERE p.worker = ?1 AND c.piecework = p", worker);
 	}
 	
 	@Id
