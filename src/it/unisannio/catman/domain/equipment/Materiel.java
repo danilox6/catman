@@ -1,5 +1,7 @@
 package it.unisannio.catman.domain.equipment;
 
+import java.util.List;
+
 import it.unisannio.catman.common.server.AbstractEntity;
 
 import javax.persistence.Entity;
@@ -13,8 +15,13 @@ public class Materiel extends AbstractEntity<Long> {
 	public static Materiel findMateriel(Long id) {
 		return find(Materiel.class, id);
 	}
+	
 	public static Integer count() {
 		return count(Materiel.class);
+	}
+	
+	public static List<Materiel> findAll() {
+		return findAll(Materiel.class);
 	}
 	
 	@Id

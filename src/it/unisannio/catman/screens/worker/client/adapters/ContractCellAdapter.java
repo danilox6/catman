@@ -11,7 +11,8 @@ public class ContractCellAdapter extends AbstractCellAdapter<ContractProxy>{
 
 	@Override
 	public SafeHtml getNorth(ContractProxy object) {
-		return new SafeHtmlBuilder().appendEscaped(object.isOpenEnded()?"Open Ended Contract":"Freelance").toSafeHtml();
+		//FIXME la condizione � sull'instanceof adesso
+		return new SafeHtmlBuilder().appendEscaped("FIXME" /*object.isOpenEnded()?"Open Ended Contract":"Freelance"*/).toSafeHtml();
 	}
 	
 	@Override
@@ -22,12 +23,14 @@ public class ContractCellAdapter extends AbstractCellAdapter<ContractProxy>{
 	
 	@Override
 	public SafeHtml getSouth(ContractProxy object) {
-		return new SafeHtmlBuilder().appendEscaped(object.getQualification().getName()).toSafeHtml();
+		// FIXME Qualifica esatta
+		return new SafeHtmlBuilder().appendEscaped("FIXME!"/*object.getQualification().getName()*/).toSafeHtml();
 	}
 	
 	@Override
 	public SafeHtml getEast(ContractProxy object) {
-		return new SafeHtmlBuilder().appendEscaped(object.getWage()+(object.isOpenEnded()?"€/mo.":"€")).toSafeHtml(); //TODO controllare €/&euro;
+		// FIXME Wage esatto
+		return new SafeHtmlBuilder().appendEscaped("FIXME" /*object.getWage() 0+(object.isOpenEnded()?"€/mo.":"€")*/).toSafeHtml(); //TODO controllare €/&euro;
 	}
 	
 	@Override

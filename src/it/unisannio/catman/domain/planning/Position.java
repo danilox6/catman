@@ -3,6 +3,7 @@ package it.unisannio.catman.domain.planning;
 import java.util.List;
 
 import it.unisannio.catman.domain.humanresources.Contract;
+import it.unisannio.catman.domain.humanresources.FreelanceContract;
 import it.unisannio.catman.domain.humanresources.Qualification;
 
 import javax.persistence.Entity;
@@ -16,6 +17,15 @@ public class Position extends Requirement {
 	
 	public static Position findPosition(Long id) {
 		return find(Position.class, id);
+	}
+	
+
+	public static List<Position> listByPlan(Plan p, int start, int len) {
+		return listByQuery(Position.class, start, len, "SELECT p FROM Position p WHERE p.plan = ?1", p);
+	}
+	
+	public static int countByPlan(Plan p) {
+		return countByQuery("SELECT COUNT(p) FROM Position p WHERE p.plan = ?1", p);
 	}
 	
 	@NotNull
@@ -47,11 +57,22 @@ public class Position extends Requirement {
 		fillers.remove(c);
 	}
 	
+	public void setQualification(Qualification q) {
+		this.qualification = q;
+	}
+	
+	public Qualification getQualification() {
+		return this.qualification;
+	}
+	
 	@AssertTrue(message = "Contracts must be either specific to this position or open ended")
 	private boolean areFillersSpecific() {
 		for(Contract filler : fillers) {
-			if(filler.isFreelance() && !filler.getEvent().equals(getPlan().getDossier()))
-				return false;
+			if(filler instanceof FreelanceContract) {
+				FreelanceContract fc = (FreelanceContract) filler;
+				if(!fc.getEvent().equals(getPlan().getDossier()))
+					return false;
+			}
 		}
 		
 		return true;

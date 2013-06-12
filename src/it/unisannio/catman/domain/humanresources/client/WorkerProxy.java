@@ -10,7 +10,6 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(Worker.class)
 public interface WorkerProxy extends EntityProxy, IsContactable {
-	Set<ContractProxy> getContracts();
 	
 	String getResume();
 	void setResume(String r);
