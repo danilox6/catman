@@ -16,7 +16,6 @@ public interface WorkerRequest extends RequestContext {
 	Request<List<WorkerProxy>> findAll();
 	Request<WorkerProxy> findWorker(Long id);
 	
-	
 	Request<List<WorkerProxy>> listAll(int start, int length);
 	Request<Integer> count();
 	
@@ -38,5 +37,11 @@ public interface WorkerRequest extends RequestContext {
 	Request<Integer> countByQualificationInJobBoard(QualificationProxy qualification, JobBoardProxy jobBoard);
 	
 	InstanceRequest<WorkerProxy, Boolean> hasQualification(QualificationProxy qualification);
+	
+	InstanceRequest<WorkerProxy, Void> setCandidate(boolean candidate);
+	
+//	InstanceRequest<WorkerProxy, Void> addPiecework(PieceworkProxy p);
+	
+
 	
 }

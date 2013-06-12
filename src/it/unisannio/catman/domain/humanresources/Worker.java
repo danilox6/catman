@@ -32,56 +32,54 @@ public class Worker extends Contactable {
 		return count(Worker.class);
 	}
 
-	// FIXME Tutte query da cambiare
 	public static List<Worker> listByQualificationInWorkersSource(Qualification qualification, int start, int length){
 		return listByQuery(Worker.class, start, length,"SELECT w FROM JobBoard jb " +
 				"RIGHT OUTER JOIN jb.workers w " +
-				"INNER JOIN w.qualifications q "+
+				"INNER JOIN w.pieceworks pw "+
 				"WHERE w.candidate = ?1 " +
 				"AND jb IS NULL " +
-				"AND q = ?2",false,qualification);
+				"AND pw.qualification = ?2",false,qualification);
 	}
 
 	public static int countByQualificationInWorkersSource(Qualification qualification){
 		return countByQuery("SELECT COUNT(w) FROM JobBoard jb " +
 				"RIGHT OUTER JOIN jb.workers w " +
-				"INNER JOIN w.qualifications q "+
+				"INNER JOIN w.pieceworks pw "+
 				"WHERE w.candidate = ?1 " +
 				"AND jb IS NULL " +
-				"AND q = ?2", false, qualification);
+				"AND pw.qualification = ?2", false, qualification);
 	}
 
 	public static List<Worker> listByQualificationInCandidates(Qualification qualification, int start, int length){
 		return listByQuery(Worker.class, start, length,"SELECT w FROM Worker w " +
-				"INNER JOIN w.qualifications q "+
+				"INNER JOIN w.pieceworks pw "+
 				"WHERE w.candidate = ?1 " +
-				"AND q = ?2", true, qualification);
+				"AND pw.qualification = ?2", true, qualification);
 	}
 
 	public static int countByQualificationInCandidates(Qualification qualification){
 		return countByQuery("SELECT COUNT(w) FROM Worker w " +
-				"INNER JOIN w.qualifications q "+
+				"INNER JOIN w.pieceworks pw "+
 				"WHERE w.candidate = ?1 " +
-				"AND q = ?2", true, qualification);
+				"AND pw.qualification = ?2", true, qualification);
 	}
 
 	public static List<Worker> listByQualificationInJobBoard(Qualification qualification, JobBoard jobBoard, int start, int length){
 		return listByQuery(Worker.class, start, length,"SELECT w FROM JobBoard jb " +
 				"INNER JOIN jb.workers w " +
-				"INNER JOIN w.qualifications q "+
+				"INNER JOIN w.pieceworks pw "+
 				"WHERE jb = ?1 " +
-				"AND q = ?2", jobBoard, qualification);
+				"AND pw.qualification = ?2", jobBoard, qualification);
 	}
 
 	public static int countByQualificationInJobBoard(Qualification qualification, JobBoard jobBoard){
 		return countByQuery("SELECT COUNT(w) FROM JobBoard jb " +
 				"INNER JOIN jb.workers w " +
-				"INNER JOIN w.qualifications q "+
+				"INNER JOIN w.pieceworks pw "+
 				"WHERE jb = ?1 " +
-				"AND q = ?2", jobBoard, qualification);
+				"AND pw.qualification = ?2", jobBoard, qualification);
 	}
 
-	//FIXME forse non è necessaria, serve solo il relativo count
 	public static List<Worker> listInWorkersSource(int start, int length){
 		return listByQuery(Worker.class, start, length, "SELECT w FROM  JobBoard jb " +
 				"RIGHT OUTER JOIN jb.workers w " +
@@ -89,13 +87,11 @@ public class Worker extends Contactable {
 				"AND jb IS NULL",false);
 	}
 
-	//FIXME forse non è necessaria, serve solo il relativo count
 	public static List<Worker> listInCandidates(int start, int length){
 		return listByQuery(Worker.class, start, length, "SELECT w FROM Worker w " +
 				"WHERE w.candidate = ?1",true);
 	}
 
-	//FIXME forse non è necessaria, serve solo il relativo count
 	public static List<Worker> listByJobBoard(JobBoard jobBoard, int start, int length){
 		return listByQuery(Worker.class, start, length, "SELECT w FROM JobBoard jb " +
 				"INNER JOIN jb.workers w " +

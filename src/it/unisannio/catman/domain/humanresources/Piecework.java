@@ -21,24 +21,36 @@ public class Piecework extends AbstractEntity<Long> {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	@Version
 	private int version;
-	
+
 	@ManyToOne
 	@NotNull
 	private Worker worker;
-	
+
 	@NotNull
 	@ManyToOne
 	private Qualification qualification;
-	
+
 	@OneToMany(mappedBy = "piecework")
 	private List<Contract> contracts;
-	
+
 	private float pay;
-	
+
 	private boolean freelance;
+
+	public static List<Piecework> listByWorker(Worker worker, int start, int length){
+		return listByQuery(Piecework.class, start, length, "SELECT p FROM Worker w " +
+				"INNER JOIN w.pieceworks p "+
+				"WHERE w = ?1", worker);
+	}
+
+	public static Integer countByWorker(Worker worker){
+		return countByQuery ("SELECT COUNT(p) FROM Worker w " +
+				"INNER JOIN w.pieceworks p "+
+				"WHERE w = ?1", worker);
+	}
 
 	public Worker getWorker() {
 		return worker;
@@ -46,6 +58,7 @@ public class Piecework extends AbstractEntity<Long> {
 
 	public void setWorker(Worker worker) {
 		this.worker = worker;
+		this.worker.addPiecework(this);
 	}
 
 	public Qualification getQualification() {
@@ -55,7 +68,7 @@ public class Piecework extends AbstractEntity<Long> {
 	public void setQualification(Qualification qualification) {
 		this.qualification = qualification;
 	}
-	
+
 	public List<Contract> getContracts() {
 		return contracts;
 	}
@@ -87,5 +100,5 @@ public class Piecework extends AbstractEntity<Long> {
 	public void setFreelance(boolean freelance) {
 		this.freelance = freelance;
 	}
-	
+
 }

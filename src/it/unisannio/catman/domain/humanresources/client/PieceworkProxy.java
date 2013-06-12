@@ -10,9 +10,14 @@ public interface PieceworkProxy extends EntityProxy {
 
 	QualificationProxy getQualification();
 	void setQualification(QualificationProxy q);
-	
 
 	float getPay();
 	void setPay(float w);
+	
+	WorkerProxy getWorker();
+	void setWorker(WorkerProxy worker);
+	
+	boolean isFreelance();
+	void setFreelance(boolean freelance);
 
 }

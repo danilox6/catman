@@ -2,8 +2,6 @@ package it.unisannio.catman.common.client.cell;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
-
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.ValueUpdater;
@@ -119,11 +117,12 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 			throw new RuntimeException("Event target must be an element!");
 		
 		Element element = Element.as(et);
-		if(element.hasAttribute("data-selector")) {
+		if(element.hasAttribute(SelectableCellAdapter.SELECTOR_ATTIBUTE)) {
 			return;
 		}
-		
-		fireEvent(new CellClickEvent(value));
+		ClickEvent clickEvent = new CellClickEvent(value); 
+		clickEvent.setRelativeElement(element);
+		fireEvent(clickEvent);
 	}	
 
 	@Override
