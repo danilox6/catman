@@ -4,8 +4,6 @@ import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.LoadingScreenActivity;
 import it.unisannio.catman.domain.planning.client.PlanProxy;
 import it.unisannio.catman.domain.planning.client.PlanRequest;
-import it.unisannio.catman.domain.planning.client.PositionProxy;
-import it.unisannio.catman.domain.planning.client.ProcurementProxy;
 import it.unisannio.catman.screens.plan.client.Plan.Presenter;
 import it.unisannio.catman.screens.plan.client.Plan.View;
 
@@ -13,7 +11,7 @@ import it.unisannio.catman.screens.plan.client.Plan.View;
 public class DetailActivity extends LoadingScreenActivity<PlanRequest, PlanProxy, View> {
 
 	public DetailActivity() {
-		super(App.getInstance().getDataStore().plans(), "procurements", "positions");
+		super(App.getInstance().getDataStore().plans());
 	}
 
 	@Override

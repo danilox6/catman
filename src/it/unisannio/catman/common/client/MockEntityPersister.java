@@ -70,7 +70,7 @@ public class MockEntityPersister {
 				public void onSuccess(Integer response) {
 					if(response==0){
 						CustomerRequest customers = dataStore.customers();
-						for(int i = 0; i < 50; i++){
+						for(int i = 0; i < 5; i++){
 							CustomerProxy customer = customers.create(CustomerProxy.class);
 							customer.setName(MALE_FIRST_NAMES[i]);
 							customers.persist().using(customer);
@@ -295,6 +295,7 @@ public class MockEntityPersister {
 													@Override
 													public void onSuccess(Void response) {
 														WorkerRequest workers = dataStore.workers();
+														/* FIXME Nuovi mock
 														workers.addQualification(qualification1).using(worker1);
 														workers.addQualification(qualification2).using(worker7);
 														workers.addQualification(qualification3).using(worker8);
@@ -311,6 +312,7 @@ public class MockEntityPersister {
 														workers.addQualification(qualification1).using(worker6);
 														workers.addQualification(qualification5).using(worker5);
 														workers.addQualification(qualification3).using(worker6);
+														*/
 														
 														workers.fire(new Receiver<Void>() {
 

@@ -3,6 +3,7 @@ package it.unisannio.catman.domain.planning;
 import java.util.List;
 
 import it.unisannio.catman.domain.humanresources.Contract;
+import it.unisannio.catman.domain.humanresources.FreelanceContract;
 import it.unisannio.catman.domain.humanresources.Qualification;
 
 import javax.persistence.Entity;
@@ -67,8 +68,11 @@ public class Position extends Requirement {
 	@AssertTrue(message = "Contracts must be either specific to this position or open ended")
 	private boolean areFillersSpecific() {
 		for(Contract filler : fillers) {
-			if(filler.isFreelance() && !filler.getEvent().equals(getPlan().getDossier()))
-				return false;
+			if(filler instanceof FreelanceContract) {
+				FreelanceContract fc = (FreelanceContract) filler;
+				if(!fc.getEvent().equals(getPlan().getDossier()))
+					return false;
+			}
 		}
 		
 		return true;

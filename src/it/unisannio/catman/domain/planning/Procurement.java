@@ -1,10 +1,9 @@
 package it.unisannio.catman.domain.planning;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import it.unisannio.catman.domain.equipment.Materiel;
-import it.unisannio.catman.domain.planning.client.ProcurementProxy;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -33,7 +32,7 @@ public class Procurement extends Requirement {
 	private Materiel materiel;
 	
 	@OneToMany
-	private Set<Source> sources;
+	private List<Source> sources = new ArrayList<Source>();
 
 	@Override
 	public String getDescription() {
@@ -50,7 +49,7 @@ public class Procurement extends Requirement {
 		return counter;
 	}
 	
-	public Set<Source> getSources() {
+	public List<Source> getSources() {
 		return sources;
 	}
 	

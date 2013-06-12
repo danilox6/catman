@@ -41,6 +41,8 @@ public class ProcurementEditor extends DataEditor<ProcurementProxy, ProcurementR
 
 		@Override
 		public String render(MaterielProxy object) {
+			if(object == null)
+				return "--";
 			return object.getName();
 		}
 		

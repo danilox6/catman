@@ -37,9 +37,6 @@ public interface WorkerRequest extends RequestContext {
 	Request<List<WorkerProxy>> listByQualificationInJobBoard(QualificationProxy qualification, JobBoardProxy jobBoard, int start, int length);
 	Request<Integer> countByQualificationInJobBoard(QualificationProxy qualification, JobBoardProxy jobBoard);
 	
-	
-	InstanceRequest<WorkerProxy, Void> addQualification(QualificationProxy qualification);
-	InstanceRequest<WorkerProxy, Void> removeQualification(QualificationProxy qualification);
 	InstanceRequest<WorkerProxy, Boolean> hasQualification(QualificationProxy qualification);
 	
 }

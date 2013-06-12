@@ -1,5 +1,7 @@
 package it.unisannio.catman.domain.humanresources;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -7,7 +9,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
@@ -31,6 +32,7 @@ public class Worker extends Contactable {
 		return count(Worker.class);
 	}
 
+	// FIXME Tutte query da cambiare
 	public static List<Worker> listByQualificationInWorkersSource(Qualification qualification, int start, int length){
 		return listByQuery(Worker.class, start, length,"SELECT w FROM JobBoard jb " +
 				"RIGHT OUTER JOIN jb.workers w " +
@@ -131,37 +133,29 @@ public class Worker extends Contactable {
 	@OneToMany(mappedBy="worker", orphanRemoval=true, cascade={CascadeType.ALL})
 	private Set<Contract> contracts;
 
-	@ManyToMany
-	private Set<Qualification> qualifications;
+	@OneToMany(mappedBy="worker", cascade = {CascadeType.ALL})
+	private Set<Piecework> pieceworks = new HashSet<Piecework>();
 
 	public Set<Qualification> getQualifications() {
-		return qualifications;
+		Set<Qualification> uniqueQualifications = new HashSet<Qualification>();
+		for(Piecework p : pieceworks) {
+			uniqueQualifications.add(p.getQualification());
+		}
+		
+		return uniqueQualifications;
 	}
 
-	public void addQualification(Qualification q) {
-		qualifications.add(q);
+	public void addPiecework(Piecework q) {
+		pieceworks.add(q);
 	}
 
-	public void removeQualification(Qualification q) {
-		qualifications.remove(q);
+	public void removePiecework(Piecework q) {
+		pieceworks.remove(q);
 	}
 
 	public boolean hasQualification(Qualification q) {
-		return qualifications.contains(q);
+		return getQualifications().contains(q);
 	}
-
-	public Set<Contract> getContracts() {
-		return contracts;
-	}
-
-	public void addContract(Contract c) {
-		this.contracts.add(c);
-	}
-
-	public void removeContract(Contract c) {
-		this.contracts.remove(c);
-	}
-
 
 	@Override
 	public int getVersion() {
@@ -180,23 +174,9 @@ public class Worker extends Contactable {
 	public void setCandidate(boolean candidate) {
 		this.candidate = candidate;
 	}
-
-	public boolean isHired() {
-		for(Contract c : getContracts()) {
-			if(c.isCurrent() && !c.isFreelance())
-				return true;
-		}
-
-		return false;
-	}
-
-	public boolean isFreelance() {
-		for(Contract c : getContracts()) {
-			if(c.isCurrent() && c.isFreelance())
-				return true;
-		}
-
-		return false;
+	
+	public Collection<Contract> getContracts() {
+		return Contract.findByWorker(this);
 	}
 
 	public boolean isWorking(){

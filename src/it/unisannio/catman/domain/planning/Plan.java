@@ -1,5 +1,6 @@
 package it.unisannio.catman.domain.planning;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,10 +19,10 @@ public class Plan extends EventDocument {
 	}
 	
 	@OneToMany(mappedBy="plan", targetEntity = Requirement.class)
-	private List<Procurement> procurements;
+	private List<Procurement> procurements = new ArrayList<Procurement>();
 	
 	@OneToMany(mappedBy="plan", targetEntity = Requirement.class)
-	private List<Position> positions;
+	private List<Position> positions = new ArrayList<Position>();
 	
 	public boolean isComplete(){
 		List<Procurement> procurements = getProcurements();
@@ -46,6 +47,10 @@ public class Plan extends EventDocument {
 		}
 		
 		return true;
+	}
+	
+	public Procurement getFake() {
+		return null;
 	}
 
 	public List<Procurement> getProcurements() {
