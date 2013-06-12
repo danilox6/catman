@@ -130,9 +130,6 @@ public class Worker extends Contactable {
 
 	private String resume;
 
-	@OneToMany(mappedBy="worker", orphanRemoval=true, cascade={CascadeType.ALL})
-	private Set<Contract> contracts;
-
 	@OneToMany(mappedBy="worker", cascade = {CascadeType.ALL})
 	private Set<Piecework> pieceworks = new HashSet<Piecework>();
 
