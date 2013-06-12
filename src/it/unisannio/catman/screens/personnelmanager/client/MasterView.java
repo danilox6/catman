@@ -15,7 +15,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 
-public class MasterView extends Composite implements PersonnelManager.Master.View{
+public class MasterView extends Composite implements PersonnelManager.View{
 
 	private static MasterViewUiBinder uiBinder = GWT.create(MasterViewUiBinder.class);
 
@@ -25,12 +25,11 @@ public class MasterView extends Composite implements PersonnelManager.Master.Vie
 	
 	private ListDataProvider<WorkersSource> dataProvider = new ListDataProvider<WorkersSource>();
 	
-	private PersonnelManager.Master presenter;
+	private PersonnelManager.Presenter presenter;
 	
-	public MasterView(PersonnelManager.Master presenter) {
+	public MasterView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		this.presenter = presenter;
 		
 		dataList.setCellAdapter(new WorkersSourceCellAdapter());
 		dataList.setDataProvider(dataProvider);
@@ -45,5 +44,10 @@ public class MasterView extends Composite implements PersonnelManager.Master.Vie
 	@UiHandler("dataList")
 	void handleCellClik(ClickEvent e){
 		presenter.goToWorkersScreen((WorkersSource) e.getSource());
+	}
+	
+	@Override
+	public void setPresenter(PersonnelManager.Presenter presenter) {
+		this.presenter = presenter;
 	}
 }

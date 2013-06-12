@@ -9,21 +9,20 @@ import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasDetail;
 import it.unisannio.catman.common.client.Screen.HasMaster;
+import it.unisannio.catman.domain.equipment.client.MaterielProxy;
 import it.unisannio.catman.domain.equipment.client.StockProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 
 public class Warehouse extends Screen implements HasDetail, HasMaster{
-	public static interface Detail extends Activity {
-		interface View  extends IsWidget{
+	
+	public static interface View extends IsWidget{
 			void setWarehouseProxy(WarehouseProxy warehouseProxy);
 			void setStockProxyQuery(Query<StockProxy> query);
-		}
+			void setPresenter(Presenter presenter);
 	}
-	public static interface Master extends Activity {
-		interface View extends IsWidget{
-			void setWarehouseProxy(WarehouseProxy warehouseProxy);
-			void setStockProxyQuery(Query<StockProxy> query);
-		}
+	
+	public static interface Presenter{
+		void goToMaterielScreen(MaterielProxy m);
 	}
 
 	protected Warehouse() {
@@ -39,4 +38,5 @@ public class Warehouse extends Screen implements HasDetail, HasMaster{
 	public Activity getMaster(Intent i) {
 		return new MasterActivity();
 	}
+	
 }

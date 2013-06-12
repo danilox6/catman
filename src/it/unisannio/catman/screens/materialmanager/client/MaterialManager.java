@@ -12,13 +12,13 @@ import it.unisannio.catman.domain.equipment.client.SupplierProxy;
 
 @SuppressWarnings("rawtypes") 
 public class MaterialManager extends Screen implements HasMaster{
-	public static interface Master extends Activity {
-		
+	public static interface Presenter {
 		void goToSupplyScreen(SupplierProxy s);
-		
-		interface View extends IsWidget{
-			void setSupplierQuery(Query<SupplierProxy> query);
-		}
+	}
+	
+	public static interface View extends IsWidget{
+		void setSupplierQuery(Query<SupplierProxy> query);
+		void setPresenter(Presenter presenter);
 	}
 
 	protected MaterialManager() {

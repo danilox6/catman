@@ -3,18 +3,22 @@ package it.unisannio.catman.screens.seller.client;
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
+import it.unisannio.catman.domain.equipment.client.MaterielProxy;
 import it.unisannio.catman.domain.equipment.client.OfferProxy;
 import it.unisannio.catman.domain.equipment.client.SellerProxy;
+import it.unisannio.catman.screens.seller.client.Seller.Presenter;
 import it.unisannio.catman.screens.seller.client.adapters.OfferDetailAdapter;
 
 import com.github.gwtbootstrap.client.ui.Heading;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DetailView extends Composite implements Seller.Detail.View{
+public class DetailView extends Composite implements Seller.View{
 
 	private static DetailViewUiBinder uiBinder = GWT.create(DetailViewUiBinder.class);
 
@@ -24,6 +28,8 @@ public class DetailView extends Composite implements Seller.Detail.View{
 	
 	@UiField Heading titleLabel;
 	@UiField DataList<OfferProxy> dataList;
+	
+	private Presenter presenter;
 	
 	private QueryDataProvider<OfferProxy> dataProvider = new QueryDataProvider<OfferProxy>();
 	
@@ -43,5 +49,16 @@ public class DetailView extends Composite implements Seller.Detail.View{
 	public void setOfferProxyQuery(Query<OfferProxy> query) {
 		dataProvider.setQuery(query);
 	}
+	
+	@Override
+	public void setPresenter(Presenter presenter) {
+		this.presenter = presenter;
+	}
+	
+	@UiHandler("dataList")
+	void handleCellClick(ClickEvent e){
+		presenter.goToMaterielScreen((MaterielProxy) e.getSource());
+	}
+	
 
 }
