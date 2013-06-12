@@ -19,7 +19,7 @@ public class ProcurementQuery implements Query<ProcurementProxy> {
 
 	@Override
 	public Request<List<ProcurementProxy>> list(int start, int length) {
-		return App.getInstance().getDataStore().procurements().listByPlan(plan, start, length);
+		return App.getInstance().getDataStore().procurements().listByPlan(plan, start, length).with("materiel");
 	}
 
 	@Override

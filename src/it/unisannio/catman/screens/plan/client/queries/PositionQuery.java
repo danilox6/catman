@@ -4,7 +4,6 @@ import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.domain.planning.client.PlanProxy;
 import it.unisannio.catman.domain.planning.client.PositionProxy;
-import it.unisannio.catman.domain.planning.client.ProcurementProxy;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class PositionQuery implements Query<PositionProxy> {
 
 	@Override
 	public Request<List<PositionProxy>> list(int start, int length) {
-		return App.getInstance().getDataStore().positions().listByPlan(plan, start, length);
+		return App.getInstance().getDataStore().positions().listByPlan(plan, start, length).with("qualification");
 	}
 
 	@Override
