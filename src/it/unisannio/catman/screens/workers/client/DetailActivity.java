@@ -5,11 +5,15 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import it.unisannio.catman.common.client.ScreenActivity;
 
-public class DetailActivity extends ScreenActivity implements Workers.Presenter{
+public class DetailActivity extends ScreenActivity {
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		panel.setWidget(new DetailView());
+		Workers.View view = new DetailView();
+		panel.setWidget(view);
+		
+		WorkersPresenter presenter = new WorkersPresenter(view, this, getIntent());
+		view.setPresenter(presenter);
 	}
 
 }

@@ -3,28 +3,27 @@ package it.unisannio.catman.screens.workers.client;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unisannio.catman.common.client.App;
-import it.unisannio.catman.common.client.DataStore;
-import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.humanresources.client.QualificationProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkersSource;
-import it.unisannio.catman.domain.humanresources.client.WorkersSource.Source;
+import it.unisannio.catman.screens.workers.client.Workers.Presenter;
 import it.unisannio.catman.screens.workers.client.adapters.WorkerMasterAdapter;
+import it.unisannio.catman.screens.workers.client.queries.WorkersByQualificationQuery;
 
+import com.github.gwtbootstrap.client.ui.ListBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.DomEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.web.bindery.requestfactory.shared.Request;
 
 public class MasterView extends Composite implements Workers.View, ChangeHandler{
 
@@ -39,7 +38,8 @@ public class MasterView extends Composite implements Workers.View, ChangeHandler
 	
 	private WorkersSource workersSource;
 	
-	List<QualificationProxy> qualifications = new ArrayList<QualificationProxy>();
+	private List<QualificationProxy> qualifications = new ArrayList<QualificationProxy>();
+	private Workers.Presenter presenter;
 
 	public MasterView() {
 		
@@ -70,49 +70,18 @@ public class MasterView extends Composite implements Workers.View, ChangeHandler
 		if(!qualifications.isEmpty()){
 			int index = listBox.getSelectedIndex();
 			QualificationProxy qualification = qualifications.get(index!=-1?index:0);
-			dataProvider.setQuery(new WorkersByQualificationInSource(qualification,workersSource));
+			dataProvider.setQuery(new WorkersByQualificationQuery(qualification,workersSource));
 		}
 	}
 	
-	class WorkersByQualificationInSource implements Query<WorkerProxy>{
-		
-		private QualificationProxy qualification;
-		private WorkersSource source;
-		private DataStore dataStore;
-		
-		public WorkersByQualificationInSource(QualificationProxy qualification, WorkersSource source) {
-			this.qualification = qualification;
-			this.source = source;
-			dataStore = App.getInstance().getDataStore();
-		}
-
-		@Override
-		public Request<List<WorkerProxy>> list(int start, int length) {
-			if(source.getSource() == Source.WORKERS)
-				return dataStore.workers().listByQualificationInWorkersSource(qualification, start, length);
-			if(source.getSource() == Source.CANDIDATES)
-				return dataStore.workers().listByQualificationInCandidates(qualification, start, length);
-			return dataStore.workers().listByQualificationInJobBoard(qualification, source.getJobBoardProxy(), start, start);
-		}
-		
-		@Override
-		public Request<Integer> count() {
-			if(source.getSource() == Source.WORKERS)
-				return dataStore.workers().countByQualificationInWorkersSource(qualification);
-			if(source.getSource() == Source.CANDIDATES)
-				return dataStore.workers().countByQualificationInCandidates(qualification);
-			return dataStore.workers().countByQualificationInJobBoard(qualification, source.getJobBoardProxy());
-		}
-		
-		@Override
-		public Request<Void> deleteSet(List<WorkerProxy> set) {
-			throw new UnsupportedOperationException(); //FIXME
-		}
-		
-		@Override
-		public Request<Void> deleteAll(List<WorkerProxy> skip) {
-			throw new UnsupportedOperationException(); //FIXME
-		}
+	@Override
+	public void setPresenter(Presenter presenter) {
+		this.presenter = presenter;
+	}
+	
+	@UiHandler("dataList")
+	void handleCellClick(ClickEvent event){
+		presenter.goToWorker((WorkerProxy) event.getSource());
 	}
 
 }

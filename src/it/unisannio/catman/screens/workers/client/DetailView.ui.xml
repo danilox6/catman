@@ -1,11 +1,12 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
 	xmlns:ct="urn:import:com.google.gwt.user.cellview.client"
 	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
 	<c:MasterPanel>
 	    <c:header>
-	        <g:Label ui:field="titleLabel"></g:Label>
+	         <b:Heading size="3" ui:field="titleLabel"/>
 	    </c:header>
 	    <c:content>
 	        <ct:CellTree ui:field="cellTree"/>
