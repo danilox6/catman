@@ -21,14 +21,12 @@ public class ContractsQuery implements Query<ContractProxy> {
 	
 	@Override
 	public Request<List<ContractProxy>> list(int start, int length) {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.contracts().listByWorker(worker, start, length).with("piecework.wage","piecework.qualification.name");
 	}
 
 	@Override
 	public Request<Integer> count() {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.contracts().countdByWorker(worker);
 	}
 
 	@Override

@@ -7,37 +7,36 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.Query;
-import it.unisannio.catman.domain.humanresources.client.QualificationProxy;
+import it.unisannio.catman.domain.humanresources.client.PieceworkProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 
-public class QualificationsQuery implements Query<QualificationProxy>{
+public class PieceworksQuery implements Query<PieceworkProxy>{
+	
 	private static final DataStore dataStore = App.getInstance().getDataStore();
 	
 	private WorkerProxy worker;
 	
-	public QualificationsQuery(WorkerProxy worker) {
+	public PieceworksQuery(WorkerProxy worker) {
 		this.worker = worker;
 	}
 
 	@Override
-	public Request<List<QualificationProxy>> list(int start, int length) {
-		// TODO Auto-generated method stub
-		return null;
+	public Request<List<PieceworkProxy>> list(int start, int length) {
+		return dataStore.pieceworks().listByWorker(worker, start, length).with("qualification.name");
 	}
 
 	@Override
 	public Request<Integer> count() {
-		// TODO Auto-generated method stub
-		return null;
+		return dataStore.pieceworks().countByWorker(worker);
 	}
 
 	@Override
-	public Request<Void> deleteAll(List<QualificationProxy> skip) {
+	public Request<Void> deleteAll(List<PieceworkProxy> skip) {
 		throw new UnsupportedOperationException(); //FIXME
 	}
 
 	@Override
-	public Request<Void> deleteSet(List<QualificationProxy> set) {
+	public Request<Void> deleteSet(List<PieceworkProxy> set) {
 		throw new UnsupportedOperationException(); //FIXME
 	}
 

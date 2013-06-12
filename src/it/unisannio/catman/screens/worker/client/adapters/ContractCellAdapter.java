@@ -4,15 +4,15 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import it.unisannio.catman.common.client.Icon;
-import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
+import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
 import it.unisannio.catman.domain.humanresources.client.ContractProxy;
+import it.unisannio.catman.domain.humanresources.client.EmploymentContractProxy;
 
-public class ContractCellAdapter extends AbstractCellAdapter<ContractProxy>{
+public class ContractCellAdapter extends SelectableCellAdapter<ContractProxy>{
 
 	@Override
 	public SafeHtml getNorth(ContractProxy object) {
-		//FIXME la condizione � sull'instanceof adesso
-		return new SafeHtmlBuilder().appendEscaped("FIXME" /*object.isOpenEnded()?"Open Ended Contract":"Freelance"*/).toSafeHtml();
+		return new SafeHtmlBuilder().appendEscaped(object instanceof EmploymentContractProxy?"Open Ended Contract":"Freelance Contract").toSafeHtml();
 	}
 	
 	@Override
@@ -23,14 +23,15 @@ public class ContractCellAdapter extends AbstractCellAdapter<ContractProxy>{
 	
 	@Override
 	public SafeHtml getSouth(ContractProxy object) {
-		// FIXME Qualifica esatta
-		return new SafeHtmlBuilder().appendEscaped("FIXME!"/*object.getQualification().getName()*/).toSafeHtml();
+		return new SafeHtmlBuilder().appendEscaped(object.getPiecework().getQualification().getName()).toSafeHtml();
 	}
 	
 	@Override
 	public SafeHtml getEast(ContractProxy object) {
-		// FIXME Wage esatto
-		return new SafeHtmlBuilder().appendEscaped("FIXME" /*object.getWage() 0+(object.isOpenEnded()?"€/mo.":"€")*/).toSafeHtml(); //TODO controllare €/&euro;
+		SafeHtmlBuilder sb = new SafeHtmlBuilder();
+		sb.appendEscaped(object.getPiecework().getPay()+(object instanceof EmploymentContractProxy?"€/mo.":"€")); //TODO controllare €/&euro;
+		sb.append(getSimpleSelectionCheckBox(object)); //FIXME Styling
+		return sb.toSafeHtml();
 	}
 	
 	@Override

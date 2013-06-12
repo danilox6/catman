@@ -23,7 +23,15 @@ public abstract class Contract extends AbstractEntity<Long> {
 	}
 	
 	public static List<Contract> findByWorker(Worker worker) {
-		return findByQuery("SELECT c FROM Contract c, Worker w, Piecework p WHERE p.worker = ?1 AND c.piecework = p", worker);
+		return findByQuery("SELECT DISTINCT c FROM Contract c, Worker w, Piecework p WHERE p.worker = ?1 AND c.piecework = p", worker);
+	}
+	
+	public static List<Contract> listByWorker(Worker worker, int start, int length) {
+		return listByQuery(Contract.class, start, length,"SELECT DISTINCT c FROM Contract c, Worker w, Piecework p WHERE p.worker = ?1 AND c.piecework = p", worker);
+	}
+	
+	public static Integer countdByWorker(Worker worker) {
+		return countByQuery("SELECT DISTINCT COUNT(c) FROM Contract c, Worker w, Piecework p WHERE p.worker = ?1 AND c.piecework = p", worker);
 	}
 	
 	@Id

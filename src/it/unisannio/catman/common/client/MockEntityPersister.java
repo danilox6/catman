@@ -1,6 +1,7 @@
 package it.unisannio.catman.common.client;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
 import it.unisannio.catman.common.client.App;
@@ -15,6 +16,9 @@ import it.unisannio.catman.domain.equipment.client.StockProxy;
 import it.unisannio.catman.domain.equipment.client.StockRequest;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
+import it.unisannio.catman.domain.humanresources.client.ContractRequest;
+import it.unisannio.catman.domain.humanresources.client.EmploymentContractProxy;
+import it.unisannio.catman.domain.humanresources.client.FreelanceContractProxy;
 import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
 import it.unisannio.catman.domain.humanresources.client.JobBoardRequest;
 import it.unisannio.catman.domain.humanresources.client.PieceworkProxy;
@@ -30,11 +34,14 @@ import it.unisannio.catman.domain.workflow.client.EventRequest;
 
 public class MockEntityPersister {
 	static boolean done = false;
+	private static EventProxy event1;
+	private static final DateFormat DATE_F = new DateFormat("dd/MM/yyyy");
 
 	public static void persist(){
 		if(!done){
 
 			final DataStore dataStore = App.getInstance().getDataStore();
+			
 			EventRequest events = dataStore.events();
 			events.count().fire(new Receiver<Integer>() {
 
@@ -42,15 +49,20 @@ public class MockEntityPersister {
 				public void onSuccess(Integer response) {
 					if(response == 0){
 						EventRequest events = dataStore.events();
-						EventProxy event = events.create(EventProxy.class);
-						event.setTitle("Delirium Party");
+						event1 = events.create(EventProxy.class);
+						event1.setTitle("Delirium Party");
+						event1.setStartDate(DATE_F.parse("11/06/2013"));
 						//	GWT.log("Event token: " + dataStore.getHistoryToken(event.stableId()));
-						events.persist().using(event);
+						events.persist().using(event1);
 						EventProxy event2 = events.create(EventProxy.class);
 						event2.setTitle("Erasmus Party");
+						event2.setStartDate(DATE_F.parse("03/01/2013"));
+						event2.setEndDate(DATE_F.parse("06/01/2013"));
 						events.persist().using(event2);
 						EventProxy event3 = events.create(EventProxy.class);
 						event3.setTitle("Giovanni Di Muccio Party");
+						event3.setStartDate(DATE_F.parse("20/05/2013"));
+						event3.setEndDate(DATE_F.parse("25/05/2013"));
 						events.persist().using(event3);
 
 						events.fire(new Receiver<Void>() {
@@ -207,7 +219,9 @@ public class MockEntityPersister {
 							public void onSuccess(Void response) {
 								WorkerRequest workers = dataStore.workers();
 								final WorkerProxy worker1 = workers.create(WorkerProxy.class);
-								worker1.setName("Robertino");
+								worker1.setName("Mario Rossi");
+								worker1.setResume("Un bravo ragazzo");
+								worker1.setEmail("mario.rossi@email.it");
 								worker1.setCandidate(false);
 								workers.persist().using(worker1);
 
@@ -222,7 +236,7 @@ public class MockEntityPersister {
 								workers.persist().using(worker3);
 
 								final WorkerProxy worker4 = workers.create(WorkerProxy.class);
-								worker4.setName("Marino");
+								worker4.setName("Robertino");
 								worker4.setCandidate(false);
 								workers.persist().using(worker4);
 
@@ -298,18 +312,18 @@ public class MockEntityPersister {
 													public void onSuccess(Void response) {
 														PieceworkRequest pieceworks = dataStore.pieceworks();
 
-														PieceworkProxy piecework1 = pieceworks.create(PieceworkProxy.class);
+														final PieceworkProxy piecework1 = pieceworks.create(PieceworkProxy.class);
 														piecework1.setWorker(worker1);
 														piecework1.setQualification(qualification1);
-														piecework1.setPay(10);
-														piecework1.setFreelance(false);
+														piecework1.setPay(50);
+														piecework1.setFreelance(true);
 														pieceworks.persist().using(piecework1);
 
-														PieceworkProxy piecework2 = pieceworks.create(PieceworkProxy.class);
+														final PieceworkProxy piecework2 = pieceworks.create(PieceworkProxy.class);
 														piecework2.setWorker(worker7);
 														piecework2.setQualification(qualification2);
-														piecework2.setPay(10);
-														piecework2.setFreelance(false);
+														piecework2.setPay(1000);
+														piecework2.setFreelance(true);
 														pieceworks.persist().using(piecework2);
 
 														PieceworkProxy piecework3 = pieceworks.create(PieceworkProxy.class);
@@ -323,13 +337,13 @@ public class MockEntityPersister {
 														piecework4.setWorker(worker10);
 														piecework4.setQualification(qualification4);
 														piecework4.setPay(10);
-														piecework4.setFreelance(false);
+														piecework4.setFreelance(true);
 														pieceworks.persist().using(piecework4);
 
-														PieceworkProxy piecework5 = pieceworks.create(PieceworkProxy.class);
+														final PieceworkProxy piecework5 = pieceworks.create(PieceworkProxy.class);
 														piecework5.setWorker(worker1);
 														piecework5.setQualification(qualification2);
-														piecework5.setPay(10);
+														piecework5.setPay(1500);
 														piecework5.setFreelance(false);
 														pieceworks.persist().using(piecework5);
 
@@ -338,7 +352,7 @@ public class MockEntityPersister {
 														piecework6.setWorker(worker5);
 														piecework6.setQualification(qualification4);
 														piecework6.setPay(10);
-														piecework6.setFreelance(false);
+														piecework6.setFreelance(true);
 														pieceworks.persist().using(piecework6);
 
 														PieceworkProxy piecework7 = pieceworks.create(PieceworkProxy.class);
@@ -352,7 +366,7 @@ public class MockEntityPersister {
 														piecework8.setWorker(worker4);
 														piecework8.setQualification(qualification1);
 														piecework8.setPay(10);
-														piecework8.setFreelance(false);
+														piecework8.setFreelance(true);
 														pieceworks.persist().using(piecework8);
 
 														PieceworkProxy piecework9 = pieceworks.create(PieceworkProxy.class);
@@ -366,7 +380,7 @@ public class MockEntityPersister {
 														piecework10.setWorker(worker8);
 														piecework10.setQualification(qualification4);
 														piecework10.setPay(10);
-														piecework10.setFreelance(false);
+														piecework10.setFreelance(true);
 														pieceworks.persist().using(piecework10);
 
 														PieceworkProxy piecework11 = pieceworks.create(PieceworkProxy.class);
@@ -387,14 +401,14 @@ public class MockEntityPersister {
 														piecework13.setWorker(worker10);
 														piecework13.setQualification(qualification2);
 														piecework13.setPay(10);
-														piecework13.setFreelance(false);
+														piecework13.setFreelance(true);
 														pieceworks.persist().using(piecework13);
 
 														PieceworkProxy piecework14 = pieceworks.create(PieceworkProxy.class);
 														piecework14.setWorker(worker6);
 														piecework14.setQualification(qualification1);
 														piecework14.setPay(10);
-														piecework14.setFreelance(false);
+														piecework14.setFreelance(true);
 														pieceworks.persist().using(piecework14);
 
 														PieceworkProxy piecework15 = pieceworks.create(PieceworkProxy.class);
@@ -415,7 +429,27 @@ public class MockEntityPersister {
 
 															@Override
 															public void onSuccess(Void response) {
-																GWT.log("Workers & JobBoards & Pieceworks & Qualifications persisted");
+																
+																ContractRequest contracts = dataStore.contracts();
+																if(event1!=null){
+																	FreelanceContractProxy contract1 = contracts.create(FreelanceContractProxy.class);
+																	contract1.setPiecework(piecework1);
+																	contract1.setEvent(event1);
+																	contracts.persist().using(contract1);
+																}
+																
+																EmploymentContractProxy contract2 = contracts.create(EmploymentContractProxy.class);
+																contract2.setPiecework(piecework5);
+																contract2.setStartDate(DATE_F.parse("17/07/2012"));
+																contracts.persist().using(contract2);
+																
+																contracts.fire(new Receiver<Void>(){
+																	public void onSuccess(Void response) {
+																		GWT.log("Workers & JobBoards & Pieceworks & Qualifications & Contracts persisted");
+																	};
+																});
+																
+																
 															}
 														});
 													}
@@ -461,6 +495,14 @@ public class MockEntityPersister {
 			});
 		 */
 
+	}
+	
+	private static class DateFormat extends DateTimeFormat{
+
+		public DateFormat(String pattern) {
+			super(pattern);
+		}
+		
 	}
 
 	private static final String[] MALE_FIRST_NAMES = {

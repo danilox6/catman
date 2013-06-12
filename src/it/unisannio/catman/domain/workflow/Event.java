@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import it.unisannio.catman.common.server.AbstractEntity;
 import it.unisannio.catman.domain.documents.Document;
@@ -50,6 +51,7 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, 
 	
 	private String title;
 	
+	@NotNull
 	private Date startDate;
 	
 	private Date endDate;

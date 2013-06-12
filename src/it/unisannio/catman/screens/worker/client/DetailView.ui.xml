@@ -7,11 +7,15 @@
 	</ui:style>
 	<c:MasterPanel ui:field="masterPanel" scrollable="true">
 		<c:header>
-			<b:Heading size="3" ui:field="titleLabel"></b:Heading>
+			<c:ActionBar>
+				<c:left>
+					<b:Heading size="3" ui:field="titleLabel"></b:Heading>
+				</c:left>
+				<c:right>
+					<b:Button icon="STAR" type="PRIMARY" ui:field="candidatesButton" visible="false">Add to candidates</b:Button>
+				</c:right>
+			</c:ActionBar>
 		</c:header>
-		<c:content>
-			<cw:CellWidget ui:field="workerInfoCell" width="100%"></cw:CellWidget>
-		</c:content>
 		<c:content>
 			<b:Fieldset ui:field="contactInfoFieldset" visible="false">
 				<b:Legend>Info Contatto</b:Legend>
@@ -21,20 +25,18 @@
 		<c:content>
 			<b:Fieldset ui:field="resumeFieldset" visible="false">
 				<b:Legend>Resume</b:Legend>
-				<b:Paragraph ui:field="resumeParagraph">John worked for many years in the field of software testing: he started working in the industry as mock object, but soon his qualities led him to be promoted by his empoyers to being a test user. Since then, he participated in more than 10'000  unit tests, being one of the most prolific dummy users of the history</b:Paragraph>
+				<b:Paragraph ui:field="resumeParagraph"></b:Paragraph>
 			</b:Fieldset>
 		</c:content>
 		<c:content>
-			<b:Fieldset>
-				<b:Legend>Disponibile come</b:Legend>
-				<c:DataList ui:field="qualificationList" cellType="STANDALONE" />
-			</b:Fieldset>
-		</c:content>
-		<c:content>
-			<b:Fieldset>
-				<b:Legend>Contratti</b:Legend>
-				<c:DataList ui:field="contractList" cellType="STANDALONE" />
-			</b:Fieldset>
+			<b:Accordion>
+				<b:AccordionGroup heading="Disponibile Come:" defaultOpen="true">
+					<c:DataList ui:field="pieceworkList" cellType="STANDALONE" />
+				</b:AccordionGroup>
+				<b:AccordionGroup heading="Contratti">
+					<c:DataList ui:field="contractList" cellType="STANDALONE" />
+				</b:AccordionGroup>
+			</b:Accordion>
 		</c:content>
 	</c:MasterPanel>
 </ui:UiBinder> 
