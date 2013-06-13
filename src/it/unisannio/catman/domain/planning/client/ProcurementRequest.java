@@ -2,6 +2,7 @@ package it.unisannio.catman.domain.planning.client;
 
 import java.util.List;
 
+import it.unisannio.catman.domain.equipment.client.SupplyProxy;
 import it.unisannio.catman.domain.planning.Procurement;
 
 import com.google.web.bindery.requestfactory.shared.InstanceRequest;
@@ -18,4 +19,6 @@ public interface ProcurementRequest extends RequestContext {
 	
 	Request<Void> delete(List<Long> ids);
 	Request<Void> deleteByPlan(PlanProxy plan, List<Long> ids);
+	
+	InstanceRequest<ProcurementProxy, Void> move(int quantity, SupplyProxy supply);
 }
