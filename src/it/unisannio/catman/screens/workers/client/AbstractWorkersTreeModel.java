@@ -3,6 +3,7 @@ package it.unisannio.catman.screens.workers.client;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.CellAdapter;
 import it.unisannio.catman.common.client.cell.MasterCell;
+import it.unisannio.catman.common.client.cell.MasterCell.Type;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -14,11 +15,13 @@ import com.google.web.bindery.requestfactory.shared.EntityProxy;
 
 public abstract class AbstractWorkersTreeModel implements TreeViewModel, HasClickHandlers{
 
-	//TODO Sostituire scritta Empty quando l'albero è vuoto
+	// XXX Sostituire scritta Empty quando l'albero è vuoto
 
-	private MasterCell<WorkerProxy> cell = new MasterCell<WorkerProxy>();
+	private MasterCell<WorkerProxy> cell;
 	
 	public AbstractWorkersTreeModel(CellAdapter<WorkerProxy> adapter) {
+		cell = new MasterCell<WorkerProxy>();
+		cell.setType(Type.STANDALONE);
 		cell.setCellAdapter(adapter);
 	}
 

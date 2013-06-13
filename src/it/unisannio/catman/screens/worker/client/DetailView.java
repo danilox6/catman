@@ -84,7 +84,7 @@ public class DetailView extends Composite implements Worker.View{
 		
 		if(workerProxy.isCandidate()){
 			candidatesButton.setType(ButtonType.DANGER);
-			candidatesButton.setText("Remove from candidates"); //FIXME Rivedere testo
+			candidatesButton.setText("Remove from candidates"); 
 		}else{
 			candidatesButton.setType(ButtonType.PRIMARY);
 			candidatesButton.setText("Add to candidates"); 
@@ -111,7 +111,7 @@ public class DetailView extends Composite implements Worker.View{
 	
 	@UiHandler("pieceworkList")
 	void handleCellCLick(ClickEvent e){
-		if(e.getRelativeElement().hasAttribute(PieceworkCellAdapter.HIRE_BUTTON_ATTIBUTE)) //TODO
+		//if(e.getRelativeElement().hasAttribute(PieceworkCellAdapter.HIRE_BUTTON_ATTIBUTE)) //TODO
 			Window.alert("//TODO");
 	}
 

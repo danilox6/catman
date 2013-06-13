@@ -16,12 +16,12 @@ public class SelectedWorkerAdapter extends AbstractCellAdapter<WorkerProxy> {
 	
 	@Override
 	public SafeHtml getWest(WorkerProxy d) {
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+ Icon.CONTACT +"</span>").toSafeHtml();
+		return Icon.CONTACT.toSafeHtml();
 	}
 
 	@Override
 	public SafeHtml getEast(WorkerProxy object) {
-		return new SafeHtmlBuilder().appendEscaped("X").toSafeHtml(); //FIXME
+		return new SafeHtmlBuilder().appendEscaped("&#x2714;").toSafeHtml();
 	}
 	
 	

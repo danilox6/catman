@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.google.web.bindery.requestfactory.shared.Request;
 
+import it.unisannio.catman.common.client.AbstractQuery;
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
-import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.domain.equipment.client.StockProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 
-public class StockQuery implements Query<StockProxy>{
+public class StockQuery extends AbstractQuery<StockProxy>{
 	
 	private static final DataStore dataStore = App.getInstance().getDataStore();
 	
@@ -28,16 +28,5 @@ public class StockQuery implements Query<StockProxy>{
 	@Override
 	public Request<Integer> count() {
 		return dataStore.stocks().countByWarehouse(warehouse);
-	}
-	
-	@Override
-	public Request<Void> deleteSet(List<StockProxy> set) {
-		throw new UnsupportedOperationException(); //FIXME
-	}
-	
-	@Override
-	public Request<Void> deleteAll(List<StockProxy> skip) {
-		throw new UnsupportedOperationException(); //FIXME
-	}
-	
+	}	
 }

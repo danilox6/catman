@@ -24,9 +24,7 @@ public class SupplierCellAdapter extends AbstractCellAdapter<SupplierProxy>{
 
 	@Override
 	public SafeHtml getWest(SupplierProxy object) {
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"
-				+ (object instanceof WarehouseProxy? Icon.PACKAGE: Icon.SHOPPING_CART)+ // FIXME Icone
-				"</span>").toSafeHtml();
+		return (object instanceof WarehouseProxy? Icon.FORKLIFT : Icon.SHOPPING_CART).toSafeHtml();
 	}
 
 }

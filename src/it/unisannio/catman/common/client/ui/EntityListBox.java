@@ -42,8 +42,4 @@ public class EntityListBox<E extends EntityProxy, R extends RequestContext & Has
 		});
 		
 	}
-
-	
-	
-
 }

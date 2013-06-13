@@ -7,7 +7,7 @@ import it.unisannio.catman.domain.workflow.client.EventDocumentProxy;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.screens.event.client.Event.Presenter;
 import it.unisannio.catman.screens.event.client.Event.View;
-import it.unisannio.catman.screens.event.client.adapters.DocumentMasterAdapter;
+import it.unisannio.catman.screens.event.client.adapters.DocumentCellAdapter;
 import it.unisannio.catman.screens.event.client.queries.EventDocumentQuery;
 
 import com.github.gwtbootstrap.client.ui.Button;
@@ -39,7 +39,7 @@ public class MasterView extends Composite implements View {
 	public MasterView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		dataList.setCellAdapter(new DocumentMasterAdapter());
+		dataList.setCellAdapter(new DocumentCellAdapter());
 		
 		dataProvider = new QueryDataProvider<EventDocumentProxy>();
 		dataList.setDataProvider(dataProvider);

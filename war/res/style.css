@@ -264,3 +264,15 @@ a:hover, .btn-link:hover {
 	text-decoration: none !important;
 }
 
+
+.data-list-icon {
+	font-family: 'whhglyphs';
+	display: block;
+	width: 32px;
+	height: 32px;
+	font-size: 32px;
+	line-height: 32px;
+	text-align: center;
+	color: #555;
+	margin-left:3px;
+}

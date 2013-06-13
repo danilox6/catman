@@ -16,14 +16,7 @@ public class WorkerDetailAdapter extends AbstractCellAdapter<WorkerProxy>{
 	
 	@Override
 	public SafeHtml getWest(WorkerProxy object) {
-		//FIXME Icona
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+ Icon.CONTACT +"</span>").toSafeHtml();
-	}
-	
-	@Override
-	public SafeHtml getEast(WorkerProxy object) {
-		//FIXME
-		return new SafeHtmlBuilder().appendEscapedLines(">").toSafeHtml();
+		return Icon.CONTACT.toSafeHtml();
 	}
 
 }

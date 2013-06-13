@@ -38,8 +38,7 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
         private final ScrollPanel scrollable = new ScrollPanel(); 
 
         public ScrollingPager() { 
-            initWidget(scrollable); 
-            //scrollable.setPixelSize(250, 350); // FIXME 
+            initWidget(scrollable);  
             scrollable.getElement().setTabIndex(-1); 
             
             // Handle scroll events. 
@@ -107,7 +106,8 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 	}
 	
 	public DataList(CellAdapter<T> cellAdapter) {
-		cell = new MasterCell<T>(cellAdapter); 
+		cell = new MasterCell<T>();
+		cell.setCellAdapter(cellAdapter);
 		cellList = new CellList<T>(cell); 
 		
 		pager = new ScrollingPager();

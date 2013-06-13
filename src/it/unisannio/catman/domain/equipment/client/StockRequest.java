@@ -17,4 +17,6 @@ public interface StockRequest extends RequestContext{
 	Request<List<StockProxy>> listAll(int start, int length);
 	Request<Integer> count();
 	Request<Integer> countByWarehouse(WarehouseProxy warehouse);
+	
+	InstanceRequest<StockProxy, Integer> move(int quantity, WarehouseProxy destination);
 }

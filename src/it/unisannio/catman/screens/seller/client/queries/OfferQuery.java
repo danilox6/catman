@@ -1,16 +1,17 @@
 package it.unisannio.catman.screens.seller.client.queries;
 
+import it.unisannio.catman.common.client.AbstractQuery;
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
-import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.domain.equipment.client.OfferProxy;
 import it.unisannio.catman.domain.equipment.client.SellerProxy;
 
 import java.util.List;
 
+
 import com.google.web.bindery.requestfactory.shared.Request;
 
-public class OfferQuery implements Query<OfferProxy> {
+public class OfferQuery extends AbstractQuery<OfferProxy> {
 	private static final DataStore dataStore = App.getInstance().getDataStore();
 	
 	private SellerProxy seller;
@@ -29,14 +30,5 @@ public class OfferQuery implements Query<OfferProxy> {
 		return dataStore.offers().countBySeller(seller);
 	}
 
-	@Override
-	public Request<Void> deleteSet(List<OfferProxy> set) {
-		throw new UnsupportedOperationException(); //FIXME
-	}
-
-	@Override
-	public Request<Void> deleteAll(List<OfferProxy> skip) {
-		throw new UnsupportedOperationException(); //FIXME
-	}
 
 }

@@ -4,6 +4,7 @@ package it.unisannio.catman.domain.equipment;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -13,7 +14,11 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 		return find(Warehouse.class, id);
 	}
 
-	@OneToMany(mappedBy="supplier")
+	public static List<Warehouse> findAll() {
+		return findAll(Warehouse.class);
+	}
+	
+	@OneToMany(mappedBy="supplier", cascade = CascadeType.ALL)
 	private List<Stock> supply = new ArrayList<Stock>(); 
 
 	@Override
@@ -28,6 +33,5 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 	
 	public void addSupply(Stock stock){
 		supply.add(stock);
-	}
-	
+	}	
 }

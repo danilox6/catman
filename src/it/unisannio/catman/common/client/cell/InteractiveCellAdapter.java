@@ -18,7 +18,7 @@ public abstract class InteractiveCellAdapter<T> extends AbstractCellAdapter<T>{
 		return selectionModel != null && selectionModel.isSelected(object);
 	}
 	
-	private final String getCommandAttribute(final String value) {
+	public static final String getCommandAttribute(final String value) {
 		return MasterCell.ATTRIBUTE_COMMAND + "=\"" + value + "\"";
 	}
 	

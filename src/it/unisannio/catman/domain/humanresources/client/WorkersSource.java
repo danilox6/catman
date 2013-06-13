@@ -82,7 +82,7 @@ public class WorkersSource implements EntityProxy{
 		throw new IllegalArgumentException(string);
 	}
 
-	//FIXME Workaround per usare WorkerSource nella DataList
+	// XXX Workaround per usare WorkerSource nella DataList
 	@Override
 	public EntityProxyId<?> stableId() {
 		throw new UnsupportedOperationException();

@@ -3,7 +3,7 @@
 <module rename-to="warehouse">
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="it.unisannio.catman.common.Common" />
-	<inherits name="it.unisannio.catman.screens.supply.Supply" />
+	<inherits name="it.unisannio.catman.screens.stock.Stock" />
 	<source path="client" />
 	<entry-point
 		class="it.unisannio.catman.screens.warehouse.client.Warehouse">

@@ -8,7 +8,6 @@ import com.google.gwt.safehtml.shared.SafeHtml;
  */
 public abstract class AbstractCellAdapter<T> implements CellAdapter<T> {
 	
-	public static final String DATA_LIST_ICON_CLASS = "data-list-icon";
 
 	@Override
 	public SafeHtml getWest(T object) {

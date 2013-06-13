@@ -60,10 +60,10 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 	public MasterCell(){
 		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
 	}
-
-	public MasterCell(CellAdapter<? super T> adapter) { //FIXME Potrebbe non essere necessario
-		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
-		this.adapter = adapter;
+	
+	public MasterCell(CellAdapter<? super T> adapter) {
+		this();
+		setCellAdapter(adapter);
 	}
 	
 	public void setCellAdapter(CellAdapter<? super T> adapter) {
