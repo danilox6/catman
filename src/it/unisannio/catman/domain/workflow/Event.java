@@ -33,8 +33,8 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, 
 		return list(Event.class, start, length);
 	}
 	
-	public static void delete(Long... keys) {
-		deleteAll(Event.class, keys);
+	public static void delete(List<Long> keys) {
+		deleteByKeys(Event.class, keys);
 	}
 	
 	public static int count() {

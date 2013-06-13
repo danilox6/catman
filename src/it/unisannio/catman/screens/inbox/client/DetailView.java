@@ -6,7 +6,7 @@ import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
-import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
+import it.unisannio.catman.common.client.cell.InteractiveCellAdapter;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.workflow.client.CustomerProxy;
 
@@ -31,7 +31,7 @@ public class DetailView extends Composite {
 	public DetailView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		dataList.setCellAdapter(new SelectableCellAdapter<CustomerProxy>() {
+		dataList.setCellAdapter(new InteractiveCellAdapter<CustomerProxy>() {
 
 			@Override
 			public SafeHtml getNorth(CustomerProxy object) {

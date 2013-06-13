@@ -47,7 +47,7 @@ public class PositionEditor extends DataEditor<PositionProxy, PositionRequest, P
 	public PositionEditor(PlanProxy plan) {
 		super(App.getInstance().getDataStore().positions(), PositionProxy.class);
 		setForm(uiBinder.createAndBindUi(this));
-		setTitle("Add/edit Material Requirement");
+		setTitle("Add/edit Personnel Requirement");
 		
 		this.plan = plan;
 	}

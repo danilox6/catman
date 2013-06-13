@@ -1,13 +1,16 @@
 package it.unisannio.catman.domain.planning;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import it.unisannio.catman.domain.equipment.Materiel;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -28,6 +31,14 @@ public class Procurement extends Requirement {
 	public static int countByPlan(Plan p) {
 		return countByQuery("SELECT COUNT(p) FROM Procurement p WHERE p.plan = ?1", p);
 	}
+	
+	public static void delete(List<Long> ids) {
+		deleteByKeys(Procurement.class, ids);
+	}
+	
+	public static void deleteByPlan(Plan p, List<Long> exclusions) {
+		deleteByQuery(Procurement.class, exclusions, "SELECT p FROM Procurement p WHERE p.plan = ?1", p);
+	}
 
 	@ManyToOne
 	@NotNull
@@ -35,6 +46,10 @@ public class Procurement extends Requirement {
 	
 	@OneToMany
 	private List<Source> sources = new ArrayList<Source>();
+	
+	@ManyToOne
+	@NotNull
+	private Plan plan;
 
 	@Override
 	public String getDescription() {
@@ -61,5 +76,31 @@ public class Procurement extends Requirement {
 	
 	public void setMateriel(Materiel m) {
 		this.materiel = m;
+	}
+	
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+	
+	
+	// FIXME Non funziona
+	@AssertTrue(message = "A requirement for the same materiel can't be added twice")
+	private boolean isUnique() {
+		Set<Materiel> materiels = new HashSet<Materiel>();
+		List<Procurement> procurements = getPlan().getProcurements();
+		for(Procurement p : procurements) {
+			Materiel m = p.getMateriel();
+			if(materiels.contains(m) && p != this)
+				return false;
+			
+			materiels.add(m);
+		}
+		
+		return true;
 	}
 }

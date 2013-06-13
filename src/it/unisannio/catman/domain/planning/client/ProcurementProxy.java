@@ -15,4 +15,6 @@ public interface ProcurementProxy extends RequirementProxy {
 	void setMateriel(MaterielProxy m);
 	MaterielProxy getMateriel();
 
+	Long getId();
+
 }

@@ -18,10 +18,10 @@ public class Plan extends EventDocument {
 		return find(Plan.class, id);
 	}
 	
-	@OneToMany(mappedBy="plan", targetEntity = Requirement.class)
+	@OneToMany(mappedBy="plan")
 	private List<Procurement> procurements = new ArrayList<Procurement>();
 	
-	@OneToMany(mappedBy="plan", targetEntity = Requirement.class)
+	@OneToMany(mappedBy="plan")
 	private List<Position> positions = new ArrayList<Position>();
 	
 	public boolean isComplete(){
@@ -83,7 +83,6 @@ public class Plan extends EventDocument {
 		
 		super.setDossier(event);
 	}
-	
 	
 	@PrePersist
 	private void updateStatus() {

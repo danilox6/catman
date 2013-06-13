@@ -4,10 +4,10 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import it.unisannio.catman.common.client.Icon;
-import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
+import it.unisannio.catman.common.client.cell.InteractiveCellAdapter;
 import it.unisannio.catman.domain.equipment.client.StockProxy;
 
-public class StockMasterAdapter extends SelectableCellAdapter<StockProxy>{
+public class StockMasterAdapter extends InteractiveCellAdapter<StockProxy>{
 
 	@Override
 	public SafeHtml getNorth(StockProxy object) {

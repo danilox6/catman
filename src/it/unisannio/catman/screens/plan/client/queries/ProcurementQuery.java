@@ -5,11 +5,11 @@ import java.util.List;
 import com.google.web.bindery.requestfactory.shared.Request;
 
 import it.unisannio.catman.common.client.App;
-import it.unisannio.catman.common.client.Query;
+import it.unisannio.catman.common.client.IdentifiableAbstractQuery;
 import it.unisannio.catman.domain.planning.client.PlanProxy;
 import it.unisannio.catman.domain.planning.client.ProcurementProxy;
 
-public class ProcurementQuery implements Query<ProcurementProxy> {
+public class ProcurementQuery extends IdentifiableAbstractQuery<ProcurementProxy, Long> {
 	
 	private PlanProxy plan;
 	
@@ -28,13 +28,19 @@ public class ProcurementQuery implements Query<ProcurementProxy> {
 	}
 
 	@Override
-	public Request<Void> deleteAll(List<ProcurementProxy> skip) {
-		throw new UnsupportedOperationException();
+	protected Long getId(ProcurementProxy object) {
+		return object.getId();
 	}
 
 	@Override
-	public Request<Void> deleteSet(List<ProcurementProxy> set) {
-		throw new UnsupportedOperationException();
+	protected Request<Void> deleteAllWithId(List<Long> ids) {
+		return App.getInstance().getDataStore().procurements().deleteByPlan(plan, ids);
 	}
+
+	@Override
+	protected Request<Void> deleteSetWithId(List<Long> ids) {
+		return App.getInstance().getDataStore().procurements().delete(ids);
+	}
+
 
 }

@@ -126,14 +126,23 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 		this.query = q;
 		reload();
 	}
+	
+	public void deleteSelected() {
+		deleteSelected(null);
+	}
 
 	public void deleteSelected(final Receiver<Void> receiver) {
+		if(count < 1)
+			return;
 
 		List<E> list = new ArrayList<E>();
 		for(Map.Entry<EntityProxyId<E>, Boolean> entry : selection.entrySet()) {
 			if(entry.getValue() ^ selectedAll) // XOR
 				list.add(mapping.get(entry.getKey()));
 		}
+		
+		if(list.isEmpty() && !selectedAll)
+			return;
 
 		Request<Void> request = selectedAll ? query.deleteAll(list) : query.deleteSet(list);
 		request.fire(new Receiver<Void>() {
@@ -141,14 +150,16 @@ public class QueryDataProvider<E extends EntityProxy> extends AsyncDataProvider<
 			@Override
 			public void onSuccess(Void response) {
 				reload();
-				receiver.onSuccess(response);
+				if(receiver != null)
+					receiver.onSuccess(response);
 
 			}
 
 			@Override
 			public void onFailure(ServerFailure error) {
 				super.onFailure(error);
-				receiver.onFailure(error);
+				if(receiver != null)
+					receiver.onFailure(error);
 			}
 		});
 	}

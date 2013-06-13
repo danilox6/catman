@@ -5,7 +5,7 @@ import java.util.List;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.cell.CellAdapter;
 import it.unisannio.catman.common.client.cell.MasterCell;
-import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
+import it.unisannio.catman.common.client.cell.InteractiveCellAdapter;
 
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -97,7 +97,7 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 	private SelectionModel<? super T> selectionModel;
 	private SimplePanel parentPanel;
 	
-	private CellAdapter<T> adapter;
+	private CellAdapter<? super T> adapter;
 	private AbstractDataProvider<T> provider;
 	private final int DEFAULT_PAGER_SIZE = 20;
 	
@@ -142,8 +142,8 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 	
 	public void setSelectionModel(SelectionModel<? super T> selectionModel) {
 		this.selectionModel = selectionModel;
-		if(adapter instanceof SelectableCellAdapter && selectionModel!=null)
-			((SelectableCellAdapter<T>)this.adapter).setSelectionModel(selectionModel);
+		if(adapter instanceof InteractiveCellAdapter && selectionModel!=null)
+			((InteractiveCellAdapter<T>)this.adapter).setSelectionModel(selectionModel);
 		cellList.setSelectionModel(selectionModel,DefaultSelectionEventManager.<T>createCheckboxManager());
 	}
 	
@@ -163,10 +163,10 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 		}
 	}
 	
-	public void setCellAdapter(CellAdapter<T> adapter) {
+	public void setCellAdapter(CellAdapter<? super T> adapter) {
 		this.adapter = adapter;
-		if(adapter instanceof SelectableCellAdapter && selectionModel!=null)
-			((SelectableCellAdapter<T>)this.adapter).setSelectionModel(selectionModel);
+		if(adapter instanceof InteractiveCellAdapter && selectionModel!=null)
+			((InteractiveCellAdapter<T>)this.adapter).setSelectionModel(selectionModel);
 		cell.setCellAdapter(adapter);
 	}
 	

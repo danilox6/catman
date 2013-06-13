@@ -1,6 +1,6 @@
 package it.unisannio.catman.common.server;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -65,19 +65,29 @@ public abstract class AbstractEntity<K> {
 				.setMaxResults(size)
 				.getResultList();
 	}
-
-	protected static <T, K> void deleteAll(Class<T> entityClass, K... keys) {
+	
+	protected static <T extends AbstractEntity<K>, K> void deleteObjects(Class<T> entityClass, List<T> objects, List<K> exclusions) {
 		EntityManager entityManager = getEntityManager();
 		
-		List<K> ids = Arrays.asList(keys);
+		for(T obj : objects) {
+			if(!exclusions.contains(obj.getId()))
+				entityManager.remove(obj);
+		}
+	}
+	
+	protected static <T extends AbstractEntity<K>, K> void deleteByQuery(Class<T> entityClass, List<K> exclusions, String query, Object... params) {
+		List<T> objects = findByQuery(query, params);
+		deleteObjects(entityClass, objects, new ArrayList<K>());
+	}
+
+	protected static <T extends AbstractEntity<K>, K> void deleteByKeys(Class<T> entityClass, List<K> ids) {
+		EntityManager entityManager = getEntityManager();
+		
 		String id = getEntityId(entityClass);
 		TypedQuery<T> select = entityManager.createQuery("SELECT o from " + entityClass.getName() + " o WHERE " + id +" IN (:in)", entityClass);
 		select.setParameter("in", ids);
-		for(T obj : select.getResultList())
-			entityManager.detach(obj);
-		Query delete = entityManager.createQuery("DELETE from " + entityClass.getName() + " WHERE " + id + " IN (:in)");
-		delete.setParameter("in", ids).executeUpdate();
-		entityManager.flush();
+		
+		deleteObjects(entityClass, select.getResultList(), new ArrayList<K>());
 	}
 	
 	private static <T> Query buildQuery(Class<T> entityClass, String prologue, String filter, Object... args) {

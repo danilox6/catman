@@ -8,10 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -31,9 +29,6 @@ public abstract class Requirement extends AbstractEntity<Long> {
 	@Min(value = 1, message = "At least one resource must be needed")
 	private int quantity;
 
-	@ManyToOne
-	@NotNull
-	private Plan plan;
 
 	public int getQuantity() {
 		return quantity;
@@ -51,13 +46,9 @@ public abstract class Requirement extends AbstractEntity<Long> {
 		return getQuantityFilled() == getQuantity();
 	}
 
-	public Plan getPlan() {
-		return plan;
-	}
-
-	public void setPlan(Plan plan) {
-		this.plan = plan;
-	}
+	public abstract Plan getPlan();
+	
+	public abstract void setPlan(Plan p);
 
 	public Long getId() {
 		return id;

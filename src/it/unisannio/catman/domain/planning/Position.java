@@ -1,7 +1,9 @@
 package it.unisannio.catman.domain.planning;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import it.unisannio.catman.domain.humanresources.Contract;
 import it.unisannio.catman.domain.humanresources.FreelanceContract;
@@ -28,12 +30,24 @@ public class Position extends Requirement {
 		return countByQuery("SELECT COUNT(p) FROM Position p WHERE p.plan = ?1", p);
 	}
 	
+	public static void delete(List<Long> keys) {
+		deleteByKeys(Position.class, keys);
+	}
+	
+	public static void deleteByPlan(Plan p, List<Long> excludedKeys) {
+		deleteByQuery(Position.class, excludedKeys, "SELECT p FROM Position p WHERE p.plan = ?1", p);
+	}
+	
 	@NotNull
 	@ManyToOne
 	Qualification qualification;
 	
 	@OneToMany
 	private List<Contract> fillers = new ArrayList<Contract>();
+
+	@ManyToOne
+	@NotNull
+	private Plan plan;
 
 	@Override
 	public String getDescription() {
@@ -65,6 +79,14 @@ public class Position extends Requirement {
 		return this.qualification;
 	}
 	
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+	
 	@AssertTrue(message = "Contracts must be either specific to this position or open ended")
 	private boolean areFillersSpecific() {
 		for(Contract filler : fillers) {
@@ -78,4 +100,20 @@ public class Position extends Requirement {
 		return true;
 	}
 	
+	
+	// FIXME Non funziona
+	@AssertTrue(message = "A requirement for the same qualification can't be added twice")
+	private boolean isUnique() {
+		Set<Qualification> qualifications = new HashSet<Qualification>();
+		List<Position> positions = getPlan().getPositions();
+		for(Position p : positions) {
+			Qualification q = p.getQualification();
+			if(qualifications.contains(q) && p != this)
+				return false;
+			
+			qualifications.add(q);
+		}
+		
+		return true;
+	}
 }

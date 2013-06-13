@@ -5,10 +5,10 @@ import java.util.Date;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
-import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
+import it.unisannio.catman.common.client.cell.InteractiveCellAdapter;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 
-public class EventCellAdapter extends SelectableCellAdapter<EventProxy>{
+public class EventCellAdapter extends InteractiveCellAdapter<EventProxy>{
 
 	@Override
 	public SafeHtml getNorth(EventProxy object) {

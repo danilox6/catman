@@ -14,4 +14,6 @@ public interface PositionProxy extends RequirementProxy {
 	
 	QualificationProxy getQualification();
 	void setQualification(QualificationProxy q);
+	
+	Long getId();
 }

@@ -27,6 +27,8 @@ public class Plan extends Screen  implements HasMaster, HasDetail{
 	}
 	
 	interface View extends IsWidget {
+		static final String EDIT_ATTRIBUTE = "data-editor";
+		
 		void setPresenter(Presenter p);
 		void setProcurementQuery(ProcurementQuery pq);
 		void setPositionQuery(PositionQuery pq);

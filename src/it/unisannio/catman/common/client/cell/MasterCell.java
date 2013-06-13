@@ -25,6 +25,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiRenderer;
 
 public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, HasChangeHandlers {
+	public static final String ATTRIBUTE_COMMAND = "data-command";
+	public static final String ATTRIBUTE_NOBUBBLE = "data-nobubble";
 	
 	public static enum Type { STANDALONE, EMBEDDED; }
 
@@ -50,7 +52,7 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 
 	private static MasterCellUiRenderer renderer = GWT.create(MasterCellUiRenderer.class);
 
-	private CellAdapter<T> adapter;
+	private CellAdapter<? super T> adapter;
 	private NativeEvent nativeEvent;
 	
 	private Type type = Type.EMBEDDED;
@@ -59,12 +61,12 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
 	}
 
-	public MasterCell(CellAdapter<T> adapter) { //FIXME Potrebbe non essere necessario
+	public MasterCell(CellAdapter<? super T> adapter) { //FIXME Potrebbe non essere necessario
 		super(BrowserEvents.CLICK, BrowserEvents.CHANGE);
 		this.adapter = adapter;
 	}
 	
-	public void setCellAdapter(CellAdapter<T> adapter) {
+	public void setCellAdapter(CellAdapter<? super T> adapter) {
 		this.adapter = adapter;
 	}
 	
@@ -117,10 +119,16 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 			throw new RuntimeException("Event target must be an element!");
 		
 		Element element = Element.as(et);
-		if(element.hasAttribute(SelectableCellAdapter.SELECTOR_ATTIBUTE)) {
+		if(element.hasAttribute(ATTRIBUTE_NOBUBBLE)) {
 			return;
 		}
-		ClickEvent clickEvent = new CellClickEvent(value); 
+		
+		String command = null;
+		if(element.hasAttribute(ATTRIBUTE_COMMAND)) {
+			command = element.getAttribute(ATTRIBUTE_COMMAND);
+			nativeEvent.preventDefault();
+		}
+		ClickEvent clickEvent = new CellClickEvent(value, command); 
 		clickEvent.setRelativeElement(element);
 		fireEvent(clickEvent);
 	}	
@@ -174,11 +182,13 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 	 * ed evita che fallisca l'asserzione sulla consumazione dell'evento da parte dell'Handler
 	 *
 	 */
-	private class CellClickEvent extends ClickEvent{
+	public static class CellClickEvent extends ClickEvent {
 		private Object value;
+		private String command;
 
-		public CellClickEvent(Object value) {
+		private CellClickEvent(Object value, String command) {
 			this.value = value;
+			this.command = command;
 		}
 
 		@Override
@@ -186,25 +196,8 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 			return value;
 		}
 
-		public int getClientX() {
-			return nativeEvent.getClientX();
-		}
-		public int getClientY() {
-			return nativeEvent.getClientY();
-		}
-		public int getScreenX() {
-			return nativeEvent.getScreenX();
-		}
-		public int getScreenY() {
-			return nativeEvent.getScreenY();
-		}
-		public int getRelativeY(Element target) {
-			return nativeEvent.getClientY() - target.getAbsoluteTop() + target.getScrollTop() +
-					target.getOwnerDocument().getScrollTop();
-		}
-		public int getRelativeX(Element target) {
-			return nativeEvent.getClientX() - target.getAbsoluteLeft() + target.getScrollLeft() +
-					target.getOwnerDocument().getScrollLeft();
+		public String getCommand() {
+			return command;
 		}
 
 	}

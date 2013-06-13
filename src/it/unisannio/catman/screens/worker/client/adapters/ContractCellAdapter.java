@@ -4,11 +4,11 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import it.unisannio.catman.common.client.Icon;
-import it.unisannio.catman.common.client.cell.SelectableCellAdapter;
+import it.unisannio.catman.common.client.cell.InteractiveCellAdapter;
 import it.unisannio.catman.domain.humanresources.client.ContractProxy;
 import it.unisannio.catman.domain.humanresources.client.EmploymentContractProxy;
 
-public class ContractCellAdapter extends SelectableCellAdapter<ContractProxy>{
+public class ContractCellAdapter extends InteractiveCellAdapter<ContractProxy>{
 
 	@Override
 	public SafeHtml getNorth(ContractProxy object) {

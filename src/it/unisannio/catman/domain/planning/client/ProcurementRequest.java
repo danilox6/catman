@@ -15,4 +15,7 @@ public interface ProcurementRequest extends RequestContext {
 	Request<List<ProcurementProxy>> findAll();
 	Request<List<ProcurementProxy>> listByPlan(PlanProxy pp, int start, int len);
 	Request<Integer> countByPlan(PlanProxy pp);
+	
+	Request<Void> delete(List<Long> ids);
+	Request<Void> deleteByPlan(PlanProxy plan, List<Long> ids);
 }
