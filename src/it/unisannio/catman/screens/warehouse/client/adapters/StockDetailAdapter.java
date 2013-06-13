@@ -22,14 +22,12 @@ public class StockDetailAdapter extends AbstractCellAdapter<StockProxy>{
 	
 	@Override
 	public SafeHtml getEast(StockProxy object) {
-		//FIXME Ci vuole l'icona della casetta? - Icona freccia al posto di '>'?
-		return new SafeHtmlBuilder().appendEscaped(object.getQuantity()+" >").toSafeHtml();
+		return new SafeHtmlBuilder().append(object.getQuantity()).toSafeHtml();
 	}
 	
 	@Override
 	public SafeHtml getWest(StockProxy object) {
-		// FIXME Icona
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+Icon.PACKAGE+"</span>").toSafeHtml();
+		return Icon.BREAKABLE.toSafeHtml();
 	}
 	
 

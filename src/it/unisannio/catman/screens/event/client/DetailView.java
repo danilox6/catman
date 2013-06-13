@@ -7,7 +7,7 @@ import it.unisannio.catman.domain.planning.client.PlanProxy;
 import it.unisannio.catman.domain.workflow.client.EventDocumentProxy;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.screens.event.client.Event.Presenter;
-import it.unisannio.catman.screens.event.client.adapters.DocumentDetailAdapter;
+import it.unisannio.catman.screens.event.client.adapters.DocumentCellAdapter;
 import it.unisannio.catman.screens.event.client.queries.EventDocumentQuery;
 
 import com.github.gwtbootstrap.client.ui.Heading;
@@ -37,7 +37,7 @@ public class DetailView extends Composite implements Event.View {
 	
 	public DetailView() {
 		initWidget(uiBinder.createAndBindUi(this));
-		documentsDataList.setCellAdapter(new DocumentDetailAdapter());
+		documentsDataList.setCellAdapter(new DocumentCellAdapter());
 	}
 
 	@Override

@@ -10,7 +10,6 @@ import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasDetail;
 import it.unisannio.catman.common.client.Screen.HasMaster;
 import it.unisannio.catman.domain.equipment.client.StockProxy;
-import it.unisannio.catman.domain.equipment.client.SupplyProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 
 public class Warehouse extends Screen implements HasDetail, HasMaster{
@@ -22,7 +21,7 @@ public class Warehouse extends Screen implements HasDetail, HasMaster{
 	}
 	
 	public static interface Presenter{
-		void goToSupplyScreen(SupplyProxy m);
+		void goToStockScreen(StockProxy m);
 	}
 
 	protected Warehouse() {

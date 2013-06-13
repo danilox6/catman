@@ -27,13 +27,27 @@ public class Stock extends Supply<Stock, Warehouse> {
 	public static int countByWarehouse(Warehouse warehouse) {
 		return countByQuery("SELECT COUNT(st) FROM Stock st WHERE st.supplier = ?1", warehouse);
 	}
-	
-	public static List<Stock> findByMateriel(Materiel m){
+
+public static List<Stock> findByMateriel(Materiel m){
 		return findByQuery("SELECT s FROM Stock s WHERE s.materiel = ?1", m);
 	}
 	
 	public static int countByMateriel(Materiel m){
 		return countByQuery("SELECT COUNT(s) FROM Stock s WHERE s.materiel = ?1", m);
+	}
+	
+	public static Stock findOrCreate(Warehouse w, Materiel m) {
+		List<Stock> stocks = findByQuery("SELECT s FROM Stock s WHERE s.supplier = ?1 AND s.materiel = m", w, m);
+		if(stocks.isEmpty()) {
+			Stock st = new Stock();
+			st.setSupplier(w);
+			st.setMateriel(m);
+			st.persist();
+			
+			return st;
+		}
+		
+		return stocks.get(0);
 	}
 	
 	@ManyToOne
@@ -48,6 +62,19 @@ public class Stock extends Supply<Stock, Warehouse> {
 		
 		this.supplier.addSupply(this);
 		getId().supplierId = supplier.getId();
+	}
+	
+	public int move(int quantity, Warehouse destination) {
+		if(quantity < 1)
+			throw new IllegalArgumentException("At least one unit must be moved. " + quantity + " given.");
+		
+		if(quantity > getQuantity())
+			throw new IllegalArgumentException("Cannot move more than " + quantity + " units. " + getQuantity() + " available");
+		Stock dest = findOrCreate(destination, getMateriel());
+		dest.setQuantity(dest.getQuantity() + quantity);
+		setQuantity(getQuantity() - quantity);
+		
+		return getQuantity();
 	}
 	
 }

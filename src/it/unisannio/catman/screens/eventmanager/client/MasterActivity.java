@@ -2,6 +2,7 @@ package it.unisannio.catman.screens.eventmanager.client;
 
 import java.util.List;
 
+import it.unisannio.catman.common.client.AbstractQuery;
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.Intent;
@@ -24,7 +25,7 @@ public class MasterActivity extends ScreenActivity implements EventManager.Maste
 		
 		final DataStore store = App.getInstance().getDataStore();
 
-		Query<EventProxy> query = new Query<EventProxy>() {
+		Query<EventProxy> query = new AbstractQuery<EventProxy>() {
 
 			@Override
 			public Request<List<EventProxy>> list(int start, int length) {
@@ -34,16 +35,6 @@ public class MasterActivity extends ScreenActivity implements EventManager.Maste
 			@Override
 			public Request<Integer> count() {
 				return store.events().count();
-			}
-
-			@Override
-			public Request<Void> deleteAll(List<EventProxy> skip) {
-				throw new UnsupportedOperationException(); // FIXME
-			}
-
-			@Override
-			public Request<Void> deleteSet(List<EventProxy> set) {
-				throw new UnsupportedOperationException(); // FIXME
 			}
 		};
 		

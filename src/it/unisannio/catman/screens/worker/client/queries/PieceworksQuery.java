@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.google.web.bindery.requestfactory.shared.Request;
 
+import it.unisannio.catman.common.client.AbstractQuery;
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
-import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.domain.humanresources.client.PieceworkProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 
-public class PieceworksQuery implements Query<PieceworkProxy>{
+public class PieceworksQuery extends AbstractQuery<PieceworkProxy>{
 	
 	private static final DataStore dataStore = App.getInstance().getDataStore();
 	
@@ -29,15 +29,4 @@ public class PieceworksQuery implements Query<PieceworkProxy>{
 	public Request<Integer> count() {
 		return dataStore.pieceworks().countByWorker(worker);
 	}
-
-	@Override
-	public Request<Void> deleteAll(List<PieceworkProxy> skip) {
-		throw new UnsupportedOperationException(); //FIXME
-	}
-
-	@Override
-	public Request<Void> deleteSet(List<PieceworkProxy> set) {
-		throw new UnsupportedOperationException(); //FIXME
-	}
-
 }

@@ -4,7 +4,6 @@ import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.equipment.client.StockProxy;
-import it.unisannio.catman.domain.equipment.client.SupplyProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.screens.warehouse.client.adapters.StockDetailAdapter;
 import it.unisannio.catman.screens.warehouse.client.Warehouse.Presenter;
@@ -58,7 +57,7 @@ public class DetailView extends Composite implements Warehouse.View{
 	
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e){
-		presenter.goToSupplyScreen((SupplyProxy) e.getSource());
+		presenter.goToStockScreen((StockProxy) e.getSource());
 	}
 
 }

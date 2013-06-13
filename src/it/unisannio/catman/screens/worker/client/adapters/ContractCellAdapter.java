@@ -17,19 +17,22 @@ public class ContractCellAdapter extends InteractiveCellAdapter<ContractProxy>{
 	
 	@Override
 	public SafeHtml getWest(ContractProxy object) {
-		//FIXME Icone
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+ Icon.TIE +"</span>").toSafeHtml();
+		return Icon.CHEF.toSafeHtml();
 	}
 	
 	@Override
 	public SafeHtml getSouth(ContractProxy object) {
-		return new SafeHtmlBuilder().appendEscaped(object.getPiecework().getQualification().getName()).toSafeHtml();
+
+		return new SafeHtmlBuilder()
+			.appendEscaped(object.getPiecework().getQualification().getName())
+			.appendHtmlConstant(" &bull; ")
+			.appendEscaped(object.getPiecework().getPay() + (object instanceof EmploymentContractProxy?"&euro;/mo.":"&euro;"))
+			.toSafeHtml();
 	}
 	
 	@Override
 	public SafeHtml getEast(ContractProxy object) {
-		SafeHtmlBuilder sb = new SafeHtmlBuilder();
-		sb.appendEscaped(object.getPiecework().getPay()+(object instanceof EmploymentContractProxy?"€/mo.":"€")); //TODO controllare €/&euro;
+		SafeHtmlBuilder sb = new SafeHtmlBuilder(); 
 		sb.append(getSimpleSelectionCheckBox(object)); //FIXME Styling
 		return sb.toSafeHtml();
 	}

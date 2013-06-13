@@ -4,7 +4,7 @@
 	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui"
 	xmlns:ct="urn:import:com.google.gwt.user.cellview.client"
 	xmlns:c="urn:import:it.unisannio.catman.common.client.ui">
-	<c:MasterPanel>
+	<c:MasterPanel scrollable="true">
 	    <c:header>
 	         <b:Heading size="3" ui:field="titleLabel"/>
 	    </c:header>

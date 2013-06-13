@@ -23,13 +23,13 @@ public class WorkerMasterAdapter extends AbstractCellAdapter<WorkerProxy>{
 	
 	@Override
 	public SafeHtml getWest(WorkerProxy object) {
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+ Icon.CONTACT +"</span>").toSafeHtml();
+		return Icon.CONTACT.toSafeHtml();
 	}
 	
 	@Override
 	public SafeHtml getEast(WorkerProxy object) {
 		if(selectedWorkers.contains(object))
-			return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+ Icon.FAVORITE +"</span>").toSafeHtml(); //FIXME Icona
+			return Icon.FAVORITE.toSafeHtml();
 		return super.getEast(object);
 	}
 	

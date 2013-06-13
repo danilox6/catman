@@ -22,13 +22,12 @@ public class WorkersSourceCellAdapter extends AbstractCellAdapter<WorkersSource>
 	
 	@Override
 	public SafeHtml getWest(WorkersSource object) {
-		//FIXME Icone
-		String icon = Icon.CONTACT.toString();
 		if(object.getSource() == Source.CANDIDATES)
-			icon = Icon.FAVORITE.toString();
+			return Icon.FAVORITE.toSafeHtml();
 		if(object.getSource() == Source.JOB_BOARD)
-			icon = Icon.BRIEFCASE.toString();
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+ icon +"</span>").toSafeHtml();
+			return Icon.BRIEFCASE.toSafeHtml();
+		
+		return Icon.OFFICE_CHAIR.toSafeHtml();
 	}
 
 }

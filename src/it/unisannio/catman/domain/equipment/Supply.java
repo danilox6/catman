@@ -12,10 +12,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
-/* TODO Questa struttura porta ad avere delle colonne duplicate per gli id. Funziona, ma sarebbe da sistemare */
-//TODO Michele, forse basta mettere materiel e supplier solamente in SupplyKey ?
+/* XXX Questa struttura porta ad avere delle colonne duplicate per gli id. Funziona, ma sarebbe da sistemare 
+ *  Michele, forse basta mettere materiel e supplier solamente in SupplyKey ?
+ */
 @Entity
-//@IdClass(SupplyKey.class)
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> extends AbstractEntity<SupplyKey>{
 	

@@ -47,7 +47,7 @@ public class WorkersTreeModel extends AbstractWorkersTreeModel{
 
 		@Override
 		public void render(com.google.gwt.cell.client.Cell.Context context, WorkersSource value, SafeHtmlBuilder sb) {
-			sb.appendEscaped(value.getName() + " ("+value.getCount()+")"); //FIXME Aggiungere iconcina?
+			sb.appendEscaped(value.getName() + " ("+value.getCount()+")"); 
 		}
 		
 	}

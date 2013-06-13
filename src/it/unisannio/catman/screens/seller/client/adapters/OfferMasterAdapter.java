@@ -21,12 +21,11 @@ public class OfferMasterAdapter extends AbstractCellAdapter<OfferProxy>{
 
 	@Override
 	public SafeHtml getWest(OfferProxy object) {
-		// FIXME Icona
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+Icon.SHOPPING_CART+"</span>").toSafeHtml();
+		return Icon.BASKET.toSafeHtml();
 	}
 	
 	@Override
 	public SafeHtml getEast(OfferProxy object) {
-		return new SafeHtmlBuilder().appendEscaped(object.getPrice()+"€").toSafeHtml(); //TODO controllere € / &euro;
+		return new SafeHtmlBuilder().append(object.getPrice()).appendHtmlConstant("&euro;").toSafeHtml(); 
 	}
 }

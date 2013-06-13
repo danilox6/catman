@@ -2,6 +2,7 @@ package it.unisannio.catman.screens.inbox.client;
 
 import java.util.List;
 
+import it.unisannio.catman.common.client.AbstractQuery;
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.Query;
@@ -35,7 +36,6 @@ public class DetailView extends Composite {
 
 			@Override
 			public SafeHtml getNorth(CustomerProxy object) {
-				//return new SafeHtmlBuilder().appendEscaped("Lorem ipsum").toSafeHtml();
 				return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
 			}
 
@@ -43,7 +43,7 @@ public class DetailView extends Composite {
 		
 		final DataStore store = App.getInstance().getDataStore();
 		
-		Query<CustomerProxy> query = new Query<CustomerProxy>() {
+		Query<CustomerProxy> query = new AbstractQuery<CustomerProxy>() {
 
 			@Override
 			public Request<List<CustomerProxy>> list(int start, int length) {
@@ -53,16 +53,6 @@ public class DetailView extends Composite {
 			@Override
 			public Request<Integer> count() {
 				return store.customers().count();
-			}
-
-			@Override
-			public Request<Void> deleteAll(List<CustomerProxy> skip) {
-				throw new UnsupportedOperationException(); // FIXME
-			}
-
-			@Override
-			public Request<Void> deleteSet(List<CustomerProxy> set) {
-				throw new UnsupportedOperationException(); // FIXME
 			}
 		};
 		

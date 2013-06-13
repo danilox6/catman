@@ -22,14 +22,12 @@ public class OfferDetailAdapter extends AbstractCellAdapter<OfferProxy>{
 	
 	@Override
 	public SafeHtml getEast(OfferProxy object) {
-		//FIXME Icona freccia al posto di '>'?
-		return new SafeHtmlBuilder().appendEscaped(object.getPrice()+"€  >").toSafeHtml(); //TODO controllare € /&euro;
+		return new SafeHtmlBuilder().append(object.getPrice()).appendHtmlConstant("&euro;").toSafeHtml(); 
 	}
 	
 	@Override
 	public SafeHtml getWest(OfferProxy object) {
-		// FIXME Icona
-		return new SafeHtmlBuilder().appendHtmlConstant("<span class='"+DATA_LIST_ICON_CLASS+"'>"+Icon.SHOPPING_CART+"</span>").toSafeHtml();
+		return Icon.BASKET.toSafeHtml();
 	}
 	
 
