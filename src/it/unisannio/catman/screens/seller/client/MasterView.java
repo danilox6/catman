@@ -3,7 +3,6 @@ package it.unisannio.catman.screens.seller.client;
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
-import it.unisannio.catman.domain.equipment.client.MaterielProxy;
 import it.unisannio.catman.domain.equipment.client.OfferProxy;
 import it.unisannio.catman.domain.equipment.client.SellerProxy;
 import it.unisannio.catman.screens.seller.client.Seller.Presenter;
@@ -56,7 +55,7 @@ public class MasterView extends Composite implements Seller.View{
 	
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e){
-		presenter.goToMaterielScreen((MaterielProxy) e.getSource());
+		presenter.goToOfferScreen((OfferProxy) e.getSource());
 	}
 
 }

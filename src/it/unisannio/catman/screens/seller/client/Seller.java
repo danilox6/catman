@@ -9,7 +9,6 @@ import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasDetail;
 import it.unisannio.catman.common.client.Screen.HasMaster;
-import it.unisannio.catman.domain.equipment.client.MaterielProxy;
 import it.unisannio.catman.domain.equipment.client.OfferProxy;
 import it.unisannio.catman.domain.equipment.client.SellerProxy;
 
@@ -22,7 +21,7 @@ public class Seller extends Screen implements HasDetail, HasMaster{
 	}
 
 	public static interface Presenter{
-		void goToMaterielScreen(MaterielProxy m);
+		void goToOfferScreen(OfferProxy m);
 	}
 
 	protected Seller() {

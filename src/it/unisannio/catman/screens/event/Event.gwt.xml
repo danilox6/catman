@@ -5,7 +5,7 @@
 	<inherits name="it.unisannio.catman.common.Common" />
 	<source path="client" />
 	<entry-point class="it.unisannio.catman.screens.event.client.Event" />
-	
+
 	<!-- Child screens -->
 	<inherits name="it.unisannio.catman.screens.plan.Plan" />
 </module>

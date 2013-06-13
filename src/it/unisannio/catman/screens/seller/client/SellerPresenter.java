@@ -9,7 +9,7 @@ import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.ErrorHandler;
 import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.ScreenActivity;
-import it.unisannio.catman.domain.equipment.client.MaterielProxy;
+import it.unisannio.catman.domain.equipment.client.OfferProxy;
 import it.unisannio.catman.domain.equipment.client.SellerProxy;
 import it.unisannio.catman.screens.seller.client.queries.OfferQuery;
 
@@ -43,9 +43,9 @@ public class SellerPresenter implements Seller.Presenter{
 	}
 
 	@Override
-	public void goToMaterielScreen(MaterielProxy m) {
+	public void goToOfferScreen(OfferProxy m) {
 		String id = App.getInstance().getDataStore().getHistoryToken(m.stableId());
-		screenActivity.goTo(new Intent("material").withParams(id)); //FIXME
+		screenActivity.goTo(new Intent("offer").withParams(id));
 	}
 
 }
