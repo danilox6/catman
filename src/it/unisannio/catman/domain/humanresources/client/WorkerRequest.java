@@ -45,4 +45,7 @@ public interface WorkerRequest extends RequestContext {
 
 	Request<List<WorkerProxy>> findByPosition(PositionProxy position);
 	Request<Integer> countByPosition(PositionProxy position);
+	
+	Request<List<WorkerProxy>> listByQualification(QualificationProxy qualification, int start, int length);
+	Request<Integer> countByQualification(QualificationProxy qualification);
 }

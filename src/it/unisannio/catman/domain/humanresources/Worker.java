@@ -131,6 +131,18 @@ public class Worker extends Contactable {
 				"INNER JOIN pw.worker w " +
 				"WHERE pos = ?1", position);
 	}
+	
+	public static List<Worker> listByQualification(Qualification qualification, int start, int length){
+		return listByQuery(Worker.class, start, length,"SELECT w FROM Worker w " +
+				"INNER JOIN w.pieceworks pw "+
+				"WHERE pw.qualification = ?1", qualification);
+	}
+
+	public static int countByQualification(Qualification qualification){
+		return countByQuery("SELECT COUNT(w) FROM Worker w " +
+				"INNER JOIN w.pieceworks pw "+
+				"WHERE pw.qualification = ?1",  qualification);
+	}
 
 	@Id 
 	@GeneratedValue
