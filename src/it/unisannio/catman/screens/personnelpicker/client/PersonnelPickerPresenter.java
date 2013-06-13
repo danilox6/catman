@@ -29,7 +29,7 @@ public abstract class PersonnelPickerPresenter extends LoadingScreenActivity<Pos
 		
 		view.setPositionProxy(object);
 		
-		getDataStore().workers().findByPosition(object).fire(new Receiver<List<WorkerProxy>>() {
+		getDataStore().workers().findFillersInPosition(object).fire(new Receiver<List<WorkerProxy>>() {
 
 			@Override
 			public void onSuccess(List<WorkerProxy> response) {

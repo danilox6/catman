@@ -7,10 +7,10 @@ import com.google.gwt.user.client.ui.IsWidget;
 
 import it.unisannio.catman.common.client.Icon;
 import it.unisannio.catman.common.client.Intent;
-import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasMaster;
 import it.unisannio.catman.common.client.Screen.HasDetail;
+import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkersSource;
 import it.unisannio.catman.domain.planning.client.PositionProxy;
@@ -29,7 +29,8 @@ public class PersonnelPicker extends Screen implements HasMaster, HasDetail{
 	
 	public static interface Master extends Presenter{
 		interface View extends PersonnelPicker.View{
-			void setWorkersQuery(Query<WorkerProxy> query);
+			void setWorkersByPosition(List<WorkerProxy> list);
+			void setJobBoarsByPosition(List<JobBoardProxy> jobBoards);
 		}
 	}
 	

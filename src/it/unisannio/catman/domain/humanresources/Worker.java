@@ -116,7 +116,7 @@ public class Worker extends Contactable {
 				"WHERE jb = ?1", jobBoard);
 	}
 	
-	public static List<Worker> findByPosition(Position position){
+	public static List<Worker> findFillersInPosition(Position position){
 		return findByQuery("SELECT w FROM Position pos " +
 				"INNER JOIN pos.fillers con " +
 				"INNER JOIN con.piecework pw " +
@@ -124,12 +124,18 @@ public class Worker extends Contactable {
 				"WHERE pos = ?1", position);
 	}
 	
-	public static int countByPosition(Position position){
+	public static int countFillersInPosition(Position position){
 		return countByQuery("SELECT COUNT(w) FROM Position pos " +
 				"INNER JOIN pos.fillers con " +
 				"INNER JOIN con.piecework pw " +
 				"INNER JOIN pw.worker w " +
 				"WHERE pos = ?1", position);
+	}
+	
+	public static List<Worker> findByQualification(Qualification qualification){
+		return findByQuery("SELECT w FROM Worker w " +
+				"INNER JOIN w.pieceworks pw "+
+				"WHERE pw.qualification = ?1", qualification);
 	}
 	
 	public static List<Worker> listByQualification(Qualification qualification, int start, int length){
