@@ -10,17 +10,7 @@ xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.githu
 
 	<c:MasterPanel ui:field="masterPanel">
 		<c:header>
-			<c:ActionBar>
-				<c:left>
-					<b:Heading size="3" ui:field="titleLabel"></b:Heading>
-				</c:left>
-				<c:right>
-					<b:ButtonGroup>
-						<b:Button icon="REMOVE_SIGN" type="DANGER" />
-						<b:Button ui:field="addButton" icon="PLUS" type="PRIMARY">Aggiungi</b:Button>
-					</b:ButtonGroup>
-				</c:right>
-			</c:ActionBar>
+			<b:Heading size="3" ui:field="titleLabel"></b:Heading>
 		</c:header>
 		<c:content>
 			<b:Fieldset>

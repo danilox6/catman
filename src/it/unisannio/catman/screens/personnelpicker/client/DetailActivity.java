@@ -1,15 +1,32 @@
 package it.unisannio.catman.screens.personnelpicker.client;
 
-import it.unisannio.catman.common.client.ScreenActivity;
+import java.util.List;
 
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.web.bindery.requestfactory.shared.Receiver;
 
-public class DetailActivity extends ScreenActivity implements PersonnelPicker.Detail {
+import it.unisannio.catman.domain.humanresources.client.WorkersSource;
+import it.unisannio.catman.domain.planning.client.PositionProxy;
+import it.unisannio.catman.screens.personnelpicker.client.PersonnelPicker.Detail;
+
+
+public class DetailActivity extends PersonnelPickerPresenter implements Detail{
 
 	@Override
-	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		panel.setWidget(new DetailView());
+	protected View onViewSetup() {
+		return new DetailView();
 	}
+	
+	@Override
+	protected void onLoad(PositionProxy object) {
+		super.onLoad(object);
+		
+		WorkersSource.findWorkersSources(new Receiver<List<WorkersSource>>() {
 
+			@Override
+			public void onSuccess(List<WorkersSource> workersSources) {
+				((Detail.View) getView()).setWorkersSources(workersSources);
+			}
+		},object.getQualification());
+	}
+	
 }

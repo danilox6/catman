@@ -22,7 +22,7 @@ public class Workers extends Screen implements HasMaster, HasDetail{
 	}
 	
 	public static interface Presenter{
-		void goToWorker(WorkerProxy workerProxy);
+		void goToWorkerScreen(WorkerProxy workerProxy);
 	}
 	
 	protected Workers() {

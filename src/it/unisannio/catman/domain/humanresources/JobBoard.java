@@ -22,6 +22,21 @@ public class JobBoard extends AbstractEntity<Long> {
 		return findAll(JobBoard.class);
 	}
 	
+	public static List<JobBoard> findByQualification(Qualification q){
+		return findByQuery("SELECT jb FROM JobBoard jb " +
+				"INNER JOIN jb.workers w " +
+				"INNER JOIN w.pieceworks pw " +
+				"WHERE pw.qualification = ?1", q);
+	}
+	
+	
+	public static int countByQualification(Qualification q){
+		return countByQuery("SELECT COUNT(jb) FROM JobBoard jb " +
+				"INNER JOIN jb.workers w " +
+				"INNER JOIN w.pieceworks pw " +
+				"WHERE pw.qualification = ?1", q);
+	}
+	
 	@Id
 	@GeneratedValue
 	private long id;

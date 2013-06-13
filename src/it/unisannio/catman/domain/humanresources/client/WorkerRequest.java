@@ -3,6 +3,7 @@ package it.unisannio.catman.domain.humanresources.client;
 import java.util.List;
 
 import it.unisannio.catman.domain.humanresources.Worker;
+import it.unisannio.catman.domain.planning.client.PositionProxy;
 
 import com.google.web.bindery.requestfactory.shared.InstanceRequest;
 import com.google.web.bindery.requestfactory.shared.Request;
@@ -41,7 +42,10 @@ public interface WorkerRequest extends RequestContext {
 	InstanceRequest<WorkerProxy, Void> setCandidate(boolean candidate);
 	
 //	InstanceRequest<WorkerProxy, Void> addPiecework(PieceworkProxy p);
-	
 
+	Request<List<WorkerProxy>> findByPosition(PositionProxy position);
+	Request<Integer> countByPosition(PositionProxy position);
 	
+	Request<List<WorkerProxy>> listByQualification(QualificationProxy qualification, int start, int length);
+	Request<Integer> countByQualification(QualificationProxy qualification);
 }

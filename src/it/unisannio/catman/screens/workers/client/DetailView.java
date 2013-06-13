@@ -57,7 +57,7 @@ public class DetailView extends Composite implements Workers.View, ClickHandler{
 
 	@Override
 	public void onClick(ClickEvent event) {
-		presenter.goToWorker((WorkerProxy) event.getSource());
+		presenter.goToWorkerScreen((WorkerProxy) event.getSource());
 	}
 
 }

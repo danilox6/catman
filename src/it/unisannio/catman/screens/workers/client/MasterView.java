@@ -81,7 +81,7 @@ public class MasterView extends Composite implements Workers.View, ChangeHandler
 	
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent event){
-		presenter.goToWorker((WorkerProxy) event.getSource());
+		presenter.goToWorkerScreen((WorkerProxy) event.getSource());
 	}
 
 }
