@@ -78,7 +78,7 @@ public class WorkersPresenter implements Workers.Presenter{
 
 
 	@Override
-	public void goToWorker(WorkerProxy workerProxy) {
+	public void goToWorkerScreen(WorkerProxy workerProxy) {
 		String id = App.getInstance().getDataStore().getHistoryToken(workerProxy.stableId());
 		screenActivity.goTo(new Intent("worker").withParams(id));
 	}

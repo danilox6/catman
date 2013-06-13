@@ -1,9 +1,14 @@
 package it.unisannio.catman.domain.humanresources.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
+import com.google.web.bindery.requestfactory.shared.Receiver;
 
 import it.unisannio.catman.common.client.App;
+import it.unisannio.catman.common.client.DataStore;
 
 public class WorkersSource implements EntityProxy{
 	public static enum Source {WORKERS, CANDIDATES, JOB_BOARD};
@@ -15,10 +20,16 @@ public class WorkersSource implements EntityProxy{
 	public WorkersSource(Source sourceType){
 		this.sourceType = sourceType;
 	}
-	
+
+	public WorkersSource(Source sourceType, int count){
+		this.sourceType = sourceType;
+		this.count = count;
+	}
+
 	public WorkersSource(JobBoardProxy jobBoard){
 		this.sourceType = Source.JOB_BOARD;
 		this.jobBoardProxy = jobBoard; 
+		this.count = getJobBoardProxy().getWorkersCount();
 	}
 
 	public WorkersSource(String sourceType) {
@@ -40,11 +51,9 @@ public class WorkersSource implements EntityProxy{
 	}
 
 	public int getCount() {
-		if (sourceType == Source.JOB_BOARD)
-			return getJobBoardProxy().getWorkersCount();
 		return count;
 	}
-	
+
 	public String getName() {
 		if(sourceType == Source.WORKERS)
 			return "Workers";
@@ -52,17 +61,17 @@ public class WorkersSource implements EntityProxy{
 			return "Candidates";
 		return getJobBoardProxy().getName();
 	}
-	
+
 	public JobBoardProxy getJobBoardProxy() {
 		if(jobBoardProxy==null)
 			throw new IllegalStateException("JobBoardProxy cannot be null if sourceType is JOB_BOARD");
 		return jobBoardProxy;
 	}
-	
+
 	public void setJobBoardProxy(JobBoardProxy jobBoardProxy) {
 		this.jobBoardProxy = jobBoardProxy;
 	}
-	
+
 	public static Source fromString(String string){
 		if(string.equals(Source.WORKERS.toString()))
 			return Source.WORKERS;
@@ -79,5 +88,87 @@ public class WorkersSource implements EntityProxy{
 		throw new UnsupportedOperationException();
 	}
 
-	
+
+
+	public static void findWorkersSources(final Receiver<List<WorkersSource>> receiver){
+		final DataStore dataStore = App.getInstance().getDataStore();
+
+		final List<WorkersSource> workersSources = new ArrayList<WorkersSource>();
+
+		dataStore.workers().countInWorkersSource().fire(new Receiver<Integer>() {
+
+			@Override
+			public void onSuccess(Integer response) {
+				workersSources.add(new WorkersSource(Source.WORKERS,response));
+
+				dataStore.workers().countInCandidates().fire(new Receiver<Integer>() {
+
+					@Override
+					public void onSuccess(Integer response) {
+
+						workersSources.add(new WorkersSource(Source.CANDIDATES,response));
+						dataStore.jobBoards().findAll().fire(new Receiver<List<JobBoardProxy>>() {
+
+							@Override
+							public void onSuccess(List<JobBoardProxy> jobBoards) {
+								for (JobBoardProxy jobBoard : jobBoards){
+									workersSources.add(new WorkersSource(jobBoard));
+								}
+								receiver.onSuccess(workersSources);
+							}
+						});
+					}
+				});
+			}
+		});
+
+	}
+
+	public static void findWorkersSources(final Receiver<List<WorkersSource>> receiver, final QualificationProxy q) {
+		final DataStore dataStore = App.getInstance().getDataStore();
+
+		final List<WorkersSource> workersSources = new ArrayList<WorkersSource>();
+		dataStore.workers().countByQualificationInWorkersSource(q).fire(new Receiver<Integer>() {
+
+			@Override
+			public void onSuccess(Integer response) {
+				if(response != 0)
+					workersSources.add(new WorkersSource(Source.WORKERS,response));
+
+				dataStore.workers().countByQualificationInCandidates(q).fire(new Receiver<Integer>() {
+					@Override
+					public void onSuccess(Integer response) {
+						if(response != 0)
+							workersSources.add(new WorkersSource(Source.CANDIDATES,response));
+						dataStore.jobBoards().findByQualification(q).fire(new Receiver<List<JobBoardProxy>>() {
+
+							@Override
+							public void onSuccess(final List<JobBoardProxy> jobBoards) {
+								final int targetSize = workersSources.size() + jobBoards.size();
+
+								for (final JobBoardProxy jobBoard : jobBoards){
+
+									dataStore.workers().countByQualificationInJobBoard(q, jobBoard).fire(new Receiver<Integer>(){
+
+										@Override
+										public void onSuccess(Integer response) {
+											WorkersSource ws = new WorkersSource(jobBoard);
+											ws.setCount(response);
+											workersSources.add(ws);
+
+											if(workersSources.size() == targetSize)
+												receiver.onSuccess(workersSources);
+										}
+
+									});
+								}
+							}
+						});
+					}
+				});
+			}
+		});
+
+	}
+
 }

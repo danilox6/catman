@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import it.unisannio.catman.domain.contacts.Contactable;
+import it.unisannio.catman.domain.planning.Position;
 
 @Entity
 public class Worker extends Contactable {
@@ -113,6 +114,22 @@ public class Worker extends Contactable {
 		return countByQuery("SELECT COUNT(w) FROM JobBoard jb " +
 				"INNER JOIN jb.workers w " +
 				"WHERE jb = ?1", jobBoard);
+	}
+	
+	public static List<Worker> findByPosition(Position position){
+		return findByQuery("SELECT w FROM Position pos " +
+				"INNER JOIN pos.fillers con " +
+				"INNER JOIN con.piecework pw " +
+				"INNER JOIN pw.worker w " +
+				"WHERE pos = ?1", position);
+	}
+	
+	public static int countByPosition(Position position){
+		return countByQuery("SELECT COUNT(w) FROM Position pos " +
+				"INNER JOIN pos.fillers con " +
+				"INNER JOIN con.piecework pw " +
+				"INNER JOIN pw.worker w " +
+				"WHERE pos = ?1", position);
 	}
 
 	@Id 
