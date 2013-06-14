@@ -8,7 +8,7 @@ import it.unisannio.catman.domain.planning.client.PositionProxy;
 import it.unisannio.catman.domain.planning.client.ProcurementProxy;
 import it.unisannio.catman.screens.plan.client.Plan.Presenter;
 import it.unisannio.catman.screens.plan.client.Plan.View;
-import it.unisannio.catman.screens.plan.client.adapters.RequirementCellAdapter;
+import it.unisannio.catman.screens.plan.client.adapters.RequirementDetailAdapter;
 import it.unisannio.catman.screens.plan.client.queries.PositionQuery;
 import it.unisannio.catman.screens.plan.client.queries.ProcurementQuery;
 
@@ -55,8 +55,8 @@ public class DetailView extends Composite implements View {
 		procurementsList.setDataProvider(procurementsProvider = new QueryDataProvider<ProcurementProxy>());
 		positionsList.setDataProvider(positionsProvider = new QueryDataProvider<PositionProxy>());
 		
-		procurementsList.setCellAdapter(new RequirementCellAdapter());
-		positionsList.setCellAdapter(new RequirementCellAdapter());
+		procurementsList.setCellAdapter(new RequirementDetailAdapter());
+		positionsList.setCellAdapter(new RequirementDetailAdapter());
 	}
 
 	@UiHandler("addProcurement")

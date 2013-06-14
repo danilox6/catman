@@ -8,7 +8,7 @@ xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.githu
 		
 	</ui:style>
 
-	<c:MasterPanel ui:field="masterPanel">
+	<c:MasterPanel ui:field="masterPanel" scrollable="true">
 		<c:header>
 			<b:Heading size="3" ui:field="titleLabel"></b:Heading>
 		</c:header>

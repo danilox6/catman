@@ -44,6 +44,8 @@ public class PlanPresenter implements Presenter {
 	public void goTo(ProcurementProxy pp) {
 		owner.goTo(new Intent("material-picker").withParams(App.getInstance().getDataStore().getHistoryToken(pp.stableId())));
 	}
+	
+	
 
 	@Override
 	public void addPosition() {

@@ -18,6 +18,7 @@ public class SelectAllButton extends Button{
 	
 	public SelectAllButton() {
 		setType(ButtonType.LINK);
+		setIcon(IconType.CHECK_EMPTY);
 		addClickHandler(new ClickHandler() {
 			
 			@Override

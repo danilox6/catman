@@ -12,8 +12,10 @@ import it.unisannio.catman.screens.event.client.queries.EventDocumentQuery;
 
 import com.github.gwtbootstrap.client.ui.Heading;
 import com.github.gwtbootstrap.client.ui.NavLink;
+import com.github.gwtbootstrap.client.ui.Paragraph;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -33,6 +35,15 @@ public class DetailView extends Composite implements Event.View {
 	@UiField NavLink addPlan;
 	@UiField DataList<EventDocumentProxy> documentsDataList;
 	
+	@UiField Heading eventName;
+	@UiField Paragraph customerName;
+	
+	@UiField Heading startDay;
+	@UiField Paragraph startMonth;
+	
+	@UiField Heading endDay;
+	@UiField Paragraph endMonth;
+	
 	private Presenter presenter;
 	
 	public DetailView() {
@@ -40,10 +51,28 @@ public class DetailView extends Composite implements Event.View {
 		documentsDataList.setCellAdapter(new DocumentCellAdapter());
 	}
 
+	private static class DateFormat extends DateTimeFormat{
+
+		public DateFormat(String pattern) {
+			super(pattern);
+		}
+	}
+	
 	@Override
 	public void setEventProxy(EventProxy eventProxy) {
 		this.eventProxy = eventProxy; 
+		
 		titleLabel.setText(eventProxy.getTitle());
+		eventName.setText(eventProxy.getTitle());
+		
+
+		DateFormat MONTH_F = new DateFormat("MMM");
+		DateFormat DAY_F = new DateFormat("dd");  
+		startDay.setText(DAY_F.format(eventProxy.getStartDate()));
+		startMonth.setText(MONTH_F.format(eventProxy.getStartDate()));
+		
+		endDay.setText(DAY_F.format(eventProxy.getEndDate()));
+		endMonth.setText(MONTH_F.format(eventProxy.getEndDate()));
 	}
 
 	public EventProxy getEventProxy() {
@@ -69,8 +98,8 @@ public class DetailView extends Composite implements Event.View {
 
 	@Override
 	public void refresh() {
+		addPlan.setDisabled(true);
 		documentsDataList.reload();
-		
 	}
 
 	@Override

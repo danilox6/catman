@@ -7,18 +7,26 @@
 			<g:ListBox ui:field="listBox" width="100%"></g:ListBox>
 		</c:header>
 		<c:content>
-			<c:DataList ui:field="dataList" />
+		    <c:MultiPanel ui:field="multiPanel">
+		        <c:panel>
+		            <c:DataList ui:field="positionsList" />
+		        </c:panel>
+		        <c:panel>
+		            <c:DataList ui:field="procurementsList" />
+		        </c:panel>
+		    </c:MultiPanel>
+			
 		</c:content>
-		<c:footer>
+		<!--  c:footer>
 			<c:ActionBar>
 				<c:left>
-					<b:Button ui:field="deleteButton" icon="TRASH" type="LINK"></b:Button>
+					<b:Button ui:field="delete" icon="TRASH" type="LINK"></b:Button>
 				</c:left>
 
 				<c:right>
 					<c:SelectAllButton ui:field="selectButton"></c:SelectAllButton>
 				</c:right>
 			</c:ActionBar>
-		</c:footer>
+		</c:footer -->
 	</c:MasterPanel>
 </ui:UiBinder> 

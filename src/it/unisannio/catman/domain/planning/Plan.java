@@ -78,7 +78,7 @@ public class Plan extends EventDocument {
 		if(event == null && getDossier() != null) {
 			getDossier().setStatus(EventStatus.NOT_PLANNED);
 		} else {
-			event.setStatus(EventStatus.PLANNING);
+			event.setStatus(EventStatus.PLANNED);
 		}
 		
 		super.setDossier(event);
@@ -88,7 +88,7 @@ public class Plan extends EventDocument {
 	private void updateStatus() {
 		Event evt = getDossier();
 		if(evt != null) {
-			evt.setStatus(isComplete() ? EventStatus.PLANNED : EventStatus.PLANNING);
+			evt.setStatus(isComplete() ? EventStatus.PLANNED : EventStatus.PLANNED);
 		}
 	}
 

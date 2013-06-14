@@ -30,7 +30,7 @@ public class MasterView extends Composite implements Warehouse.View{
 	//TODO il bottone per cancellare deve apparire solo quando qualcosa è selezionato, altrimenti va mostrato quello per aggiungere uno Stock
 
 	@UiField Heading titleLabel;
-	@UiField SelectAllButton selectButton;
+	//@UiField SelectAllButton selectButton;
 	@UiField DataList<StockProxy> dataList;
 	
 	@UiField Form form;
@@ -47,7 +47,7 @@ public class MasterView extends Composite implements Warehouse.View{
 		dataList.setCellAdapter(new StockMasterAdapter());
 		dataList.setDataProvider(dataProvider);
 		
-		selectButton.setDataProvider(dataProvider);
+		//selectButton.setDataProvider(dataProvider);
 	}
 
 	@Override

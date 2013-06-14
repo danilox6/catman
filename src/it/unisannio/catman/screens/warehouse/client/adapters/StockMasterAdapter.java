@@ -23,9 +23,9 @@ public class StockMasterAdapter extends InteractiveCellAdapter<StockProxy>{
 	public SafeHtml getWest(StockProxy object) {
 		return Icon.BREAKABLE.toSafeHtml();
 	}
-	
+	/*
 	@Override
 	public SafeHtml getEast(StockProxy object) {
 		return getSimpleSelectionCheckBox(object);
-	}
+	}*/
 }

@@ -32,7 +32,7 @@
 	            </c:left>
 	            
 	            <c:right>
-	                <c:SelectAllButton ui:field="selectButton"></c:SelectAllButton>
+	                <!-- c:SelectAllButton ui:field="selectButton"></c:SelectAllButton-->
 	            </c:right>
 	        </c:ActionBar>
 	    </c:footer>
