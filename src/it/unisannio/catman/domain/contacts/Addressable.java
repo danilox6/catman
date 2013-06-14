@@ -1,9 +1,11 @@
 package it.unisannio.catman.domain.contacts;
 
+import javax.persistence.MappedSuperclass;
+
 import it.unisannio.catman.common.server.AbstractEntity;
 import it.unisannio.catman.domain.contacts.client.IsAddressable;
 
-
+@MappedSuperclass
 public abstract class Addressable extends AbstractEntity<Long> implements IsAddressable {
 	
 	

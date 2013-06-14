@@ -1,8 +1,10 @@
 package it.unisannio.catman.domain.contacts;
 
+import javax.persistence.MappedSuperclass;
+
 import it.unisannio.catman.domain.contacts.client.IsContactable;
 
-
+@MappedSuperclass
 public abstract class Contactable extends Addressable implements IsContactable {
 	
 	private String name;

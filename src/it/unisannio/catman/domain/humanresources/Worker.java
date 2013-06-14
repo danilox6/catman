@@ -223,16 +223,4 @@ public class Worker extends Contactable {
 	public void setResume(String resume) {
 		this.resume = resume;
 	}
-
-	private String name;
-
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public void setName(String name) {
-		this.name = name;
-	}
 }
