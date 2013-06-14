@@ -6,7 +6,7 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import it.unisannio.catman.common.client.cell.InteractiveCellAdapter;
 import it.unisannio.catman.domain.planning.client.RequirementProxy;
 
-public class RequirementCellAdapter extends InteractiveCellAdapter<RequirementProxy>{
+public class RequirementDetailAdapter extends InteractiveCellAdapter<RequirementProxy>{
 	
 	@Override
 	public SafeHtml getNorth(RequirementProxy object) {
