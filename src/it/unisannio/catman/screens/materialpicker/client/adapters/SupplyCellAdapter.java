@@ -50,8 +50,8 @@ public class SupplyCellAdapter extends AbstractCellAdapter<SupplyProxy>{
 	
 	@Override
 	public SafeHtml getEast(SupplyProxy object) {
-		int max = Math.min(procurement.getQuantity()-procurement.getQuantityFilled(),object.getQuantity()); 
 		int value = getAlreadyFilledBy(object);
+		int max = value + Math.min(procurement.getQuantity()-procurement.getQuantityFilled(),object.getQuantity()); 
 		return new SafeHtmlBuilder().appendHtmlConstant("<span> <input "+SPINNER_ATTIBUTE+"='true'  type='number' min='0' max='"+max+"' step='1' value ='"+value+"' style='width:35px;'/>" +
 				"<button "+MOVE_BUTTON_ATTIBUTE+"='true' type='button'>Move</button></span>").toSafeHtml();
 	}

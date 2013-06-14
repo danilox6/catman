@@ -2,15 +2,19 @@ package it.unisannio.catman.domain.planning.client;
 
 import java.util.List;
 
+import it.unisannio.catman.domain.equipment.client.SellerProxy;
 import it.unisannio.catman.domain.equipment.client.SupplyProxy;
+import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.domain.planning.Procurement;
 
+import com.google.web.bindery.requestfactory.shared.ExtraTypes;
 import com.google.web.bindery.requestfactory.shared.InstanceRequest;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.Service;
 
 @Service(Procurement.class)
+@ExtraTypes({WarehouseProxy.class, SellerProxy.class})
 public interface ProcurementRequest extends RequestContext {
 	InstanceRequest<ProcurementProxy, Void> persist();
 	Request<List<ProcurementProxy>> findAll();

@@ -116,22 +116,26 @@ public class Procurement extends Requirement {
 			return;
 		if(quantity + getQuantityFilled() > getQuantity())
 			throw new IllegalArgumentException("Cannot add more than required units.");
-		if(quantity < getQuantityFilled())
+		if(quantity < 0 && Math.abs(quantity) > getQuantityFilled())
 			throw new IllegalArgumentException("Cannot remove more than available units.");
 		if(quantity > supply.getQuantity())
 			throw new IllegalArgumentException("Cannot move more than " + quantity + " units. " + supply.getQuantity() + " available in supply");
 		Source source = findOrCreateSource(supply);
 		source.getSupply().setQuantity(supply.getQuantity() - quantity);
 		source.setQuantity(source.getQuantity()+quantity);
-		addSource(source);
+		
 	}
 
 	private Source findOrCreateSource(Supply supply) {
-		List<Source> sources = findByQuery("SELECT s FROM Source s WHERE s.supply = ?1 ", supply);
+		List<Source> sources = findByQuery("SELECT s FROM Procurement p " +
+				"INNER JOIN p.sources s " +
+				"WHERE s.supply = ?1 " +
+				"AND p = ?2", supply,this);
 		if(sources.isEmpty()) {
 			Source source = new Source();
 			source.setSupply(supply);
 			source.persist();
+			addSource(source);
 			return source;
 		}
 		return sources.get(0);

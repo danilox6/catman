@@ -73,13 +73,14 @@ public class DetailView extends Composite implements View{
 			Integer value = spinnerValues.get(source);
 			if (value == null)
 				value = 0;
+			value = value - quantityFilled.get(source);
 		
 			if(value > source.getQuantity())
 				Window.alert("Not enough units in stock to fulfill the request");
 			else if(value > procurement.getQuantity() - procurement.getQuantityFilled())
 				Window.alert("Cannot overfill requirement");
-			else
-				presenter.moveMateriel((SupplyProxy) e.getSource(), value - quantityFilled.get(source), procurement);
+			else if(value!=0)
+				presenter.moveMateriel((SupplyProxy) e.getSource(), value , procurement);
 		}
 	}
 	

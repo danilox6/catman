@@ -1,6 +1,7 @@
 package it.unisannio.catman.screens.materialpicker.client;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 import com.google.web.bindery.requestfactory.shared.Receiver;
@@ -32,6 +33,7 @@ public class DetailActivity extends ScreenActivity implements MaterialPicker.Pre
 
 	@Override
 	public void moveMateriel(SupplyProxy supply, int quantity, ProcurementProxy procurement) {
+		Window.alert(quantity+"");
 		getDataStore().procurements().move(quantity, supply).using(procurement).fire(new Receiver<Void>() {
 
 			@Override
