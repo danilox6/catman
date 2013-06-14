@@ -3,6 +3,7 @@ package it.unisannio.catman.common.client;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
@@ -157,9 +158,14 @@ public class MockEntityPersister {
 											public void onSuccess(Void response) {
 												GWT.log("Material -> Warehouse -> Stock persited");
 											}
+											@Override
+											public void onFailure(ServerFailure error) {
+												GWT.log("Fail 3");
+											}
 										});
 
 									}
+								
 								});
 
 								SellerRequest sellers = dataStore.sellers();

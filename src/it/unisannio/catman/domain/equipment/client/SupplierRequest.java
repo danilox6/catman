@@ -15,4 +15,7 @@ public interface SupplierRequest extends RequestContext {
 	
 	Request<List<SupplierProxy>> listAll(int start, int length);
 	Request<Integer> count();
+	
+	Request<List<SupplierProxy>> listByMateriel(MaterielProxy materiel, int start, int length);
+	Request<Integer> countByMateriel(MaterielProxy materiel);
 }

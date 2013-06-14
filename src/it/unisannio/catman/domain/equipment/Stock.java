@@ -27,6 +27,14 @@ public class Stock extends Supply<Stock, Warehouse> {
 	public static int countByWarehouse(Warehouse warehouse) {
 		return countByQuery("SELECT COUNT(st) FROM Stock st WHERE st.supplier = ?1", warehouse);
 	}
+
+public static List<Stock> findByMateriel(Materiel m){
+		return findByQuery("SELECT s FROM Stock s WHERE s.materiel = ?1", m);
+	}
+	
+	public static int countByMateriel(Materiel m){
+		return countByQuery("SELECT COUNT(s) FROM Stock s WHERE s.materiel = ?1", m);
+	}
 	
 	public static Stock findOrCreate(Warehouse w, Materiel m) {
 		List<Stock> stocks = findByQuery("SELECT s FROM Stock s WHERE s.supplier = ?1 AND s.materiel = ?2", w, m);

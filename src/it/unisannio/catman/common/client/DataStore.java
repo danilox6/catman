@@ -63,4 +63,5 @@ public interface DataStore extends RequestFactory {
 	EmploymentContractRequest employmentContracts();
 	
 	SupplyRequest supplies();
+
 }

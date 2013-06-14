@@ -15,4 +15,7 @@ public interface OfferRequest extends RequestContext {
 	Request<List<OfferProxy>> listBySeller(SellerProxy seller, int start, int length);
 	Request<Integer> countBySeller(SellerProxy seller);
 	
+	Request<List<OfferProxy>> findByMateriel(MaterielProxy m);
+	Request<Integer> countByMateriel(MaterielProxy warehouse);
+	
 }

@@ -7,7 +7,7 @@ import com.google.web.bindery.requestfactory.shared.ExtraTypes;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 @ProxyFor(Supply.class)
-@ExtraTypes({SupplyKeyProxy.class})
+@ExtraTypes({SupplyKeyProxy.class,SupplierProxy.class})
 public interface SupplyProxy extends EntityProxy {
 	SupplyKeyProxy getId();
 	
@@ -16,7 +16,10 @@ public interface SupplyProxy extends EntityProxy {
 	
 	MaterielProxy getMateriel();
 	void setMateriel(MaterielProxy materiel);
-	//void setSupplier(SupplierProxy supplier); FIXME togliere setter e getter Supplier da Stock e Offer e metterli qui
+	
+	//FIXME togliere setter e getter Supplier da Stock e Offer e metterli qui	
+//	SupplierProxy getSupplier();
+//	void setSupplier(SupplierProxy supplier);
 	
 	 
 }

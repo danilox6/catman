@@ -108,7 +108,12 @@ public class MasterCell<T> extends AbstractCell<T> implements HasClickHandlers, 
 	@UiHandler({"masterCell"})
 	void onValueChanged(ChangeEvent event, Element parent, Object value){
 		ChangeEvent changeEvent = new CellChangeEvent(value);
-		//changeEvent.setRelativeElement(getTargetElement(parent));
+		EventTarget et = nativeEvent.getEventTarget();
+		if(!Element.is(et))
+			throw new RuntimeException("Event target must be an element!");
+		
+		Element element = Element.as(et);
+		changeEvent.setRelativeElement(element);
 		fireEvent(changeEvent);
 	}
 

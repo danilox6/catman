@@ -1,5 +1,7 @@
 package it.unisannio.catman.domain.equipment;
 
+import java.util.List;
+
 import it.unisannio.catman.common.server.AbstractEntity;
 
 
@@ -49,7 +51,6 @@ public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> ext
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
 	public abstract S getSupplier();
 	public abstract void setSupplier(S supplier);
 	
@@ -63,4 +64,15 @@ public abstract class Supply<T extends Supply<T,S>, S extends Supplier<T,S>> ext
 		return id;
 	}
 
+	@SuppressWarnings("rawtypes")
+	public static List<Supply> listByMateriel(Materiel m, int start, int length){
+		return listByQuery(Supply.class, start, length, "SELECT s FROM Supply s " +
+				"WHERE s.materiel = ?1", m);
+	}
+	
+	public static int countByMateriel(Materiel m){
+		return countByQuery("SELECT COUNT(s) FROM Supply s " +
+				"WHERE s.materiel = ?1", m);
+	}
+	
 }

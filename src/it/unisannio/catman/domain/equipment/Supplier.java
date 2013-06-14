@@ -35,6 +35,21 @@ public abstract class Supplier<T extends Supply<T,S>, S extends Supplier<T,S>> e
 		return list(Supplier.class, start, length);
 	}
 	
+	
+	//FIXME Query inutili
+	@SuppressWarnings("rawtypes")
+	public static List<Supplier> listByMateriel(Materiel m, int start, int length){
+		return listByQuery(Supplier.class, start, length, "SELECT s FROM Supplier s " +
+				"INNER JOIN s.supply supply " +
+				"WHERE supply.materiel = ?1", m);
+	}
+	
+	public static int countByMateriel(Materiel m){
+		return countByQuery("SELECT COUNT(s) FROM Supplier s " +
+				"INNER JOIN s.supply supply " +
+				"WHERE supply.materiel = ?1", m);
+	}
+	
 	public static int count() {
 		return count(Supplier.class);
 	}

@@ -43,6 +43,13 @@ public class Offer extends Supply<Offer, Seller> {
 		getId().supplierId = supplier.getId();
 	}
 	
+	public static List<Offer> findByMateriel(Materiel m){
+		return findByQuery("SELECT s FROM Offer s WHERE s.materiel = ?1", m);
+	}
+	
+	public static int countByMateriel(Materiel m){
+		return countByQuery("SELECT COUNT(s) FROM Offer s WHERE s.materiel = ?1", m);
+	}
 	
 
 }
