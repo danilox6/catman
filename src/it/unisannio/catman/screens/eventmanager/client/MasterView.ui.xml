@@ -8,17 +8,17 @@
 	</ui:style>
 	<c:MasterPanel>
 	    <c:header>
-	        <c:SwitchPanel>
+	        <c:SwitchPanel ui:field="switchPanel">
 	            <c:normal>
 	                <b:Heading size="3">Events</b:Heading>
 	            </c:normal>
 	            <c:alternate>
-	                <b:Form type="SEARCH">
-	                    <b:TextBox searchQuery="true" placeholder="cerca..." />
+	                <b:Form type="SEARCH" ui:field="form">
+	                    <b:TextBox  ui:field="searchTextBox" searchQuery="true" placeholder="cerca..." />
 	                </b:Form>
 	            </c:alternate>
 	            <c:switch>
-	                <b:Button icon="SEARCH" toggle="true"></b:Button>
+	                <b:Button icon="SEARCH" toggle="true" ui:field="toggleButton"></b:Button>
 	            </c:switch>
 	        </c:SwitchPanel>
 	    </c:header>
@@ -28,7 +28,7 @@
 	    <c:footer>
 	        <c:ActionBar>
 	            <c:left>
-	                <b:Button ui:field="calendarButton" icon="CALENDAR" type="LINK"></b:Button>
+	               <b:Button ui:field="calendarButton" icon="CALENDAR" type="LINK"></b:Button>
 	            </c:left>
 	            
 	            <c:right>

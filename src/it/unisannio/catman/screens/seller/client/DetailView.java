@@ -8,7 +8,9 @@ import it.unisannio.catman.domain.equipment.client.SellerProxy;
 import it.unisannio.catman.screens.seller.client.Seller.Presenter;
 import it.unisannio.catman.screens.seller.client.adapters.OfferDetailAdapter;
 
+import com.github.gwtbootstrap.client.ui.Form;
 import com.github.gwtbootstrap.client.ui.Heading;
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -27,6 +29,9 @@ public class DetailView extends Composite implements Seller.View{
 	
 	@UiField Heading titleLabel;
 	@UiField DataList<OfferProxy> dataList;
+	
+	@UiField Form form;
+	@UiField TextBox searchTextBox;
 	
 	private Presenter presenter;
 	
@@ -59,5 +64,10 @@ public class DetailView extends Composite implements Seller.View{
 		presenter.goToOfferScreen((OfferProxy) e.getSource());
 	}
 	
+
+	@UiHandler("form")
+	void handleSubmitEvent(Form.SubmitEvent e){
+		presenter.executeSearch(searchTextBox.getText());
+	}
 
 }

@@ -1,5 +1,6 @@
 package it.unisannio.catman.domain.workflow.client;
 
+import java.util.Date;
 import java.util.List;
 
 import com.google.web.bindery.requestfactory.shared.InstanceRequest;
@@ -18,4 +19,6 @@ public interface EventRequest extends RequestContext {
 	Request<Integer> count();
 	InstanceRequest<EventProxy, Void> persist();
 	InstanceRequest<EventProxy, PlanProxy> addPlan();
+	Request<List<EventProxy>> listBy(String searchQuery, Date date, int start, int length);
+	Request<Integer> countBy(String searchQuery, Date date);
 } 

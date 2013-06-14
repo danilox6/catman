@@ -10,8 +10,9 @@
 					<b:Heading size="3" ui:field="titleLabel"/>
 				</c:left>
 				<c:right>
-					<b:Form type="SEARCH">
-						<b:TextBox searchQuery="true" placeholder="cerca..." />
+					<b:Form type="SEARCH" ui:field="form">
+						<b:TextBox ui:field="searchTextBox" searchQuery="true"
+							placeholder="cerca..." />
 					</b:Form>
 				</c:right>
 			</c:ActionBar>

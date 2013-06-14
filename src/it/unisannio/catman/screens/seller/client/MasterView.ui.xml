@@ -12,13 +12,13 @@
 	            <c:normal>
 	                <b:Heading size="3" ui:field="titleLabel"/>
 	            </c:normal>
-	            <c:alternate>
-	                <b:Form type="SEARCH">
-	                    <b:TextBox searchQuery="true" placeholder="cerca..." />
+	         <c:alternate>
+	                <b:Form type="SEARCH" ui:field="form">
+	                    <b:TextBox  ui:field="searchTextBox" searchQuery="true" placeholder="cerca..." />
 	                </b:Form>
 	            </c:alternate>
 	            <c:switch>
-	                <b:Button icon="SEARCH" toggle="true"></b:Button>
+	                <b:Button icon="SEARCH" toggle="true" ui:field="toggleButton"></b:Button>
 	            </c:switch>
 	        </c:SwitchPanel>
 	    </c:header>

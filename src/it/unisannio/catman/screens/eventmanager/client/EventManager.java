@@ -1,5 +1,7 @@
 package it.unisannio.catman.screens.eventmanager.client;
 
+import java.util.Date;
+
 import it.unisannio.catman.common.client.Icon;
 import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.Query;
@@ -13,6 +15,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 public class EventManager extends Screen implements HasMaster{
 	public static interface Master extends Activity {
 		public void goToEventScreen(EventProxy e);
+		public void executeSearch(String searchQuery, Date date);
 		
 		interface View extends IsWidget {
 			void setEventQuery(Query<EventProxy> query);

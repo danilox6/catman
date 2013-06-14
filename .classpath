@@ -25,24 +25,11 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/catman/lib/gwt-bootstrap-2.2.2.0-SNAPSHOT-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA-sources.jar"/>
-	<classpathentry kind="lib" path="/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA.jar" sourcepath="/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.1/gwt-2.5.1/validation-api-1.0.0.GA-sources.jar"/>
-	<classpathentry kind="lib" path="/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.0.v201212122042-rel-r42/gwt-2.5.0/gwt-user.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.0.v201212122042-rel-r42/gwt-2.5.0/doc/javadoc/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.0.v201212122042-rel-r42/gwt-2.5.0/gwt-dev.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.0.v201212122042-rel-r42/gwt-2.5.0/doc/javadoc/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.0.v201212122042-rel-r42/gwt-2.5.0/validation-api-1.0.0.GA-sources.jar"/>
-	<classpathentry kind="lib" path="/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.0.v201212122042-rel-r42/gwt-2.5.0/validation-api-1.0.0.GA.jar" sourcepath="/home/danilo/.eclipse/org.eclipse.platform_3.8_155965261/plugins/com.google.gwt.eclipse.sdkbundle_2.5.0.v201212122042-rel-r42/gwt-2.5.0/validation-api-1.0.0.GA-sources.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

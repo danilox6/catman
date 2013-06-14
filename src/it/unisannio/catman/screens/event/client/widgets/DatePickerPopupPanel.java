@@ -1,7 +1,14 @@
 package it.unisannio.catman.screens.event.client.widgets;
 
+import java.util.Date;
+
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.HasChangeHandlers;
+import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.datepicker.client.DatePicker;
@@ -11,7 +18,7 @@ import com.google.gwt.user.datepicker.client.DatePicker;
  * bottom-left coordinates. It handles window resize.
  *
  */
-public class DatePickerPopupPanel extends PopupPanel{
+public class DatePickerPopupPanel extends PopupPanel implements HasValueChangeHandlers<Date>{
 
 	private DatePicker datePicker = new DatePicker();
 	private int previousClientHeight;
@@ -54,4 +61,9 @@ public class DatePickerPopupPanel extends PopupPanel{
 	 public DatePicker getDatePicker(){
 		 return datePicker;
 	 }
+
+	@Override
+	public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Date> handler) {
+		return datePicker.addValueChangeHandler(handler);
+	}
 }

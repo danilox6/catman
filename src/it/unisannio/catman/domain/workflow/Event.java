@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -41,6 +43,40 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, 
 		return count(Event.class);
 	}
 	
+	//FIXME Rielaborare
+	public static List<Event> listBy(String searchQuery, Date date, int start, int length) {
+		String query = "SELECT e FROM Event e";
+		if((searchQuery != null && !searchQuery.trim().equals("")) || date!=null){
+			query += " WHERE ";
+			if(searchQuery != null && !searchQuery.trim().equals("")){
+				query += "lower(e.title) LIKE '%"+searchQuery.toLowerCase()+"%'";
+				if(date != null)
+					query += " AND e.startDate = ?1";
+			}else if(date != null)
+				query += "e.startDate = ?1";
+		}
+		if(date!=null)
+			return listByQuery(Event.class, start, length, query, date);
+		return listByQuery(Event.class, start, length, query);
+	}
+	
+	//FIXME Rielaborare
+		public static int countBy(String searchQuery, Date date) {
+			String query = "SELECT COUNT(e) FROM Event e";
+			if((searchQuery != null && !searchQuery.trim().equals("")) || date!=null){
+				query += " WHERE ";
+				if(searchQuery != null && !searchQuery.trim().equals("")){
+					query += "lower(e.title) LIKE '%"+searchQuery.toLowerCase()+"%'";
+					if(date != null)
+						query += " AND e.startDate = ?1";
+				}else if(date != null)
+					query += "e.startDate = ?1";
+			}
+			if(date!=null)
+				return countByQuery(query, date);
+			return countByQuery(query);
+		}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -52,8 +88,10 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, 
 	private String title;
 	
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	
 	@OneToMany(mappedBy="dossier", cascade = CascadeType.ALL)

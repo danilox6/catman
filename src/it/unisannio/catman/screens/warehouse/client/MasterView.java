@@ -9,7 +9,10 @@ import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.screens.warehouse.client.Warehouse.Presenter;
 import it.unisannio.catman.screens.warehouse.client.adapters.StockMasterAdapter;
 
+import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.Form;
 import com.github.gwtbootstrap.client.ui.Heading;
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -29,6 +32,10 @@ public class MasterView extends Composite implements Warehouse.View{
 	@UiField Heading titleLabel;
 	@UiField SelectAllButton selectButton;
 	@UiField DataList<StockProxy> dataList;
+	
+	@UiField Form form;
+	@UiField TextBox searchTextBox;
+	@UiField Button toggleButton;
 	
 	private QueryDataProvider<StockProxy> dataProvider = new QueryDataProvider<StockProxy>();
 	private Presenter presenter;
@@ -61,6 +68,20 @@ public class MasterView extends Composite implements Warehouse.View{
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e){
 		presenter.goToStockScreen((StockProxy) e.getSource());
+	}
+	
+	@UiHandler("form")
+	void handleSubmitEvent(Form.SubmitEvent e){
+		presenter.executeSearch(searchTextBox.getText());
+	}
+	
+	@UiHandler("toggleButton")
+	void handleSearchToggleClick(ClickEvent e){
+		if(toggleButton.isToggled())
+			if(!searchTextBox.getText().trim().equals("")){
+				presenter.executeSearch(null);
+				searchTextBox.setText("");
+			}
 	}
 
 }

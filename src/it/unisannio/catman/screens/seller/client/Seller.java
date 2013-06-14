@@ -21,6 +21,7 @@ public class Seller extends Screen implements HasDetail, HasMaster{
 	}
 
 	public static interface Presenter{
+		public void executeSearch(String searchQuery);
 		void goToOfferScreen(OfferProxy m);
 	}
 
