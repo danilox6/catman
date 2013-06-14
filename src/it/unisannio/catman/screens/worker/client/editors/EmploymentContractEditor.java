@@ -8,12 +8,14 @@ import it.unisannio.catman.domain.humanresources.client.PieceworkProxy;
 
 import com.github.gwtbootstrap.datepicker.client.ui.DateBox;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 
-public class EmploymentContractEditor extends DataEditor<EmploymentContractProxy, EmploymentContractRequest, EmploymentContractEditor> {
+public class EmploymentContractEditor extends DataEditor<EmploymentContractProxy, EmploymentContractRequest, EmploymentContractEditor>  {
 
 	private static EmploymentContractEditorUiBinder uiBinder = GWT
 			.create(EmploymentContractEditorUiBinder.class);
@@ -32,11 +34,12 @@ public class EmploymentContractEditor extends DataEditor<EmploymentContractProxy
 	
 	private PieceworkProxy piecework;
 	
-	public EmploymentContractEditor(PieceworkProxy piecework) {
+	public EmploymentContractEditor(PieceworkProxy piecework, ValueChangeHandler<EmploymentContractProxy> handler) {
 		super(App.getInstance().getDataStore().employmentContracts(), EmploymentContractProxy.class);
 		setForm(uiBinder.createAndBindUi(this));
 		this.piecework = piecework;
 		setTitle("Add/edit contract");
+		this.addValueChangeHandler(handler);
 	}
 
 

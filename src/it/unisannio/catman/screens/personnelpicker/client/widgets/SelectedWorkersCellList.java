@@ -2,7 +2,7 @@ package it.unisannio.catman.screens.personnelpicker.client.widgets;
 
 import java.util.List;
 
-import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
+import it.unisannio.catman.domain.humanresources.client.ContractProxy;
 
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.cell.client.Cell.Context;
@@ -17,26 +17,26 @@ import com.google.gwt.view.client.SelectionModel;
 /**
  * Basically an horizontal {@link CellList} used to display selected workers 
  */
-public class SelectedWorkersCellList extends CellList<WorkerProxy>{
+public class SelectedWorkersCellList extends CellList<ContractProxy>{
 
 	/**
 	 * The width of the cells showing selected workers.
 	 */
 	private final static int SELECTED_WORKER_CELL_WIDTH = 200;  //FIXME Hardcoded size
 	
-	public SelectedWorkersCellList(Cell<WorkerProxy> cell){
+	public SelectedWorkersCellList(Cell<ContractProxy> cell){
 		this(cell, getDefaultResources(), null);
 	}
 
-	public SelectedWorkersCellList(Cell<WorkerProxy> cell, Resources resources) {
+	public SelectedWorkersCellList(Cell<ContractProxy> cell, Resources resources) {
 		this(cell, resources, null);
 	}
 
-	public SelectedWorkersCellList(Cell<WorkerProxy> cell, ProvidesKey<WorkerProxy> keyProvider) {
+	public SelectedWorkersCellList(Cell<ContractProxy> cell, ProvidesKey<ContractProxy> keyProvider) {
 		this(cell, getDefaultResources(), keyProvider);
 	}
 
-	public SelectedWorkersCellList(Cell<WorkerProxy> cell, Resources resources, ProvidesKey<WorkerProxy> keyProvider) {
+	public SelectedWorkersCellList(Cell<ContractProxy> cell, Resources resources, ProvidesKey<ContractProxy> keyProvider) {
 		super(cell, resources, keyProvider);
 	}
 
@@ -45,10 +45,10 @@ public class SelectedWorkersCellList extends CellList<WorkerProxy>{
 	}
 
 	@Override
-	protected void renderRowValues(SafeHtmlBuilder sb, List<WorkerProxy> values, int start, SelectionModel<? super WorkerProxy> selectionModel) {
+	protected void renderRowValues(SafeHtmlBuilder sb, List<ContractProxy> values, int start, SelectionModel<? super ContractProxy> selectionModel) {
 	    int end = start + values.size();
 	    for (int i = start; i < end; i++) {
-	      WorkerProxy value = values.get(i - start);
+	      ContractProxy value = values.get(i - start);
 	      
 	      StringBuilder classesBuilder = new StringBuilder();
 	      SafeHtmlBuilder cellBuilder = new SafeHtmlBuilder();

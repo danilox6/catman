@@ -7,7 +7,12 @@ import it.unisannio.catman.common.client.Icon;
 import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasDetail;
+import it.unisannio.catman.domain.humanresources.client.ContractProxy;
+import it.unisannio.catman.domain.humanresources.client.EmploymentContractProxy;
+import it.unisannio.catman.domain.humanresources.client.FreelanceContractProxy;
+import it.unisannio.catman.domain.humanresources.client.PieceworkProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
+import it.unisannio.catman.domain.planning.client.PositionProxy;
 import it.unisannio.catman.screens.worker.client.queries.ContractsQuery;
 import it.unisannio.catman.screens.worker.client.queries.PieceworksQuery;
 
@@ -17,10 +22,14 @@ public class Worker extends Screen implements HasDetail{
 		void setContractsQuery(ContractsQuery contractsQuery);
 		void setPieceworksQuery(PieceworksQuery pieceworksQuery);
 		void setPresenter(Presenter presenter);
+		void setPositionProxy(PositionProxy position);
+		void refreshContracts();
 	}
 	
 	public static interface Presenter{
 		void setCandidate(WorkerProxy workerProxy, boolean candidate);
+		void assignFreelanceToPosition(PieceworkProxy piecework);
+		void assignEmployeeToPosition(EmploymentContractProxy piecework);
 	}
 	
 	protected Worker() {

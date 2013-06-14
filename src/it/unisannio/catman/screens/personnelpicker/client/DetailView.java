@@ -3,11 +3,12 @@ package it.unisannio.catman.screens.personnelpicker.client;
 import java.util.List;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
+import it.unisannio.catman.domain.humanresources.client.ContractProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkersSource;
 import it.unisannio.catman.domain.planning.client.PositionProxy;
 import it.unisannio.catman.screens.personnelpicker.client.PersonnelPicker.Presenter;
-import it.unisannio.catman.screens.personnelpicker.client.adapters.SelectedWorkerAdapter;
+import it.unisannio.catman.screens.personnelpicker.client.adapters.SelectedContractsAdapter;
 import it.unisannio.catman.screens.personnelpicker.client.widgets.SelectedWorkersCellList;
 
 import com.github.gwtbootstrap.client.ui.Heading;
@@ -36,13 +37,15 @@ public class DetailView extends Composite implements PersonnelPicker.Detail.View
 	
 	private WorkersTreeModel treeModel = new WorkersTreeModel();
 	
-	ListDataProvider<WorkerProxy> selectedWorkers = new ListDataProvider<WorkerProxy>();
+	ListDataProvider<ContractProxy> positionFillers = new ListDataProvider<ContractProxy>();
 	
 	public DetailView() {
-		selectedCellList = new SelectedWorkersCellList(new MasterCell<WorkerProxy>(new SelectedWorkerAdapter()));
+		selectedCellList = new SelectedWorkersCellList(new MasterCell<ContractProxy>(new SelectedContractsAdapter()));
 		cellTree = new CellTree(treeModel, null);
 		cellTree.setAnimationEnabled(true);
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		positionFillers.addDataDisplay(selectedCellList);
 		
 		treeModel.addClickHandler(this);
 	}
@@ -55,10 +58,11 @@ public class DetailView extends Composite implements PersonnelPicker.Detail.View
 	}
 
 	@Override
-	public void setSelectedWorkers(List<WorkerProxy> selectedWorkers) {
-		List<WorkerProxy> workers = this.selectedWorkers.getList();
-		workers.clear();
-		workers.addAll(selectedWorkers);
+	public void setSelectedContracts(List<ContractProxy> fillers) {
+		
+		List<ContractProxy> contracts = this.positionFillers.getList();
+		contracts.clear();
+		contracts.addAll(fillers);
 	}
 	
 	@Override

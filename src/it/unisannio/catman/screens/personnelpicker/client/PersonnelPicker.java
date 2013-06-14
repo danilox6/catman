@@ -10,6 +10,7 @@ import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.Screen;
 import it.unisannio.catman.common.client.Screen.HasMaster;
 import it.unisannio.catman.common.client.Screen.HasDetail;
+import it.unisannio.catman.domain.humanresources.client.ContractProxy;
 import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkersSource;
@@ -19,7 +20,7 @@ import it.unisannio.catman.domain.planning.client.PositionProxy;
 public class PersonnelPicker extends Screen implements HasMaster, HasDetail{
 	public static interface View extends IsWidget{
 		void setPositionProxy(PositionProxy positionProxy);
-		void setSelectedWorkers(List<WorkerProxy> selectedWorkers);
+		void setSelectedContracts(List<ContractProxy> fillers);
 		void setPresenter(Presenter presenter);
 	}
 	

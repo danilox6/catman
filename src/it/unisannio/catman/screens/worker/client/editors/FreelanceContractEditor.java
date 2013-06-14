@@ -9,6 +9,7 @@ import it.unisannio.catman.domain.humanresources.client.PieceworkProxy;
 import it.unisannio.catman.domain.planning.client.PositionProxy;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.text.shared.AbstractRenderer;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -41,12 +42,14 @@ public class FreelanceContractEditor extends DataEditor<FreelanceContractProxy, 
 	
 	private PieceworkProxy piecework;
 	
-	public FreelanceContractEditor(PieceworkProxy piecework) {
+	public FreelanceContractEditor(PieceworkProxy piecework, ValueChangeHandler<FreelanceContractProxy> handler) {
 		super(App.getInstance().getDataStore().freelanceContracts(), FreelanceContractProxy.class);
 		setForm(uiBinder.createAndBindUi(this));
 		this.piecework = piecework;
 		positionEditor.setRequest(App.getInstance().getDataStore().positions().findByPiecework(piecework).with("plan.dossier.title"));
 		setTitle("Add/edit contract");
+		
+		this.addValueChangeHandler(handler);
 	}
 
 

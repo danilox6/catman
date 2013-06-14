@@ -4,8 +4,11 @@ import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.Utilities;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.domain.humanresources.client.ContractProxy;
+import it.unisannio.catman.domain.humanresources.client.EmploymentContractProxy;
+import it.unisannio.catman.domain.humanresources.client.FreelanceContractProxy;
 import it.unisannio.catman.domain.humanresources.client.PieceworkProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
+import it.unisannio.catman.domain.planning.client.PositionProxy;
 import it.unisannio.catman.screens.worker.client.Worker.Presenter;
 import it.unisannio.catman.screens.worker.client.adapters.ContractCellAdapter;
 import it.unisannio.catman.screens.worker.client.adapters.PieceworkCellAdapter;
@@ -21,10 +24,11 @@ import com.github.gwtbootstrap.client.ui.Paragraph;
 import com.github.gwtbootstrap.client.ui.constants.ButtonType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
@@ -52,6 +56,8 @@ public class DetailView extends Composite implements Worker.View{
 	private WorkerProxy worker;
 	
 	private Presenter presenter;
+	
+	private PositionProxy position;
 	
 	public DetailView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -106,18 +112,48 @@ public class DetailView extends Composite implements Worker.View{
 		
 	}
 	
+	@Override
+	public void setPositionProxy(PositionProxy position) {
+		this.position = position;
+	}
+	
 	@UiHandler("candidatesButton")
 	void handleCandidatesClick(ClickEvent e){
 		presenter.setCandidate(worker, !worker.isCandidate());
 	}
 	
 	@UiHandler("pieceworkList")
-	void handleCellCLick(ClickEvent e){
+	void handlePieceworkCellClick(ClickEvent e){
 		PieceworkProxy piecework = (PieceworkProxy) e.getSource();
-		if(piecework.isFreelance())
-			new FreelanceContractEditor(piecework).open();
+		if(piecework.isFreelance()){
+			if(position==null)
+				new FreelanceContractEditor(piecework, new ValueChangeHandler<FreelanceContractProxy>() {
+					public void onValueChange(ValueChangeEvent<FreelanceContractProxy> event) {
+						refreshContracts();
+					}
+				}).open();
+			else
+				presenter.assignFreelanceToPosition(piecework);
+		}
 		else
-			new EmploymentContractEditor(piecework).open();
+			new EmploymentContractEditor(piecework, new ValueChangeHandler<EmploymentContractProxy>() {
+				
+				@Override
+				public void onValueChange(ValueChangeEvent<EmploymentContractProxy> event) {
+					refreshContracts();
+				}
+			}).open();
+	}
+	
+	@UiHandler("contractList")
+	void handleContractCellClick(ClickEvent e){
+		if(position != null && e.getSource() instanceof EmploymentContractProxy)
+			presenter.assignEmployeeToPosition((EmploymentContractProxy) e.getSource());
+	}
+	
+	@Override
+	public void refreshContracts() {
+		contractList.reload();
 	}
 
 }

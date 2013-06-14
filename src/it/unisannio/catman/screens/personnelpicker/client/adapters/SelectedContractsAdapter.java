@@ -5,22 +5,22 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 
 import it.unisannio.catman.common.client.Icon;
 import it.unisannio.catman.common.client.cell.AbstractCellAdapter;
-import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
+import it.unisannio.catman.domain.humanresources.client.ContractProxy;
 
-public class SelectedWorkerAdapter extends AbstractCellAdapter<WorkerProxy> {
+public class SelectedContractsAdapter extends AbstractCellAdapter<ContractProxy> {
 	
 	@Override
-	public SafeHtml getNorth(WorkerProxy object) {
-		return new SafeHtmlBuilder().appendEscaped(object.getName()).toSafeHtml();
+	public SafeHtml getNorth(ContractProxy object) {
+		return new SafeHtmlBuilder().appendEscaped(object.getPiecework().getWorker().getName()).toSafeHtml();
 	}
 	
 	@Override
-	public SafeHtml getWest(WorkerProxy d) {
+	public SafeHtml getWest(ContractProxy d) {
 		return Icon.CONTACT.toSafeHtml();
 	}
 
 	@Override
-	public SafeHtml getEast(WorkerProxy object) {
+	public SafeHtml getEast(ContractProxy object) {
 		return new SafeHtmlBuilder().appendEscaped("&#x2714;").toSafeHtml();
 	}
 	

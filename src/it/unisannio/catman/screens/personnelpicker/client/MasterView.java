@@ -1,6 +1,7 @@
 package it.unisannio.catman.screens.personnelpicker.client;
 
 import it.unisannio.catman.common.client.ui.DataList;
+import it.unisannio.catman.domain.humanresources.client.ContractProxy;
 import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.planning.client.PositionProxy;
@@ -82,9 +83,10 @@ public class MasterView extends Composite implements PersonnelPicker.Master.View
 	}
 	
 	@Override
-	public void setSelectedWorkers(List<WorkerProxy> selectedWorkers) {
+	public void setSelectedContracts(List<ContractProxy> fillers) {
 		this.selectedWorkers.clear();
-		this.selectedWorkers.addAll(selectedWorkers);
+		for(ContractProxy c : fillers)
+			this.selectedWorkers.add(c.getPiecework().getWorker());
 		adapter.setSelectedWorkers(this.selectedWorkers);
 		sortAndSetData();
 	}

@@ -21,7 +21,7 @@ public class EmploymentContract extends Contract {
 	
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Date startDate = new Date();
+	private Date startDate;
 	
 	@Temporal(TemporalType.DATE)
 	private Date endDate;

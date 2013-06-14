@@ -43,10 +43,8 @@ public interface WorkerRequest extends RequestContext {
 	
 //	InstanceRequest<WorkerProxy, Void> addPiecework(PieceworkProxy p);
 
-	Request<List<WorkerProxy>> findFillersInPosition(PositionProxy position);
-	Request<Integer> countFillersInPosition(PositionProxy position);
-	
 	Request<List<WorkerProxy>> findByQualification(QualificationProxy qualification);
 	Request<List<WorkerProxy>> listByQualification(QualificationProxy qualification, int start, int length);
 	Request<Integer> countByQualification(QualificationProxy qualification);
+	
 }
