@@ -1,4 +1,4 @@
-package it.unisannio.catman.screens.inbox.client;
+package it.unisannio.catman.screens.warehouse.client.editors;
 
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.ui.DataEditor;

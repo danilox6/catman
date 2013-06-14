@@ -26,7 +26,8 @@ public class ContractCellAdapter extends InteractiveCellAdapter<ContractProxy>{
 		return new SafeHtmlBuilder()
 			.appendEscaped(object.getPiecework().getQualification().getName())
 			.appendHtmlConstant(" &bull; ")
-			.appendEscaped(object.getPiecework().getPay() + (object instanceof EmploymentContractProxy?"&euro;/mo.":"&euro;"))
+			.append(object.getPiecework().getPay())
+			.appendHtmlConstant(object instanceof EmploymentContractProxy? "&euro;/month" : "&euro;/day")
 			.toSafeHtml();
 	}
 	
