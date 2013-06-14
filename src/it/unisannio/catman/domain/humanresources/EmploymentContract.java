@@ -3,6 +3,8 @@ package it.unisannio.catman.domain.humanresources;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
@@ -13,8 +15,10 @@ public class EmploymentContract extends Contract {
 	}
 	
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	private Date startDate = new Date();
 	
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 
 	public boolean isOpenEnded() {
