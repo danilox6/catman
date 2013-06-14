@@ -29,7 +29,7 @@ public class PieceworkCellAdapter extends AbstractCellAdapter<PieceworkProxy> {
 			.appendHtmlConstant(" &bull; ")
 			.append(object.getPay())
 			.appendHtmlConstant(" &euro;")
-			.appendEscaped(object.isFreelance()? "" : "/mo.")
+			.appendEscaped(object.isFreelance()? "/day" : "/month")
 			.toSafeHtml();
 	}
 	

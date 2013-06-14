@@ -14,5 +14,8 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 public interface PlanProxy extends EventDocumentProxy {
 	List<ProcurementProxy> getProcurements();
 	List<PositionProxy> getPositions();
+	
 	void setDossier(EventProxy ep);
+	EventProxy getDossier();
+	
 }

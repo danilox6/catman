@@ -440,12 +440,12 @@ public class MockEntityPersister {
 															public void onSuccess(Void response) {
 																
 																ContractRequest contracts = dataStore.contracts();
-																if(event1!=null){
+																/*if(event1!=null){
 																	FreelanceContractProxy contract1 = contracts.create(FreelanceContractProxy.class);
 																	contract1.setPiecework(piecework1);
 																	contract1.setEvent(event1);
 																	contracts.persist().using(contract1);
-																}
+																}*/
 																
 																EmploymentContractProxy contract2 = contracts.create(EmploymentContractProxy.class);
 																contract2.setPiecework(piecework5);

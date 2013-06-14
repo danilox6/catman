@@ -9,6 +9,8 @@ import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.screens.worker.client.Worker.Presenter;
 import it.unisannio.catman.screens.worker.client.adapters.ContractCellAdapter;
 import it.unisannio.catman.screens.worker.client.adapters.PieceworkCellAdapter;
+import it.unisannio.catman.screens.worker.client.editors.EmploymentContractEditor;
+import it.unisannio.catman.screens.worker.client.editors.FreelanceContractEditor;
 import it.unisannio.catman.screens.worker.client.queries.ContractsQuery;
 import it.unisannio.catman.screens.worker.client.queries.PieceworksQuery;
 
@@ -111,8 +113,11 @@ public class DetailView extends Composite implements Worker.View{
 	
 	@UiHandler("pieceworkList")
 	void handleCellCLick(ClickEvent e){
-		//if(e.getRelativeElement().hasAttribute(PieceworkCellAdapter.HIRE_BUTTON_ATTIBUTE)) //TODO
-			Window.alert("//TODO");
+		PieceworkProxy piecework = (PieceworkProxy) e.getSource();
+		if(piecework.isFreelance())
+			new FreelanceContractEditor(piecework).open();
+		else
+			new EmploymentContractEditor(piecework).open();
 	}
 
 }

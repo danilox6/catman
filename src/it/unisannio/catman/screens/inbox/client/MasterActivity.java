@@ -1,6 +1,7 @@
 package it.unisannio.catman.screens.inbox.client;
 
 import it.unisannio.catman.common.client.ScreenActivity;
+import it.unisannio.catman.screens.warehouse.client.editors.WarehouseEditor;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;

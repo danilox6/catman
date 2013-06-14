@@ -6,10 +6,14 @@ import java.util.List;
 import java.util.Set;
 
 import it.unisannio.catman.domain.humanresources.Contract;
+import it.unisannio.catman.domain.humanresources.EmploymentContract;
 import it.unisannio.catman.domain.humanresources.FreelanceContract;
+import it.unisannio.catman.domain.humanresources.Piecework;
 import it.unisannio.catman.domain.humanresources.Qualification;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.AssertTrue;
@@ -38,12 +42,19 @@ public class Position extends Requirement {
 		deleteByQuery(Position.class, excludedKeys, "SELECT p FROM Position p WHERE p.plan = ?1", p);
 	}
 	
+	public static List<Position> findByPiecework(Piecework pw) {
+		return findByQuery("SELECT p FROM Piecework pw, Qualification q, Position p WHERE pw.qualification = q AND p.qualification = q AND pw = ?1 AND 0 = (SELECT COUNT(fc) FROM FreelanceContract fc, Position p2 WHERE fc.position = p2 AND p2 = p)", pw);
+	}
+	
 	@NotNull
 	@ManyToOne
 	Qualification qualification;
 	
-	@OneToMany
-	private List<Contract> fillers = new ArrayList<Contract>();
+	@ManyToMany(mappedBy = "positions")
+	private List<EmploymentContract> employedFillers = new ArrayList<EmploymentContract>();
+	
+	@OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
+	private List<FreelanceContract> freelanceFillers = new ArrayList<FreelanceContract>();
 
 	@ManyToOne
 	@NotNull
@@ -56,19 +67,14 @@ public class Position extends Requirement {
 
 	@Override
 	public int getQuantityFilled() {
-		return fillers.size();
+		return employedFillers.size() + freelanceFillers.size();
 	}
 	
 	public List<Contract> getFillers() {
-		return fillers;
-	}
-	
-	public void addFiller(Contract c) {
-		fillers.add(c);
-	}
-	
-	public void removeFiller(Contract c) {
-		fillers.remove(c);
+		ArrayList<Contract> total = new ArrayList<Contract>();
+		total.addAll(employedFillers);
+		total.addAll(freelanceFillers);
+		return total;
 	}
 	
 	public void setQualification(Qualification q) {
@@ -85,19 +91,6 @@ public class Position extends Requirement {
 
 	public void setPlan(Plan plan) {
 		this.plan = plan;
-	}
-	
-	@AssertTrue(message = "Contracts must be either specific to this position or open ended")
-	private boolean areFillersSpecific() {
-		for(Contract filler : fillers) {
-			if(filler instanceof FreelanceContract) {
-				FreelanceContract fc = (FreelanceContract) filler;
-				if(!fc.getEvent().equals(getPlan().getDossier()))
-					return false;
-			}
-		}
-		
-		return true;
 	}
 	
 	

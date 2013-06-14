@@ -17,7 +17,8 @@ import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 public class EntityListBox<E extends EntityProxy> extends ValueListBox<E> {
 	
-	Request<List<E>> request;
+	private Request<List<E>> request;
+	private boolean isLoading = false;
 
 	public <R extends RequestContext & HasFindAll<E>> EntityListBox(R requestContext, Renderer<E> renderer) {
 		this(requestContext.findAll(), renderer);
@@ -36,7 +37,7 @@ public class EntityListBox<E extends EntityProxy> extends ValueListBox<E> {
 	@Override
 	protected void onLoad() {
 		super.onLoad();
-		if(request != null) {
+		if(request != null && !isLoading) {
 			load();
 		}		
 	}
@@ -52,6 +53,7 @@ public class EntityListBox<E extends EntityProxy> extends ValueListBox<E> {
 	}
 	
 	private void load() {
+		isLoading = true;
 		setEnabled(false);
 		request.fire(new Receiver<List<E>> () {
 
@@ -59,12 +61,14 @@ public class EntityListBox<E extends EntityProxy> extends ValueListBox<E> {
 			public void onSuccess(List<E> response) {
 				setEnabled(true);
 				setAcceptableValues(response);
+				isLoading = false;
 			}
 			
 			@Override
 			public void onFailure(ServerFailure error) {
 				GWT.log("Error loading entity list!");
 				super.onFailure(error);
+				isLoading = false;
 			}
 		});
 	}

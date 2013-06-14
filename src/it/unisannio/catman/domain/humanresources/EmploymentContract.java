@@ -1,8 +1,13 @@
 package it.unisannio.catman.domain.humanresources;
 
+import it.unisannio.catman.domain.planning.Position;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +21,9 @@ public class EmploymentContract extends Contract {
 	private Date startDate = new Date();
 	
 	private Date endDate;
+	
+	@ManyToMany
+	private List<Position> positions = new ArrayList<Position>();
 
 	public boolean isOpenEnded() {
 		return endDate == null;
@@ -35,6 +43,13 @@ public class EmploymentContract extends Contract {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	
+	public void assignTo(Position p) {
+		if(getPiecework().getQualification().equals(p.getQualification()))
+			positions.add(p);
+		else
+			throw new IllegalArgumentException("Personnel must be qualified to cover a position");
 	}
 
 	@AssertTrue(message = "End date must be either blank (open ended contract) or be after start date")

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Version;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 
 @Entity
@@ -28,7 +29,6 @@ public abstract class Requirement extends AbstractEntity<Long> {
 	
 	@Min(value = 1, message = "At least one resource must be needed")
 	private int quantity;
-
 
 	public int getQuantity() {
 		return quantity;
@@ -58,5 +58,9 @@ public abstract class Requirement extends AbstractEntity<Long> {
 		return version;
 	}
 	
+	@AssertTrue(message = "A requirement cannot be overfilled")
+	private boolean isNotOverfilled() {
+		return getQuantityFilled() <= getQuantity();
+	}
 
 }

@@ -172,6 +172,10 @@ public class Worker extends Contactable {
 		
 		return uniqueQualifications;
 	}
+	
+	public Set<Piecework> getPieceworks() {
+		return pieceworks;
+	}
 
 	public void addPiecework(Piecework q) {
 		pieceworks.add(q);
