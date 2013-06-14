@@ -38,7 +38,7 @@
 						<c:EntityListBox ui:field="moveWarehouse" />
 					</b:Controls>
 				</b:ControlGroup>
-				<b:ControlGroup>
+				<b:ControlGroup ui:field="quantityGroup">
 					<b:ControlLabel>Quantity</b:ControlLabel>
 					<b:Controls>
 						<b:IntegerBox ui:field="moveQuantity">1</b:IntegerBox>

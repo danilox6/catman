@@ -19,4 +19,6 @@ public interface StockRequest extends RequestContext{
 	Request<Integer> countByWarehouse(WarehouseProxy warehouse);
 	
 	InstanceRequest<StockProxy, Integer> move(int quantity, WarehouseProxy destination);
+
+	InstanceRequest<StockProxy, Void> remove();
 }

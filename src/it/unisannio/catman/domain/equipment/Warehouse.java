@@ -18,6 +18,10 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 		return findAll(Warehouse.class);
 	}
 	
+	public static List<Warehouse> findMoveableFrom(Stock stock) {
+		return findByQuery("SELECT w FROM Warehouse w, Stock s WHERE s.supplier != w AND s = ?1", stock);
+	}
+	
 	@OneToMany(mappedBy="supplier", cascade = CascadeType.ALL)
 	private List<Stock> supply = new ArrayList<Stock>(); 
 

@@ -16,4 +16,5 @@ public interface WarehouseRequest extends RequestContext, HasFindAll<WarehousePr
 	InstanceRequest<WarehouseProxy, Void> addSupply(StockProxy proxy);
 	
 	Request<List<WarehouseProxy>> findAll();
+	Request<List<WarehouseProxy>> findMoveableFrom(StockProxy supply);
 }

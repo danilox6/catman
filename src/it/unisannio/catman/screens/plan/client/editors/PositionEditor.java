@@ -4,7 +4,6 @@ import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.ui.DataEditor;
 import it.unisannio.catman.common.client.ui.EntityListBox;
 import it.unisannio.catman.domain.humanresources.client.QualificationProxy;
-import it.unisannio.catman.domain.humanresources.client.QualificationRequest;
 import it.unisannio.catman.domain.planning.client.PlanProxy;
 import it.unisannio.catman.domain.planning.client.PositionProxy;
 import it.unisannio.catman.domain.planning.client.PositionRequest;
@@ -31,7 +30,7 @@ public class PositionEditor extends DataEditor<PositionProxy, PositionRequest, P
 	IntegerBox quantityEditor;
 	
 	@UiField(provided = true)
-	EntityListBox<QualificationProxy, QualificationRequest> qualificationEditor = new EntityListBox<QualificationProxy, QualificationRequest>(
+	EntityListBox<QualificationProxy> qualificationEditor = new EntityListBox<QualificationProxy>(
 			App.getInstance().getDataStore().qualifications(),
 			new AbstractRenderer<QualificationProxy>() {
 				@Override

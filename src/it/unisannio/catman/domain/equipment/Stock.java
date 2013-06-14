@@ -29,7 +29,7 @@ public class Stock extends Supply<Stock, Warehouse> {
 	}
 	
 	public static Stock findOrCreate(Warehouse w, Materiel m) {
-		List<Stock> stocks = findByQuery("SELECT s FROM Stock s WHERE s.supplier = ?1 AND s.materiel = m", w, m);
+		List<Stock> stocks = findByQuery("SELECT s FROM Stock s WHERE s.supplier = ?1 AND s.materiel = ?2", w, m);
 		if(stocks.isEmpty()) {
 			Stock st = new Stock();
 			st.setSupplier(w);
@@ -62,11 +62,11 @@ public class Stock extends Supply<Stock, Warehouse> {
 		
 		if(quantity > getQuantity())
 			throw new IllegalArgumentException("Cannot move more than " + quantity + " units. " + getQuantity() + " available");
+		
 		Stock dest = findOrCreate(destination, getMateriel());
 		dest.setQuantity(dest.getQuantity() + quantity);
 		setQuantity(getQuantity() - quantity);
 		
 		return getQuantity();
-	}
-	
+	}	
 }

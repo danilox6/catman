@@ -22,6 +22,10 @@ public abstract class ScreenActivity extends AbstractActivity {
 		App.goTo(pathTo(in));
 	}
 	
+	public void goUp() {
+		App.goTo(getPath().pop());
+	}
+	
 	protected Path pathTo(Intent in) {
 		return new Path(getPath(), in);
 	}

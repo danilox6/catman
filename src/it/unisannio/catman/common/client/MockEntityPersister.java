@@ -130,7 +130,10 @@ public class MockEntityPersister {
 								WarehouseRequest warehouses = dataStore.warehouses();
 								final WarehouseProxy warehouse = warehouses.create(WarehouseProxy.class); //IjEi@0@NiB6YzH5ss6oGAvNWB3UvR6z1vY=
 								warehouse.setName("Magazzino 1");
-
+								
+								final WarehouseProxy warehouse2 = warehouses.create(WarehouseProxy.class); //IjEi@0@NiB6YzH5ss6oGAvNWB3UvR6z1vY=
+								warehouse2.setName("Magazzino 2");
+								warehouses.persist().using(warehouse2);
 								warehouses.persist().using(warehouse).fire(new Receiver<Void>()  {
 
 									@Override

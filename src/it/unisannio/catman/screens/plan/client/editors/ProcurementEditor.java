@@ -4,7 +4,6 @@ import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.ui.DataEditor;
 import it.unisannio.catman.common.client.ui.EntityListBox;
 import it.unisannio.catman.domain.equipment.client.MaterielProxy;
-import it.unisannio.catman.domain.equipment.client.MaterielRequest;
 import it.unisannio.catman.domain.planning.client.PlanProxy;
 import it.unisannio.catman.domain.planning.client.ProcurementProxy;
 import it.unisannio.catman.domain.planning.client.ProcurementRequest;
@@ -32,7 +31,7 @@ public class ProcurementEditor extends DataEditor<ProcurementProxy, ProcurementR
 	IntegerBox quantityEditor;
 	
 	@UiField(provided = true)
-	EntityListBox<MaterielProxy, MaterielRequest> materielEditor = new EntityListBox<MaterielProxy, MaterielRequest>(
+	EntityListBox<MaterielProxy> materielEditor = new EntityListBox<MaterielProxy>(
 			App.getInstance().getDataStore().materiels(),
 			new AbstractRenderer<MaterielProxy>() {
 				@Override

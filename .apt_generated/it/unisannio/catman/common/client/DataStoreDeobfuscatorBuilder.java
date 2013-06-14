@@ -342,6 +342,13 @@ withOperation(new OperationKey("n5FYgHTly73AoOfd10qC7zWxQ_M="),
   .withMethodName("count")
   .withRequestContext("it.unisannio.catman.domain.equipment.client.StockRequest")
   .build());
+withOperation(new OperationKey("VFs2PSKQDTX8oesV1vsAIW278jo="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/InstanceRequest;")
+  .withDomainMethodDescriptor("()V")
+  .withMethodName("remove")
+  .withRequestContext("it.unisannio.catman.domain.equipment.client.StockRequest")
+  .build());
 withOperation(new OperationKey("QCG8cLUk$wODPQ0wmd7b6iApges="),
   new OperationData.Builder()
   .withClientMethodDescriptor("()Lcom/google/web/bindery/requestfactory/shared/InstanceRequest;")
@@ -425,6 +432,13 @@ withOperation(new OperationKey("oPdWWeQsf8rHdmXnmOR24a0ViWc="),
   .withDomainMethodDescriptor("()V")
   .withMethodName("persist")
   .withRequestContext("it.unisannio.catman.domain.humanresources.client.FreelanceContractRequest")
+  .build());
+withOperation(new OperationKey("XXvaXGfU9sqFr9D4dGlToS3yCjo="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(Lit/unisannio/catman/domain/equipment/client/StockProxy;)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(Lit/unisannio/catman/domain/equipment/Stock;)Ljava/util/List;")
+  .withMethodName("findMoveableFrom")
+  .withRequestContext("it.unisannio.catman.domain.equipment.client.WarehouseRequest")
   .build());
 withOperation(new OperationKey("DWBa$o7X6Gr3Jwq6OcxFBzQuxnQ="),
   new OperationData.Builder()
@@ -634,7 +648,6 @@ withClientToDomainMappings("it.unisannio.catman.domain.humanresources.Worker", A
 withClientToDomainMappings("it.unisannio.catman.domain.planning.Plan", Arrays.asList("it.unisannio.catman.domain.planning.client.PlanProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.planning.Position", Arrays.asList("it.unisannio.catman.domain.planning.client.PositionProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.planning.Procurement", Arrays.asList("it.unisannio.catman.domain.planning.client.ProcurementProxy"));
-withClientToDomainMappings("it.unisannio.catman.domain.planning.Requirement", Arrays.asList("it.unisannio.catman.domain.planning.client.RequirementProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.planning.Source", Arrays.asList("it.unisannio.catman.domain.planning.client.SourceProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.workflow.Customer", Arrays.asList("it.unisannio.catman.domain.workflow.client.CustomerProxy"));
 withClientToDomainMappings("it.unisannio.catman.domain.workflow.Event", Arrays.asList("it.unisannio.catman.domain.workflow.client.EventProxy"));
