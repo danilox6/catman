@@ -37,7 +37,8 @@ public class DetailActivity extends LoadingScreenActivity<StockRequest, StockPro
 			.fire(new Receiver<Integer>() {
 				@Override
 				public void onSuccess(Integer response) {
-					getView().setQuantity(response);				
+					getView().setQuantity(response);
+					// TODO Trigger global refresh here
 				}
 				
 			});

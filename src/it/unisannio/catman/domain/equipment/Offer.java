@@ -19,6 +19,14 @@ public class Offer extends Supply<Offer, Seller> {
 		return countByQuery("SELECT COUNT(o) FROM Offer o WHERE o.supplier = ?1", seller);
 	}
 
+	public static List<Offer> findByMateriel(Materiel m){
+		return findByQuery("SELECT s FROM Offer s WHERE s.materiel = ?1", m);
+	}
+	
+	public static int countByMateriel(Materiel m){
+		return countByQuery("SELECT COUNT(s) FROM Offer s WHERE s.materiel = ?1", m);
+	}
+
 	private float price;
 	
 	@ManyToOne
@@ -43,13 +51,19 @@ public class Offer extends Supply<Offer, Seller> {
 		getId().supplierId = supplier.getId();
 	}
 	
-	public static List<Offer> findByMateriel(Materiel m){
-		return findByQuery("SELECT s FROM Offer s WHERE s.materiel = ?1", m);
-	}
 	
-	public static int countByMateriel(Materiel m){
-		return countByQuery("SELECT COUNT(s) FROM Offer s WHERE s.materiel = ?1", m);
+	public int buy(int quantity, Warehouse destination) {
+		if(quantity < 1)
+			throw new IllegalArgumentException("At least one unit must be moved. " + quantity + " given.");
+		
+		if(quantity > getQuantity())
+			throw new IllegalArgumentException("Cannot move more than " + quantity + " units. " + getQuantity() + " available");
+		
+		Stock dest = Stock.findOrCreate(destination, getMateriel());
+		dest.setQuantity(dest.getQuantity() + quantity);
+		setQuantity(getQuantity() - quantity);
+		
+		return getQuantity();
 	}
-	
 
 }

@@ -18,4 +18,8 @@ public interface OfferRequest extends RequestContext {
 	Request<List<OfferProxy>> findByMateriel(MaterielProxy m);
 	Request<Integer> countByMateriel(MaterielProxy warehouse);
 	
+
+	InstanceRequest<OfferProxy, Void> remove();
+	InstanceRequest<OfferProxy, Integer> buy(int quantity, WarehouseProxy destination);
+	
 }

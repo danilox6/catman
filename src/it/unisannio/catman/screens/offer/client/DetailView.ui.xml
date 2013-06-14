@@ -10,7 +10,7 @@
 					<b:Heading size="3" ui:field="titleLabel"/>
 				</c:left>
 				<c:right>
-					<b:Button icon="TRASH" type="DANGER">Delete</b:Button>
+					<b:Button icon="TRASH" type="DANGER" ui:field="deleteButton">Delete</b:Button>
 				</c:right>
 			</c:ActionBar>
 		</c:header>
@@ -18,15 +18,15 @@
 			<b:Hero>
 				<b:Row>
 		  			<b:Column size="5">
-	    				<b:Heading size="2" ui:field="materialName">Material X</b:Heading>
-	    				<b:Paragraph ui:field="materialDescription">Pure kriptonite for your weddings!</b:Paragraph>
+	    				<b:Heading size="2" ui:field="materialName"></b:Heading>
+	    				<b:Paragraph ui:field="materialDescription"></b:Paragraph>
 					</b:Column>
 		  			<b:Column size="2">
-	  					<b:Heading size="1" ui:field="stockQuantity">5</b:Heading>
+	  					<b:Heading size="1" ui:field="offerQuantity">0</b:Heading>
 	  					<b:Paragraph>available</b:Paragraph>
 		  			</b:Column>
 		  			<b:Column size="2">
-	  					<b:Heading size="1" ui:field="offerPrice">50&euro;</b:Heading>
+	  					<b:Heading size="1" ui:field="offerPrice">0&euro;</b:Heading>
 	  					<b:Paragraph>per piece</b:Paragraph>
 		  			</b:Column>
 				</b:Row>
@@ -39,16 +39,16 @@
 				<b:ControlGroup>
 					<b:ControlLabel>Destination</b:ControlLabel>
 					<b:Controls>
-						<b:ListBox></b:ListBox>
+						<c:EntityListBox ui:field="moveWarehouse" />
 					</b:Controls>
 				</b:ControlGroup>
-				<b:ControlGroup>
+				<b:ControlGroup ui:field="quantityGroup">
 					<b:ControlLabel>Quantity</b:ControlLabel>
 					<b:Controls>
-						<b:TextBox></b:TextBox>
+						<b:IntegerBox ui:field="moveQuantity">1</b:IntegerBox>
 					</b:Controls>
 				</b:ControlGroup>
-				<b:Button addStyleNames="btn" icon="MONEY" type="INFO">Buy</b:Button>
+				<b:Button addStyleNames="btn" icon="MONEY" type="INFO" ui:field="buyButton">Buy</b:Button>
 			</b:WellForm>
 		</c:content>
 	</c:MasterPanel>
