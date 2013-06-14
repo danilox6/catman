@@ -1,5 +1,6 @@
 package it.unisannio.catman.screens.eventmanager.client;
 
+import java.util.Date;
 import java.util.List;
 
 import it.unisannio.catman.common.client.AbstractQuery;
@@ -9,6 +10,7 @@ import it.unisannio.catman.common.client.Intent;
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
+import it.unisannio.catman.screens.eventmanager.client.queries.EventManagerQuery;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -23,22 +25,7 @@ public class MasterActivity extends ScreenActivity implements EventManager.Maste
 		
 		view = new MasterView(this);
 		
-		final DataStore store = App.getInstance().getDataStore();
-
-		Query<EventProxy> query = new AbstractQuery<EventProxy>() {
-
-			@Override
-			public Request<List<EventProxy>> list(int start, int length) {
-				return store.events().listAll(start, length);
-			}
-
-			@Override
-			public Request<Integer> count() {
-				return store.events().count();
-			}
-		};
-		
-		view.setEventQuery(query);
+		view.setEventQuery(new EventManagerQuery(null, null));
 		panel.setWidget(view);
 		
 	}
@@ -47,6 +34,11 @@ public class MasterActivity extends ScreenActivity implements EventManager.Maste
 	public void goToEventScreen(EventProxy e) {
 		DataStore ds = App.getInstance().getDataStore();
 		goTo(new Intent("event").withParams(ds.getHistoryToken(e.stableId())));
+	}
+
+	@Override
+	public void executeSearch(String searchQuery, Date date) {
+		view.setEventQuery(new EventManagerQuery(searchQuery, date));
 	}
 
 }

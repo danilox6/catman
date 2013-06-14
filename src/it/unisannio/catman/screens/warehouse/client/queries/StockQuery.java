@@ -15,18 +15,20 @@ public class StockQuery extends AbstractQuery<StockProxy>{
 	private static final DataStore dataStore = App.getInstance().getDataStore();
 	
 	private WarehouseProxy warehouse;
+	private String searchQuery;
 	
-	public StockQuery(WarehouseProxy warehouseProxy) {
+	public StockQuery(WarehouseProxy warehouseProxy, String searchQuery) {
 		 this.warehouse = warehouseProxy;
+		 this.searchQuery = searchQuery;
 	}
 
 	@Override
 	public Request<List<StockProxy>> list(int start, int length) {
-		return dataStore.stocks().listByWarehouse(warehouse, start, length).with("materiel.name","materiel.description");
+		return dataStore.stocks().listByWarehouse(warehouse, searchQuery, start, length).with("materiel.name","materiel.description");
 	}
 	
 	@Override
 	public Request<Integer> count() {
-		return dataStore.stocks().countByWarehouse(warehouse);
+		return dataStore.stocks().countByWarehouse(warehouse, searchQuery);
 	}	
 }

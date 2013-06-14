@@ -1,7 +1,5 @@
 package it.unisannio.catman.screens.stock.client;
 
-import java.text.ParseException;
-
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.ui.EntityListBox;
 import it.unisannio.catman.domain.equipment.client.StockProxy;

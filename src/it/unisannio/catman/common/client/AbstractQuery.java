@@ -6,6 +6,8 @@ import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.Request;
 
 public abstract class AbstractQuery<E extends EntityProxy> implements Query<E> {
+	
+	private final DataStore dataStore = App.getInstance().getDataStore();
 
 	@Override
 	public Request<Void> deleteAll(List<E> skip) {
@@ -17,4 +19,7 @@ public abstract class AbstractQuery<E extends EntityProxy> implements Query<E> {
 		throw new UnsupportedOperationException("This query doesn't support deletion");
 	}
 
+	protected DataStore getDataStore() {
+		return dataStore;
+	}
 }

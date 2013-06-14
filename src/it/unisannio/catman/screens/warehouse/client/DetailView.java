@@ -8,7 +8,9 @@ import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.screens.warehouse.client.adapters.StockDetailAdapter;
 import it.unisannio.catman.screens.warehouse.client.Warehouse.Presenter;
 
+import com.github.gwtbootstrap.client.ui.Form;
 import com.github.gwtbootstrap.client.ui.Heading;
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -28,6 +30,8 @@ public class DetailView extends Composite implements Warehouse.View{
 	@UiField Heading titleLabel;
 	@UiField DataList<StockProxy> dataList;
 	
+	@UiField Form form;
+	@UiField TextBox searchTextBox;
 	
 	private QueryDataProvider<StockProxy> dataProvider = new QueryDataProvider<StockProxy>();
 	private Presenter presenter;
@@ -58,6 +62,12 @@ public class DetailView extends Composite implements Warehouse.View{
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e){
 		presenter.goToStockScreen((StockProxy) e.getSource());
+	}
+	
+
+	@UiHandler("form")
+	void handleSubmitEvent(Form.SubmitEvent e){
+		presenter.executeSearch(searchTextBox.getText());
 	}
 
 }

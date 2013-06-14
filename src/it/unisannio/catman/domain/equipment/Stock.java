@@ -27,6 +27,16 @@ public class Stock extends Supply<Stock, Warehouse> {
 	public static int countByWarehouse(Warehouse warehouse) {
 		return countByQuery("SELECT COUNT(st) FROM Stock st WHERE st.supplier = ?1", warehouse);
 	}
+	
+	public static List<Stock> listByWarehouse(Warehouse warehouse, String searchQuery, int start, int length){
+		return listByQuery(Stock.class, start, length, "SELECT st FROM Stock st WHERE st.supplier = ?1"
+				+ (searchQuery != null && !searchQuery.trim().equals("")?" AND lower(st.materiel.name) LIKE '%"+searchQuery.toLowerCase()+"%'":""), warehouse);
+	}
+	
+	public static int countByWarehouse(Warehouse warehouse, String searchQuery) {
+		return countByQuery("SELECT COUNT(st) FROM Stock st WHERE st.supplier = ?1"
+				+ (searchQuery != null && !searchQuery.trim().equals("")?" AND lower(st.materiel.name) LIKE '%"+searchQuery.toLowerCase()+"%'":""), warehouse);
+	}
 
 public static List<Stock> findByMateriel(Materiel m){
 		return findByQuery("SELECT s FROM Stock s WHERE s.materiel = ?1", m);

@@ -8,7 +8,10 @@ import it.unisannio.catman.domain.equipment.client.SellerProxy;
 import it.unisannio.catman.screens.seller.client.Seller.Presenter;
 import it.unisannio.catman.screens.seller.client.adapters.OfferMasterAdapter;
 
+import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.Form;
 import com.github.gwtbootstrap.client.ui.Heading;
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -26,6 +29,10 @@ public class MasterView extends Composite implements Seller.View{
 
 	@UiField Heading titleLabel;
 	@UiField DataList<OfferProxy> dataList;
+	
+	@UiField Form form;
+	@UiField TextBox searchTextBox;
+	@UiField Button toggleButton;
 	
 	private QueryDataProvider<OfferProxy> dataProvider = new QueryDataProvider<OfferProxy>();
 	private Presenter presenter;
@@ -56,6 +63,20 @@ public class MasterView extends Composite implements Seller.View{
 	@UiHandler("dataList")
 	void handleCellClick(ClickEvent e){
 		presenter.goToOfferScreen((OfferProxy) e.getSource());
+	}
+	
+	@UiHandler("form")
+	void handleSubmitEvent(Form.SubmitEvent e){
+		presenter.executeSearch(searchTextBox.getText());
+	}
+	
+	@UiHandler("toggleButton")
+	void handleSearchToggleClick(ClickEvent e){
+		if(toggleButton.isToggled())
+			if(!searchTextBox.getText().trim().equals("")){
+				presenter.executeSearch(null);
+				searchTextBox.setText("");
+			}
 	}
 
 }

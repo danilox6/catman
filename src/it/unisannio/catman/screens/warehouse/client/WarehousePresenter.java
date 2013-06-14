@@ -17,6 +17,7 @@ public class WarehousePresenter implements Warehouse.Presenter{
 	
 	private Warehouse.View view;
 	private ScreenActivity screenActivity;
+	private WarehouseProxy warehouse;
 	
 	public WarehousePresenter(Warehouse.View v, ScreenActivity activity, Intent intent) {
 		this.view = v;
@@ -29,8 +30,9 @@ public class WarehousePresenter implements Warehouse.Presenter{
 
 				@Override
 				public void onSuccess(final WarehouseProxy warehouse) {
+					WarehousePresenter.this.warehouse = warehouse;
 					view.setWarehouseProxy(warehouse);
-					view.setStockProxyQuery(new StockQuery(warehouse));
+					view.setStockProxyQuery(new StockQuery(warehouse,null));
 				}
 
 				@Override
@@ -51,4 +53,8 @@ public class WarehousePresenter implements Warehouse.Presenter{
 		screenActivity.goTo(new Intent("stock").withParams(id));
 	}
 
+	@Override
+	public void executeSearch(String searchQuery) {
+		view.setStockProxyQuery(new StockQuery(warehouse,searchQuery));
+	}
 }

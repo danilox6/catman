@@ -18,9 +18,21 @@ public class Offer extends Supply<Offer, Seller> {
 	public static int countBySeller(Seller seller) {
 		return countByQuery("SELECT COUNT(o) FROM Offer o WHERE o.supplier = ?1", seller);
 	}
+	
+
+	public static List<Offer> listBySeller(Seller seller, String searchQuery, int start, int length){
+		return listByQuery(Offer.class, start, length, "SELECT o FROM Offer o WHERE o.supplier = ?1"
+				+ (searchQuery != null && !searchQuery.trim().equals("")?" AND lower(o.materiel.name) LIKE '%"+searchQuery.toLowerCase()+"%'":""), seller);
+	}
+	
+	public static int countBySeller(Seller seller, String searchQuery) {
+		return countByQuery("SELECT COUNT(o) FROM Offer o WHERE o.supplier = ?1"
+				+ (searchQuery != null && !searchQuery.trim().equals("")?" AND lower(o.materiel.name) LIKE '%"+searchQuery.toLowerCase()+"%'":""), seller);
+	}
 
 	public static List<Offer> findByMateriel(Materiel m){
-		return findByQuery("SELECT s FROM Offer s WHERE s.materiel = ?1", m);
+		return findByQuery("SELECT s FROM Offer s WHERE s.materiel = ?1"
+				, m);
 	}
 	
 	public static int countByMateriel(Materiel m){

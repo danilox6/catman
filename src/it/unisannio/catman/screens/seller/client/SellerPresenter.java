@@ -16,6 +16,7 @@ import it.unisannio.catman.screens.seller.client.queries.OfferQuery;
 public class SellerPresenter implements Seller.Presenter{
 	private Seller.View view;
 	private ScreenActivity screenActivity;
+	private SellerProxy seller;
 	
 	public SellerPresenter(Seller.View v, ScreenActivity activity, Intent intent) {
 		this.view = v;
@@ -28,8 +29,9 @@ public class SellerPresenter implements Seller.Presenter{
 
 				@Override
 				public void onSuccess(final SellerProxy seller) {
+					SellerPresenter.this.seller = seller;
 					view.setSellerProxy(seller);
-					view.setOfferProxyQuery(new OfferQuery(seller));
+					view.setOfferProxyQuery(new OfferQuery(seller,null));
 				}
 
 				@Override
@@ -46,6 +48,11 @@ public class SellerPresenter implements Seller.Presenter{
 	public void goToOfferScreen(OfferProxy m) {
 		String id = App.getInstance().getDataStore().getHistoryToken(m.stableId());
 		screenActivity.goTo(new Intent("offer").withParams(id));
+	}
+
+	@Override
+	public void executeSearch(String searchQuery) {
+		view.setOfferProxyQuery(new OfferQuery(seller,searchQuery));
 	}
 
 }
