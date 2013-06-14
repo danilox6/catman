@@ -15,11 +15,11 @@ public class EventCellAdapter extends InteractiveCellAdapter<EventProxy>{
 	public SafeHtml getNorth(EventProxy object) {
 		return new SafeHtmlBuilder().appendEscaped(object.getTitle()).toSafeHtml();
 	}
-
+/*
 	@Override
 	public SafeHtml getEast(EventProxy object) {
 		return getSimpleSelectionCheckBox(object);
-	}
+	}*/
 
 	@Override
 	public SafeHtml getSouth(EventProxy object) {

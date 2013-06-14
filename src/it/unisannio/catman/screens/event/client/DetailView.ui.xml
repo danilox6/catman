@@ -14,14 +14,41 @@
 				</c:left>
 				<c:right>
 				
-					<b:DropdownButton icon="PLUS" type="PRIMARY" text="Add" rightDropdown="true">
-						<b:NavLink disabled="true">Brief</b:NavLink>
-						<b:NavLink disabled="true">Guest list</b:NavLink>
-					    <b:NavLink ui:field="addPlan" >Plan</b:NavLink> 
+					<b:DropdownButton icon="PLUS" type="PRIMARY" text="Add Document" rightDropdown="true">
+						<b:NavLink disabled="true">Request for Quotation</b:NavLink>
+						<b:NavLink disabled="true">Briefing</b:NavLink>
+						<b:NavLink disabled="true">Quotation</b:NavLink>
+						<b:NavLink disabled="true">Agreement</b:NavLink>
+						<b:Divider />
+					    <b:NavLink ui:field="addPlan">Plan</b:NavLink> 
+					    <b:Divider />
+					    <b:NavLink disabled="true">Guest list</b:NavLink>
+						<b:NavLink disabled="true">Layout</b:NavLink>
+						<b:NavLink disabled="true">Report</b:NavLink>
+						<b:Divider />
+						<b:NavLink disabled="true">Bill</b:NavLink>
 					</b:DropdownButton>
 				</c:right>
 			</c:ActionBar>
 		</c:header>
+		<c:content>
+			<b:Hero>
+				<b:Row>
+					<b:Column size="5">
+						<b:Heading size="2" ui:field="eventName"></b:Heading>
+						<b:Paragraph ui:field="customerName"></b:Paragraph>
+					</b:Column>
+					<b:Column size="2">
+						<b:Heading size="1" ui:field="startDay">0</b:Heading>
+						<b:Paragraph ui:field="startMonth">N/A</b:Paragraph>
+					</b:Column>
+					<b:Column size="2">
+						<b:Heading size="1" ui:field="endDay">0</b:Heading>
+						<b:Paragraph ui:field="endMonth">N/A</b:Paragraph>
+					</b:Column>
+				</b:Row>
+			</b:Hero>
+		</c:content>
 		<c:content>
 		    <b:Fieldset>
 		        <b:Legend>Documents</b:Legend>

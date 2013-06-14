@@ -8,12 +8,10 @@ import it.unisannio.catman.domain.planning.client.PositionProxy;
 import it.unisannio.catman.domain.planning.client.ProcurementProxy;
 import it.unisannio.catman.screens.plan.client.Plan.Presenter;
 import it.unisannio.catman.screens.plan.client.Plan.View;
-import it.unisannio.catman.screens.plan.client.adapters.RequirementDetailAdapter;
 import it.unisannio.catman.screens.plan.client.adapters.RequirementMasterAdapter;
 import it.unisannio.catman.screens.plan.client.queries.PositionQuery;
 import it.unisannio.catman.screens.plan.client.queries.ProcurementQuery;
 
-import com.github.gwtbootstrap.client.ui.Button;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ChangeEvent;

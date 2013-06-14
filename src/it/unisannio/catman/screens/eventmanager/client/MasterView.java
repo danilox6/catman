@@ -32,7 +32,7 @@ public class MasterView extends Composite implements EventManager.Master.View, V
 
 	@UiField DataList<EventProxy> dataList;
 	@UiField Button calendarButton;
-	@UiField SelectAllButton selectButton;
+	//@UiField SelectAllButton selectButton;
 	@UiField Form form;
 	@UiField TextBox searchTextBox;
 	@UiField Button toggleButton;
@@ -53,7 +53,7 @@ public class MasterView extends Composite implements EventManager.Master.View, V
 		dataList.setCellAdapter(new EventCellAdapter());
 		
 		dataProvider = new QueryDataProvider<EventProxy>(query);
-		selectButton.setDataProvider(dataProvider);
+		//selectButton.setDataProvider(dataProvider);
 		
 		dataList.setDataProvider(dataProvider);
 		

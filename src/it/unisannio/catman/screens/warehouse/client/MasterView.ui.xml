@@ -25,7 +25,7 @@
 		<c:content>
 			<c:DataList ui:field="dataList" />
 		</c:content>
-		<c:footer>
+		<!-- c:footer>
 			<c:ActionBar>
 				<c:left>
 					<b:Button ui:field="deleteButton" icon="TRASH" type="LINK"></b:Button>
@@ -35,6 +35,6 @@
 					<c:SelectAllButton ui:field="selectButton"></c:SelectAllButton>
 				</c:right>
 			</c:ActionBar>
-		</c:footer>
+		</c:footer-->
 	</c:MasterPanel>
 </ui:UiBinder> 
