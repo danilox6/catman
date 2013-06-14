@@ -16,6 +16,10 @@
 				</c:right>
 			</c:ActionBar>
 		</c:header>
+		
+		<c:content>
+		    <g:SimplePanel ui:field="alertContainer"></g:SimplePanel>
+		</c:content>
 		<c:content>
 			<b:Fieldset ui:field="contactInfoFieldset" visible="false">
 				<b:Legend>Info Contatto</b:Legend>

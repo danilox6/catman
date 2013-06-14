@@ -12,7 +12,7 @@ public class ContractCellAdapter extends InteractiveCellAdapter<ContractProxy>{
 
 	@Override
 	public SafeHtml getNorth(ContractProxy object) {
-		return new SafeHtmlBuilder().appendEscaped(object instanceof EmploymentContractProxy?"Open Ended Contract":"Freelance Contract").toSafeHtml();
+		return new SafeHtmlBuilder().appendEscaped(object instanceof EmploymentContractProxy?"Employment Contract":"Freelance Contract").toSafeHtml();
 	}
 	
 	@Override
@@ -31,12 +31,13 @@ public class ContractCellAdapter extends InteractiveCellAdapter<ContractProxy>{
 			.toSafeHtml();
 	}
 	
+	/*
 	@Override
 	public SafeHtml getEast(ContractProxy object) {
 		SafeHtmlBuilder sb = new SafeHtmlBuilder(); 
 		sb.append(getSimpleSelectionCheckBox(object)); //FIXME Styling
 		return sb.toSafeHtml();
-	}
+	}*/
 	
 	@Override
 	public SafeHtml getOverlay(ContractProxy object) {

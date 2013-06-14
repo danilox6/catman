@@ -3,6 +3,7 @@ package it.unisannio.catman.screens.personnelpicker.client;
 import java.util.List;
 
 import it.unisannio.catman.common.client.cell.MasterCell;
+import it.unisannio.catman.common.client.cell.MasterCell.Type;
 import it.unisannio.catman.domain.humanresources.client.ContractProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkerProxy;
 import it.unisannio.catman.domain.humanresources.client.WorkersSource;
@@ -40,7 +41,9 @@ public class DetailView extends Composite implements PersonnelPicker.Detail.View
 	ListDataProvider<ContractProxy> positionFillers = new ListDataProvider<ContractProxy>();
 	
 	public DetailView() {
-		selectedCellList = new SelectedWorkersCellList(new MasterCell<ContractProxy>(new SelectedContractsAdapter()));
+		MasterCell<ContractProxy> cell = new MasterCell<ContractProxy>(new SelectedContractsAdapter());
+		cell.setType(Type.STANDALONE);
+		selectedCellList = new SelectedWorkersCellList(cell);
 		cellTree = new CellTree(treeModel, null);
 		cellTree.setAnimationEnabled(true);
 		initWidget(uiBinder.createAndBindUi(this));

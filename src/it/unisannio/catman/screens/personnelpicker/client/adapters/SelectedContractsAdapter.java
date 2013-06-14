@@ -21,7 +21,7 @@ public class SelectedContractsAdapter extends AbstractCellAdapter<ContractProxy>
 
 	@Override
 	public SafeHtml getEast(ContractProxy object) {
-		return new SafeHtmlBuilder().appendEscaped("&#x2714;").toSafeHtml();
+		return new SafeHtmlBuilder().appendHtmlConstant("&#x2714;").toSafeHtml();
 	}
 	
 	

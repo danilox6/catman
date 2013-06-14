@@ -17,10 +17,12 @@ import it.unisannio.catman.screens.worker.client.editors.FreelanceContractEditor
 import it.unisannio.catman.screens.worker.client.queries.ContractsQuery;
 import it.unisannio.catman.screens.worker.client.queries.PieceworksQuery;
 
+import com.github.gwtbootstrap.client.ui.Alert;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Fieldset;
 import com.github.gwtbootstrap.client.ui.Heading;
 import com.github.gwtbootstrap.client.ui.Paragraph;
+import com.github.gwtbootstrap.client.ui.constants.AlertType;
 import com.github.gwtbootstrap.client.ui.constants.ButtonType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -31,6 +33,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DetailView extends Composite implements Worker.View{
@@ -49,6 +52,8 @@ public class DetailView extends Composite implements Worker.View{
 	
 	@UiField DataList<ContractProxy> contractList;
 	@UiField DataList<PieceworkProxy> pieceworkList;
+	
+	@UiField SimplePanel alertContainer;
 	
 	private QueryDataProvider<ContractProxy> contractProvider = new QueryDataProvider<ContractProxy>();
 	private QueryDataProvider<PieceworkProxy> pieceworkProvider = new QueryDataProvider<PieceworkProxy>();
@@ -115,6 +120,9 @@ public class DetailView extends Composite implements Worker.View{
 	@Override
 	public void setPositionProxy(PositionProxy position) {
 		this.position = position;
+		if(position != null) {
+			showAlert("You're now viewing this profile to the extent of assigning the worker to an event. You can hire him by creating a new freelance contract, or using and existing employment contract", AlertType.INFO);
+		}
 	}
 	
 	@UiHandler("candidatesButton")
@@ -154,6 +162,14 @@ public class DetailView extends Composite implements Worker.View{
 	@Override
 	public void refreshContracts() {
 		contractList.reload();
+	}
+
+	@Override
+	public void showAlert(String message, AlertType type) {
+		Alert a = new Alert(message,type,true);
+		a.setAnimation(true);
+		alertContainer.setWidget(a);
+		
 	}
 
 }

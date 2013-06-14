@@ -1,5 +1,6 @@
 package it.unisannio.catman.screens.worker.client;
 
+import com.github.gwtbootstrap.client.ui.constants.AlertType;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.user.client.ui.IsWidget;
 
@@ -24,6 +25,7 @@ public class Worker extends Screen implements HasDetail{
 		void setPresenter(Presenter presenter);
 		void setPositionProxy(PositionProxy position);
 		void refreshContracts();
+		void showAlert(String message, AlertType type);
 	}
 	
 	public static interface Presenter{

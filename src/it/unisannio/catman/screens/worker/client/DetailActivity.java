@@ -1,5 +1,6 @@
 package it.unisannio.catman.screens.worker.client;
 
+import com.github.gwtbootstrap.client.ui.constants.AlertType;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
@@ -113,12 +114,12 @@ public class DetailActivity extends ScreenActivity implements Worker.Presenter{
 	private class WorkerAssigmentReceiver extends Receiver<Void>{
 		@Override
 		public void onSuccess(Void response) {
-			// TODO Mostrare Alert
-			view.refreshContracts();
+			goUp();
+			//view.refreshContracts();
 		}
 		@Override
 		public void onFailure(ServerFailure error) {
-			//TODO //Mostrare Alert
+			view.showAlert("An error occurred during the assignment :(", AlertType.ERROR);
 		}
 	}
 }
