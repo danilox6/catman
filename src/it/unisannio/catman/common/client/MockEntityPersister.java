@@ -1,7 +1,6 @@
 package it.unisannio.catman.common.client;
 
 import com.google.gwt.core.shared.GWT;
-import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
@@ -19,7 +18,6 @@ import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseRequest;
 import it.unisannio.catman.domain.humanresources.client.ContractRequest;
 import it.unisannio.catman.domain.humanresources.client.EmploymentContractProxy;
-import it.unisannio.catman.domain.humanresources.client.FreelanceContractProxy;
 import it.unisannio.catman.domain.humanresources.client.JobBoardProxy;
 import it.unisannio.catman.domain.humanresources.client.JobBoardRequest;
 import it.unisannio.catman.domain.humanresources.client.PieceworkProxy;
@@ -36,7 +34,7 @@ import it.unisannio.catman.domain.workflow.client.EventRequest;
 public class MockEntityPersister {
 	static boolean done = false;
 	private static EventProxy event1;
-	private static final DateFormat DATE_F = new DateFormat("dd/MM/yyyy");
+	private static final DateFormat DATE_F = new DateFormat();
 
 	public static void persist(){
 		if(!done){
@@ -52,17 +50,18 @@ public class MockEntityPersister {
 						EventRequest events = dataStore.events();
 						event1 = events.create(EventProxy.class);
 						event1.setTitle("Ricevimento aziendale");
-						event1.setStartDate(DATE_F.parse("11/06/2013"));
+						event1.setStartDate(DATE_F.parse("11/08/2013"));
+						event1.setEndDate(DATE_F.parse("12/08/2013"));
 						events.persist().using(event1);
 						EventProxy event2 = events.create(EventProxy.class);
 						event2.setTitle("Banchetto");
-						event2.setStartDate(DATE_F.parse("03/01/2013"));
-						event2.setEndDate(DATE_F.parse("06/01/2013"));
+						event2.setStartDate(DATE_F.parse("01/08/2013"));
+						event2.setEndDate(DATE_F.parse("03/08/2013"));
 						events.persist().using(event2);
 						EventProxy event3 = events.create(EventProxy.class);
 						event3.setTitle("Brunch all'aperto");
-						event3.setStartDate(DATE_F.parse("20/05/2013"));
-						event3.setEndDate(DATE_F.parse("25/05/2013"));
+						event3.setStartDate(DATE_F.parse("20/09/2013"));
+						event3.setEndDate(DATE_F.parse("25/09/2013"));
 						events.persist().using(event3);
 
 						events.fire(new Receiver<Void>() {
@@ -640,14 +639,6 @@ public class MockEntityPersister {
 			});
 		 */
 
-	}
-	
-	private static class DateFormat extends DateTimeFormat{
-
-		public DateFormat(String pattern) {
-			super(pattern);
-		}
-		
 	}
 
 	private static final String[] MALE_FIRST_NAMES = {

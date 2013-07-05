@@ -1,14 +1,10 @@
 package it.unisannio.catman.screens.event.client;
 
 import it.unisannio.catman.common.client.LoadingScreenActivity;
-import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.domain.workflow.client.EventRequest;
 import it.unisannio.catman.screens.event.client.Event.Presenter;
 import it.unisannio.catman.screens.event.client.Event.View;
-
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 public class MasterActivity extends LoadingScreenActivity<EventRequest, EventProxy, Event.View> {
 	

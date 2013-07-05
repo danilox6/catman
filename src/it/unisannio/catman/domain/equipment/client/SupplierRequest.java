@@ -9,6 +9,7 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.Service;
 
+@SuppressWarnings("rawtypes")
 @Service(Supplier.class)
 @ExtraTypes({WarehouseProxy.class, SellerProxy.class})
 public interface SupplierRequest extends RequestContext {

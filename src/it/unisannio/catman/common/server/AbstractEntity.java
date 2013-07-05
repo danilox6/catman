@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.EntityType;
 
+@SuppressWarnings("unchecked")
 public abstract class AbstractEntity<K> {
 		
 	protected static EntityManager getEntityManager() {
@@ -30,7 +31,8 @@ public abstract class AbstractEntity<K> {
 		return entityManager.find(entityClass, key);
 	}
 
-	protected static <T, K> List<T> findAll(Class<T> entityClass, K... keys) {
+	
+	protected static <T, K> List<T> findAll(Class<T> entityClass,  K... keys) {
 		EntityManager entityManager = getEntityManager();
 		
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -134,13 +136,11 @@ public abstract class AbstractEntity<K> {
 		return ((Long) q.getSingleResult()).intValue();
 	}
 	
-	@SuppressWarnings("unchecked")
 	protected static <T> List<T> findAllBy(Class<T> entityClass, String filter, Object... args) {
 		Query query = buildQuery(entityClass, "SELECT obj", filter, args);
 		return (List<T>) query.getResultList();
 	}
 	
-	@SuppressWarnings("unchecked")
 	protected static <T> List<T> findAllBy(Class<T> entityClass, int offset, int limit, String filter, Object... args) {
 		Query query = buildQuery(entityClass, "SELECT obj", filter, args);
 		query.setFirstResult(offset);
@@ -151,7 +151,6 @@ public abstract class AbstractEntity<K> {
 		return (List<T>) query.getResultList();
 	}
 	
-	@SuppressWarnings("unchecked")
 	protected static <T> T findBy(Class<T> entityClass, String filter, Object... args) {
 		Query query = buildQuery(entityClass, "SELECT obj", filter, args);
 		query.setMaxResults(1);

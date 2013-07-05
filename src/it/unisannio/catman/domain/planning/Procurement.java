@@ -1,10 +1,7 @@
 package it.unisannio.catman.domain.planning;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import it.unisannio.catman.domain.equipment.Materiel;
 import it.unisannio.catman.domain.equipment.Supply;
 
@@ -14,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
+@SuppressWarnings("rawtypes")
 @Entity
 public class Procurement extends Requirement {
 
@@ -92,20 +90,13 @@ public class Procurement extends Requirement {
 		this.plan = plan;
 	}
 	
-	
-
-
-	// FIXME Non funziona
 	@AssertTrue(message = "A requirement for the same materiel can't be added twice")
 	private boolean isUnique() {
-		Set<Materiel> materiels = new HashSet<Materiel>();
 		List<Procurement> procurements = getPlan().getProcurements();
 		for(Procurement p : procurements) {
 			Materiel m = p.getMateriel();
-			if(materiels.contains(m) && p != this)
+			if( p != this && this.getMateriel().equals(m))
 				return false;
-
-			materiels.add(m);
 		}
 
 		return true;

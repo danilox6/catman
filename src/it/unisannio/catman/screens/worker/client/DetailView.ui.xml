@@ -34,10 +34,10 @@
 		</c:content>
 		<c:content>
 			<b:Accordion>
-				<b:AccordionGroup heading="Disponibile Come:" defaultOpen="true">
+				<b:AccordionGroup heading="Disponibile Come:" defaultOpen="true" ui:field="pieceworkAccordion">
 					<c:DataList ui:field="pieceworkList" cellType="STANDALONE" />
 				</b:AccordionGroup>
-				<b:AccordionGroup heading="Contratti">
+				<b:AccordionGroup heading="Contratti" ui:field="contractsAccordion">
 					<c:DataList ui:field="contractList" cellType="STANDALONE" />
 				</b:AccordionGroup>
 			</b:Accordion>

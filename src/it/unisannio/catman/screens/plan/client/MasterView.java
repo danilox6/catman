@@ -3,7 +3,6 @@ package it.unisannio.catman.screens.plan.client;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.common.client.ui.MultiPanel;
-import it.unisannio.catman.common.client.ui.SelectAllButton;
 import it.unisannio.catman.domain.planning.client.PositionProxy;
 import it.unisannio.catman.domain.planning.client.ProcurementProxy;
 import it.unisannio.catman.screens.plan.client.Plan.Presenter;

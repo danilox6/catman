@@ -1,5 +1,6 @@
 package it.unisannio.catman.screens.event.client;
 
+import it.unisannio.catman.common.client.DateFormat;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
 import it.unisannio.catman.common.client.ui.MasterPanel;
@@ -15,7 +16,6 @@ import com.github.gwtbootstrap.client.ui.NavLink;
 import com.github.gwtbootstrap.client.ui.Paragraph;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -51,13 +51,6 @@ public class DetailView extends Composite implements Event.View {
 		documentsDataList.setCellAdapter(new DocumentCellAdapter());
 	}
 
-	private static class DateFormat extends DateTimeFormat{
-
-		public DateFormat(String pattern) {
-			super(pattern);
-		}
-	}
-	
 	@Override
 	public void setEventProxy(EventProxy eventProxy) {
 		this.eventProxy = eventProxy; 
@@ -98,6 +91,7 @@ public class DetailView extends Composite implements Event.View {
 
 	@Override
 	public void refresh() {
+		addPlan.setDisabled(true);
 		addPlan.setDisabled(true);
 		documentsDataList.reload();
 	}

@@ -91,6 +91,7 @@ public class Event extends AbstractEntity<Long> implements Dossier<EventStatus, 
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	

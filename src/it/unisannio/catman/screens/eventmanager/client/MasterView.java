@@ -5,7 +5,6 @@ import java.util.Date;
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
-import it.unisannio.catman.common.client.ui.SelectAllButton;
 import it.unisannio.catman.common.client.ui.SwitchPanel;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.screens.event.client.widgets.DatePickerPopupPanel;

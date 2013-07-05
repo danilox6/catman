@@ -71,7 +71,7 @@ public class DetailView extends Composite implements View{
 		SupplyProxy source = (SupplyProxy) e.getSource();
 		if(e.getRelativeElement().hasAttribute(SupplyCellAdapter.MOVE_BUTTON_ATTIBUTE)){
 			Integer value = spinnerValues.get(source);
-			if (value == null)
+			if (value == null || value<0)
 				value = 0;
 			value = value - quantityFilled.get(source);
 		

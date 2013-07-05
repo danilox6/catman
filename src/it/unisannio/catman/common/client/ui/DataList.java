@@ -26,6 +26,7 @@ import com.google.gwt.view.client.HasRows;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 
+@SuppressWarnings("unchecked")
 public class DataList<T extends EntityProxy> extends Composite implements HasClickHandlers, HasChangeHandlers {
 	
 	/** 
@@ -147,7 +148,6 @@ public class DataList<T extends EntityProxy> extends Composite implements HasCli
 		cellList.setSelectionModel(selectionModel,DefaultSelectionEventManager.<T>createCheckboxManager());
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void setDataProvider(AbstractDataProvider<T> provider) {
 		this.provider = provider;
 		this.provider.addDataDisplay(cellList);

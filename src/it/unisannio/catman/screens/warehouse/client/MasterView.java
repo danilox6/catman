@@ -3,7 +3,6 @@ package it.unisannio.catman.screens.warehouse.client;
 import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.QueryDataProvider;
 import it.unisannio.catman.common.client.ui.DataList;
-import it.unisannio.catman.common.client.ui.SelectAllButton;
 import it.unisannio.catman.domain.equipment.client.StockProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.screens.warehouse.client.Warehouse.Presenter;

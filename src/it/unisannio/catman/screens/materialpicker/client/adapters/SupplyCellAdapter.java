@@ -29,7 +29,7 @@ public class SupplyCellAdapter extends AbstractCellAdapter<SupplyProxy>{
 
 	@Override
 	public SafeHtml getWest(SupplyProxy object) {
-		return (object instanceof WarehouseProxy? Icon.PACKAGE.toSafeHtml(): Icon.SHOPPING_CART.toSafeHtml()); // FIXME Icone
+		return (object instanceof WarehouseProxy? Icon.PACKAGE.toSafeHtml(): Icon.SHOPPING_CART.toSafeHtml()); 
 	}
 
 	@Override

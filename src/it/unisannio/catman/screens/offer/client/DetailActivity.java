@@ -6,7 +6,6 @@ import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.LoadingScreenActivity;
 import it.unisannio.catman.domain.equipment.client.OfferProxy;
 import it.unisannio.catman.domain.equipment.client.OfferRequest;
-import it.unisannio.catman.domain.equipment.client.StockProxy;
 import it.unisannio.catman.domain.equipment.client.WarehouseProxy;
 import it.unisannio.catman.screens.offer.client.Offer.Presenter;
 import it.unisannio.catman.screens.offer.client.Offer.View;

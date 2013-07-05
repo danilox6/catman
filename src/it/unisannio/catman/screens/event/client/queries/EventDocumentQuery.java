@@ -7,7 +7,6 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import it.unisannio.catman.common.client.AbstractQuery;
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
-import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.domain.workflow.client.EventDocumentProxy;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 

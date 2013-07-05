@@ -17,6 +17,7 @@ import it.unisannio.catman.screens.worker.client.editors.FreelanceContractEditor
 import it.unisannio.catman.screens.worker.client.queries.ContractsQuery;
 import it.unisannio.catman.screens.worker.client.queries.PieceworksQuery;
 
+import com.github.gwtbootstrap.client.ui.AccordionGroup;
 import com.github.gwtbootstrap.client.ui.Alert;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Fieldset;
@@ -53,11 +54,17 @@ public class DetailView extends Composite implements Worker.View{
 	@UiField DataList<ContractProxy> contractList;
 	@UiField DataList<PieceworkProxy> pieceworkList;
 	
+	@UiField AccordionGroup contractsAccordion;
+	@UiField AccordionGroup pieceworkAccordion;
+	
 	@UiField SimplePanel alertContainer;
 	
 	private QueryDataProvider<ContractProxy> contractProvider = new QueryDataProvider<ContractProxy>();
 	private QueryDataProvider<PieceworkProxy> pieceworkProvider = new QueryDataProvider<PieceworkProxy>();
-
+	private ContractCellAdapter contractAdapter = new ContractCellAdapter();
+	private PieceworkCellAdapter pieceworkAdapter = new PieceworkCellAdapter();
+	
+	
 	private WorkerProxy worker;
 	
 	private Presenter presenter;
@@ -67,11 +74,12 @@ public class DetailView extends Composite implements Worker.View{
 	public DetailView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		contractList.setCellAdapter(new ContractCellAdapter());
+		contractList.setCellAdapter(contractAdapter);
 		contractList.setDataProvider(contractProvider);
 		
-		pieceworkList.setCellAdapter(new PieceworkCellAdapter());
+		pieceworkList.setCellAdapter(pieceworkAdapter);
 		pieceworkList.setDataProvider(pieceworkProvider);
+		
 	}
 	
 	@Override
@@ -120,6 +128,8 @@ public class DetailView extends Composite implements Worker.View{
 	@Override
 	public void setPositionProxy(PositionProxy position) {
 		this.position = position;
+		pieceworkAdapter.setPosition(position);
+		contractAdapter.setPosition(position);
 		if(position != null) {
 			showAlert("You're now viewing this profile to the extent of assigning the worker to an event. You can hire him by creating a new freelance contract, or using and existing employment contract", AlertType.INFO);
 		}
@@ -133,6 +143,8 @@ public class DetailView extends Composite implements Worker.View{
 	@UiHandler("pieceworkList")
 	void handlePieceworkCellClick(ClickEvent e){
 		PieceworkProxy piecework = (PieceworkProxy) e.getSource();
+		if(position!=null && !piecework.getQualification().equals(position.getQualification()))
+			return;
 		if(piecework.isFreelance()){
 			if(position==null)
 				new FreelanceContractEditor(piecework, new ValueChangeHandler<FreelanceContractProxy>() {
@@ -155,18 +167,22 @@ public class DetailView extends Composite implements Worker.View{
 	
 	@UiHandler("contractList")
 	void handleContractCellClick(ClickEvent e){
-		if(position != null && e.getSource() instanceof EmploymentContractProxy)
-			presenter.assignEmployeeToPosition((EmploymentContractProxy) e.getSource());
+		if(position != null && e.getSource() instanceof EmploymentContractProxy){
+			if(((ContractProxy)e.getSource()).getPiecework().getQualification().equals(position.getQualification()))
+				presenter.assignEmployeeToPosition((EmploymentContractProxy) e.getSource());
+		}
 	}
 	
 	@Override
 	public void refreshContracts() {
 		contractList.reload();
+		pieceworkAccordion.hide();
+		contractsAccordion.show();
 	}
 
 	@Override
 	public void showAlert(String message, AlertType type) {
-		Alert a = new Alert(message,type,true);
+		Alert a = new Alert(message,type,false);
 		a.setAnimation(true);
 		alertContainer.setWidget(a);
 		

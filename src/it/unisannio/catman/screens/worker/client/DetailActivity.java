@@ -1,5 +1,9 @@
 package it.unisannio.catman.screens.worker.client;
 
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+
 import com.github.gwtbootstrap.client.ui.constants.AlertType;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -36,7 +40,7 @@ public class DetailActivity extends ScreenActivity implements Worker.Presenter{
 		try{
 			DataStore dataStore = getDataStore();
 			EntityProxyId<PositionProxy> entityId = dataStore.getProxyId(getIntent().get(1, ""));
-			dataStore.positions().find(entityId).fire(new Receiver<PositionProxy>() {
+			dataStore.positions().find(entityId).with("qualification").fire(new Receiver<PositionProxy>() {
 
 				@Override
 				public void onSuccess(PositionProxy response) {
@@ -117,9 +121,25 @@ public class DetailActivity extends ScreenActivity implements Worker.Presenter{
 			goUp();
 			//view.refreshContracts();
 		}
+		
 		@Override
 		public void onFailure(ServerFailure error) {
-			view.showAlert("An error occurred during the assignment :(", AlertType.ERROR);
+			if(error.getMessage()!= null){
+				String message = error.getMessage();
+				if(message.startsWith("Server Error:")){
+					message = message.substring("Server Error:".length());
+				}
+				view.showAlert(message, AlertType.ERROR);
+			}
+			else
+				view.showAlert("An error occurred during the assignment :(", AlertType.ERROR);
 		}
+		@Override
+		public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
+			for(ConstraintViolation<?> v : violations) {
+				view.showAlert(v.getMessage(), AlertType.ERROR);
+			}
+		}
+		
 	}
 }

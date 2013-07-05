@@ -8,7 +8,6 @@ import it.unisannio.catman.domain.humanresources.client.PieceworkProxy;
 
 import com.github.gwtbootstrap.datepicker.client.ui.DateBox;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -40,12 +39,16 @@ public class EmploymentContractEditor extends DataEditor<EmploymentContractProxy
 		this.piecework = piecework;
 		setTitle("Add/edit contract");
 		this.addValueChangeHandler(handler);
+		
+		startDateEditor.setFormat("dd/mm/yyyy");
+		endDateEditor.setFormat("dd/mm/yyyy");
 	}
 
 
 	@Override
 	protected void save(EmploymentContractRequest context, EmploymentContractProxy entity) {
 		if(isNew()) {
+			entity = context.edit(entity);
 			entity.setPiecework(piecework);
 			context.persist().using(entity);
 		}

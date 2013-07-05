@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+@SuppressWarnings("rawtypes")
 @Entity
 public class Source extends AbstractEntity<Long> {
 	

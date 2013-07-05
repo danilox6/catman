@@ -69,6 +69,30 @@ public abstract class Contract extends AbstractEntity<Long> {
 	public int getVersion() {
 		return version;
 	}
+	
+//	@AssertTrue(message = "Worker has already a contract with the same qualification with overlapping duration")
+//	private boolean areContractsOverlapping(){
+//		return false;
+//		if(this.getPiecework().isFreelance())
+//			return false;
+		/*
+		List<Contract> contracts = findByWorker(this.getPiecework().getWorker());
+		for(Contract contract : contracts){
+			if(contract instanceof EmploymentContract){
+				if(contract.getEndDate() == null){
+					if(this.getEndDate() == null)
+						return true;
+					else if(this.getEndDate().after(contract.getStartDate()))
+						return true;
+				}else if (getStartDate().before(contract.getEndDate()) && getEndDate().after(contract.getEndDate()))
+					return true;
+				if(DateUtils.isSameDay(getStartDate(), contract.getStartDate()) && DateUtils.isSameDay(getEndDate(), contract.getEndDate()));
+					return true;
+			}
+		}
+		return false;*/
+//	}
+	
 
 	
 }

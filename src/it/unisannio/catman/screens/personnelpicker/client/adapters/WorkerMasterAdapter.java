@@ -29,7 +29,7 @@ public class WorkerMasterAdapter extends AbstractCellAdapter<WorkerProxy>{
 	@Override
 	public SafeHtml getEast(WorkerProxy object) {
 		if(selectedWorkers.contains(object))
-			return Icon.FAVORITE.toSafeHtml();
+			return new SafeHtmlBuilder().appendHtmlConstant("&#x2714;").toSafeHtml();
 		return super.getEast(object);
 	}
 	

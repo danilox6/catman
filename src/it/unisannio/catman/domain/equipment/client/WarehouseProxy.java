@@ -6,6 +6,7 @@ import it.unisannio.catman.domain.equipment.Warehouse;
 
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
+@SuppressWarnings("rawtypes")
 @ProxyFor(Warehouse.class)
 public interface WarehouseProxy extends SupplierProxy{
 	List<StockProxy> getSupply();

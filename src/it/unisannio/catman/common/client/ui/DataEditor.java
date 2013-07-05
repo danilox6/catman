@@ -1,7 +1,7 @@
 package it.unisannio.catman.common.client.ui;
 
-import it.unisannio.catman.common.client.App;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -47,6 +47,7 @@ public abstract class DataEditor<E extends EntityProxy, R extends RequestContext
 	private R context; 
 	private Class<E> clazz;
 	private RequestFactoryEditorDriver<E,?> driver;
+	private List<Alert> alerts = new ArrayList<Alert>();
 	
 	private boolean isNew = false;
 	
@@ -95,8 +96,10 @@ public abstract class DataEditor<E extends EntityProxy, R extends RequestContext
 					}
 					
 					@Override
-					public void onConstraintViolation(
-							Set<ConstraintViolation<?>> violations) {
+					public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
+						for(Alert a : alerts)
+							a.close();
+						alerts.clear();
 						for(ConstraintViolation<?> v : violations) {
 							alert(v.getMessage(), AlertType.ERROR);
 						}
@@ -113,8 +116,9 @@ public abstract class DataEditor<E extends EntityProxy, R extends RequestContext
 	}
 	
 	protected Alert alert(String message, AlertType alert) {
-		Alert a = new Alert(message, alert, false);
+		Alert a = new Alert(message, alert, true);
 		a.setAnimation(true);
+		alerts.add(a);
 		modal.insert(a, 0);
 		
 		return a;

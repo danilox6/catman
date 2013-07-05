@@ -1,20 +1,15 @@
 package it.unisannio.catman.screens.eventmanager.client;
 
 import java.util.Date;
-import java.util.List;
-
-import it.unisannio.catman.common.client.AbstractQuery;
 import it.unisannio.catman.common.client.App;
 import it.unisannio.catman.common.client.DataStore;
 import it.unisannio.catman.common.client.Intent;
-import it.unisannio.catman.common.client.Query;
 import it.unisannio.catman.common.client.ScreenActivity;
 import it.unisannio.catman.domain.workflow.client.EventProxy;
 import it.unisannio.catman.screens.eventmanager.client.queries.EventManagerQuery;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.web.bindery.requestfactory.shared.Request;
 
 public class MasterActivity extends ScreenActivity implements EventManager.Master {
 	

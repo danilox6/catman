@@ -21,7 +21,7 @@ public class ContractsQuery extends AbstractQuery<ContractProxy> {
 	
 	@Override
 	public Request<List<ContractProxy>> list(int start, int length) {
-		return dataStore.contracts().listByWorker(worker, start, length).with("piecework.wage","piecework.qualification.name");
+		return dataStore.contracts().listByWorker(worker, start, length).with("startdate","enddate","piecework.wage","piecework.qualification.name");
 	}
 
 	@Override

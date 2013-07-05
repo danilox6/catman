@@ -34,7 +34,7 @@ public class MasterView extends Composite implements View {
 	
 	private QueryDataProvider<EventDocumentProxy> dataProvider;
 	
-	private EventProxy eventProxy;
+//	private EventProxy eventProxy;
 
 	public MasterView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -68,7 +68,7 @@ public class MasterView extends Composite implements View {
 	@Override
 	public void setEventProxy(EventProxy eventProxy) {
 
-		this.eventProxy = eventProxy; 
+//		this.eventProxy = eventProxy; 
 		titleLabel.setText(eventProxy.getTitle());
 	}
 
