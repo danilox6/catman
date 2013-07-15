@@ -66,5 +66,11 @@ public class PositionEditor extends DataEditor<PositionProxy, PositionRequest, P
 		
 		return driver;
 	}
+	
+	@Override
+	public void open(PositionProxy object) {
+		qualificationEditor.setEnabled(isNew());
+		super.open(object);
+	}
 
 }

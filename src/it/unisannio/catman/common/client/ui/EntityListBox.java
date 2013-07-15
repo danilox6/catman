@@ -19,8 +19,9 @@ public class EntityListBox<E extends EntityProxy> extends ValueListBox<E> {
 	
 	private Request<List<E>> request;
 	private boolean isLoading = false;
+	private boolean extEnabled = true;
 
-	public <R extends RequestContext & HasFindAll<E>> EntityListBox(R requestContext, Renderer<E> renderer) {
+ 	public <R extends RequestContext & HasFindAll<E>> EntityListBox(R requestContext, Renderer<E> renderer) {
 		this(requestContext.findAll(), renderer);
 	}
 	
@@ -31,7 +32,7 @@ public class EntityListBox<E extends EntityProxy> extends ValueListBox<E> {
 	
 	public EntityListBox(Renderer<E> renderer) {
 		super(renderer);
-		setEnabled(false);
+		super.setEnabled(false);
 	}
 	 
 	@Override
@@ -54,12 +55,12 @@ public class EntityListBox<E extends EntityProxy> extends ValueListBox<E> {
 	
 	private void load() {
 		isLoading = true;
-		setEnabled(false);
+		super.setEnabled(false);
 		request.fire(new Receiver<List<E>> () {
 
 			@Override
 			public void onSuccess(List<E> response) {
-				setEnabled(true);
+				EntityListBox.super.setEnabled(extEnabled);
 				setAcceptableValues(response);
 				isLoading = false;
 			}
@@ -71,5 +72,17 @@ public class EntityListBox<E extends EntityProxy> extends ValueListBox<E> {
 				isLoading = false;
 			}
 		});
+	}
+	
+	
+	
+	@Override
+	public void setEnabled(boolean enabled) {
+		extEnabled = enabled;
+		super.setEnabled(enabled);
+	}
+	
+	public boolean isExtEnabled() {
+		return extEnabled;
 	}
 }

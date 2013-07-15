@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -32,7 +33,9 @@ public class Warehouse extends Supplier<Stock, Warehouse> {
 
 	@Override
 	public void persist() {
-		super.persist();
+		EntityManager entityManager = getEntityManager();
+		entityManager.persist(this);
+		entityManager.flush();
 	}
 	
 	public void addSupply(Stock stock){

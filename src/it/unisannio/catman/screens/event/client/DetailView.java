@@ -21,6 +21,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.requestfactory.shared.Receiver;
 
 public class DetailView extends Composite implements Event.View {
 
@@ -49,6 +50,8 @@ public class DetailView extends Composite implements Event.View {
 	public DetailView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		documentsDataList.setCellAdapter(new DocumentCellAdapter());
+		
+		addPlan.setDisabled(true); //FIXME Meglio mettere il vincolo
 	}
 
 	@Override
@@ -86,7 +89,15 @@ public class DetailView extends Composite implements Event.View {
 
 	@Override
 	public void setDocumentQuery(EventDocumentQuery edq) {
-		documentsDataList.setDataProvider(new QueryDataProvider<EventDocumentProxy>(edq));	
+		documentsDataList.setDataProvider(new QueryDataProvider<EventDocumentProxy>(edq));
+		
+		edq.count().fire(new Receiver<Integer>() {
+			@Override
+			public void onSuccess(Integer response) {
+				if(response==0)
+					addPlan.setDisabled(false); //FIXME meglio mettere un vincolo
+			}
+		});
 	}
 
 	@Override

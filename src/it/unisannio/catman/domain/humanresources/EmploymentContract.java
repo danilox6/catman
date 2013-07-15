@@ -3,7 +3,6 @@ package it.unisannio.catman.domain.humanresources;
 import it.unisannio.catman.domain.planning.Position;
 import it.unisannio.catman.domain.workflow.Event;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +14,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
+
+import org.apache.commons.lang3.time.DateUtils;
+
 
 @Entity
 
@@ -120,13 +122,8 @@ public class EmploymentContract extends Contract {
 				}else if(getEndDate() == null){
 					if(contract.getEndDate().after(getStartDate()))
 						return true;
-				}else {
-					if (getStartDate().before(contract.getEndDate()) && getEndDate().after(contract.getStartDate()))
+				}else if ((getStartDate().before(contract.getEndDate()) || isSameDay(getStartDate(), contract.getEndDate())) && (getEndDate().after(contract.getStartDate()) || isSameDay(getEndDate(), contract.getStartDate())))
 						return true;
-					if(isSameDay(getStartDate(), contract.getStartDate()) || isSameDay(getEndDate(), contract.getEndDate()) || 
-							isSameDay(getStartDate(), contract.getEndDate()) || isSameDay(getEndDate(), contract.getStartDate()))
-						return true;
-				}
 			}
 		}
 		return false;
@@ -143,30 +140,10 @@ public class EmploymentContract extends Contract {
 	private boolean isEventValid(Event event){
 		if(getEndDate() == null)
 			return getStartDate().before(event.getEndDate());
-		if (getStartDate().before(event.getStartDate()) &&  getEndDate().after(event.getEndDate()))
-			return true;
-		return isSameDay(getStartDate(), event.getStartDate()) && isSameDay(getEndDate(), event.getEndDate());
+		return (getStartDate().before(event.getStartDate()) || isSameDay(getStartDate(), event.getStartDate())) &&  (getEndDate().after(event.getEndDate()) || isSameDay(getEndDate(), event.getEndDate()));
 	}
 	
 	private boolean isSameDay(Date day1, Date day2){
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		return formatter.format(day1).equals(formatter.format(day2));
-//		return DateFormat.getInstance().format(day1).equals(DateFormat.getInstance().format(day2));
+		return DateUtils.isSameDay(day1, day2);
 	}
-	
-//	private static class DateFormat extends DateTimeFormat{
-//		
-//		private static DateFormat instance;
-//
-//		private DateFormat() {
-//			super("dd/MM/yyyy");
-//		}
-//		
-//		public static DateFormat getInstance() {
-//			if(instance == null)
-//				instance = new DateFormat();
-//			return instance;
-//		}
-//		
-//	}
 }

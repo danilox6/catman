@@ -83,7 +83,7 @@ public class PlanPresenter implements Presenter {
 
 			@Override
 			public void onValueChange(ValueChangeEvent<PositionProxy> event) {
-				view.refreshProcurements();
+				view.refreshPositions();
 				
 			}
 		});

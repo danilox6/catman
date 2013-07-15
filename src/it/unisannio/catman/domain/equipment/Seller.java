@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.EntityManager;
 import javax.persistence.OneToMany;
 
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+//@Inheritance(strategy=InheritanceType.JOINED)
 public class Seller extends Supplier<Offer, Seller> {
 	
 	public static Seller findSeller(Long id) {
@@ -36,7 +35,9 @@ public class Seller extends Supplier<Offer, Seller> {
 	
 	@Override
 	public void persist() {
-		super.persist();
+		EntityManager entityManager = getEntityManager();
+		entityManager.persist(this);
+		entityManager.flush();
 	}
 
 

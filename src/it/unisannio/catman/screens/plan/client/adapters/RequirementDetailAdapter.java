@@ -10,16 +10,21 @@ public class RequirementDetailAdapter extends InteractiveCellAdapter<Requirement
 	
 	@Override
 	public SafeHtml getNorth(RequirementProxy object) {
-		return getEditLink(object.getDescription());
+		return new SafeHtmlBuilder().appendEscaped(object.getDescription()).toSafeHtml();
 	}
 
 	@Override
 	public SafeHtml getEast(RequirementProxy object) {
-		return new SafeHtmlBuilder().appendEscaped(object.getQuantityFilled() + "/" + object.getQuantity()).toSafeHtml();
+		SafeHtmlBuilder sb = new SafeHtmlBuilder();
+		sb.appendEscaped(object.getQuantityFilled() + "/" + object.getQuantity()).toSafeHtml();
+		sb.append(getEditLink(" Edit"));
+		return sb.toSafeHtml();
 	}
 	
 	@Override
 	public SafeHtml getWest(RequirementProxy object) {
 		return getSimpleSelectionCheckBox(object);
 	}
+	
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,10 +14,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 import it.unisannio.catman.domain.contacts.Addressable;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Supplier<T extends Supply<T,S>, S extends Supplier<T,S>> extends Addressable {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
 	
 	@Version
@@ -32,7 +33,8 @@ public abstract class Supplier<T extends Supply<T,S>, S extends Supplier<T,S>> e
 	
 	@SuppressWarnings("rawtypes")
 	public static List<Supplier> listAll(int start, int length) {
-		return list(Supplier.class, start, length);
+		return listByQuery(Supplier.class, start, length, "SELECT s FROM Supplier s ");
+//		return list(Supplier.class, start, length);
 	}
 	
 	

@@ -185,7 +185,6 @@ public class DetailView extends Composite implements Worker.View{
 		Alert a = new Alert(message,type,false);
 		a.setAnimation(true);
 		alertContainer.setWidget(a);
-		
 	}
 
 }

@@ -78,6 +78,11 @@ public class MockEntityPersister {
 			CustomerRequest customers = dataStore.customers();
 
 			customers.count().fire(new Receiver<Integer>() {
+				
+				@Override
+				public void onFailure(ServerFailure error) {
+//					Window.alert("Count customers: "+error.getMessage());
+				}
 
 				@Override
 				public void onSuccess(Integer response) {
@@ -101,6 +106,11 @@ public class MockEntityPersister {
 			});
 
 			dataStore.materiels().count().fire(new Receiver<Integer>() {
+				
+				@Override
+				public void onFailure(ServerFailure error) {
+//					Window.alert("Count material: "+error.getMessage());
+				}
 
 				@Override
 				public void onSuccess(Integer response) {
@@ -152,6 +162,11 @@ public class MockEntityPersister {
 						materiels.persist().using(materiel9);
 
 						materiels.fire(new Receiver<Void>() {
+							
+							@Override
+							public void onFailure(ServerFailure error) {
+//								Window.alert("Mat persist: "+error.getMessage());
+							}
 
 							@Override
 							public void onSuccess(Void response) {
@@ -164,6 +179,11 @@ public class MockEntityPersister {
 								warehouse2.setName("Magazzino Milano");
 								warehouses.persist().using(warehouse2);
 								warehouses.persist().using(warehouse).fire(new Receiver<Void>()  {
+									
+									@Override
+									public void onFailure(ServerFailure error) {
+//										Window.alert("Ware persist: "+error.getMessage() +"\n" +error.getStackTraceString() );
+									}
 
 									@Override
 									public void onSuccess(Void response) {
@@ -218,13 +238,20 @@ public class MockEntityPersister {
 										stocks.persist().using(stock8);
 
 										stocks.fire(new Receiver<Void>() {
+											
+											
 											@Override
 											public void onSuccess(Void response) {
+//												Window.alert("Material -> Warehouse -> Stock persited");
 												GWT.log("Material -> Warehouse -> Stock persited");
 											}
+//											@Override
+//											public void onFailure(ServerFailure error) {
+//												GWT.log("Fail 3");
+//											}
 											@Override
 											public void onFailure(ServerFailure error) {
-												GWT.log("Fail 3");
+//												Window.alert("Stock persist: "+error.getMessage());
 											}
 										});
 
@@ -241,6 +268,11 @@ public class MockEntityPersister {
 								sellers.persist().using(seller2);
 
 								sellers.persist().using(seller).fire(new Receiver<Void>() {
+									
+									@Override
+									public void onFailure(ServerFailure error) {
+//										Window.alert("Seller persist: "+error.getMessage());
+									}
 
 									@Override
 									public void onSuccess(Void response) {
@@ -249,7 +281,7 @@ public class MockEntityPersister {
 										offer1.setMateriel(materiel1);
 										offer1.setSupplier(seller);
 										offer1.setQuantity(5);
-										offer1.setPrice(299.99F);
+										offer1.setPrice(300);
 										offers.persist().using(offer1);
 
 										OfferProxy offer2 = offers.create(OfferProxy.class);
@@ -290,7 +322,7 @@ public class MockEntityPersister {
 										OfferProxy offer7 = offers.create(OfferProxy.class);
 										offer7.setMateriel(materiel7);
 										offer7.setSupplier(seller2);
-										offer7.setPrice(0.9F);
+										offer7.setPrice(1);
 										offer7.setQuantity(1000);
 										offers.persist().using(offer7);
 										
@@ -312,7 +344,13 @@ public class MockEntityPersister {
 
 											@Override
 											public void onSuccess(Void response) {
+//												Window.alert("Material -> Seller -> Offer persited");
 												GWT.log("Material -> Seller -> Offer persited");
+											}
+											
+											@Override
+											public void onFailure(ServerFailure error) {
+//												Window.alert("Offer persist: "+error.getMessage());
 											}
 										});
 
@@ -320,6 +358,8 @@ public class MockEntityPersister {
 								});
 
 							}
+							
+							
 						});
 					}
 				}

@@ -8,13 +8,13 @@
        <b:ControlGroup>
    			<b:ControlLabel for="startDateEditor">Start Date</b:ControlLabel>
    			<b:Controls>
-      			<d:DateBox alternateSize="XLARGE" b:id="startDateEditor" ui:field="startDateEditor"></d:DateBox>
+      			<d:DateBox alternateSize="XLARGE" b:id="startDateEditor" ui:field="startDateEditor" autoClose="true"></d:DateBox>
    			</b:Controls>
 		</b:ControlGroup>
 		<b:ControlGroup>
    			<b:ControlLabel for="endDateEditor">End Date</b:ControlLabel>
    			<b:Controls>
-      			<d:DateBox alternateSize="XLARGE" b:id="endDateEditor" ui:field="endDateEditor"></d:DateBox>
+      			<d:DateBox alternateSize="XLARGE" b:id="endDateEditor" ui:field="endDateEditor" autoClose="true"></d:DateBox>
    			</b:Controls>
 		</b:ControlGroup>
 	</b:Form>

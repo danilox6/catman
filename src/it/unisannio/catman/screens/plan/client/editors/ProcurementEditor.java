@@ -68,4 +68,9 @@ public class ProcurementEditor extends DataEditor<ProcurementProxy, ProcurementR
 		return driver;
 	}
 
+	@Override
+	public void open(ProcurementProxy object) {
+		materielEditor.setEnabled(isNew());
+		super.open(object);
+	}
 }

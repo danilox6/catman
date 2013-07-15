@@ -19,6 +19,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.requestfactory.shared.Receiver;
 
 public class MasterView extends Composite implements View {
 
@@ -43,6 +44,8 @@ public class MasterView extends Composite implements View {
 		
 		dataProvider = new QueryDataProvider<EventDocumentProxy>();
 		dataList.setDataProvider(dataProvider);
+		
+		addButton.setEnabled(false);
 	}
 	
 	public void setPresenter(Presenter p) {
@@ -74,7 +77,15 @@ public class MasterView extends Composite implements View {
 
 	@Override
 	public void setDocumentQuery(EventDocumentQuery edq) {
-		dataProvider.setQuery(edq);		
+		dataProvider.setQuery(edq);
+		
+		edq.count().fire(new Receiver<Integer>() {
+			@Override
+			public void onSuccess(Integer response) {
+				if(response==0)
+					addButton.setEnabled(true); //FIXME meglio mettere un vincolo
+			}
+		});
 	}
 
 }

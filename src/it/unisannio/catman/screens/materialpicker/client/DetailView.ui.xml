@@ -11,6 +11,9 @@
 			<b:Heading size="3" ui:field="titleLabel"></b:Heading>
 		</c:header>
 		<c:content>
+		    <g:SimplePanel ui:field="alertContainer"></g:SimplePanel>
+		</c:content>
+		<c:content>
 			<b:Fieldset>
 				<b:Legend>Fornitori</b:Legend>
 				<c:DataList ui:field="dataList" cellType="STANDALONE" />
